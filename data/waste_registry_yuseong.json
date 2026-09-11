@@ -1,0 +1,2600 @@
+[
+  {
+    "id": "yuseong-1",
+    "company": "㈜한화 대전사업장",
+    "address": "대전광역시 유성구 외삼로8번길 99",
+    "industry": "",
+    "waste_type": "사업장생활계",
+    "cas_no": "",
+    "components": [
+      "폐합성수지",
+      "폐합성고무",
+      "폐합성고분자화합물",
+      "분진",
+      "폐활성탄",
+      "실리카겔",
+      "폐목재",
+      "그밖의폐기물"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "폐합성수지, 폐합성고무, 폐합성고분자화합물, 분진, 폐활성탄, 실리카겔, 폐목재, 그밖의폐기물",
+    "cas_by_component": {
+      "폐합성수지": "",
+      "폐합성고무": "",
+      "폐합성고분자화합물": "",
+      "분진": "",
+      "폐활성탄": "",
+      "실리카겔": "",
+      "폐목재": "",
+      "그밖의폐기물": ""
+    }
+  },
+  {
+    "id": "yuseong-2",
+    "company": "한국원자력연구원",
+    "address": "대전광역시 유성구 대덕대로989번길 111",
+    "industry": "",
+    "waste_type": "사업장생활계",
+    "cas_no": "",
+    "components": [
+      "폐수처리오니(무)",
+      "폐합성수지",
+      "폐목재",
+      "폐토사"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "폐수처리오니(무), 폐합성수지, 폐목재, 폐토사",
+    "cas_by_component": {
+      "폐수처리오니(무)": "",
+      "폐합성수지": "",
+      "폐목재": "",
+      "폐토사": ""
+    }
+  },
+  {
+    "id": "yuseong-3",
+    "company": "㈜엘지생활건강",
+    "address": "대전광역시 유성구 장동 84",
+    "industry": "",
+    "waste_type": "사업장생활계",
+    "cas_no": "",
+    "components": [
+      "폐합성수지",
+      "그밖의폐기물"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "폐합성수지, 그밖의폐기물",
+    "cas_by_component": {
+      "폐합성수지": "",
+      "그밖의폐기물": ""
+    }
+  },
+  {
+    "id": "yuseong-4",
+    "company": "한국화학연구원",
+    "address": "대전광역시 유성구 가정로 141",
+    "industry": "",
+    "waste_type": "사업장생활계",
+    "cas_no": "",
+    "components": [
+      "폐지",
+      "폐목재",
+      "생활쓰레기",
+      "폐수처리오니"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "폐지, 폐목재, 생활쓰레기, 폐수처리오니",
+    "cas_by_component": {
+      "폐지": "",
+      "폐목재": "",
+      "생활쓰레기": "",
+      "폐수처리오니": ""
+    }
+  },
+  {
+    "id": "yuseong-5",
+    "company": "자운대근무지원단",
+    "address": "대전광역시 유성구 추목동 사서함 78-24호",
+    "industry": "",
+    "waste_type": "사업장생활계",
+    "cas_no": "",
+    "components": [
+      "폐목재",
+      "폐합성수지",
+      "그밖의폐기물"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "폐목재, 폐합성수지, 그밖의폐기물",
+    "cas_by_component": {
+      "폐목재": "",
+      "폐합성수지": "",
+      "그밖의폐기물": ""
+    }
+  },
+  {
+    "id": "yuseong-6",
+    "company": "육군교육사령부",
+    "address": "대전광역시 유성구 추목동 사서함 78-24호",
+    "industry": "",
+    "waste_type": "사업장생활계",
+    "cas_no": "",
+    "components": [
+      "하수처리오니(유)",
+      "그밖의(협잡물)"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "하수처리오니(유), 그밖의(협잡물)",
+    "cas_by_component": {
+      "하수처리오니(유)": "",
+      "그밖의(협잡물)": ""
+    }
+  },
+  {
+    "id": "yuseong-7",
+    "company": "한국테크노돔",
+    "address": "대전광역시 유성구 유성대로935번길 50(죽동)",
+    "industry": "",
+    "waste_type": "사업장생활계",
+    "cas_no": "",
+    "components": [
+      "폐수처리오니(무)",
+      "폐합성수지",
+      "폐합성고무",
+      "분진",
+      "폐타이어"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "폐수처리오니(무), 폐합성수지, 폐합성고무, 분진, 폐타이어",
+    "cas_by_component": {
+      "폐수처리오니(무)": "",
+      "폐합성수지": "",
+      "폐합성고무": "",
+      "분진": "",
+      "폐타이어": ""
+    }
+  },
+  {
+    "id": "yuseong-8",
+    "company": "한국과학기술원",
+    "address": "대전광역시 유성구 대학로 291",
+    "industry": "",
+    "waste_type": "사업장생활계",
+    "cas_no": "",
+    "components": [
+      "오니(무)",
+      "폐수처리오니(무)",
+      "폐합성수지",
+      "그밖의폐기물"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "오니(무), 폐수처리오니(무),폐합성수지,그밖의폐기물",
+    "cas_by_component": {
+      "오니(무)": "",
+      "폐수처리오니(무)": "",
+      "폐합성수지": "",
+      "그밖의폐기물": ""
+    }
+  },
+  {
+    "id": "yuseong-9",
+    "company": "LG화학기술연구원",
+    "address": "대전광역시 유성구 문지로 188",
+    "industry": "",
+    "waste_type": "사업장생활계",
+    "cas_no": "",
+    "components": [
+      "폐합성수지",
+      "그밖의폐기물"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "폐합성수지, 그밖의폐기물",
+    "cas_by_component": {
+      "폐합성수지": "",
+      "그밖의폐기물": ""
+    }
+  },
+  {
+    "id": "yuseong-10",
+    "company": "(사)대전광역시노은농수산물도매시장환경관리위원회",
+    "address": "대전광역시 유성구 노은동로 33(노은동)",
+    "industry": "",
+    "waste_type": "사업장생활계",
+    "cas_no": "",
+    "components": [
+      "폐합성고분자화합물",
+      "동물성잔재물",
+      "식물성잔재물",
+      "그밖의폐기물"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "폐합성고분자화합물, 동물성잔재물, 식물성잔재물, 그밖의폐기물",
+    "cas_by_component": {
+      "폐합성고분자화합물": "",
+      "동물성잔재물": "",
+      "식물성잔재물": "",
+      "그밖의폐기물": ""
+    }
+  },
+  {
+    "id": "yuseong-11",
+    "company": "국립대전현충원",
+    "address": "대전광역시 유성구 현충원로 251",
+    "industry": "",
+    "waste_type": "사업장생활계",
+    "cas_no": "",
+    "components": [
+      "폐합성수지",
+      "그밖의폐기물"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "폐합성수지, 그밖의폐기물",
+    "cas_by_component": {
+      "폐합성수지": "",
+      "그밖의폐기물": ""
+    }
+  },
+  {
+    "id": "yuseong-12",
+    "company": "신화레미콘㈜",
+    "address": "대전광역시 유성구 금남구즉로 1379-12(봉산동)",
+    "industry": "",
+    "waste_type": "사배",
+    "cas_no": "",
+    "components": [
+      "폐콘크리트"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "폐콘크리트",
+    "cas_by_component": {
+      "폐콘크리트": ""
+    }
+  },
+  {
+    "id": "yuseong-13",
+    "company": "한국지질자원연구원",
+    "address": "대전광역시 유성구 과학로 124",
+    "industry": "",
+    "waste_type": "사업장생활계",
+    "cas_no": "",
+    "components": [
+      "폐수처리오니(무)",
+      "폐합성수지",
+      "동식물성잔재물",
+      "폐토사"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "폐수처리오니(무), 폐합성수지, 동식물성잔재물, 폐토사",
+    "cas_by_component": {
+      "폐수처리오니(무)": "",
+      "폐합성수지": "",
+      "동식물성잔재물": "",
+      "폐토사": ""
+    }
+  },
+  {
+    "id": "yuseong-14",
+    "company": "㈜진미식품",
+    "address": "대전광역시 유성구 유성대로298번길 132",
+    "industry": "",
+    "waste_type": "사배",
+    "cas_no": "",
+    "components": [
+      "공정오니",
+      "폐수처리오니",
+      "폐합성고분자화합물",
+      "폐합성수지"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "공정오니, 폐수처리오니, 폐합성고분자화합물, 폐합성수지",
+    "cas_by_component": {
+      "공정오니": "",
+      "폐수처리오니": "",
+      "폐합성고분자화합물": "",
+      "폐합성수지": ""
+    }
+  },
+  {
+    "id": "yuseong-15",
+    "company": "유성관광㈜",
+    "address": "대전광역시 유성구 현충원로 200",
+    "industry": "",
+    "waste_type": "사업장생활계",
+    "cas_no": "",
+    "components": [
+      "생활폐기물"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "생활폐기물",
+    "cas_by_component": {
+      "생활폐기물": ""
+    }
+  },
+  {
+    "id": "yuseong-16",
+    "company": "대전광역시 시설관리공단",
+    "address": "대전광역시 유성구 원촌동 23",
+    "industry": "",
+    "waste_type": "사배",
+    "cas_no": "",
+    "components": [
+      "하수처리오니(유)",
+      "그밖의(협잡물",
+      "하수도준설토)"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "하수처리오니(유), 그밖의(협잡물, 하수도준설토)",
+    "cas_by_component": {
+      "하수처리오니(유)": "",
+      "그밖의(협잡물": "",
+      "하수도준설토)": ""
+    }
+  },
+  {
+    "id": "yuseong-17",
+    "company": "롯데쇼핑㈜롯데마트서대전점",
+    "address": "대전광역시 유성구 유성대로 26-37(원내동)",
+    "industry": "",
+    "waste_type": "사업장생활계",
+    "cas_no": "",
+    "components": [
+      "폐합성수지",
+      "폐식용유",
+      "동식물성잔재물",
+      "동물성잔재물",
+      "생활쓰레기"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "폐합성수지, 폐식용유, 동식물성잔재물, 동물성잔재물, 생활쓰레기",
+    "cas_by_component": {
+      "폐합성수지": "",
+      "폐식용유": "",
+      "동식물성잔재물": "",
+      "동물성잔재물": "",
+      "생활쓰레기": ""
+    }
+  },
+  {
+    "id": "yuseong-18",
+    "company": "충남대학교",
+    "address": "대전광역시 유성구 대학로 99",
+    "industry": "",
+    "waste_type": "사업장생활계",
+    "cas_no": "",
+    "components": [
+      "폐합성수지",
+      "폐도자기",
+      "폐석고",
+      "폐목재",
+      "폐유리",
+      "음료수유리병",
+      "생활폐기물"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "폐합성수지, 폐도자기, 폐석고, 폐목재, 폐유리, 음료수유리병, 생활폐기물",
+    "cas_by_component": {
+      "폐합성수지": "",
+      "폐도자기": "",
+      "폐석고": "",
+      "폐목재": "",
+      "폐유리": "",
+      "음료수유리병": "",
+      "생활폐기물": ""
+    }
+  },
+  {
+    "id": "yuseong-19",
+    "company": "한화솔루션㈜중앙연구소",
+    "address": "대전광역시 유성구 가정로 76",
+    "industry": "",
+    "waste_type": "사업장생활계",
+    "cas_no": "",
+    "components": [
+      "폐수처리오니(무)",
+      "공정오니(무)",
+      "폐합성수지",
+      "폐흡착제",
+      "폐목재",
+      "그밖의폐기물"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "폐수처리오니(무), 공정오니(무), 폐합성수지, 폐흡착제, 폐목재, 그밖의폐기물",
+    "cas_by_component": {
+      "폐수처리오니(무)": "",
+      "공정오니(무)": "",
+      "폐합성수지": "",
+      "폐흡착제": "",
+      "폐목재": "",
+      "그밖의폐기물": ""
+    }
+  },
+  {
+    "id": "yuseong-20",
+    "company": "SK이노베이션㈜ 기술혁신연구원",
+    "address": "대전광역시 유성구 엑스포로 325",
+    "industry": "",
+    "waste_type": "사업장생활계",
+    "cas_no": "",
+    "components": [
+      "폐수처리오니(무)",
+      "폐합성수지",
+      "폐흡착제",
+      "연소잔재물",
+      "식물성잔재물",
+      "폐전기전자제품",
+      "폐목재",
+      "폐금속"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "폐수처리오니(무), 폐합성수지, 폐흡착제, 연소잔재물, 식물성잔재물, 폐전기전자제품, 폐목재, 폐금속",
+    "cas_by_component": {
+      "폐수처리오니(무)": "",
+      "폐합성수지": "",
+      "폐흡착제": "",
+      "연소잔재물": "",
+      "식물성잔재물": "",
+      "폐전기전자제품": "",
+      "폐목재": "",
+      "폐금속": ""
+    }
+  },
+  {
+    "id": "yuseong-21",
+    "company": "육군제9030부대",
+    "address": "대전광역시 유성구 추목동 사서함 78-8호",
+    "industry": "",
+    "waste_type": "사업장생활계",
+    "cas_no": "",
+    "components": [
+      "폐합성수지류",
+      "폐합성고무류",
+      "프라스틱폐보장재",
+      "폐합성섬유류",
+      "그밖의 폐기물"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "폐합성수지류, 폐합성고무류, 프라스틱폐보장재, 폐합성섬유류, 그밖의 폐기물",
+    "cas_by_component": {
+      "폐합성수지류": "",
+      "폐합성고무류": "",
+      "프라스틱폐보장재": "",
+      "폐합성섬유류": "",
+      "그밖의 폐기물": ""
+    }
+  },
+  {
+    "id": "yuseong-22",
+    "company": "호텔인터시티",
+    "address": "대전광역시 유성구 온천로 92",
+    "industry": "",
+    "waste_type": "사업장생활계",
+    "cas_no": "",
+    "components": [
+      "그밖의폐기물",
+      "음식물폐기물"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "그밖의폐기물, 음식물폐기물",
+    "cas_by_component": {
+      "그밖의폐기물": "",
+      "음식물폐기물": ""
+    }
+  },
+  {
+    "id": "yuseong-23",
+    "company": "대전교도소",
+    "address": "대전광역시 유성구 한우물로66번길 6",
+    "industry": "",
+    "waste_type": "사업장생활계",
+    "cas_no": "",
+    "components": [
+      "폐합성수지",
+      "폐도자기",
+      "연소잔재물",
+      "폐벽돌",
+      "음식물",
+      "폐가죽"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "폐합성수지, 폐도자기, 연소잔재물, 폐벽돌, 음식물, 폐가죽",
+    "cas_by_component": {
+      "폐합성수지": "",
+      "폐도자기": "",
+      "연소잔재물": "",
+      "폐벽돌": "",
+      "음식물": "",
+      "폐가죽": ""
+    }
+  },
+  {
+    "id": "yuseong-24",
+    "company": "홈플러스주식회사 유성점",
+    "address": "대전광역시 유성구 한밭대로 502",
+    "industry": "",
+    "waste_type": "사업장생활계",
+    "cas_no": "",
+    "components": [
+      "음식물쓰레기",
+      "생활폐기물",
+      "폐합성수지",
+      "폐식용유",
+      "동물성잔재물"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "음식물쓰레기, 생활폐기물, 폐합성수지, 폐식용유, 동물성잔재물",
+    "cas_by_component": {
+      "음식물쓰레기": "",
+      "생활폐기물": "",
+      "폐합성수지": "",
+      "폐식용유": "",
+      "동물성잔재물": ""
+    }
+  },
+  {
+    "id": "yuseong-25",
+    "company": "계룡스파텔",
+    "address": "대전광역시 유성구 온천로 81",
+    "industry": "",
+    "waste_type": "사업장생활계",
+    "cas_no": "",
+    "components": [
+      "폐합성수지",
+      "그밖의폐기물"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "폐합성수지, 그밖의폐기물",
+    "cas_by_component": {
+      "폐합성수지": "",
+      "그밖의폐기물": ""
+    }
+  },
+  {
+    "id": "yuseong-26",
+    "company": "한국항공우주연구원",
+    "address": "대전광역시 유성구 과학로 169-84",
+    "industry": "",
+    "waste_type": "사업장생활계",
+    "cas_no": "",
+    "components": [
+      "폐합성수지",
+      "폐목재"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "폐합성수지, 폐목재",
+    "cas_by_component": {
+      "폐합성수지": "",
+      "폐목재": ""
+    }
+  },
+  {
+    "id": "yuseong-27",
+    "company": "대덕대학",
+    "address": "대전광역시 유성구 가정북로 68(장동)",
+    "industry": "",
+    "waste_type": "사업장생활계",
+    "cas_no": "",
+    "components": [
+      "폐목재",
+      "폐합성수지",
+      "그밖의폐기물"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "폐목재, 폐합성수지, 그밖의폐기물",
+    "cas_by_component": {
+      "폐목재": "",
+      "폐합성수지": "",
+      "그밖의폐기물": ""
+    }
+  },
+  {
+    "id": "yuseong-28",
+    "company": "㈜삼양사 중앙연구소",
+    "address": "대전광역시 유성구 대덕대로 730",
+    "industry": "",
+    "waste_type": "사업장생활계",
+    "cas_no": "",
+    "components": [
+      "폐합성수지",
+      "동식물성잔재물",
+      "폐목재",
+      "그밖의폐기물"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "폐합성수지, 동식물성잔재물, 폐목재, 그밖의폐기물",
+    "cas_by_component": {
+      "폐합성수지": "",
+      "동식물성잔재물": "",
+      "폐목재": "",
+      "그밖의폐기물": ""
+    }
+  },
+  {
+    "id": "yuseong-29",
+    "company": "한국전자통신연구원",
+    "address": "대전광역시 유성구 가정로 218",
+    "industry": "",
+    "waste_type": "사업장생활계",
+    "cas_no": "",
+    "components": [
+      "폐합성수지",
+      "폐목재"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "폐합성수지, 폐목재",
+    "cas_by_component": {
+      "폐합성수지": "",
+      "폐목재": ""
+    }
+  },
+  {
+    "id": "yuseong-30",
+    "company": "한국에너지기술연구원",
+    "address": "대전광역시 유성구 가정로 152",
+    "industry": "",
+    "waste_type": "사업장생활계",
+    "cas_no": "",
+    "components": [
+      "폐수처리오니(무)",
+      "폐합성수지",
+      "석탄재",
+      "연소재",
+      "폐목재",
+      "음식물"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "폐수처리오니(무), 폐합성수지, 석탄재, 연소재, 폐목재, 음식물",
+    "cas_by_component": {
+      "폐수처리오니(무)": "",
+      "폐합성수지": "",
+      "석탄재": "",
+      "연소재": "",
+      "폐목재": "",
+      "음식물": ""
+    }
+  },
+  {
+    "id": "yuseong-31",
+    "company": "우리바이오㈜대전공장",
+    "address": "대전광역시 유성구 테크노2로 71",
+    "industry": "",
+    "waste_type": "사업장생활계",
+    "cas_no": "",
+    "components": [
+      "폐합성수지류",
+      "폐목재류",
+      "페유리"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "폐합성수지류,  폐목재류, 페유리",
+    "cas_by_component": {
+      "폐합성수지류": "",
+      "폐목재류": "",
+      "페유리": ""
+    }
+  },
+  {
+    "id": "yuseong-32",
+    "company": "롯데쇼핑㈜롯데마트대덕테크노밸리점",
+    "address": "대전광역시 유성구 테크노중앙로 14",
+    "industry": "",
+    "waste_type": "사업장생활계",
+    "cas_no": "",
+    "components": [
+      "폐합성고분자화합물",
+      "음식물",
+      "폐지",
+      "생활계폐기물"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "폐합성고분자화합물, 음식물, 폐지, 생활계폐기물",
+    "cas_by_component": {
+      "폐합성고분자화합물": "",
+      "음식물": "",
+      "폐지": "",
+      "생활계폐기물": ""
+    }
+  },
+  {
+    "id": "yuseong-33",
+    "company": "육군군수사령부(제1266부대 본부근무대)",
+    "address": "대전광역시 유성구 반석로 62(반석동, 사서함120-2호)",
+    "industry": "",
+    "waste_type": "사업장생활계",
+    "cas_no": "",
+    "components": [
+      "폐가구류",
+      "폐의류",
+      "폐합성수지류",
+      "그 밖의 폐기물"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "폐가구류, 폐의류, 폐합성수지류, 그 밖의 폐기물",
+    "cas_by_component": {
+      "폐가구류": "",
+      "폐의류": "",
+      "폐합성수지류": "",
+      "그 밖의 폐기물": ""
+    }
+  },
+  {
+    "id": "yuseong-34",
+    "company": "화인테크㈜",
+    "address": "대전광역시 유성구 테크노2로 251",
+    "industry": "",
+    "waste_type": "사업장생활계",
+    "cas_no": "",
+    "components": [
+      "폐내화물",
+      "폐합성수지"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "폐내화물, 폐합성수지",
+    "cas_by_component": {
+      "폐내화물": "",
+      "폐합성수지": ""
+    }
+  },
+  {
+    "id": "yuseong-35",
+    "company": "웅진에너지㈜",
+    "address": "대전광역시 유성구 테크노2로 37",
+    "industry": "",
+    "waste_type": "사업장생활계",
+    "cas_no": "",
+    "components": [
+      "폐수처리오니(무)",
+      "폐합성수지",
+      "분진",
+      "폐내화물",
+      "폐석영",
+      "폐흑연",
+      "폐목재"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "폐수처리오니(무), 폐합성수지, 분진, 폐내화물, 폐석영, 폐흑연, 폐목재",
+    "cas_by_component": {
+      "폐수처리오니(무)": "",
+      "폐합성수지": "",
+      "분진": "",
+      "폐내화물": "",
+      "폐석영": "",
+      "폐흑연": "",
+      "폐목재": ""
+    }
+  },
+  {
+    "id": "yuseong-36",
+    "company": "(의)영훈의료재단 유성선병원",
+    "address": "대전광역시 유성구 북유성대로 93",
+    "industry": "",
+    "waste_type": "사업장생활계",
+    "cas_no": "",
+    "components": [
+      "폐수처리오니(무)",
+      "폐합성수지",
+      "음식물",
+      "폐유리",
+      "생활폐기물"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "폐수처리오니(무), 폐합성수지, 음식물, 폐유리, 생활폐기물",
+    "cas_by_component": {
+      "폐수처리오니(무)": "",
+      "폐합성수지": "",
+      "음식물": "",
+      "폐유리": "",
+      "생활폐기물": ""
+    }
+  },
+  {
+    "id": "yuseong-37",
+    "company": "금호석유화학㈜",
+    "address": "대전광역시 유성구 화암동 57-1",
+    "industry": "",
+    "waste_type": "사배",
+    "cas_no": "",
+    "components": [
+      "폐수처리오니(무)",
+      "폐합성수지",
+      "폐원료",
+      "생활폐기물"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "폐수처리오니(무), 폐합성수지, 폐원료, 생활폐기물",
+    "cas_by_component": {
+      "폐수처리오니(무)": "",
+      "폐합성수지": "",
+      "폐원료": "",
+      "생활폐기물": ""
+    }
+  },
+  {
+    "id": "yuseong-38",
+    "company": "한국원자력연료㈜TSA공장",
+    "address": "대전광역시 유성구 테크노6로 8",
+    "industry": "",
+    "waste_type": "사배",
+    "cas_no": "",
+    "components": [
+      "폐수처리오니(무)",
+      "폐합성수지",
+      "폐사",
+      "폐흡착제",
+      "폐목재"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "폐수처리오니(무), 폐합성수지, 폐사, 폐흡착제, 폐목재",
+    "cas_by_component": {
+      "폐수처리오니(무)": "",
+      "폐합성수지": "",
+      "폐사": "",
+      "폐흡착제": "",
+      "폐목재": ""
+    }
+  },
+  {
+    "id": "yuseong-39",
+    "company": "대전광역시 음식물쓰레기 광역자원화시설",
+    "address": "대전광역시 유성구 불무로 186",
+    "industry": "",
+    "waste_type": "사업장생활계",
+    "cas_no": "",
+    "components": [
+      "폐수처리오니(유)",
+      "그밖의폐기물(고상",
+      "액상)",
+      "하수준설토(무)",
+      "폐흡착제"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "폐수처리오니(유), 그밖의폐기물(고상, 액상), 하수준설토(무), 폐흡착제",
+    "cas_by_component": {
+      "폐수처리오니(유)": "",
+      "그밖의폐기물(고상": "",
+      "액상)": "",
+      "하수준설토(무)": "",
+      "폐흡착제": ""
+    }
+  },
+  {
+    "id": "yuseong-40",
+    "company": "한국생명공학연구원",
+    "address": "대전광역시 유성구 과학로 125(어은동)",
+    "industry": "",
+    "waste_type": "사업장생활계",
+    "cas_no": "",
+    "components": [
+      "폐흡착제",
+      "그밖의폐기물"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "폐흡착제, 그밖의폐기물",
+    "cas_by_component": {
+      "폐흡착제": "",
+      "그밖의폐기물": ""
+    }
+  },
+  {
+    "id": "yuseong-41",
+    "company": "㈜젬백스앤카엘",
+    "address": "대전광역시 유성구 테크노11로 58",
+    "industry": "",
+    "waste_type": "사업장생활계",
+    "cas_no": "",
+    "components": [
+      "폐합성수지"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "폐합성수지",
+    "cas_by_component": {
+      "폐합성수지": ""
+    }
+  },
+  {
+    "id": "yuseong-42",
+    "company": "금실레져산업㈜",
+    "address": "대전광역시 유성구 테크노중앙로 210",
+    "industry": "",
+    "waste_type": "사업장생활계",
+    "cas_no": "",
+    "components": [
+      "생활폐기물",
+      "음식물"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "생활폐기물, 음식물",
+    "cas_by_component": {
+      "생활폐기물": "",
+      "음식물": ""
+    }
+  },
+  {
+    "id": "yuseong-43",
+    "company": "주식회사 옵트론-텍 대전사업장",
+    "address": "대전광역시 유성구 가정북로 26-51",
+    "industry": "",
+    "waste_type": "사업장생활계",
+    "cas_no": "",
+    "components": [
+      "폐합성수지",
+      "폐유리"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "폐합성수지, 폐유리",
+    "cas_by_component": {
+      "폐합성수지": "",
+      "폐유리": ""
+    }
+  },
+  {
+    "id": "yuseong-44",
+    "company": "홈플러스㈜ 서대전점",
+    "address": "대전광역시 유성구 대정로 23",
+    "industry": "",
+    "waste_type": "사업장생활계",
+    "cas_no": "",
+    "components": [
+      "폐합성수지",
+      "폐식용유",
+      "동식물성잔재물",
+      "동물성잔재물",
+      "음식물"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "폐합성수지, 폐식용유, 동식물성잔재물, 동물성잔재물, 음식물",
+    "cas_by_component": {
+      "폐합성수지": "",
+      "폐식용유": "",
+      "동식물성잔재물": "",
+      "동물성잔재물": "",
+      "음식물": ""
+    }
+  },
+  {
+    "id": "yuseong-45",
+    "company": "롯데쇼핑㈜롯데마트 노은점",
+    "address": "대전광역시 유성구 북유성대로 206",
+    "industry": "",
+    "waste_type": "사업장생활계",
+    "cas_no": "",
+    "components": [
+      "음식물",
+      "폐합성수지"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "음식물, 폐합성수지",
+    "cas_by_component": {
+      "음식물": "",
+      "폐합성수지": ""
+    }
+  },
+  {
+    "id": "yuseong-46",
+    "company": "㈜케이티앤지연구원",
+    "address": "대전광역시 유성구 신성동 302",
+    "industry": "",
+    "waste_type": "사배",
+    "cas_no": "",
+    "components": [
+      "폐수처리오니(무)",
+      "폐합성수지",
+      "폐흡착제",
+      "폐유리"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "폐수처리오니(무), 폐합성수지, 폐흡착제, 폐유리",
+    "cas_by_component": {
+      "폐수처리오니(무)": "",
+      "폐합성수지": "",
+      "폐흡착제": "",
+      "폐유리": ""
+    }
+  },
+  {
+    "id": "yuseong-47",
+    "company": "이엘케이㈜",
+    "address": "대전광역시 유성구 관평동 687",
+    "industry": "",
+    "waste_type": "사배",
+    "cas_no": "",
+    "components": [
+      "폐수처리오니(무)",
+      "생활폐기물",
+      "폐합성수지"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "폐수처리오니(무), 생활폐기물, 폐합성수지",
+    "cas_by_component": {
+      "폐수처리오니(무)": "",
+      "생활폐기물": "",
+      "폐합성수지": ""
+    }
+  },
+  {
+    "id": "yuseong-48",
+    "company": "청람에듀빌㈜",
+    "address": "대전광역시 유성구 궁동 220 충남대학교 BTL기숙사",
+    "industry": "",
+    "waste_type": "사업장생활계",
+    "cas_no": "",
+    "components": [
+      "폐합성수지",
+      "그밖의폐기물"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "폐합성수지, 그밖의폐기물",
+    "cas_by_component": {
+      "폐합성수지": "",
+      "그밖의폐기물": ""
+    }
+  },
+  {
+    "id": "yuseong-49",
+    "company": "㈜인섹트바이오텍",
+    "address": "대전광역시 유성구 유성대로1628번길 3",
+    "industry": "",
+    "waste_type": "사배",
+    "cas_no": "",
+    "components": [
+      "폐흡착제"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "폐흡착제",
+    "cas_by_component": {
+      "폐흡착제": ""
+    }
+  },
+  {
+    "id": "yuseong-50",
+    "company": "한국건설생활환경시험연구원 대전·충남지원",
+    "address": "대전광역시 유성구 가정북로 26-34(장동)",
+    "industry": "",
+    "waste_type": "사업장생활계",
+    "cas_no": "",
+    "components": [
+      "폐콘크리트",
+      "폐합성수지",
+      "폐아스콘"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "폐콘크리트, 폐합성수지, 폐아스콘",
+    "cas_by_component": {
+      "폐콘크리트": "",
+      "폐합성수지": "",
+      "폐아스콘": ""
+    }
+  },
+  {
+    "id": "yuseong-51",
+    "company": "한국해양과학기술원부설선박해양플랜트연구소",
+    "address": "대전광역시 유성구 유성대로1312번길 32",
+    "industry": "",
+    "waste_type": "사업장생활계",
+    "cas_no": "",
+    "components": [
+      "그밖의폐기물"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "그밖의폐기물",
+    "cas_by_component": {
+      "그밖의폐기물": ""
+    }
+  },
+  {
+    "id": "yuseong-52",
+    "company": "한국조폐공사(ID본부)",
+    "address": "대전광역시 유성구 테크노10로 7",
+    "industry": "",
+    "waste_type": "사업장생활계",
+    "cas_no": "",
+    "components": [
+      "폐합성수지",
+      "폐목재"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "폐합성수지, 폐목재",
+    "cas_by_component": {
+      "폐합성수지": "",
+      "폐목재": ""
+    }
+  },
+  {
+    "id": "yuseong-53",
+    "company": "한전원자력연료주식회사",
+    "address": "대전광역시 유성구 대덕대로 989번길 242",
+    "industry": "",
+    "waste_type": "사업장생활계",
+    "cas_no": "",
+    "components": [
+      "폐수처리오니(무)",
+      "폐합성수지",
+      "폐목재",
+      "그밖의폐기물"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "폐수처리오니(무), 폐합성수지, 폐목재, 그밖의폐기물",
+    "cas_by_component": {
+      "폐수처리오니(무)": "",
+      "폐합성수지": "",
+      "폐목재": "",
+      "그밖의폐기물": ""
+    }
+  },
+  {
+    "id": "yuseong-54",
+    "company": "㈜부영주택 유성산업",
+    "address": "대전광역시 유성구 유성대로 110-29",
+    "industry": "",
+    "waste_type": "사배",
+    "cas_no": "",
+    "components": [
+      "분진"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "분진",
+    "cas_by_component": {
+      "분진": ""
+    }
+  },
+  {
+    "id": "yuseong-55",
+    "company": "대전폐차사업소",
+    "address": "대전광역시 유성구 금남구즉로 1445",
+    "industry": "",
+    "waste_type": "사업장생활계",
+    "cas_no": "",
+    "components": [
+      "폐범퍼",
+      "폐피복전선",
+      "폐촉매",
+      "폐타이어"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "폐범퍼, 폐피복전선, 폐촉매, 폐타이어",
+    "cas_by_component": {
+      "폐범퍼": "",
+      "폐피복전선": "",
+      "폐촉매": "",
+      "폐타이어": ""
+    }
+  },
+  {
+    "id": "yuseong-56",
+    "company": "㈜제이에이치레전드호텔",
+    "address": "대전광역시 유성구 계룡로141번길 21",
+    "industry": "",
+    "waste_type": "사업장생활계",
+    "cas_no": "",
+    "components": [
+      "동식물성잔재물"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "동식물성잔재물",
+    "cas_by_component": {
+      "동식물성잔재물": ""
+    }
+  },
+  {
+    "id": "yuseong-57",
+    "company": "유성관광개발㈜",
+    "address": "대전광역시 유성구 온천로 9",
+    "industry": "",
+    "waste_type": "사업장생활계",
+    "cas_no": "",
+    "components": [
+      "동식물성잔재물",
+      "폐식용유",
+      "그밖의폐기물"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "동식물성잔재물, 폐식용유, 그밖의폐기물",
+    "cas_by_component": {
+      "동식물성잔재물": "",
+      "폐식용유": "",
+      "그밖의폐기물": ""
+    }
+  },
+  {
+    "id": "yuseong-58",
+    "company": "한밭대학교(유성캠퍼스)",
+    "address": "대전광역시 유성구 동서대로 125",
+    "industry": "",
+    "waste_type": "사업장생활계",
+    "cas_no": "",
+    "components": [
+      "폐합성수지",
+      "페트병",
+      "폐목재",
+      "그밖의폐기물"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "폐합성수지, 페트병, 폐목재, 그밖의폐기물",
+    "cas_by_component": {
+      "폐합성수지": "",
+      "페트병": "",
+      "폐목재": "",
+      "그밖의폐기물": ""
+    }
+  },
+  {
+    "id": "yuseong-59",
+    "company": "한밭대학교(대덕캠퍼스)",
+    "address": "대전광역시 유성구 테크노1로 75",
+    "industry": "",
+    "waste_type": "사업장생활계",
+    "cas_no": "",
+    "components": [
+      "폐합성수지",
+      "그밖의폐기물"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "폐합성수지, 그밖의폐기물",
+    "cas_by_component": {
+      "폐합성수지": "",
+      "그밖의폐기물": ""
+    }
+  },
+  {
+    "id": "yuseong-60",
+    "company": "㈜한독크린텍",
+    "address": "대전광역시 유성구 테크노8로 13(용산동)",
+    "industry": "",
+    "waste_type": "사업장배출시설계",
+    "cas_no": "",
+    "components": [
+      "흡착제"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "흡착제",
+    "cas_by_component": {
+      "흡착제": ""
+    }
+  },
+  {
+    "id": "yuseong-61",
+    "company": "엠아이티㈜",
+    "address": "대전광역시 유성구 테크노6로 32",
+    "industry": "",
+    "waste_type": "사업장생활계",
+    "cas_no": "",
+    "components": [
+      "폐합성수지",
+      "그밖의폐기물"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "폐합성수지, 그밖의폐기물",
+    "cas_by_component": {
+      "폐합성수지": "",
+      "그밖의폐기물": ""
+    }
+  },
+  {
+    "id": "yuseong-62",
+    "company": "㈜넥스컴스",
+    "address": "대전광역시 유성구 테크노2로 309-26",
+    "industry": "",
+    "waste_type": "사업장생활계",
+    "cas_no": "",
+    "components": [
+      "폐합성수지"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "폐합성수지",
+    "cas_by_component": {
+      "폐합성수지": ""
+    }
+  },
+  {
+    "id": "yuseong-63",
+    "company": "㈜삼양바이오팜 의약바이오연구소",
+    "address": "대전광역시 유성구 대덕대로 730(화암동)",
+    "industry": "",
+    "waste_type": "사업장생활계",
+    "cas_no": "",
+    "components": [
+      "폐합성수지",
+      "폐목재",
+      "그밖의폐기물"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "폐합성수지, 폐목재, 그밖의폐기물",
+    "cas_by_component": {
+      "폐합성수지": "",
+      "폐목재": "",
+      "그밖의폐기물": ""
+    }
+  },
+  {
+    "id": "yuseong-64",
+    "company": "㈜모다 이노칩",
+    "address": "대전광역시 유성구 대정로 5",
+    "industry": "",
+    "waste_type": "사업장생활계",
+    "cas_no": "",
+    "components": [
+      "폐합성수지"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "폐합성수지",
+    "cas_by_component": {
+      "폐합성수지": ""
+    }
+  },
+  {
+    "id": "yuseong-65",
+    "company": "㈜나노신소재",
+    "address": "대전광역시 유성구 테크노중앙로 243-2(탑립동)",
+    "industry": "",
+    "waste_type": "사업장배출시설계",
+    "cas_no": "",
+    "components": [
+      "공정오니(무)",
+      "폐합성수지"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "공정오니(무), 폐합성수지",
+    "cas_by_component": {
+      "공정오니(무)": "",
+      "폐합성수지": ""
+    }
+  },
+  {
+    "id": "yuseong-66",
+    "company": "애경유화㈜애경중앙연구소",
+    "address": "대전광역시 유성구 신성동 217-2",
+    "industry": "",
+    "waste_type": "사업장배출시설계",
+    "cas_no": "",
+    "components": [
+      "폐수처리오니(유)",
+      "폐합성수지"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "폐수처리오니(유), 폐합성수지",
+    "cas_by_component": {
+      "폐수처리오니(유)": "",
+      "폐합성수지": ""
+    }
+  },
+  {
+    "id": "yuseong-67",
+    "company": "티티엠㈜",
+    "address": "대전광역시 유성구 테크노2로 94-14(관평동)",
+    "industry": "",
+    "waste_type": "사업장배출시설계",
+    "cas_no": "",
+    "components": [
+      "폐합성수지"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "폐합성수지",
+    "cas_by_component": {
+      "폐합성수지": ""
+    }
+  },
+  {
+    "id": "yuseong-68",
+    "company": "유성 선병원 장례식장",
+    "address": "대전광역시 유성구 북유성대로 93(지족동)",
+    "industry": "",
+    "waste_type": "사업장생활계",
+    "cas_no": "",
+    "components": [
+      "그밖의폐기물"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "그밖의폐기물",
+    "cas_by_component": {
+      "그밖의폐기물": ""
+    }
+  },
+  {
+    "id": "yuseong-69",
+    "company": "㈜제이오텍",
+    "address": "대전광역시 유성구 테크노2로 153(용산동)",
+    "industry": "",
+    "waste_type": "사업장생활계",
+    "cas_no": "",
+    "components": [
+      "폐합성수지"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "폐합성수지",
+    "cas_by_component": {
+      "폐합성수지": ""
+    }
+  },
+  {
+    "id": "yuseong-70",
+    "company": "대전도시공사",
+    "address": "대전광역시 유성구 불무로 186(금고동)",
+    "industry": "",
+    "waste_type": "사업장생활계",
+    "cas_no": "",
+    "components": [
+      "그밖의 유기성오니"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "그밖의 유기성오니",
+    "cas_by_component": {
+      "그밖의 유기성오니": ""
+    }
+  },
+  {
+    "id": "yuseong-71",
+    "company": "롯데케미칼㈜연구소",
+    "address": "대전광역시 유성구 가정북로 115",
+    "industry": "",
+    "waste_type": "사업장생활계",
+    "cas_no": "",
+    "components": [
+      "폐합성수지",
+      "그밖의폐기물"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "폐합성수지, 그밖의폐기물",
+    "cas_by_component": {
+      "폐합성수지": "",
+      "그밖의폐기물": ""
+    }
+  },
+  {
+    "id": "yuseong-72",
+    "company": "삼성웰스토리㈜카이스트동측",
+    "address": "대전광역시 유성구 구성동 373-1",
+    "industry": "",
+    "waste_type": "사업장생활계",
+    "cas_no": "",
+    "components": [
+      "음식물류 폐기물"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "음식물류 폐기물",
+    "cas_by_component": {
+      "음식물류 폐기물": ""
+    }
+  },
+  {
+    "id": "yuseong-73",
+    "company": "국방과학연구소",
+    "address": "대전광역시 유성구 북유성대로488번길 160(수남동)",
+    "industry": "",
+    "waste_type": "사업장생활계",
+    "cas_no": "",
+    "components": [
+      "폐지류",
+      "그밖의폐기물"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "폐지류, 그밖의폐기물",
+    "cas_by_component": {
+      "폐지류": "",
+      "그밖의폐기물": ""
+    }
+  },
+  {
+    "id": "yuseong-74",
+    "company": "㈜제이피씨오토모티브",
+    "address": "대전광역시 유성구 죽동로 95(죽동, JPC대전공장)",
+    "industry": "",
+    "waste_type": "사업장배출시설계",
+    "cas_no": "",
+    "components": [
+      "폐합성수지"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "폐합성수지",
+    "cas_by_component": {
+      "폐합성수지": ""
+    }
+  },
+  {
+    "id": "yuseong-75",
+    "company": "SK바이오텍㈜",
+    "address": "대전광역시 유성구 엑스포로 325(원촌동)",
+    "industry": "",
+    "waste_type": "사업장생활계",
+    "cas_no": "",
+    "components": [
+      "폐합성수지"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "폐합성수지",
+    "cas_by_component": {
+      "폐합성수지": ""
+    }
+  },
+  {
+    "id": "yuseong-76",
+    "company": "대전바이오에너지센터",
+    "address": "대전광역시 유성구 불무로 186",
+    "industry": "",
+    "waste_type": "사업장배출시설계",
+    "cas_no": "",
+    "components": [
+      "탈수케익",
+      "음식물류폐기물잔재물",
+      "협잡물"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "탈수케익, 음식물류폐기물잔재물, 협잡물",
+    "cas_by_component": {
+      "탈수케익": "",
+      "음식물류폐기물잔재물": "",
+      "협잡물": ""
+    }
+  },
+  {
+    "id": "yuseong-77",
+    "company": "㈜해태산업",
+    "address": "대전광역시 유성구 동서대로 639(원신흥동)",
+    "industry": "",
+    "waste_type": "사업장생활계",
+    "cas_no": "",
+    "components": [
+      "그밖의폐기물",
+      "폐합성수지"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "그밖의폐기물, 폐합성수지",
+    "cas_by_component": {
+      "그밖의폐기물": "",
+      "폐합성수지": ""
+    }
+  },
+  {
+    "id": "yuseong-78",
+    "company": "㈜제노포커스",
+    "address": "대전광역시 유성구 테크노1로 65(관평동)",
+    "industry": "",
+    "waste_type": "사업장배출시설계",
+    "cas_no": "",
+    "components": [
+      "공정오니",
+      "폐목재"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "공정오니, 폐목재",
+    "cas_by_component": {
+      "공정오니": "",
+      "폐목재": ""
+    }
+  },
+  {
+    "id": "yuseong-79",
+    "company": "한국타이어앤테크놀로지㈜생산기술연구소",
+    "address": "대전광역시 유성구 가정북로 112(장동)",
+    "industry": "",
+    "waste_type": "사업장생활계",
+    "cas_no": "",
+    "components": [
+      "폐합성수지류",
+      "폐합성고무류",
+      "그밖의 분진류",
+      "자동차 폐타이어"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "폐합성수지류, 폐합성고무류, 그밖의 분진류, 자동차 폐타이어",
+    "cas_by_component": {
+      "폐합성수지류": "",
+      "폐합성고무류": "",
+      "그밖의 분진류": "",
+      "자동차 폐타이어": ""
+    }
+  },
+  {
+    "id": "yuseong-80",
+    "company": "㈜아워홈 LG화학기술원 대전점",
+    "address": "대전광역시 유성구 문지로 188(문지동, LG화학기술연구원 구내식당)",
+    "industry": "",
+    "waste_type": "사업장생활계",
+    "cas_no": "",
+    "components": [
+      "음식물류폐기물",
+      "폐식용유"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "음식물류폐기물, 폐식용유",
+    "cas_by_component": {
+      "음식물류폐기물": "",
+      "폐식용유": ""
+    }
+  },
+  {
+    "id": "yuseong-81",
+    "company": "㈜트루윈",
+    "address": "대전광역시 유성구 엑스포로 385(문지동, ㈜트루윈)",
+    "industry": "",
+    "waste_type": "사업장생활계",
+    "cas_no": "",
+    "components": [
+      "폐합성수지"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "폐합성수지",
+    "cas_by_component": {
+      "폐합성수지": ""
+    }
+  },
+  {
+    "id": "yuseong-82",
+    "company": "해태제과식품㈜유제품",
+    "address": "대전광역시 유성구 대정북로 68, D동(대정동, 대정동창고시설)",
+    "industry": "",
+    "waste_type": "사업장생활계",
+    "cas_no": "",
+    "components": [
+      "그밖의폐기물"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "그밖의폐기물",
+    "cas_by_component": {
+      "그밖의폐기물": ""
+    }
+  },
+  {
+    "id": "yuseong-83",
+    "company": "㈜케이앤에스아이앤씨",
+    "address": "대전광역시 유성구 유성대로 1476-55(화암동)",
+    "industry": "",
+    "waste_type": "사업장배출시설계",
+    "cas_no": "",
+    "components": [
+      "폐합성수지류"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "폐합성수지류",
+    "cas_by_component": {
+      "폐합성수지류": ""
+    }
+  },
+  {
+    "id": "yuseong-84",
+    "company": "㈜한화 종합연구소",
+    "address": "대전광역시 유성구 유성대로1366번길 10(장동)",
+    "industry": "",
+    "waste_type": "사업장생활계",
+    "cas_no": "",
+    "components": [
+      "그밖의폐기물",
+      "폐가구류 등",
+      "플라스틱폐포장재",
+      "폐합성수지류"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "그밖의폐기물, 폐가구류 등, 플라스틱폐포장재, 폐합성수지류",
+    "cas_by_component": {
+      "그밖의폐기물": "",
+      "폐가구류 등": "",
+      "플라스틱폐포장재": "",
+      "폐합성수지류": ""
+    }
+  },
+  {
+    "id": "yuseong-85",
+    "company": "대전그린에너지센터㈜",
+    "address": "대전광역시 유성구 불무로 186(금고동)",
+    "industry": "",
+    "waste_type": "사업장배출시설계",
+    "cas_no": "",
+    "components": [
+      "폐활성탄",
+      "사업장폐기물 소각시설 바닥재",
+      "그밖의 연소잔재물",
+      "그밖의 폐기물"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "폐활성탄, 사업장폐기물 소각시설 바닥재, 그밖의 연소잔재물, 그밖의 폐기물",
+    "cas_by_component": {
+      "폐활성탄": "",
+      "사업장폐기물 소각시설 바닥재": "",
+      "그밖의 연소잔재물": "",
+      "그밖의 폐기물": ""
+    }
+  },
+  {
+    "id": "yuseong-86",
+    "company": "한국전력공사 대덕유성지사",
+    "address": "대전광역시 유성구 계룡로 114, 3,4층(봉명동, BYC빌딩)",
+    "industry": "",
+    "waste_type": "사업장생활계",
+    "cas_no": "",
+    "components": [
+      "폐전주"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "폐전주",
+    "cas_by_component": {
+      "폐전주": ""
+    }
+  },
+  {
+    "id": "yuseong-87",
+    "company": "㈜메디오스",
+    "address": "대전광역시 유성구 테크노2로 126(용산동)",
+    "industry": "",
+    "waste_type": "사업장생활계",
+    "cas_no": "",
+    "components": [
+      "폐합성수지"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "폐합성수지",
+    "cas_by_component": {
+      "폐합성수지": ""
+    }
+  },
+  {
+    "id": "yuseong-88",
+    "company": "금호폴리켐㈜",
+    "address": "대전광역시 유성구 유성대로1184번길 40(신성동, 금호폴리켐 대전연구소)",
+    "industry": "",
+    "waste_type": "사업장생활계",
+    "cas_no": "",
+    "components": [
+      "폐합성수지",
+      "그밖의폐기물"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "폐합성수지, 그밖의폐기물",
+    "cas_by_component": {
+      "폐합성수지": "",
+      "그밖의폐기물": ""
+    }
+  },
+  {
+    "id": "yuseong-89",
+    "company": "주식회사프로팜포크",
+    "address": "대전광역시 유성구 진잠로 125, 1층(교촌동)",
+    "industry": "",
+    "waste_type": "사업장생활계",
+    "cas_no": "",
+    "components": [
+      "동물성유지류",
+      "축산물가공잔재물"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "동물성유지류, 축산물가공잔재물",
+    "cas_by_component": {
+      "동물성유지류": "",
+      "축산물가공잔재물": ""
+    }
+  },
+  {
+    "id": "yuseong-90",
+    "company": "한화컴파운드 주식회사",
+    "address": "대전광역시 유성구 신성동 6(가정로 76)",
+    "industry": "",
+    "waste_type": "사업장생활계",
+    "cas_no": "",
+    "components": [
+      "그 밖의 폐기물"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "그 밖의 폐기물",
+    "cas_by_component": {
+      "그 밖의 폐기물": ""
+    }
+  },
+  {
+    "id": "yuseong-91",
+    "company": "넥스플렉스㈜",
+    "address": "대전광역시 유성구 엑스포로 325(원촌동)",
+    "industry": "",
+    "waste_type": "사업장생활계",
+    "cas_no": "",
+    "components": [
+      "그밖의 폐기물"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "그밖의 폐기물",
+    "cas_by_component": {
+      "그밖의 폐기물": ""
+    }
+  },
+  {
+    "id": "yuseong-92",
+    "company": "SK주식회사",
+    "address": "대전광역시 유성구 원촌동 140-1 (주)SK대덕기술원",
+    "industry": "",
+    "waste_type": "비배출시설계",
+    "cas_no": "",
+    "components": [
+      "2차폐전지"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "2차폐전지",
+    "cas_by_component": {
+      "2차폐전지": ""
+    }
+  },
+  {
+    "id": "yuseong-93",
+    "company": "(주)스몰랩",
+    "address": "대전광역시 유성구 탑립동 694-10 (주)스몰랩",
+    "industry": "",
+    "waste_type": "비배출시설계",
+    "cas_no": "",
+    "components": [
+      "폐합성수지류(폐염화비닐수지류는 제외한다)"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "폐합성수지류(폐염화비닐수지류는 제외한다)",
+    "cas_by_component": {
+      "폐합성수지류(폐염화비닐수지류는 제외한다)": ""
+    }
+  },
+  {
+    "id": "yuseong-94",
+    "company": "한국원자력안전기술원",
+    "address": "대전광역시 유성구 구성동 19 한국원자력안전기술원",
+    "industry": "",
+    "waste_type": "비배출시설계",
+    "cas_no": "",
+    "components": [
+      "폐합성수지류(폐염화비닐수지류는 제외한다)",
+      "임목폐목재"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "폐합성수지류(폐염화비닐수지류는 제외한다), 임목폐목재",
+    "cas_by_component": {
+      "폐합성수지류(폐염화비닐수지류는 제외한다)": "",
+      "임목폐목재": ""
+    }
+  },
+  {
+    "id": "yuseong-95",
+    "company": "(주)고매드갤러리아 한밭대학교 기숙사",
+    "address": "대전광역시 유성구 덕명동 16-1 국립한밭대학교",
+    "industry": "",
+    "waste_type": "비배출시설계",
+    "cas_no": "",
+    "components": [
+      "음식물류폐기물"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "음식물류폐기물",
+    "cas_by_component": {
+      "음식물류폐기물": ""
+    }
+  },
+  {
+    "id": "yuseong-96",
+    "company": "주식회사 지오필테크",
+    "address": "대전광역시 유성구 테크노8로 39-10 (주)나노텍공장 (용산동)",
+    "industry": "",
+    "waste_type": "배출시설계",
+    "cas_no": "",
+    "components": [
+      "폐흡수제"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "폐흡수제",
+    "cas_by_component": {
+      "폐흡수제": ""
+    }
+  },
+  {
+    "id": "yuseong-97",
+    "company": "(주)엘아이지홈앤밀 유성지점",
+    "address": "대전광역시 유성구 죽동로 181_ LIG테크밸리 지하1층 (죽동)",
+    "industry": "",
+    "waste_type": "배출시설계",
+    "cas_no": "",
+    "components": [
+      "음식물류폐기물"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "음식물류폐기물",
+    "cas_by_component": {
+      "음식물류폐기물": ""
+    }
+  },
+  {
+    "id": "yuseong-98",
+    "company": "로쏘주식회사 디씨씨성심당2",
+    "address": "대전광역시 유성구 엑스포로 107_ 대전컨벤션센터 3층 (도룡동)",
+    "industry": "",
+    "waste_type": "비배출시설계",
+    "cas_no": "",
+    "components": [
+      "음식물류폐기물",
+      "폐식용유",
+      "폐합성수지류(폐염화비닐수지류는 제외한다)",
+      "폐식용유(식용을 목적으로 식품 재료와 원료를 제조ㆍ조리ㆍ가공하거나 식용유를 유통ㆍ사용 또는 음식물류 폐기물을 처리하는 과정에서 발생하는 기름을 말한다) 등"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "음식물류폐기물, 폐식용유, 폐합성수지류(폐염화비닐수지류는 제외한다),폐식용유(식용을 목적으로 식품 재료와 원료를 제조ㆍ조리ㆍ가공하거나 식용유를 유통ㆍ사용 또는 음식물류 폐기물을 처리하는 과정에서 발생하는 기름을 말한다) 등",
+    "cas_by_component": {
+      "음식물류폐기물": "",
+      "폐식용유": "",
+      "폐합성수지류(폐염화비닐수지류는 제외한다)": "",
+      "폐식용유(식용을 목적으로 식품 재료와 원료를 제조ㆍ조리ㆍ가공하거나 식용유를 유통ㆍ사용 또는 음식물류 폐기물을 처리하는 과정에서 발생하는 기름을 말한다) 등": ""
+    }
+  },
+  {
+    "id": "yuseong-99",
+    "company": "머크주식회사",
+    "address": "대전광역시 유성구 국제과학18로 85 (구룡동)",
+    "industry": "",
+    "waste_type": "배출시설계",
+    "cas_no": "",
+    "components": [
+      "그 밖의 폐목재류",
+      "폐합성수지"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "그 밖의 폐목재류, 폐합성수지",
+    "cas_by_component": {
+      "그 밖의 폐목재류": "",
+      "폐합성수지": ""
+    }
+  },
+  {
+    "id": "yuseong-100",
+    "company": "(주)에스제이신소재",
+    "address": "대전광역시 유성구 국제과학10로 5 (둔곡동)",
+    "industry": "",
+    "waste_type": "비배출시설계",
+    "cas_no": "",
+    "components": [
+      "폐유리"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "폐유리",
+    "cas_by_component": {
+      "폐유리": ""
+    }
+  },
+  {
+    "id": "yuseong-101",
+    "company": "재단법인 한국연구재단",
+    "address": "대전광역시 유성구 가정로 201 (가정동_ 한국연구재단)",
+    "industry": "",
+    "waste_type": "비배출시설계",
+    "cas_no": "",
+    "components": [
+      "폐합성수지류(폐염화비닐수지류는 제외한다)"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "폐합성수지류(폐염화비닐수지류는 제외한다)",
+    "cas_by_component": {
+      "폐합성수지류(폐염화비닐수지류는 제외한다)": ""
+    }
+  },
+  {
+    "id": "yuseong-102",
+    "company": "주식회사 바임",
+    "address": "대전광역시 유성구 테크노1로 30 (관평동)",
+    "industry": "",
+    "waste_type": "비배출시설계",
+    "cas_no": "",
+    "components": [
+      "폐합성수지류(폐염화비닐수지류는 제외한다)"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "폐합성수지류(폐염화비닐수지류는 제외한다)",
+    "cas_by_component": {
+      "폐합성수지류(폐염화비닐수지류는 제외한다)": ""
+    }
+  },
+  {
+    "id": "yuseong-103",
+    "company": "(주)해시",
+    "address": "대전광역시 유성구 학하남로91번길 6-18_ 1층 (학하동)",
+    "industry": "",
+    "waste_type": "비배출시설계",
+    "cas_no": "",
+    "components": [
+      "동물성유지류",
+      "축산물가공잔재물(동물성 유지류는 제외한다)"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "동물성유지류, 축산물가공잔재물(동물성 유지류는 제외한다)",
+    "cas_by_component": {
+      "동물성유지류": "",
+      "축산물가공잔재물(동물성 유지류는 제외한다)": ""
+    }
+  },
+  {
+    "id": "yuseong-104",
+    "company": "(의법)나우리의료재단 나우리요양병원",
+    "address": "대전광역시 유성구 진잠로 164 (원내동)",
+    "industry": "",
+    "waste_type": "비배출시설계",
+    "cas_no": "",
+    "components": [
+      "의료기관 일회용기저귀(별표 3에 따른 의료기관 및 시험ㆍ검사기관 등에서 발생한 것을 말하며_ 같은 표 제14호에 따른 노인요양시설에서 발생한 것과 영 별표 2에 따른 의료폐기물에 해당하는 것은 제외한다)"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "의료기관 일회용기저귀(별표 3에 따른 의료기관 및 시험ㆍ검사기관 등에서 발생한 것을 말하며_ 같은 표 제14호에 따른 노인요양시설에서 발생한 것과 영 별표 2에 따른 의료폐기물에 해당하는 것은 제외한다)",
+    "cas_by_component": {
+      "의료기관 일회용기저귀(별표 3에 따른 의료기관 및 시험ㆍ검사기관 등에서 발생한 것을 말하며_ 같은 표 제14호에 따른 노인요양시설에서 발생한 것과 영 별표 2에 따른 의료폐기물에 해당하는 것은 제외한다)": ""
+    }
+  },
+  {
+    "id": "yuseong-105",
+    "company": "GS칼텍스(주)",
+    "address": "대전광역시 유성구 엑스포로 359 (문지동)",
+    "industry": "",
+    "waste_type": "비배출시설계",
+    "cas_no": "",
+    "components": [
+      "그 밖의 폐수처리오니"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "그 밖의 폐수처리오니",
+    "cas_by_component": {
+      "그 밖의 폐수처리오니": ""
+    }
+  },
+  {
+    "id": "yuseong-106",
+    "company": "육군군수사령부",
+    "address": "대전광역시 유성구 반석로 94 (반석동)",
+    "industry": "",
+    "waste_type": "비배출시설계",
+    "cas_no": "",
+    "components": [
+      "폐합성수지류(폐염화비닐수지류는 제외한다)"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "폐합성수지류(폐염화비닐수지류는 제외한다)",
+    "cas_by_component": {
+      "폐합성수지류(폐염화비닐수지류는 제외한다)": ""
+    }
+  },
+  {
+    "id": "yuseong-107",
+    "company": "(주)호텔롯데 롯데시티호텔대전",
+    "address": "대전광역시 유성구 엑스포로123번길 33_ 롯데시티호텔대전 1층 (도룡동)",
+    "industry": "",
+    "waste_type": "비배출시설계",
+    "cas_no": "",
+    "components": [
+      "음식물류폐기물"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "음식물류폐기물",
+    "cas_by_component": {
+      "음식물류폐기물": ""
+    }
+  },
+  {
+    "id": "yuseong-108",
+    "company": "(주)호텔롯데 롯데시티호텔대전",
+    "address": "대전광역시 유성구 엑스포로123번길 33_ 롯데시티호텔대전 1층 (도룡동)",
+    "industry": "",
+    "waste_type": "비배출시설계",
+    "cas_no": "",
+    "components": [
+      "음식물류폐기물"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "음식물류폐기물",
+    "cas_by_component": {
+      "음식물류폐기물": ""
+    }
+  },
+  {
+    "id": "yuseong-109",
+    "company": "한국전력공사",
+    "address": "대전광역시 유성구 문지로 105_ 한국전력연구원 (문지동)",
+    "industry": "",
+    "waste_type": "비배출시설계",
+    "cas_no": "",
+    "components": [
+      "폐합성수지류(폐염화비닐수지류는 제외한다)"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "폐합성수지류(폐염화비닐수지류는 제외한다)",
+    "cas_by_component": {
+      "폐합성수지류(폐염화비닐수지류는 제외한다)": ""
+    }
+  },
+  {
+    "id": "yuseong-110",
+    "company": "㈜호텔스카이파크 대전1호점",
+    "address": "대전광역시 유성구 테크노중앙로 161_ 호텔 스카이파크 (용산동)",
+    "industry": "",
+    "waste_type": "비배출시설계",
+    "cas_no": "",
+    "components": [
+      "폐합성수지류(폐염화비닐수지류는 제외한다)"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "폐합성수지류(폐염화비닐수지류는 제외한다)",
+    "cas_by_component": {
+      "폐합성수지류(폐염화비닐수지류는 제외한다)": ""
+    }
+  },
+  {
+    "id": "yuseong-111",
+    "company": "(주)장맥",
+    "address": "대전광역시 유성구 학하남로91번길 6-18 (학하동)",
+    "industry": "",
+    "waste_type": "비배출시설계",
+    "cas_no": "",
+    "components": [
+      "축산물가공잔재물(동물성 유지류는 제외한다)"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "축산물가공잔재물(동물성 유지류는 제외한다)",
+    "cas_by_component": {
+      "축산물가공잔재물(동물성 유지류는 제외한다)": ""
+    }
+  },
+  {
+    "id": "yuseong-112",
+    "company": "(주)스페이스솔루션",
+    "address": "대전광역시 유성구 문지동 103-2",
+    "industry": "",
+    "waste_type": "배출시설계",
+    "cas_no": "",
+    "components": [
+      "폐합성수지류(폐염화비닐수지류는 제외한다)"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "폐합성수지류(폐염화비닐수지류는 제외한다)",
+    "cas_by_component": {
+      "폐합성수지류(폐염화비닐수지류는 제외한다)": ""
+    }
+  },
+  {
+    "id": "yuseong-113",
+    "company": "한국에스엠씨(주)",
+    "address": "대전광역시 유성구 구룡동 828-5",
+    "industry": "",
+    "waste_type": "배출시설계",
+    "cas_no": "",
+    "components": [
+      "폐활성탄",
+      "폐합성수지",
+      "그 밖의 폐목재류"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "폐활성탄, 폐합성수지, 그 밖의 폐목재류",
+    "cas_by_component": {
+      "폐활성탄": "",
+      "폐합성수지": "",
+      "그 밖의 폐목재류": ""
+    }
+  },
+  {
+    "id": "yuseong-114",
+    "company": "한국에너지기술연구원 태양광기업공동활용연구센터",
+    "address": "대전광역시 유성구 국제과학6로 6 (신동)",
+    "industry": "",
+    "waste_type": "배출시설계",
+    "cas_no": "",
+    "components": [
+      "폐수처리오니",
+      "폐태양전지·전자기기페이스트·태양광 폐패널"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "폐수처리오니, 폐태양전지·전자기기페이스트·태양광 폐패널",
+    "cas_by_component": {
+      "폐수처리오니": "",
+      "폐태양전지·전자기기페이스트·태양광 폐패널": ""
+    }
+  },
+  {
+    "id": "yuseong-115",
+    "company": "(주)금호엔티시",
+    "address": "대전광역시 유성구 테크노2로 297 (탑립동)",
+    "industry": "",
+    "waste_type": "배출시설계",
+    "cas_no": "",
+    "components": [
+      "그 밖의 공정오니"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "그 밖의 공정오니",
+    "cas_by_component": {
+      "그 밖의 공정오니": ""
+    }
+  },
+  {
+    "id": "yuseong-116",
+    "company": "(주)아름덴티스트리",
+    "address": "대전광역시 유성구 국제과학11로 23 (둔곡동)",
+    "industry": "",
+    "waste_type": "배출시설계",
+    "cas_no": "",
+    "components": [
+      "그 밖의 분진",
+      "폐활성탄",
+      "폐수처리오니"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "그 밖의 분진, 폐활성탄, 폐수처리오니",
+    "cas_by_component": {
+      "그 밖의 분진": "",
+      "폐활성탄": "",
+      "폐수처리오니": ""
+    }
+  },
+  {
+    "id": "yuseong-117",
+    "company": "(주)젬백스앤카엘",
+    "address": "대전광역시 유성구 테크노11로 58_ 테크노11로 57 (탑립동)",
+    "industry": "",
+    "waste_type": "배출시설계",
+    "cas_no": "",
+    "components": [
+      "그 밖의 폐섬유",
+      "폐합성수지"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "그 밖의 폐섬유, 폐합성수지",
+    "cas_by_component": {
+      "그 밖의 폐섬유": "",
+      "폐합성수지": ""
+    }
+  },
+  {
+    "id": "yuseong-118",
+    "company": "(주)제이에이치포크",
+    "address": "대전광역시 유성구 갑동로25번길 99 (갑동)",
+    "industry": "",
+    "waste_type": "비배출시설계",
+    "cas_no": "",
+    "components": [
+      "동물성유지류"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "동물성유지류",
+    "cas_by_component": {
+      "동물성유지류": ""
+    }
+  },
+  {
+    "id": "yuseong-119",
+    "company": "디엘케미칼(주)",
+    "address": "대전광역시 유성구 신성남로 106_ 디엘케미칼(주) 대덕연구소 (신성동)",
+    "industry": "",
+    "waste_type": "비배출시설계",
+    "cas_no": "",
+    "components": [
+      "폐합성수지류(폐염화비닐수지류는 제외한다)"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "폐합성수지류(폐염화비닐수지류는 제외한다)",
+    "cas_by_component": {
+      "폐합성수지류(폐염화비닐수지류는 제외한다)": ""
+    }
+  },
+  {
+    "id": "yuseong-120",
+    "company": "(주)엘엑스엠엠에이",
+    "address": "대전광역시 유성구 국제과학12로 13 (둔곡동)",
+    "industry": "",
+    "waste_type": "배출시설계",
+    "cas_no": "",
+    "components": [
+      "폐합성수지류(폐염화비닐수지류는 제외한다)",
+      "폐활성탄"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "폐합성수지류(폐염화비닐수지류는 제외한다), 폐활성탄",
+    "cas_by_component": {
+      "폐합성수지류(폐염화비닐수지류는 제외한다)": "",
+      "폐활성탄": ""
+    }
+  },
+  {
+    "id": "yuseong-121",
+    "company": "코코넛필터 주식회사",
+    "address": "대전광역시 유성구 테크노2로 13-17 (관평동)",
+    "industry": "",
+    "waste_type": "배출시설계",
+    "cas_no": "",
+    "components": [
+      "폐활성탄",
+      "폐합성수지"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "폐활성탄, 폐합성수지",
+    "cas_by_component": {
+      "폐활성탄": "",
+      "폐합성수지": ""
+    }
+  },
+  {
+    "id": "yuseong-122",
+    "company": "주식회사 리베스트",
+    "address": "대전광역시 유성구 국제과학21로 34 (구룡동)",
+    "industry": "",
+    "waste_type": "배출시설계",
+    "cas_no": "",
+    "components": [
+      "그 밖의 폐금속류",
+      "2차폐전지"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "그 밖의 폐금속류, 2차폐전지",
+    "cas_by_component": {
+      "그 밖의 폐금속류": "",
+      "2차폐전지": ""
+    }
+  },
+  {
+    "id": "yuseong-123",
+    "company": "(주)우조하이텍 대전중앙연구소",
+    "address": "대전광역시 유성구 문지로 272-26 (문지동)",
+    "industry": "",
+    "waste_type": "배출시설계",
+    "cas_no": "",
+    "components": [
+      "폐합성수지류(폐염화비닐수지류는 제외한다)"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "폐합성수지류(폐염화비닐수지류는 제외한다)",
+    "cas_by_component": {
+      "폐합성수지류(폐염화비닐수지류는 제외한다)": ""
+    }
+  },
+  {
+    "id": "yuseong-124",
+    "company": "레이트론(주)",
+    "address": "대전광역시 유성구 유성대로1205번길 6-28_ 레이트론(주) (자운동)",
+    "industry": "",
+    "waste_type": "배출시설계",
+    "cas_no": "",
+    "components": [
+      "폐합성수지류(폐염화비닐수지류는 제외한다)"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "폐합성수지류(폐염화비닐수지류는 제외한다)",
+    "cas_by_component": {
+      "폐합성수지류(폐염화비닐수지류는 제외한다)": ""
+    }
+  },
+  {
+    "id": "yuseong-125",
+    "company": "에스케이온(주)대전사업장",
+    "address": "대전광역시 유성구 엑스포로 325 (주)SK대덕기술원 (원촌동)",
+    "industry": "",
+    "waste_type": "배출시설계",
+    "cas_no": "",
+    "components": [
+      "폐분말소화기",
+      "그 밖의 폐합성고분자화합물(합성수지류로 피복된 폐전선을 포함한다)",
+      "그 밖의 폐금속류",
+      "그 밖의 폐기물",
+      "폐합성수지류(폐염화비닐수지류는 제외한다)",
+      "폐도장목ㆍ폐목재포장재ㆍ폐전선드럼ㆍ건설현장 폐목재(원목상태의 깨끗한 목재를 말한다) 등"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "폐분말소화기, 그 밖의 폐합성고분자화합물(합성수지류로 피복된 폐전선을 포함한다), 그 밖의 폐금속류, 그 밖의 폐기물, 폐합성수지류(폐염화비닐수지류는 제외한다),폐도장목ㆍ폐목재포장재ㆍ폐전선드럼ㆍ건설현장 폐목재(원목상태의 깨끗한 목재를 말한다) 등",
+    "cas_by_component": {
+      "폐분말소화기": "",
+      "그 밖의 폐합성고분자화합물(합성수지류로 피복된 폐전선을 포함한다)": "",
+      "그 밖의 폐금속류": "",
+      "그 밖의 폐기물": "",
+      "폐합성수지류(폐염화비닐수지류는 제외한다)": "",
+      "폐도장목ㆍ폐목재포장재ㆍ폐전선드럼ㆍ건설현장 폐목재(원목상태의 깨끗한 목재를 말한다) 등": ""
+    }
+  },
+  {
+    "id": "yuseong-126",
+    "company": "한국원자력환경공단",
+    "address": "대전광역시 유성구 대덕대로989번길 111 (덕진동)",
+    "industry": "",
+    "waste_type": "배출시설계",
+    "cas_no": "",
+    "components": [
+      "그 밖의 폐기물"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "그 밖의 폐기물",
+    "cas_by_component": {
+      "그 밖의 폐기물": ""
+    }
+  },
+  {
+    "id": "yuseong-127",
+    "company": "주식회사 데시칸",
+    "address": "대전광역시 유성구 테크노2로 252-12 (탑립동)",
+    "industry": "",
+    "waste_type": "배출시설계",
+    "cas_no": "",
+    "components": [
+      "폐합성수지류(폐염화비닐수지류는 제외한다)"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "폐합성수지류(폐염화비닐수지류는 제외한다)",
+    "cas_by_component": {
+      "폐합성수지류(폐염화비닐수지류는 제외한다)": ""
+    }
+  },
+  {
+    "id": "yuseong-128",
+    "company": "대전그린에너지센터(주)",
+    "address": "대전광역시 유성구 불무로 186 (금고동)",
+    "industry": "",
+    "waste_type": "배출시설계",
+    "cas_no": "",
+    "components": [
+      "폐활성탄",
+      "하수처리오니",
+      "그밖의폐기물",
+      "사업장폐기물 소각시설 바닥재",
+      "그 밖의 연소잔재물",
+      "킬레이트(Chelate) 처리물 등"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "폐활성탄, 하수처리오니, 그밖의폐기물, 사업장폐기물 소각시설 바닥재, 그 밖의 연소잔재물, 킬레이트(Chelate) 처리물 등",
+    "cas_by_component": {
+      "폐활성탄": "",
+      "하수처리오니": "",
+      "그밖의폐기물": "",
+      "사업장폐기물 소각시설 바닥재": "",
+      "그 밖의 연소잔재물": "",
+      "킬레이트(Chelate) 처리물 등": ""
+    }
+  },
+  {
+    "id": "yuseong-129",
+    "company": "(주)케이앤에스아이앤씨",
+    "address": "대전광역시 유성구 유성대로 1476-55 (화암동)",
+    "industry": "",
+    "waste_type": "배출시설계",
+    "cas_no": "",
+    "components": [
+      "폐합성수지류(폐염화비닐수지류는 제외한다)"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "폐합성수지류(폐염화비닐수지류는 제외한다)",
+    "cas_by_component": {
+      "폐합성수지류(폐염화비닐수지류는 제외한다)": ""
+    }
+  },
+  {
+    "id": "yuseong-130",
+    "company": "에이치엘비제넥스(주)",
+    "address": "대전광역시 유성구 테크노1로 65 (관평동)",
+    "industry": "",
+    "waste_type": "배출시설계",
+    "cas_no": "",
+    "components": [
+      "그 밖의 공정오니",
+      "폐합성수지류(폐염화비닐수지류는 제외한다)"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "그 밖의 공정오니, 폐합성수지류(폐염화비닐수지류는 제외한다)",
+    "cas_by_component": {
+      "그 밖의 공정오니": "",
+      "폐합성수지류(폐염화비닐수지류는 제외한다)": ""
+    }
+  }
+]
