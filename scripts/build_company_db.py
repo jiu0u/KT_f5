@@ -20,15 +20,24 @@ AIR_CSV = RAW_DIR / "대전광역시 대덕구_대기배출업소현황_20250904
 FACTORY_CSV = RAW_DIR / "대전광역시 대덕구_제조업공장등록현황_20260623.csv"
 YUSEONG_JSON = DATA_DIR / "waste_registry_yuseong.json"
 DAEDEOK_WASTE_JSON = DATA_DIR / "waste_registry_daedeok.json"
+NCIS_PRTR_JSON = DATA_DIR / "ncis_prtr_daejeon_2024.json"
 OUT_PATH = DATA_DIR / "company_db.json"
 
 CORP_MARKERS = ["㈜", "(주)", "(유)", "(사)", "(재)", "(사단법인)", "(재단법인)", "(합)"]
+DAEJEON_DISTRICTS = ["유성구", "대덕구", "서구", "중구", "동구"]
 
 
 def normalize(name: str) -> str:
     for marker in CORP_MARKERS:
         name = name.replace(marker, "")
     return " ".join(name.split())
+
+
+def infer_district(address: str) -> str:
+    for d in DAEJEON_DISTRICTS:
+        if d in address:
+            return d
+    return ""
 
 
 def read_csv_rows(path: Path, encoding: str) -> list[dict]:
@@ -41,7 +50,8 @@ class CompanyDB:
         self._by_key: dict[str, CompanyRecord] = {}
 
     def add(self, name: str, address: str = "", district: str = "", industry: str = "",
-            product: str = "", waste_types: list[str] | None = None, source: str = ""):
+            product: str = "", waste_types: list[str] | None = None,
+            chemicals: list[dict] | None = None, source: str = ""):
         name = name.strip()
         if not name:
             return
@@ -61,6 +71,9 @@ class CompanyDB:
         for w in waste_types or []:
             if w not in record.waste_types:
                 record.waste_types.append(w)
+        for c in chemicals or []:
+            if c not in record.chemicals:
+                record.chemicals.append(c)
         if source and source not in record.sources:
             record.sources.append(source)
 
@@ -96,6 +109,16 @@ def build() -> CompanyDB:
             name=r["company"], address=r["address"], district="대덕구",
             waste_types=r["components"], source="daedeok_waste",
         )
+
+    ncis_prtr = json.loads(NCIS_PRTR_JSON.read_text(encoding="utf-8"))
+    for substance in ncis_prtr:
+        for c in substance["companies"]:
+            db.add(
+                name=c["name"], address=c["address"], district=infer_district(c["address"]),
+                industry=c["industry"],
+                chemicals=[{"substance": substance["substance"], "cas_no": substance["cas_no"]}],
+                source="ncis_prtr",
+            )
 
     return db
 

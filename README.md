@@ -30,12 +30,19 @@ DSC 공유대학×KT AI 활용 지역문제 해결 캠프 제출용 프로토타
 - `scripts/load_daedeok_waste.py` → `data/waste_registry_daedeok.json` (`python -m scripts.load_daedeok_waste`) — 상호+주소 기준으로 묶어 177개 사업장, 각 사업장의 폐기물 종류 목록 + 실제 처리업소명·처리방법(4단계 참고용) 포함
 - 유성구와 마찬가지로 **CAS No. 자동 매핑 0/177건** — 이 데이터도 법정 폐기물 분류명뿐이라 화학물질취급정보 15종과 안 겹침. 두 지자체 데이터셋 모두 같은 한계를 보이는 걸로 봐서, 공공 배출신고 데이터 자체가 물질명이 아니라 법정 분류명 단위로 되어 있다는 구조적 문제로 보임.
 
-### 기업 DB 통합 (대덕구 대기배출업소·제조업공장등록·폐기물배출자 + 유성구)
+### 화학물질안전원(NCIS) PRTR — 진짜 CAS No. 단위 매칭 데이터 ⭐
+- 출처: [icis.mcee.go.kr](https://icis.mcee.go.kr) 화학물질 배출·이동량 정보공개시스템(로그인/API 키 불필요, 공개 조회). 지자체 배출신고 데이터와 달리 **법정 분류명이 아니라 실제 CAS No.로 사업장을 조회**할 수 있음
+- `scripts/load_ncis_prtr.py` → `data/ncis_prtr_daejeon_2024.json` (`python -m scripts.load_ncis_prtr`) — 대전 지역 2024년 조사대상 물질 39종과 각 물질을 취급하는 사업장(이름·주소·업종) 전부를 공개 API처럼 순차 조회
+- `scripts/build_ncis_waste_registry.py` → `data/waste_registry_ncis.json` — (물질, 사업장) 132쌍 → WasteRecord 형식, 사업장 중복제거 52곳
+- **결과: 드디어 진짜 CAS No. 매칭이 나옴.** 예: 황산(CAS 7664-93-9) 취급 사업장 8곳((주)선양소주, (주)알루코 제2공장, 대전그린에너지센터, 비비씨, 한국앤컴퍼니 대전공장, 한솔제지 대전·신탄진공장, 한일제관 대전공장), 수산화나트륨(CAS 1310-73-2) 취급 20곳. `tests/test_load_ncis.py`에서 이 둘 중 두 사업장을 `src/match.py`에 넣으면 CAS No. 완전일치(score=1.0)로 최상위 후보가 나오는 것까지 확인함.
+- **한계**: PRTR은 "이 사업장이 이 물질을 취급·배출한다"는 사실만 알려줄 뿐 그게 폐기물인지 원료인지, 남는 건지 부족한 건지는 구분하지 않음. 같은 물질을 취급하는 두 사업장을 찾아주는 건 3단계(화학·법적 검증)·4단계(경제성)로 넘길 "후보"이지, 확정된 폐기물→원료 관계가 아님. 또 대상 물질이 배출량조사 지정 39종(대전 기준)뿐이라 모든 화학물질을 다루진 않음.
+
+### 기업 DB 통합 (대덕구 대기배출업소·제조업공장등록·폐기물배출자 + 유성구 + NCIS PRTR)
 - `data/raw/대전광역시 대덕구_대기배출업소현황_20250904.csv` (178개 사업장, 업종명 포함)
 - `data/raw/대전광역시 대덕구_제조업공장등록현황_20260623.csv` (1,739개 사업장, 주생산품 포함)
-- `scripts/build_company_db.py` → `data/company_db.json` (`python -m scripts.build_company_db`) — 위 파일들 + 유성구/대덕구 폐기물배출자를 회사명 기준(법인 표기 ㈜/(주)/(유) 등만 제거하고 병합, 지점명이 다르면 별개로 취급)으로 합침
-- 결과: **2,004개 기업**(중복 제거 후) — PDF 목표(300개 이상)를 크게 상회. 2개 이상 출처에 겹치는 기업 127건.
-- `scripts/find_chemical_companies.py` → `data/chemical_candidate_companies.json` — 기업 DB의 product/industry 텍스트를 화학물질취급정보(CAS No. 15종)와 대조. **결과: 2건** — 보림산업(가성소다·인산·황산·희염산·PAC 생산, CAS 7664-93-9), (주)동양이앤씨(황산제2철 생산). 이 두 회사는 황산 계열 화학물질을 실제로 생산·취급하는 것으로 확인되어, 인근 사업장의 폐황산 재활용 수요처 후보로 유의미함. 다만 전체 기업 DB 대비로는 여전히 극소수라, 화학물질 기반 매칭을 본격적으로 하려면 더 많은 화학 관련 원천데이터가 필요.
+- `scripts/build_company_db.py` → `data/company_db.json` (`python -m scripts.build_company_db`) — 위 파일들 + 유성구/대덕구 폐기물배출자 + NCIS PRTR을 회사명 기준(법인 표기 ㈜/(주)/(유) 등만 제거하고 병합, 지점명이 다르면 별개로 취급)으로 합침
+- 결과: **2,023개 기업**(중복 제거 후) — PDF 목표(300개 이상)를 크게 상회. 2개 이상 출처에 겹치는 기업 146건. 이 중 52곳은 `chemicals` 필드에 NCIS로 확인된 실제 CAS No.가 채워져 있음.
+- `scripts/find_chemical_companies.py` → `data/chemical_candidate_companies.json` — (보조 수단) 기업 DB의 product/industry 텍스트를 화학물질취급정보(15종)와 문자열 대조. 결과 2건(보림산업, (주)동양이앤씨) — NCIS PRTR 쪽이 훨씬 신뢰도 높은 1차 출처이고, 이건 참고용으로만 남겨둠.
 
 ### 아직 안 쓰는 것
 - `한국환경산업기술원_... 상세정보_20241231.csv`(전국 4,355건) — `data/ghg_waste_2024.json`이 이 파일의 대전 부분집합(73건)과 일치함을 확인, 별도 보관 안 함
@@ -48,18 +55,21 @@ pip install -r requirements.txt
 python -m scripts.load_ghg_waste
 python -m scripts.load_yuseong_waste
 python -m scripts.load_daedeok_waste
+python -m scripts.load_ncis_prtr        # 공공 서버에 순차 요청, 수십 초 소요
+python -m scripts.build_ncis_waste_registry
 python -m scripts.build_company_db
 python -m scripts.find_chemical_companies
 python -m tests.test_match
 python -m tests.test_load_yuseong
 python -m tests.test_load_daedeok
+python -m tests.test_load_ncis
 python -m tests.test_company_db
 ```
 
 ## 다음에 할 일
 
-- **CAS No./성분까지 있는 진짜 화학 폐기물 데이터**(MSDS, 화학물질안전원 NCIS 등)를 확보해 실질적인 반도체 소부장 매칭 데모 만들기 — 유성구·대덕구 공공 배출신고 데이터 둘 다 법정 분류명뿐이라 화학물질 후보가 2건뿐이고 시나리오 실증에 부족
-- `data/company_db.json`의 2,004개 기업 중 폐기물 정보가 있는 건 303건(유성구 126 + 대덕구 177)뿐 — 나머지 1,701개 기업(대기배출업소·제조업공장등록만 있는 곳)은 폐기물 종류를 아직 모름
+- NCIS PRTR로 찾은 52개 사업장 × 39개 물질을 실제 매칭 데모(3단계 화학·법적 검증 + 4단계 경제성)로 이어붙이기 — 지금은 "같은 물질을 취급한다"는 사실만 확인했지, 누가 폐기물을 내놓고 누가 원료로 받을지는 아직 모름
+- `data/company_db.json`의 2,023개 기업 중 폐기물/화학물질 정보가 있는 건 355건(유성구 126 + 대덕구 177 + NCIS 52)뿐 — 나머지는 업종/생산품만 있음
 - `src/match.py`의 word-overlap 유사도가 부족해지면 한국어 문장임베딩(`ko-sroberta` 등)으로 교체
 - 3단계 룰베이스(폐기물관리법 별표5의3, 위험물안전관리법 별표19) 모듈 추가
 - GHG 지정폐기물 합계 불일치(12,154톤 vs 3,600톤) 확인

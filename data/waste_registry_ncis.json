@@ -1,0 +1,1850 @@
+[
+  {
+    "id": "ncis-1",
+    "company": "(주)동양환경",
+    "address": "대전광역시 대덕구 문평동로48번길 125",
+    "industry": "폐기물 수집, 운반, 처리 및 원료 재생업",
+    "waste_type": "",
+    "cas_no": "000067-56-1",
+    "components": [
+      "메틸 알코올"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "PRTR 2024 등록 취급물질: 메틸 알코올"
+  },
+  {
+    "id": "ncis-2",
+    "company": "(주)바이오니아 대덕센터",
+    "address": "대전광역시 대덕구 문평서로 8-11 (문평동)",
+    "industry": "의료용 물질 및 의약품 제조업",
+    "waste_type": "",
+    "cas_no": "000067-56-1",
+    "components": [
+      "메틸 알코올"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "PRTR 2024 등록 취급물질: 메틸 알코올"
+  },
+  {
+    "id": "ncis-3",
+    "company": "(주)삼양홀딩스 엠디(MD)공장",
+    "address": "대전광역시 대덕구 문평서로18번길 55 문평동",
+    "industry": "의료용 물질 및 의약품 제조업",
+    "waste_type": "",
+    "cas_no": "000067-56-1",
+    "components": [
+      "메틸 알코올"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "PRTR 2024 등록 취급물질: 메틸 알코올"
+  },
+  {
+    "id": "ncis-4",
+    "company": "(주)삼양홀딩스 의약공장",
+    "address": "대전광역시 대덕구 신일동로 79 신일동",
+    "industry": "의료용 물질 및 의약품 제조업",
+    "waste_type": "",
+    "cas_no": "000067-56-1",
+    "components": [
+      "메틸 알코올"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "PRTR 2024 등록 취급물질: 메틸 알코올"
+  },
+  {
+    "id": "ncis-5",
+    "company": "(주)제이앤드에프",
+    "address": "대전광역시 대덕구 대화로106번길 55 주식회사 제이앤드에프",
+    "industry": "자동차 및 트레일러 제조업",
+    "waste_type": "",
+    "cas_no": "000067-56-1",
+    "components": [
+      "메틸 알코올"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "PRTR 2024 등록 취급물질: 메틸 알코올"
+  },
+  {
+    "id": "ncis-6",
+    "company": "한미타올",
+    "address": "대전광역시 대덕구 대전로1331번길 50  (읍내동) 한미타올",
+    "industry": "섬유제품 제조업; 의복 제외",
+    "waste_type": "",
+    "cas_no": "007722-84-1",
+    "components": [
+      "과산화 수소"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "PRTR 2024 등록 취급물질: 과산화 수소"
+  },
+  {
+    "id": "ncis-7",
+    "company": "한백섬유(주)",
+    "address": "대전광역시 대덕구 대전로1331번길 310 (대화동)",
+    "industry": "섬유제품 제조업; 의복 제외",
+    "waste_type": "",
+    "cas_no": "007722-84-1",
+    "components": [
+      "과산화 수소"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "PRTR 2024 등록 취급물질: 과산화 수소"
+  },
+  {
+    "id": "ncis-8",
+    "company": "한솔제지(주) 대전공장",
+    "address": "대전광역시 대덕구 신일서로68번길 50 한솔제지 대전공장",
+    "industry": "펄프, 종이 및 종이제품 제조업",
+    "waste_type": "",
+    "cas_no": "007722-84-1",
+    "components": [
+      "과산화 수소"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "PRTR 2024 등록 취급물질: 과산화 수소"
+  },
+  {
+    "id": "ncis-9",
+    "company": "(주)제이앤드에프",
+    "address": "대전광역시 대덕구 대화로106번길 55 주식회사 제이앤드에프",
+    "industry": "자동차 및 트레일러 제조업",
+    "waste_type": "",
+    "cas_no": "007647-01-0",
+    "components": [
+      "염화 수소"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "PRTR 2024 등록 취급물질: 염화 수소"
+  },
+  {
+    "id": "ncis-10",
+    "company": "(주)피앤씨테크",
+    "address": "대전광역시 대덕구 신일동로67번길 24  (신일동) 1층",
+    "industry": "금속 가공제품 제조업; 기계 및 가구 제외",
+    "waste_type": "",
+    "cas_no": "007647-01-0",
+    "components": [
+      "염화 수소"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "PRTR 2024 등록 취급물질: 염화 수소"
+  },
+  {
+    "id": "ncis-11",
+    "company": "대전열병합발전(주)",
+    "address": "대전광역시 대덕구 신일서로68번길 71 (신일동)",
+    "industry": "전기, 가스, 증기 및 공기 조절 공급업",
+    "waste_type": "",
+    "cas_no": "007647-01-0",
+    "components": [
+      "염화 수소"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "PRTR 2024 등록 취급물질: 염화 수소"
+  },
+  {
+    "id": "ncis-12",
+    "company": "한솔제지(주) 대전공장",
+    "address": "대전광역시 대덕구 신일서로68번길 50 한솔제지 대전공장",
+    "industry": "펄프, 종이 및 종이제품 제조업",
+    "waste_type": "",
+    "cas_no": "007647-01-0",
+    "components": [
+      "염화 수소"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "PRTR 2024 등록 취급물질: 염화 수소"
+  },
+  {
+    "id": "ncis-13",
+    "company": "한솔제지(주)신탄진공장",
+    "address": "대전광역시 대덕구 신일서로126번길 60 (신일동)",
+    "industry": "펄프, 종이 및 종이제품 제조업",
+    "waste_type": "",
+    "cas_no": "007647-01-0",
+    "components": [
+      "염화 수소"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "PRTR 2024 등록 취급물질: 염화 수소"
+  },
+  {
+    "id": "ncis-14",
+    "company": "(주)동양환경",
+    "address": "대전광역시 대덕구 문평동로48번길 125",
+    "industry": "폐기물 수집, 운반, 처리 및 원료 재생업",
+    "waste_type": "",
+    "cas_no": "000075-09-2",
+    "components": [
+      "디클로로메탄"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "PRTR 2024 등록 취급물질: 디클로로메탄"
+  },
+  {
+    "id": "ncis-15",
+    "company": "(주)래트론",
+    "address": "대전광역시 대덕구 대덕대로1448번길 182 (신일동)",
+    "industry": "전자 부품, 컴퓨터, 영상, 음향 및 통신장비 제조업",
+    "waste_type": "",
+    "cas_no": "000075-09-2",
+    "components": [
+      "디클로로메탄"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "PRTR 2024 등록 취급물질: 디클로로메탄"
+  },
+  {
+    "id": "ncis-16",
+    "company": "(주)바이오니아 대덕센터",
+    "address": "대전광역시 대덕구 문평서로 8-11 (문평동)",
+    "industry": "의료용 물질 및 의약품 제조업",
+    "waste_type": "",
+    "cas_no": "000075-09-2",
+    "components": [
+      "디클로로메탄"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "PRTR 2024 등록 취급물질: 디클로로메탄"
+  },
+  {
+    "id": "ncis-17",
+    "company": "(주)삼양홀딩스 엠디(MD)공장",
+    "address": "대전광역시 대덕구 문평서로18번길 55 문평동",
+    "industry": "의료용 물질 및 의약품 제조업",
+    "waste_type": "",
+    "cas_no": "000075-09-2",
+    "components": [
+      "디클로로메탄"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "PRTR 2024 등록 취급물질: 디클로로메탄"
+  },
+  {
+    "id": "ncis-18",
+    "company": "(주)삼양홀딩스 의약공장",
+    "address": "대전광역시 대덕구 신일동로 79 신일동",
+    "industry": "의료용 물질 및 의약품 제조업",
+    "waste_type": "",
+    "cas_no": "000075-09-2",
+    "components": [
+      "디클로로메탄"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "PRTR 2024 등록 취급물질: 디클로로메탄"
+  },
+  {
+    "id": "ncis-19",
+    "company": "(주)농협케미컬",
+    "address": "대전광역시 대덕구 대화로 130  (대화동) (주)농협케미컬",
+    "industry": "화학 물질 및 화학제품 제조업; 의약품 제외",
+    "waste_type": "",
+    "cas_no": "NA-(주10)",
+    "components": [
+      "알루미늄 및 그 화합물"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "PRTR 2024 등록 취급물질: 알루미늄 및 그 화합물"
+  },
+  {
+    "id": "ncis-20",
+    "company": "(주)아모레퍼시픽 대전공장",
+    "address": "대전광역시 대덕구 대화로 80 (대화동)",
+    "industry": "화학 물질 및 화학제품 제조업; 의약품 제외",
+    "waste_type": "",
+    "cas_no": "NA-(주10)",
+    "components": [
+      "알루미늄 및 그 화합물"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "PRTR 2024 등록 취급물질: 알루미늄 및 그 화합물"
+  },
+  {
+    "id": "ncis-21",
+    "company": "(주)제이앤드에프",
+    "address": "대전광역시 대덕구 대화로106번길 55 주식회사 제이앤드에프",
+    "industry": "자동차 및 트레일러 제조업",
+    "waste_type": "",
+    "cas_no": "NA-(주10)",
+    "components": [
+      "알루미늄 및 그 화합물"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "PRTR 2024 등록 취급물질: 알루미늄 및 그 화합물"
+  },
+  {
+    "id": "ncis-22",
+    "company": "(주)크라운제과 대전공장",
+    "address": "대전광역시 대덕구 신일서로67번길 57 (신일동)",
+    "industry": "식료품 제조업",
+    "waste_type": "",
+    "cas_no": "NA-(주10)",
+    "components": [
+      "알루미늄 및 그 화합물"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "PRTR 2024 등록 취급물질: 알루미늄 및 그 화합물"
+  },
+  {
+    "id": "ncis-23",
+    "company": "(주)한나노텍",
+    "address": "대전광역시 대덕구 대덕대로 1330 (신일동)",
+    "industry": "화학 물질 및 화학제품 제조업; 의약품 제외",
+    "waste_type": "",
+    "cas_no": "NA-(주10)",
+    "components": [
+      "알루미늄 및 그 화합물"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "PRTR 2024 등록 취급물질: 알루미늄 및 그 화합물"
+  },
+  {
+    "id": "ncis-24",
+    "company": "㈜라이온켐텍",
+    "address": "대전광역시 대덕구 대덕대로1277번길 36 1층(문평동)",
+    "industry": "고무 및 플라스틱제품 제조업",
+    "waste_type": "",
+    "cas_no": "NA-(주10)",
+    "components": [
+      "알루미늄 및 그 화합물"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "PRTR 2024 등록 취급물질: 알루미늄 및 그 화합물"
+  },
+  {
+    "id": "ncis-25",
+    "company": "나노팀 주식회사",
+    "address": "대전광역시 유성구 국제과학2로 14 나노팀 주식회사",
+    "industry": "화학 물질 및 화학제품 제조업; 의약품 제외",
+    "waste_type": "",
+    "cas_no": "NA-(주10)",
+    "components": [
+      "알루미늄 및 그 화합물"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "PRTR 2024 등록 취급물질: 알루미늄 및 그 화합물"
+  },
+  {
+    "id": "ncis-26",
+    "company": "대전광역시 상수도사업본부 월평정수사업소",
+    "address": "대전광역시 서구 신갈마로141번길 82 대전광역시 상수도사업본부 월평정수사업소",
+    "industry": "수도업",
+    "waste_type": "",
+    "cas_no": "NA-(주10)",
+    "components": [
+      "알루미늄 및 그 화합물"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "PRTR 2024 등록 취급물질: 알루미늄 및 그 화합물"
+  },
+  {
+    "id": "ncis-27",
+    "company": "대전광역시시설관리공단",
+    "address": "대전광역시 유성구 엑스포로 326 (원촌동)",
+    "industry": "하수, 폐수 및 분뇨 처리업",
+    "waste_type": "",
+    "cas_no": "NA-(주10)",
+    "components": [
+      "알루미늄 및 그 화합물"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "PRTR 2024 등록 취급물질: 알루미늄 및 그 화합물"
+  },
+  {
+    "id": "ncis-28",
+    "company": "세원화성(주)",
+    "address": "대전광역시 대덕구 대화로52번길 115  (대화동) 세원화성",
+    "industry": "화학 물질 및 화학제품 제조업; 의약품 제외",
+    "waste_type": "",
+    "cas_no": "NA-(주10)",
+    "components": [
+      "알루미늄 및 그 화합물"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "PRTR 2024 등록 취급물질: 알루미늄 및 그 화합물"
+  },
+  {
+    "id": "ncis-29",
+    "company": "송촌정수사업소(대전광역시 상수도사업본부)",
+    "address": "대전광역시 대덕구 송촌로 50 송촌정수사업소(대전광역시 상수도사업본부)",
+    "industry": "수도업",
+    "waste_type": "",
+    "cas_no": "NA-(주10)",
+    "components": [
+      "알루미늄 및 그 화합물"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "PRTR 2024 등록 취급물질: 알루미늄 및 그 화합물"
+  },
+  {
+    "id": "ncis-30",
+    "company": "신탄진정수사업소",
+    "address": "대전광역시 대덕구 신탄진로756번안길 223  (용호동) 신탄진정수사업소",
+    "industry": "수도업",
+    "waste_type": "",
+    "cas_no": "NA-(주10)",
+    "components": [
+      "알루미늄 및 그 화합물"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "PRTR 2024 등록 취급물질: 알루미늄 및 그 화합물"
+  },
+  {
+    "id": "ncis-31",
+    "company": "에이치에스효성첨단소재(주) 대전공장",
+    "address": "대전광역시 대덕구 문평서로18번길 90 (문평동) 문평서로18번길 90",
+    "industry": "섬유제품 제조업; 의복 제외",
+    "waste_type": "",
+    "cas_no": "NA-(주10)",
+    "components": [
+      "알루미늄 및 그 화합물"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "PRTR 2024 등록 취급물질: 알루미늄 및 그 화합물"
+  },
+  {
+    "id": "ncis-32",
+    "company": "이엘케이(주)",
+    "address": "대전광역시 유성구 테크노2로 89 관평동 687",
+    "industry": "전자 부품, 컴퓨터, 영상, 음향 및 통신장비 제조업",
+    "waste_type": "",
+    "cas_no": "NA-(주10)",
+    "components": [
+      "알루미늄 및 그 화합물"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "PRTR 2024 등록 취급물질: 알루미늄 및 그 화합물"
+  },
+  {
+    "id": "ncis-33",
+    "company": "주)지왕산업",
+    "address": "대전광역시 대덕구 대화로132번안길 34 (대화동) (주)지왕산업",
+    "industry": "하수, 폐수 및 분뇨 처리업",
+    "waste_type": "",
+    "cas_no": "NA-(주10)",
+    "components": [
+      "알루미늄 및 그 화합물"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "PRTR 2024 등록 취급물질: 알루미늄 및 그 화합물"
+  },
+  {
+    "id": "ncis-34",
+    "company": "티알벨트랙",
+    "address": "대전광역시 대덕구 대화로106번길 43 (대화동)",
+    "industry": "고무 및 플라스틱제품 제조업",
+    "waste_type": "",
+    "cas_no": "NA-(주10)",
+    "components": [
+      "알루미늄 및 그 화합물"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "PRTR 2024 등록 취급물질: 알루미늄 및 그 화합물"
+  },
+  {
+    "id": "ncis-35",
+    "company": "한국타이어앤테크놀로지(주)대전공장",
+    "address": "대전광역시 대덕구 대덕대로1447번길 40  (목상동) 한국타이어",
+    "industry": "고무 및 플라스틱제품 제조업",
+    "waste_type": "",
+    "cas_no": "NA-(주10)",
+    "components": [
+      "알루미늄 및 그 화합물"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "PRTR 2024 등록 취급물질: 알루미늄 및 그 화합물"
+  },
+  {
+    "id": "ncis-36",
+    "company": "한솔제지(주) 대전공장",
+    "address": "대전광역시 대덕구 신일서로68번길 50 한솔제지 대전공장",
+    "industry": "펄프, 종이 및 종이제품 제조업",
+    "waste_type": "",
+    "cas_no": "NA-(주10)",
+    "components": [
+      "알루미늄 및 그 화합물"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "PRTR 2024 등록 취급물질: 알루미늄 및 그 화합물"
+  },
+  {
+    "id": "ncis-37",
+    "company": "한온시스템(주)",
+    "address": "대전광역시 대덕구 신일서로 95 (신일동) 한온시스템(주) EHS팀",
+    "industry": "자동차 및 트레일러 제조업",
+    "waste_type": "",
+    "cas_no": "NA-(주10)",
+    "components": [
+      "알루미늄 및 그 화합물"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "PRTR 2024 등록 취급물질: 알루미늄 및 그 화합물"
+  },
+  {
+    "id": "ncis-38",
+    "company": "한화에어로스페이스(주) 대전사업장",
+    "address": "대전광역시 유성구 외삼로8번길 99 (외삼동)",
+    "industry": "금속 가공제품 제조업; 기계 및 가구 제외",
+    "waste_type": "",
+    "cas_no": "NA-(주10)",
+    "components": [
+      "알루미늄 및 그 화합물"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "PRTR 2024 등록 취급물질: 알루미늄 및 그 화합물"
+  },
+  {
+    "id": "ncis-39",
+    "company": "(주)동양환경",
+    "address": "대전광역시 대덕구 문평동로48번길 125",
+    "industry": "폐기물 수집, 운반, 처리 및 원료 재생업",
+    "waste_type": "",
+    "cas_no": "000108-88-3",
+    "components": [
+      "톨루엔"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "PRTR 2024 등록 취급물질: 톨루엔"
+  },
+  {
+    "id": "ncis-40",
+    "company": "(주)이노켐 대전",
+    "address": "대전광역시 대덕구 신일동로33번길 1 이노켐 대전",
+    "industry": "금속 가공제품 제조업; 기계 및 가구 제외",
+    "waste_type": "",
+    "cas_no": "000108-88-3",
+    "components": [
+      "톨루엔"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "PRTR 2024 등록 취급물질: 톨루엔"
+  },
+  {
+    "id": "ncis-41",
+    "company": "세원화성(주)",
+    "address": "대전광역시 대덕구 대화로52번길 115  (대화동) 세원화성",
+    "industry": "화학 물질 및 화학제품 제조업; 의약품 제외",
+    "waste_type": "",
+    "cas_no": "000108-88-3",
+    "components": [
+      "톨루엔"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "PRTR 2024 등록 취급물질: 톨루엔"
+  },
+  {
+    "id": "ncis-42",
+    "company": "(주)동양환경",
+    "address": "대전광역시 대덕구 문평동로48번길 125",
+    "industry": "폐기물 수집, 운반, 처리 및 원료 재생업",
+    "waste_type": "",
+    "cas_no": "000141-78-6",
+    "components": [
+      "아세트산 에틸"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "PRTR 2024 등록 취급물질: 아세트산 에틸"
+  },
+  {
+    "id": "ncis-43",
+    "company": "(주)바이오니아 대덕센터",
+    "address": "대전광역시 대덕구 문평서로 8-11 (문평동)",
+    "industry": "의료용 물질 및 의약품 제조업",
+    "waste_type": "",
+    "cas_no": "000141-78-6",
+    "components": [
+      "아세트산 에틸"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "PRTR 2024 등록 취급물질: 아세트산 에틸"
+  },
+  {
+    "id": "ncis-44",
+    "company": "(주)삼양홀딩스 엠디(MD)공장",
+    "address": "대전광역시 대덕구 문평서로18번길 55 문평동",
+    "industry": "의료용 물질 및 의약품 제조업",
+    "waste_type": "",
+    "cas_no": "000141-78-6",
+    "components": [
+      "아세트산 에틸"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "PRTR 2024 등록 취급물질: 아세트산 에틸"
+  },
+  {
+    "id": "ncis-45",
+    "company": "(주)한켐",
+    "address": "대전광역시 유성구 테크노11로 55-11 (탑립동)",
+    "industry": "화학 물질 및 화학제품 제조업; 의약품 제외",
+    "waste_type": "",
+    "cas_no": "000141-78-6",
+    "components": [
+      "아세트산 에틸"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "PRTR 2024 등록 취급물질: 아세트산 에틸"
+  },
+  {
+    "id": "ncis-46",
+    "company": "(주)삼양홀딩스 의약공장",
+    "address": "대전광역시 대덕구 신일동로 79 신일동",
+    "industry": "의료용 물질 및 의약품 제조업",
+    "waste_type": "",
+    "cas_no": "000110-54-3",
+    "components": [
+      "n-헥산"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "PRTR 2024 등록 취급물질: n-헥산"
+  },
+  {
+    "id": "ncis-47",
+    "company": "(주)한켐",
+    "address": "대전광역시 유성구 테크노11로 55-11 (탑립동)",
+    "industry": "화학 물질 및 화학제품 제조업; 의약품 제외",
+    "waste_type": "",
+    "cas_no": "000110-54-3",
+    "components": [
+      "n-헥산"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "PRTR 2024 등록 취급물질: n-헥산"
+  },
+  {
+    "id": "ncis-48",
+    "company": "(주)제이앤드에프",
+    "address": "대전광역시 대덕구 대화로106번길 55 주식회사 제이앤드에프",
+    "industry": "자동차 및 트레일러 제조업",
+    "waste_type": "",
+    "cas_no": "007697-37-2",
+    "components": [
+      "질산"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "PRTR 2024 등록 취급물질: 질산"
+  },
+  {
+    "id": "ncis-49",
+    "company": "(주)피앤씨테크",
+    "address": "대전광역시 대덕구 신일동로67번길 24  (신일동) 1층",
+    "industry": "금속 가공제품 제조업; 기계 및 가구 제외",
+    "waste_type": "",
+    "cas_no": "007697-37-2",
+    "components": [
+      "질산"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "PRTR 2024 등록 취급물질: 질산"
+  },
+  {
+    "id": "ncis-50",
+    "company": "태아산업(주)",
+    "address": "대전광역시 대덕구 대전로1331번길 75 (읍내동)",
+    "industry": "담배 제조업",
+    "waste_type": "",
+    "cas_no": "007697-37-2",
+    "components": [
+      "질산"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "PRTR 2024 등록 취급물질: 질산"
+  },
+  {
+    "id": "ncis-51",
+    "company": "한전원자력연료(주)TSA플랜트",
+    "address": "대전광역시 유성구 테크노6로 8",
+    "industry": "금속 가공제품 제조업; 기계 및 가구 제외",
+    "waste_type": "",
+    "cas_no": "007697-37-2",
+    "components": [
+      "질산"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "PRTR 2024 등록 취급물질: 질산"
+  },
+  {
+    "id": "ncis-52",
+    "company": "세원화성(주)",
+    "address": "대전광역시 대덕구 대화로52번길 115  (대화동) 세원화성",
+    "industry": "화학 물질 및 화학제품 제조업; 의약품 제외",
+    "waste_type": "",
+    "cas_no": "000100-42-5",
+    "components": [
+      "스티렌"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "PRTR 2024 등록 취급물질: 스티렌"
+  },
+  {
+    "id": "ncis-53",
+    "company": "대전도시공사 신일동 환경에너지사업소",
+    "address": "대전광역시 대덕구 대덕대로1284번길 191 신일동 환경에너지사업소(대전소각장)",
+    "industry": "폐기물 수집, 운반, 처리 및 원료 재생업",
+    "waste_type": "",
+    "cas_no": "007664-41-7",
+    "components": [
+      "암모니아(수산화 암모늄(CAS No. 1336-21-6) 포함)"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "PRTR 2024 등록 취급물질: 암모니아(수산화 암모늄(CAS No. 1336-21-6) 포함)"
+  },
+  {
+    "id": "ncis-54",
+    "company": "대전열병합발전(주)",
+    "address": "대전광역시 대덕구 신일서로68번길 71 (신일동)",
+    "industry": "전기, 가스, 증기 및 공기 조절 공급업",
+    "waste_type": "",
+    "cas_no": "007664-41-7",
+    "components": [
+      "암모니아(수산화 암모늄(CAS No. 1336-21-6) 포함)"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "PRTR 2024 등록 취급물질: 암모니아(수산화 암모늄(CAS No. 1336-21-6) 포함)"
+  },
+  {
+    "id": "ncis-55",
+    "company": "대한이연(주) 제1공장",
+    "address": "대전광역시 대덕구 평촌2길 24 대한이연(주) 제1공장",
+    "industry": "자동차 및 트레일러 제조업",
+    "waste_type": "",
+    "cas_no": "007664-41-7",
+    "components": [
+      "암모니아(수산화 암모늄(CAS No. 1336-21-6) 포함)"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "PRTR 2024 등록 취급물질: 암모니아(수산화 암모늄(CAS No. 1336-21-6) 포함)"
+  },
+  {
+    "id": "ncis-56",
+    "company": "한일제관㈜ 대전공장",
+    "address": "대전광역시 대덕구 대덕대로1448번길 50 한일제관㈜ 대전공장",
+    "industry": "금속 가공제품 제조업; 기계 및 가구 제외",
+    "waste_type": "",
+    "cas_no": "007664-39-3",
+    "components": [
+      "플루오르화 수소"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "PRTR 2024 등록 취급물질: 플루오르화 수소"
+  },
+  {
+    "id": "ncis-57",
+    "company": "한전원자력연료(주)",
+    "address": "대전광역시 유성구 대덕대로989번길 242 (덕진동)",
+    "industry": "화학 물질 및 화학제품 제조업; 의약품 제외",
+    "waste_type": "",
+    "cas_no": "007664-39-3",
+    "components": [
+      "플루오르화 수소"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "PRTR 2024 등록 취급물질: 플루오르화 수소"
+  },
+  {
+    "id": "ncis-58",
+    "company": "한전원자력연료(주)TSA플랜트",
+    "address": "대전광역시 유성구 테크노6로 8",
+    "industry": "금속 가공제품 제조업; 기계 및 가구 제외",
+    "waste_type": "",
+    "cas_no": "007664-39-3",
+    "components": [
+      "플루오르화 수소"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "PRTR 2024 등록 취급물질: 플루오르화 수소"
+  },
+  {
+    "id": "ncis-59",
+    "company": "(주)제이앤드에프",
+    "address": "대전광역시 대덕구 대화로106번길 55 주식회사 제이앤드에프",
+    "industry": "자동차 및 트레일러 제조업",
+    "waste_type": "",
+    "cas_no": "NA-(주20)",
+    "components": [
+      "아연 및 그 화합물"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "PRTR 2024 등록 취급물질: 아연 및 그 화합물"
+  },
+  {
+    "id": "ncis-60",
+    "company": "(주)피앤씨테크",
+    "address": "대전광역시 대덕구 신일동로67번길 24  (신일동) 1층",
+    "industry": "금속 가공제품 제조업; 기계 및 가구 제외",
+    "waste_type": "",
+    "cas_no": "NA-(주20)",
+    "components": [
+      "아연 및 그 화합물"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "PRTR 2024 등록 취급물질: 아연 및 그 화합물"
+  },
+  {
+    "id": "ncis-61",
+    "company": "세원화성(주)",
+    "address": "대전광역시 대덕구 대화로52번길 115  (대화동) 세원화성",
+    "industry": "화학 물질 및 화학제품 제조업; 의약품 제외",
+    "waste_type": "",
+    "cas_no": "NA-(주20)",
+    "components": [
+      "아연 및 그 화합물"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "PRTR 2024 등록 취급물질: 아연 및 그 화합물"
+  },
+  {
+    "id": "ncis-62",
+    "company": "에이치에스효성첨단소재(주) 대전공장",
+    "address": "대전광역시 대덕구 문평서로18번길 90 (문평동) 문평서로18번길 90",
+    "industry": "섬유제품 제조업; 의복 제외",
+    "waste_type": "",
+    "cas_no": "NA-(주20)",
+    "components": [
+      "아연 및 그 화합물"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "PRTR 2024 등록 취급물질: 아연 및 그 화합물"
+  },
+  {
+    "id": "ncis-63",
+    "company": "티알벨트랙",
+    "address": "대전광역시 대덕구 대화로106번길 43 (대화동)",
+    "industry": "고무 및 플라스틱제품 제조업",
+    "waste_type": "",
+    "cas_no": "NA-(주20)",
+    "components": [
+      "아연 및 그 화합물"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "PRTR 2024 등록 취급물질: 아연 및 그 화합물"
+  },
+  {
+    "id": "ncis-64",
+    "company": "한국타이어앤테크놀로지(주)대전공장",
+    "address": "대전광역시 대덕구 대덕대로1447번길 40  (목상동) 한국타이어",
+    "industry": "고무 및 플라스틱제품 제조업",
+    "waste_type": "",
+    "cas_no": "NA-(주20)",
+    "components": [
+      "아연 및 그 화합물"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "PRTR 2024 등록 취급물질: 아연 및 그 화합물"
+  },
+  {
+    "id": "ncis-65",
+    "company": "(주)로옴코리아",
+    "address": "대전광역시 대덕구 문평서로17번안길 40",
+    "industry": "전자 부품, 컴퓨터, 영상, 음향 및 통신장비 제조업",
+    "waste_type": "",
+    "cas_no": "NA-(주1)",
+    "components": [
+      "납 및 그 화합물"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "PRTR 2024 등록 취급물질: 납 및 그 화합물"
+  },
+  {
+    "id": "ncis-66",
+    "company": "한국앤컴퍼니(주) 대전공장",
+    "address": "대전광역시 대덕구 대전로1331번길 185 한국앤컴퍼니(주) 대전공장",
+    "industry": "전기장비 제조업",
+    "waste_type": "",
+    "cas_no": "NA-(주1)",
+    "components": [
+      "납 및 그 화합물"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "PRTR 2024 등록 취급물질: 납 및 그 화합물"
+  },
+  {
+    "id": "ncis-67",
+    "company": "주식회사 켐옵틱스",
+    "address": "대전광역시 유성구 테크노2로 261 (탑립동)",
+    "industry": "전자 부품, 컴퓨터, 영상, 음향 및 통신장비 제조업",
+    "waste_type": "",
+    "cas_no": "001634-04-4",
+    "components": [
+      "메틸 tert-부틸 에테르"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "PRTR 2024 등록 취급물질: 메틸 tert-부틸 에테르"
+  },
+  {
+    "id": "ncis-68",
+    "company": "(주)농협케미컬",
+    "address": "대전광역시 대덕구 대화로 130  (대화동) (주)농협케미컬",
+    "industry": "화학 물질 및 화학제품 제조업; 의약품 제외",
+    "waste_type": "",
+    "cas_no": "001330-20-7",
+    "components": [
+      "자일렌(o-,m-,p- 이성질체 혼합물)"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "PRTR 2024 등록 취급물질: 자일렌(o-,m-,p- 이성질체 혼합물)"
+  },
+  {
+    "id": "ncis-69",
+    "company": "(주)동양환경",
+    "address": "대전광역시 대덕구 문평동로48번길 125",
+    "industry": "폐기물 수집, 운반, 처리 및 원료 재생업",
+    "waste_type": "",
+    "cas_no": "001330-20-7",
+    "components": [
+      "자일렌(o-,m-,p- 이성질체 혼합물)"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "PRTR 2024 등록 취급물질: 자일렌(o-,m-,p- 이성질체 혼합물)"
+  },
+  {
+    "id": "ncis-70",
+    "company": "바이엘크롭사이언스(주)",
+    "address": "대전광역시 대덕구 대전로1331번길 141  (대화동) 바이엘크롭사이언스(주)",
+    "industry": "화학 물질 및 화학제품 제조업; 의약품 제외",
+    "waste_type": "",
+    "cas_no": "001330-20-7",
+    "components": [
+      "자일렌(o-,m-,p- 이성질체 혼합물)"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "PRTR 2024 등록 취급물질: 자일렌(o-,m-,p- 이성질체 혼합물)"
+  },
+  {
+    "id": "ncis-71",
+    "company": "(주)동양환경",
+    "address": "대전광역시 대덕구 문평동로48번길 125",
+    "industry": "폐기물 수집, 운반, 처리 및 원료 재생업",
+    "waste_type": "",
+    "cas_no": "000067-63-0",
+    "components": [
+      "2-프로판올"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "PRTR 2024 등록 취급물질: 2-프로판올"
+  },
+  {
+    "id": "ncis-72",
+    "company": "주식회사 켐옵틱스",
+    "address": "대전광역시 유성구 테크노2로 261 (탑립동)",
+    "industry": "전자 부품, 컴퓨터, 영상, 음향 및 통신장비 제조업",
+    "waste_type": "",
+    "cas_no": "000067-63-0",
+    "components": [
+      "2-프로판올"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "PRTR 2024 등록 취급물질: 2-프로판올"
+  },
+  {
+    "id": "ncis-73",
+    "company": "(주)동양환경",
+    "address": "대전광역시 대덕구 문평동로48번길 125",
+    "industry": "폐기물 수집, 운반, 처리 및 원료 재생업",
+    "waste_type": "",
+    "cas_no": "000078-93-3",
+    "components": [
+      "메틸 에틸 케톤"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "PRTR 2024 등록 취급물질: 메틸 에틸 케톤"
+  },
+  {
+    "id": "ncis-74",
+    "company": "(주)농협케미컬",
+    "address": "대전광역시 대덕구 대화로 130  (대화동) (주)농협케미컬",
+    "industry": "화학 물질 및 화학제품 제조업; 의약품 제외",
+    "waste_type": "",
+    "cas_no": "055285-14-8",
+    "components": [
+      "카보술판"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "PRTR 2024 등록 취급물질: 카보술판"
+  },
+  {
+    "id": "ncis-75",
+    "company": "(주)피앤씨테크",
+    "address": "대전광역시 대덕구 신일동로67번길 24  (신일동) 1층",
+    "industry": "금속 가공제품 제조업; 기계 및 가구 제외",
+    "waste_type": "",
+    "cas_no": "NA-(주7)",
+    "components": [
+      "크롬 및 그 화합물"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "PRTR 2024 등록 취급물질: 크롬 및 그 화합물"
+  },
+  {
+    "id": "ncis-76",
+    "company": "대한이연(주) 제1공장",
+    "address": "대전광역시 대덕구 평촌2길 24 대한이연(주) 제1공장",
+    "industry": "자동차 및 트레일러 제조업",
+    "waste_type": "",
+    "cas_no": "NA-(주7)",
+    "components": [
+      "크롬 및 그 화합물"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "PRTR 2024 등록 취급물질: 크롬 및 그 화합물"
+  },
+  {
+    "id": "ncis-77",
+    "company": "한온시스템(주)",
+    "address": "대전광역시 대덕구 신일서로 95 (신일동) 한온시스템(주) EHS팀",
+    "industry": "자동차 및 트레일러 제조업",
+    "waste_type": "",
+    "cas_no": "NA-(주7)",
+    "components": [
+      "크롬 및 그 화합물"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "PRTR 2024 등록 취급물질: 크롬 및 그 화합물"
+  },
+  {
+    "id": "ncis-78",
+    "company": "(주)제이앤드에프",
+    "address": "대전광역시 대덕구 대화로106번길 55 주식회사 제이앤드에프",
+    "industry": "자동차 및 트레일러 제조업",
+    "waste_type": "",
+    "cas_no": "NA-(주3)",
+    "components": [
+      "니켈 및 그 화합물"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "PRTR 2024 등록 취급물질: 니켈 및 그 화합물"
+  },
+  {
+    "id": "ncis-79",
+    "company": "(주)피앤씨테크",
+    "address": "대전광역시 대덕구 신일동로67번길 24  (신일동) 1층",
+    "industry": "금속 가공제품 제조업; 기계 및 가구 제외",
+    "waste_type": "",
+    "cas_no": "NA-(주3)",
+    "components": [
+      "니켈 및 그 화합물"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "PRTR 2024 등록 취급물질: 니켈 및 그 화합물"
+  },
+  {
+    "id": "ncis-80",
+    "company": "(주)동양환경",
+    "address": "대전광역시 대덕구 문평동로48번길 125",
+    "industry": "폐기물 수집, 운반, 처리 및 원료 재생업",
+    "waste_type": "",
+    "cas_no": "001310-73-2",
+    "components": [
+      "수산화 나트륨"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "PRTR 2024 등록 취급물질: 수산화 나트륨"
+  },
+  {
+    "id": "ncis-81",
+    "company": "(주)선양소주",
+    "address": "대전광역시 서구 영골길 158 (㈜맥키스컴퍼니대전공장)",
+    "industry": "음료 제조업",
+    "waste_type": "",
+    "cas_no": "001310-73-2",
+    "components": [
+      "수산화 나트륨"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "PRTR 2024 등록 취급물질: 수산화 나트륨"
+  },
+  {
+    "id": "ncis-82",
+    "company": "(주)알루코 제2공장",
+    "address": "대전광역시 대덕구 대화로 100 (주)알루코 제2공장",
+    "industry": "1차 금속 제조업",
+    "waste_type": "",
+    "cas_no": "001310-73-2",
+    "components": [
+      "수산화 나트륨"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "PRTR 2024 등록 취급물질: 수산화 나트륨"
+  },
+  {
+    "id": "ncis-83",
+    "company": "(주)알루코 제5공장",
+    "address": "대전광역시 대덕구 대화로 220  (대화동) (주) 알루코 제5공장",
+    "industry": "1차 금속 제조업",
+    "waste_type": "",
+    "cas_no": "001310-73-2",
+    "components": [
+      "수산화 나트륨"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "PRTR 2024 등록 취급물질: 수산화 나트륨"
+  },
+  {
+    "id": "ncis-84",
+    "company": "(주)제이앤드에프",
+    "address": "대전광역시 대덕구 대화로106번길 55 주식회사 제이앤드에프",
+    "industry": "자동차 및 트레일러 제조업",
+    "waste_type": "",
+    "cas_no": "001310-73-2",
+    "components": [
+      "수산화 나트륨"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "PRTR 2024 등록 취급물질: 수산화 나트륨"
+  },
+  {
+    "id": "ncis-85",
+    "company": "(주)진합",
+    "address": "대전광역시 대덕구 문평서로 42 (문평동)",
+    "industry": "자동차 및 트레일러 제조업",
+    "waste_type": "",
+    "cas_no": "001310-73-2",
+    "components": [
+      "수산화 나트륨"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "PRTR 2024 등록 취급물질: 수산화 나트륨"
+  },
+  {
+    "id": "ncis-86",
+    "company": "(주)피앤씨테크",
+    "address": "대전광역시 대덕구 신일동로67번길 24  (신일동) 1층",
+    "industry": "금속 가공제품 제조업; 기계 및 가구 제외",
+    "waste_type": "",
+    "cas_no": "001310-73-2",
+    "components": [
+      "수산화 나트륨"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "PRTR 2024 등록 취급물질: 수산화 나트륨"
+  },
+  {
+    "id": "ncis-87",
+    "company": "대전그린에너지센터(주)",
+    "address": "대전광역시 유성구 불무로 186 일원(금고동)",
+    "industry": "폐기물 수집, 운반, 처리 및 원료 재생업",
+    "waste_type": "",
+    "cas_no": "001310-73-2",
+    "components": [
+      "수산화 나트륨"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "PRTR 2024 등록 취급물질: 수산화 나트륨"
+  },
+  {
+    "id": "ncis-88",
+    "company": "대전열병합발전(주)",
+    "address": "대전광역시 대덕구 신일서로68번길 71 (신일동)",
+    "industry": "전기, 가스, 증기 및 공기 조절 공급업",
+    "waste_type": "",
+    "cas_no": "001310-73-2",
+    "components": [
+      "수산화 나트륨"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "PRTR 2024 등록 취급물질: 수산화 나트륨"
+  },
+  {
+    "id": "ncis-89",
+    "company": "대청산업",
+    "address": "대전광역시 대덕구 신일서로 104번길 24 (신일동)",
+    "industry": "섬유제품 제조업; 의복 제외",
+    "waste_type": "",
+    "cas_no": "001310-73-2",
+    "components": [
+      "수산화 나트륨"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "PRTR 2024 등록 취급물질: 수산화 나트륨"
+  },
+  {
+    "id": "ncis-90",
+    "company": "롯데웰푸드(주) 대전공장",
+    "address": "대전광역시 대덕구 문평동로18번길 21 롯데웰푸드(주) 대전공장",
+    "industry": "식료품 제조업",
+    "waste_type": "",
+    "cas_no": "001310-73-2",
+    "components": [
+      "수산화 나트륨"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "PRTR 2024 등록 취급물질: 수산화 나트륨"
+  },
+  {
+    "id": "ncis-91",
+    "company": "롯데칠성음료(주)대전공장",
+    "address": "대전광역시 대덕구 문평서로 57  (문평동) 문평서로 57",
+    "industry": "음료 제조업",
+    "waste_type": "",
+    "cas_no": "001310-73-2",
+    "components": [
+      "수산화 나트륨"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "PRTR 2024 등록 취급물질: 수산화 나트륨"
+  },
+  {
+    "id": "ncis-92",
+    "company": "비비씨",
+    "address": "대전광역시 대덕구 대덕대로1448번길 210 (신일동)",
+    "industry": "고무 및 플라스틱제품 제조업",
+    "waste_type": "",
+    "cas_no": "001310-73-2",
+    "components": [
+      "수산화 나트륨"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "PRTR 2024 등록 취급물질: 수산화 나트륨"
+  },
+  {
+    "id": "ncis-93",
+    "company": "신탄진정수사업소",
+    "address": "대전광역시 대덕구 신탄진로756번안길 223  (용호동) 신탄진정수사업소",
+    "industry": "수도업",
+    "waste_type": "",
+    "cas_no": "001310-73-2",
+    "components": [
+      "수산화 나트륨"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "PRTR 2024 등록 취급물질: 수산화 나트륨"
+  },
+  {
+    "id": "ncis-94",
+    "company": "태아산업(주)",
+    "address": "대전광역시 대덕구 대전로1331번길 75 (읍내동)",
+    "industry": "담배 제조업",
+    "waste_type": "",
+    "cas_no": "001310-73-2",
+    "components": [
+      "수산화 나트륨"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "PRTR 2024 등록 취급물질: 수산화 나트륨"
+  },
+  {
+    "id": "ncis-95",
+    "company": "한국수출포장공업㈜대전공장",
+    "address": "대전광역시 대덕구 신일동로 42  (신일동) 한국수출포장공업 대전공장",
+    "industry": "펄프, 종이 및 종이제품 제조업",
+    "waste_type": "",
+    "cas_no": "001310-73-2",
+    "components": [
+      "수산화 나트륨"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "PRTR 2024 등록 취급물질: 수산화 나트륨"
+  },
+  {
+    "id": "ncis-96",
+    "company": "한백섬유(주)",
+    "address": "대전광역시 대덕구 대전로1331번길 310 (대화동)",
+    "industry": "섬유제품 제조업; 의복 제외",
+    "waste_type": "",
+    "cas_no": "001310-73-2",
+    "components": [
+      "수산화 나트륨"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "PRTR 2024 등록 취급물질: 수산화 나트륨"
+  },
+  {
+    "id": "ncis-97",
+    "company": "한솔제지(주) 대전공장",
+    "address": "대전광역시 대덕구 신일서로68번길 50 한솔제지 대전공장",
+    "industry": "펄프, 종이 및 종이제품 제조업",
+    "waste_type": "",
+    "cas_no": "001310-73-2",
+    "components": [
+      "수산화 나트륨"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "PRTR 2024 등록 취급물질: 수산화 나트륨"
+  },
+  {
+    "id": "ncis-98",
+    "company": "한솔제지(주)신탄진공장",
+    "address": "대전광역시 대덕구 신일서로126번길 60 (신일동)",
+    "industry": "펄프, 종이 및 종이제품 제조업",
+    "waste_type": "",
+    "cas_no": "001310-73-2",
+    "components": [
+      "수산화 나트륨"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "PRTR 2024 등록 취급물질: 수산화 나트륨"
+  },
+  {
+    "id": "ncis-99",
+    "company": "한전원자력연료(주)TSA플랜트",
+    "address": "대전광역시 유성구 테크노6로 8",
+    "industry": "금속 가공제품 제조업; 기계 및 가구 제외",
+    "waste_type": "",
+    "cas_no": "001310-73-2",
+    "components": [
+      "수산화 나트륨"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "PRTR 2024 등록 취급물질: 수산화 나트륨"
+  },
+  {
+    "id": "ncis-100",
+    "company": "바이엘크롭사이언스(주)",
+    "address": "대전광역시 대덕구 대전로1331번길 141  (대화동) 바이엘크롭사이언스(주)",
+    "industry": "화학 물질 및 화학제품 제조업; 의약품 제외",
+    "waste_type": "",
+    "cas_no": "059669-26-0",
+    "components": [
+      "티오디캅"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "PRTR 2024 등록 취급물질: 티오디캅"
+  },
+  {
+    "id": "ncis-101",
+    "company": "(주)농협케미컬",
+    "address": "대전광역시 대덕구 대화로 130  (대화동) (주)농협케미컬",
+    "industry": "화학 물질 및 화학제품 제조업; 의약품 제외",
+    "waste_type": "",
+    "cas_no": "008018-01-7",
+    "components": [
+      "만코젭"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "PRTR 2024 등록 취급물질: 만코젭"
+  },
+  {
+    "id": "ncis-102",
+    "company": "(주)농협케미컬",
+    "address": "대전광역시 대덕구 대화로 130  (대화동) (주)농협케미컬",
+    "industry": "화학 물질 및 화학제품 제조업; 의약품 제외",
+    "waste_type": "",
+    "cas_no": "106917-52-6",
+    "components": [
+      "플루술파미드"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "PRTR 2024 등록 취급물질: 플루술파미드"
+  },
+  {
+    "id": "ncis-103",
+    "company": "(주)농협케미컬",
+    "address": "대전광역시 대덕구 대화로 130  (대화동) (주)농협케미컬",
+    "industry": "화학 물질 및 화학제품 제조업; 의약품 제외",
+    "waste_type": "",
+    "cas_no": "NA-(주15)",
+    "components": [
+      "구리 및 그 화합물"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "PRTR 2024 등록 취급물질: 구리 및 그 화합물"
+  },
+  {
+    "id": "ncis-104",
+    "company": "(주)래트론",
+    "address": "대전광역시 대덕구 대덕대로1448번길 182 (신일동)",
+    "industry": "전자 부품, 컴퓨터, 영상, 음향 및 통신장비 제조업",
+    "waste_type": "",
+    "cas_no": "NA-(주15)",
+    "components": [
+      "구리 및 그 화합물"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "PRTR 2024 등록 취급물질: 구리 및 그 화합물"
+  },
+  {
+    "id": "ncis-105",
+    "company": "(주)농협케미컬",
+    "address": "대전광역시 대덕구 대화로 130  (대화동) (주)농협케미컬",
+    "industry": "화학 물질 및 화학제품 제조업; 의약품 제외",
+    "waste_type": "",
+    "cas_no": "000062-73-7",
+    "components": [
+      "디클로르보스"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "PRTR 2024 등록 취급물질: 디클로르보스"
+  },
+  {
+    "id": "ncis-106",
+    "company": "티알벨트랙",
+    "address": "대전광역시 대덕구 대화로106번길 43 (대화동)",
+    "industry": "고무 및 플라스틱제품 제조업",
+    "waste_type": "",
+    "cas_no": "NA-(주11)",
+    "components": [
+      "안티몬 및 그 화합물"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "PRTR 2024 등록 취급물질: 안티몬 및 그 화합물"
+  },
+  {
+    "id": "ncis-107",
+    "company": "한국앤컴퍼니(주) 대전공장",
+    "address": "대전광역시 대덕구 대전로1331번길 185 한국앤컴퍼니(주) 대전공장",
+    "industry": "전기장비 제조업",
+    "waste_type": "",
+    "cas_no": "NA-(주11)",
+    "components": [
+      "안티몬 및 그 화합물"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "PRTR 2024 등록 취급물질: 안티몬 및 그 화합물"
+  },
+  {
+    "id": "ncis-108",
+    "company": "세원화성(주)",
+    "address": "대전광역시 대덕구 대화로52번길 115  (대화동) 세원화성",
+    "industry": "화학 물질 및 화학제품 제조업; 의약품 제외",
+    "waste_type": "",
+    "cas_no": "000080-05-7",
+    "components": [
+      "4,4'-비스페놀 에이"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "PRTR 2024 등록 취급물질: 4,4'-비스페놀 에이"
+  },
+  {
+    "id": "ncis-109",
+    "company": "한화에어로스페이스(주) 대전사업장",
+    "address": "대전광역시 유성구 외삼로8번길 99 (외삼동)",
+    "industry": "금속 가공제품 제조업; 기계 및 가구 제외",
+    "waste_type": "",
+    "cas_no": "000103-23-1",
+    "components": [
+      "디(2-에틸헥실) 아디페이트"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "PRTR 2024 등록 취급물질: 디(2-에틸헥실) 아디페이트"
+  },
+  {
+    "id": "ncis-110",
+    "company": "한국타이어앤테크놀로지(주)대전공장",
+    "address": "대전광역시 대덕구 대덕대로1447번길 40  (목상동) 한국타이어",
+    "industry": "고무 및 플라스틱제품 제조업",
+    "waste_type": "",
+    "cas_no": "000140-66-9",
+    "components": [
+      "4-tert-옥틸페놀"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "PRTR 2024 등록 취급물질: 4-tert-옥틸페놀"
+  },
+  {
+    "id": "ncis-111",
+    "company": "한국타이어앤테크놀로지(주)대전공장",
+    "address": "대전광역시 대덕구 대덕대로1447번길 40  (목상동) 한국타이어",
+    "industry": "고무 및 플라스틱제품 제조업",
+    "waste_type": "",
+    "cas_no": "000793-24-8",
+    "components": [
+      "N-(1,3-디메틸부틸)-N'-페닐-p-페닐렌디아민"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "PRTR 2024 등록 취급물질: N-(1,3-디메틸부틸)-N'-페닐-p-페닐렌디아민"
+  },
+  {
+    "id": "ncis-112",
+    "company": "(주)농협케미컬",
+    "address": "대전광역시 대덕구 대화로 130  (대화동) (주)농협케미컬",
+    "industry": "화학 물질 및 화학제품 제조업; 의약품 제외",
+    "waste_type": "",
+    "cas_no": "001310-58-3",
+    "components": [
+      "수산화 칼륨"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "PRTR 2024 등록 취급물질: 수산화 칼륨"
+  },
+  {
+    "id": "ncis-113",
+    "company": "(주)로옴코리아",
+    "address": "대전광역시 대덕구 문평서로17번안길 40",
+    "industry": "전자 부품, 컴퓨터, 영상, 음향 및 통신장비 제조업",
+    "waste_type": "",
+    "cas_no": "001310-58-3",
+    "components": [
+      "수산화 칼륨"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "PRTR 2024 등록 취급물질: 수산화 칼륨"
+  },
+  {
+    "id": "ncis-114",
+    "company": "비비씨",
+    "address": "대전광역시 대덕구 대덕대로1448번길 210 (신일동)",
+    "industry": "고무 및 플라스틱제품 제조업",
+    "waste_type": "",
+    "cas_no": "001310-58-3",
+    "components": [
+      "수산화 칼륨"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "PRTR 2024 등록 취급물질: 수산화 칼륨"
+  },
+  {
+    "id": "ncis-115",
+    "company": "(주)선양소주",
+    "address": "대전광역시 서구 영골길 158 (㈜맥키스컴퍼니대전공장)",
+    "industry": "음료 제조업",
+    "waste_type": "",
+    "cas_no": "007664-93-9",
+    "components": [
+      "황산"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "PRTR 2024 등록 취급물질: 황산"
+  },
+  {
+    "id": "ncis-116",
+    "company": "(주)알루코 제2공장",
+    "address": "대전광역시 대덕구 대화로 100 (주)알루코 제2공장",
+    "industry": "1차 금속 제조업",
+    "waste_type": "",
+    "cas_no": "007664-93-9",
+    "components": [
+      "황산"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "PRTR 2024 등록 취급물질: 황산"
+  },
+  {
+    "id": "ncis-117",
+    "company": "대전그린에너지센터(주)",
+    "address": "대전광역시 유성구 불무로 186 일원(금고동)",
+    "industry": "폐기물 수집, 운반, 처리 및 원료 재생업",
+    "waste_type": "",
+    "cas_no": "007664-93-9",
+    "components": [
+      "황산"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "PRTR 2024 등록 취급물질: 황산"
+  },
+  {
+    "id": "ncis-118",
+    "company": "비비씨",
+    "address": "대전광역시 대덕구 대덕대로1448번길 210 (신일동)",
+    "industry": "고무 및 플라스틱제품 제조업",
+    "waste_type": "",
+    "cas_no": "007664-93-9",
+    "components": [
+      "황산"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "PRTR 2024 등록 취급물질: 황산"
+  },
+  {
+    "id": "ncis-119",
+    "company": "한국앤컴퍼니(주) 대전공장",
+    "address": "대전광역시 대덕구 대전로1331번길 185 한국앤컴퍼니(주) 대전공장",
+    "industry": "전기장비 제조업",
+    "waste_type": "",
+    "cas_no": "007664-93-9",
+    "components": [
+      "황산"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "PRTR 2024 등록 취급물질: 황산"
+  },
+  {
+    "id": "ncis-120",
+    "company": "한솔제지(주) 대전공장",
+    "address": "대전광역시 대덕구 신일서로68번길 50 한솔제지 대전공장",
+    "industry": "펄프, 종이 및 종이제품 제조업",
+    "waste_type": "",
+    "cas_no": "007664-93-9",
+    "components": [
+      "황산"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "PRTR 2024 등록 취급물질: 황산"
+  },
+  {
+    "id": "ncis-121",
+    "company": "한솔제지(주)신탄진공장",
+    "address": "대전광역시 대덕구 신일서로126번길 60 (신일동)",
+    "industry": "펄프, 종이 및 종이제품 제조업",
+    "waste_type": "",
+    "cas_no": "007664-93-9",
+    "components": [
+      "황산"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "PRTR 2024 등록 취급물질: 황산"
+  },
+  {
+    "id": "ncis-122",
+    "company": "한일제관㈜ 대전공장",
+    "address": "대전광역시 대덕구 대덕대로1448번길 50 한일제관㈜ 대전공장",
+    "industry": "금속 가공제품 제조업; 기계 및 가구 제외",
+    "waste_type": "",
+    "cas_no": "007664-93-9",
+    "components": [
+      "황산"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "PRTR 2024 등록 취급물질: 황산"
+  },
+  {
+    "id": "ncis-123",
+    "company": "티알벨트랙",
+    "address": "대전광역시 대덕구 대화로106번길 43 (대화동)",
+    "industry": "고무 및 플라스틱제품 제조업",
+    "waste_type": "",
+    "cas_no": "007704-34-9",
+    "components": [
+      "황"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "PRTR 2024 등록 취급물질: 황"
+  },
+  {
+    "id": "ncis-124",
+    "company": "한국타이어앤테크놀로지(주)대전공장",
+    "address": "대전광역시 대덕구 대덕대로1447번길 40  (목상동) 한국타이어",
+    "industry": "고무 및 플라스틱제품 제조업",
+    "waste_type": "",
+    "cas_no": "007704-34-9",
+    "components": [
+      "황"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "PRTR 2024 등록 취급물질: 황"
+  },
+  {
+    "id": "ncis-125",
+    "company": "대전광역시 상수도사업본부 월평정수사업소",
+    "address": "대전광역시 서구 신갈마로141번길 82 대전광역시 상수도사업본부 월평정수사업소",
+    "industry": "수도업",
+    "waste_type": "",
+    "cas_no": "007782-50-5",
+    "components": [
+      "염소"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "PRTR 2024 등록 취급물질: 염소"
+  },
+  {
+    "id": "ncis-126",
+    "company": "송촌정수사업소(대전광역시 상수도사업본부)",
+    "address": "대전광역시 대덕구 송촌로 50 송촌정수사업소(대전광역시 상수도사업본부)",
+    "industry": "수도업",
+    "waste_type": "",
+    "cas_no": "007782-50-5",
+    "components": [
+      "염소"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "PRTR 2024 등록 취급물질: 염소"
+  },
+  {
+    "id": "ncis-127",
+    "company": "신탄진정수사업소",
+    "address": "대전광역시 대덕구 신탄진로756번안길 223  (용호동) 신탄진정수사업소",
+    "industry": "수도업",
+    "waste_type": "",
+    "cas_no": "007782-50-5",
+    "components": [
+      "염소"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "PRTR 2024 등록 취급물질: 염소"
+  },
+  {
+    "id": "ncis-128",
+    "company": "(주)래트론",
+    "address": "대전광역시 대덕구 대덕대로1448번길 182 (신일동)",
+    "industry": "전자 부품, 컴퓨터, 영상, 음향 및 통신장비 제조업",
+    "waste_type": "",
+    "cas_no": "NA-(주18)",
+    "components": [
+      "주석 및 그 화합물"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "PRTR 2024 등록 취급물질: 주석 및 그 화합물"
+  },
+  {
+    "id": "ncis-129",
+    "company": "한국앤컴퍼니(주) 대전공장",
+    "address": "대전광역시 대덕구 대전로1331번길 185 한국앤컴퍼니(주) 대전공장",
+    "industry": "전기장비 제조업",
+    "waste_type": "",
+    "cas_no": "NA-(주18)",
+    "components": [
+      "주석 및 그 화합물"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "PRTR 2024 등록 취급물질: 주석 및 그 화합물"
+  },
+  {
+    "id": "ncis-130",
+    "company": "한국앤컴퍼니(주) 대전공장",
+    "address": "대전광역시 대덕구 대전로1331번길 185 한국앤컴퍼니(주) 대전공장",
+    "industry": "전기장비 제조업",
+    "waste_type": "",
+    "cas_no": "NA-(주12)",
+    "components": [
+      "바륨 및 그 화합물"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "PRTR 2024 등록 취급물질: 바륨 및 그 화합물"
+  },
+  {
+    "id": "ncis-131",
+    "company": "세원화성(주)",
+    "address": "대전광역시 대덕구 대화로52번길 115  (대화동) 세원화성",
+    "industry": "화학 물질 및 화학제품 제조업; 의약품 제외",
+    "waste_type": "",
+    "cas_no": "NA-(주14)",
+    "components": [
+      "코발트 및 그 화합물"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "PRTR 2024 등록 취급물질: 코발트 및 그 화합물"
+  },
+  {
+    "id": "ncis-132",
+    "company": "한국타이어앤테크놀로지(주)대전공장",
+    "address": "대전광역시 대덕구 대덕대로1447번길 40  (목상동) 한국타이어",
+    "industry": "고무 및 플라스틱제품 제조업",
+    "waste_type": "",
+    "cas_no": "NA-(주14)",
+    "components": [
+      "코발트 및 그 화합물"
+    ],
+    "state": "",
+    "amount_ton_per_year": 0.0,
+    "description": "PRTR 2024 등록 취급물질: 코발트 및 그 화합물"
+  }
+]

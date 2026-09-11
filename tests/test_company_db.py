@@ -20,9 +20,18 @@ def test_chemical_candidates_have_valid_cas():
         assert h["matched_substance"] in f"{h['product']} {h['industry']}"
 
 
+def test_ncis_prtr_chemicals_merged_in():
+    companies = json.loads((DATA_DIR / "company_db.json").read_text(encoding="utf-8"))
+    with_chemicals = [c for c in companies if c["chemicals"]]
+    assert with_chemicals, "NCIS PRTR로 확인된 실제 화학물질 취급 기업이 있어야 함"
+    for c in with_chemicals:
+        assert all(item["cas_no"] and item["substance"] for item in c["chemicals"])
+
+
 def demo():
     test_company_db_merged_and_deduped()
     test_chemical_candidates_have_valid_cas()
+    test_ncis_prtr_chemicals_merged_in()
     print("OK - 기업 DB 병합 + 화학물질 후보탐색 자체 점검 통과")
 
 

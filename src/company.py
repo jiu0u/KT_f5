@@ -15,4 +15,5 @@ class CompanyRecord:
     industry: str = ""            # 업종명 (대기배출업소현황)
     product: str = ""             # 주생산품 (제조업공장등록현황)
     waste_types: list[str] = field(default_factory=list)  # 폐기물종류 (있으면)
+    chemicals: list[dict] = field(default_factory=list)   # [{substance, cas_no}] - NCIS PRTR 실측 확인분
     sources: list[str] = field(default_factory=list)      # 어느 원본 데이터에서 왔는지
