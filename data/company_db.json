@@ -43,9 +43,29 @@
     "district": "대덕구",
     "industry": "철도장비제조",
     "product": "",
-    "waste_types": [],
+    "waste_types": [
+      "폐활성탄",
+      "폐유리병류(「자원의 절약과 재활용촉진에 관한 법률 시행령」 제18조제1호에 해당하는 것을 말한다)",
+      "그 밖의 폐금속류",
+      "임목폐목재(건설공사_ 산지개간 등의 과정에서 발생된 나무뿌리_ 가지_ 줄기 등을 말한다)",
+      "폐유리",
+      "그 밖의 폐기물",
+      "폐합성수지류(폐염화비닐수지류는 제외한다)",
+      "폐유리섬유",
+      "폐합성고무류",
+      "그 밖의 폐수처리오니",
+      "그 밖의 광재류",
+      "공조기회수폐냉매물질",
+      "폐콘크리트",
+      "폐가구류_ 폐도장목_ 폐목재포장재_ 폐전선드럼(원목상태의 깨끗한 목재를 말한다)",
+      "음식물류폐기물",
+      "폐수처리오니",
+      "그 밖의 폐섬유",
+      "그 밖의 폐목재류"
+    ],
     "sources": [
-      "daedeok_air"
+      "daedeok_air",
+      "daedeok_waste"
     ]
   },
   {
@@ -67,10 +87,14 @@
     "district": "대덕구",
     "industry": "도금업",
     "product": "자동차부품 및 농기계부품",
-    "waste_types": [],
+    "waste_types": [
+      "폐수처리오니",
+      "폐합성수지류(폐염화비닐수지류는 제외한다)"
+    ],
     "sources": [
       "daedeok_air",
-      "daedeok_factory"
+      "daedeok_factory",
+      "daedeok_waste"
     ]
   },
   {
@@ -243,10 +267,18 @@
     "district": "대덕구",
     "industry": "완제의약품제조업",
     "product": "의약품",
-    "waste_types": [],
+    "waste_types": [
+      "폐합성수지류(폐염화비닐수지류는 제외한다)",
+      "그 밖의 분진",
+      "그 밖의 폐유리",
+      "폐의약품류",
+      "그 밖의 폐수처리오니",
+      "폐활성탄"
+    ],
     "sources": [
       "daedeok_air",
-      "daedeok_factory"
+      "daedeok_factory",
+      "daedeok_waste"
     ]
   },
   {
@@ -269,10 +301,14 @@
     "district": "대덕구",
     "industry": "비금속광물제품 제조",
     "product": "시멘트 레미콘",
-    "waste_types": [],
+    "waste_types": [
+      "폐콘크리트",
+      "폐합성수지류(폐염화비닐수지류는 제외한다)"
+    ],
     "sources": [
       "daedeok_air",
-      "daedeok_factory"
+      "daedeok_factory",
+      "daedeok_waste"
     ]
   },
   {
@@ -294,10 +330,13 @@
     "district": "대덕구",
     "industry": "레미콘 제조업",
     "product": "레미콘",
-    "waste_types": [],
+    "waste_types": [
+      "폐콘크리트"
+    ],
     "sources": [
       "daedeok_air",
-      "daedeok_factory"
+      "daedeok_factory",
+      "daedeok_waste"
     ]
   },
   {
@@ -320,10 +359,13 @@
     "district": "대덕구",
     "industry": "레미콘 제조업",
     "product": "레미콘",
-    "waste_types": [],
+    "waste_types": [
+      "폐콘크리트"
+    ],
     "sources": [
       "daedeok_air",
-      "daedeok_factory"
+      "daedeok_factory",
+      "daedeok_waste"
     ]
   },
   {
@@ -567,10 +609,15 @@
     "district": "대덕구",
     "industry": "자동차용부품제조업",
     "product": "자동차부품",
-    "waste_types": [],
+    "waste_types": [
+      "그 밖의 광재류",
+      "화학점결폐주물사",
+      "폐합성수지류(폐염화비닐수지류는 제외한다)"
+    ],
     "sources": [
       "daedeok_air",
-      "daedeok_factory"
+      "daedeok_factory",
+      "daedeok_waste"
     ]
   },
   {
@@ -593,10 +640,16 @@
     "district": "대덕구",
     "industry": "비금속원료 재생업",
     "product": "가공원료",
-    "waste_types": [],
+    "waste_types": [
+      "폐합성수지류(폐염화비닐수지류는 제외한다)",
+      "그 밖의 폐기물",
+      "폐합성수지류",
+      "그 밖의 폐목재류"
+    ],
     "sources": [
       "daedeok_air",
-      "daedeok_factory"
+      "daedeok_factory",
+      "daedeok_waste"
     ]
   },
   {
@@ -606,9 +659,12 @@
     "district": "대덕구",
     "industry": "비금속원료 재생업",
     "product": "",
-    "waste_types": [],
+    "waste_types": [
+      "폐합성수지류(폐염화비닐수지류는 제외한다)"
+    ],
     "sources": [
-      "daedeok_air"
+      "daedeok_air",
+      "daedeok_waste"
     ]
   },
   {
@@ -631,9 +687,18 @@
     "district": "대덕구",
     "industry": "담배제조업",
     "product": "",
-    "waste_types": [],
+    "waste_types": [
+      "폐합성수지류(폐염화비닐수지류는 제외한다)",
+      "그 밖의 식물성잔재물",
+      "그 밖의 폐수처리오니",
+      "그 밖의 폐기물",
+      "음식물류폐기물",
+      "폐도장목ㆍ폐목재포장재ㆍ폐전선드럼ㆍ건설현장 폐목재(원목상태의 깨끗한 목재를 말한다)",
+      "폐흡착제"
+    ],
     "sources": [
-      "daedeok_air"
+      "daedeok_air",
+      "daedeok_waste"
     ]
   },
   {
@@ -655,9 +720,16 @@
     "district": "대덕구",
     "industry": "재생용 비금속가공원료생산업",
     "product": "",
-    "waste_types": [],
+    "waste_types": [
+      "폐합성수지류(폐염화비닐수지류는 제외한다)",
+      "그 밖의 폐기물",
+      "폐가구류_ 폐도장목_ 폐목재포장재_ 폐전선드럼(할로겐족 유기화합물 또는 방부제가 사용된 목재를 말한다)",
+      "그 밖의 폐목재류",
+      "폐가구류_ 폐도장목_ 폐목재포장재_ 폐전선드럼(접착제_ 페인트_ 기름_ 콘크리트 등의 물질이 사용된 목재를 말한다)"
+    ],
     "sources": [
-      "daedeok_air"
+      "daedeok_air",
+      "daedeok_waste"
     ]
   },
   {
@@ -789,9 +861,12 @@
     "district": "대덕구",
     "industry": "비금속원료 재생업",
     "product": "",
-    "waste_types": [],
+    "waste_types": [
+      "폐합성수지류(폐염화비닐수지류는 제외한다)"
+    ],
     "sources": [
-      "daedeok_air"
+      "daedeok_air",
+      "daedeok_waste"
     ]
   },
   {
@@ -801,10 +876,14 @@
     "district": "대덕구",
     "industry": "나무제품제조",
     "product": "과학실 실험대, 과학실 실험대, 과학실 실험대, 과학실 실험대, 과학실 실험대, 과학실 실험대, 과학실 실험대, 과학실 실험대, 과학실 실험대",
-    "waste_types": [],
+    "waste_types": [
+      "폐합성수지류(폐염화비닐수지류는 제외한다)",
+      "그 밖의 폐목재류"
+    ],
     "sources": [
       "daedeok_air",
-      "daedeok_factory"
+      "daedeok_factory",
+      "daedeok_waste"
     ]
   },
   {
@@ -986,10 +1065,13 @@
     "district": "대덕구",
     "industry": "주형 및 금형 제조업",
     "product": "주형",
-    "waste_types": [],
+    "waste_types": [
+      "화학점결폐주물사"
+    ],
     "sources": [
       "daedeok_air",
-      "daedeok_factory"
+      "daedeok_factory",
+      "daedeok_waste"
     ]
   },
   {
@@ -1084,9 +1166,15 @@
     "district": "대덕구",
     "industry": "그외기타분류안된 화학제품제조",
     "product": "",
-    "waste_types": [],
+    "waste_types": [
+      "폐합성수지류(폐염화비닐수지류는 제외한다)",
+      "그 밖의 분진",
+      "그 밖의 폐기물",
+      "그 밖의 폐목재류"
+    ],
     "sources": [
-      "daedeok_air"
+      "daedeok_air",
+      "daedeok_waste"
     ]
   },
   {
@@ -1289,9 +1377,15 @@
     "district": "대덕구",
     "industry": "표면광택제 및 실내가향제 제조업",
     "product": "",
-    "waste_types": [],
+    "waste_types": [
+      "폐발포합성수지",
+      "그 밖의 폐기물",
+      "폐활성탄",
+      "폐합성수지류(폐염화비닐수지류는 제외한다)"
+    ],
     "sources": [
-      "daedeok_air"
+      "daedeok_air",
+      "daedeok_waste"
     ]
   },
   {
@@ -1301,10 +1395,13 @@
     "district": "대덕구",
     "industry": "기타 비알콜음료 제조업",
     "product": "감식초",
-    "waste_types": [],
+    "waste_types": [
+      "폐합성수지류(폐염화비닐수지류는 제외한다)"
+    ],
     "sources": [
       "daedeok_air",
-      "daedeok_factory"
+      "daedeok_factory",
+      "daedeok_waste"
     ]
   },
   {
@@ -1314,9 +1411,16 @@
     "district": "대덕구",
     "industry": "종합병원",
     "product": "",
-    "waste_types": [],
+    "waste_types": [
+      "폐합성수지류(폐염화비닐수지류는 제외한다)",
+      "그 밖의 폐수처리오니",
+      "의료기관 일회용기저귀(별표 3에 따른 의료기관 및 시험ㆍ검사기관 등에서 발생한 것을 말하며_ 같은 표 제14호에 따른 노인요양시설에서 발생한 것과 영 별표 2에 따른 의료폐기물에 해당하는 것은 제외한다)",
+      "그 밖의 폐기물",
+      "폐유리병류(「자원의 절약과 재활용촉진에 관한 법률 시행령」 제18조제1호에 해당하는 것을 말한다)"
+    ],
     "sources": [
-      "daedeok_air"
+      "daedeok_air",
+      "daedeok_waste"
     ]
   },
   {
@@ -1350,9 +1454,12 @@
     "district": "대덕구",
     "industry": "수자원관리",
     "product": "",
-    "waste_types": [],
+    "waste_types": [
+      "그 밖의 폐기물"
+    ],
     "sources": [
-      "daedeok_air"
+      "daedeok_air",
+      "daedeok_waste"
     ]
   },
   {
@@ -1374,9 +1481,17 @@
     "district": "대덕구",
     "industry": "종합병원",
     "product": "",
-    "waste_types": [],
+    "waste_types": [
+      "그 밖의 폐목재류",
+      "의료기관 일회용기저귀(별표 3에 따른 의료기관 및 시험ㆍ검사기관 등에서 발생한 것을 말하며_ 같은 표 제14호에 따른 노인요양시설에서 발생한 것과 영 별표 2에 따른 의료폐기물에 해당하는 것은 제외한다)",
+      "폐유리병류(「자원의 절약과 재활용촉진에 관한 법률 시행령」 제18조제1호에 해당하는 것을 말한다)",
+      "폐합성수지류(폐염화비닐수지류는 제외한다)",
+      "그 밖의 폐기물",
+      "폐가구류_ 폐도장목_ 폐목재포장재_ 폐전선드럼(접착제_ 페인트_ 기름_ 콘크리트 등의 물질이 사용된 목재를 말한다)"
+    ],
     "sources": [
-      "daedeok_air"
+      "daedeok_air",
+      "daedeok_waste"
     ]
   },
   {
@@ -1398,10 +1513,16 @@
     "district": "대덕구",
     "industry": "기타 신발 제조",
     "product": "전투화, 단화, 안전화, 전투화, 단화, 안전화, 전투화, 단화, 안전화, 전투화, 단화, 안전화, 전투화, 단화, 안전화, 전투화, 단화, 안전화, 전투화, 단화, 안전화, 전투화, 단화, 안전화, 전투화, 단화, 안전화, 전투화, 단화, 안전화, 전투화, 단화, 안전화, 전투화, 단화, 안전화, 전투화, 단화, 안전화, 전투화, 단화, 안전화, 전투화, 단화, 안전화",
-    "waste_types": [],
+    "waste_types": [
+      "폐천연섬유",
+      "폐종이류",
+      "폐합성수지류",
+      "폐합성고무류"
+    ],
     "sources": [
       "daedeok_air",
-      "daedeok_factory"
+      "daedeok_factory",
+      "daedeok_waste"
     ]
   },
   {
@@ -1423,9 +1544,16 @@
     "district": "대덕구",
     "industry": "대학교",
     "product": "",
-    "waste_types": [],
+    "waste_types": [
+      "폐합성수지류(폐염화비닐수지류는 제외한다)",
+      "그 밖의 폐기물",
+      "폐가구류_ 폐도장목_ 폐목재포장재_ 폐전선드럼(접착제_ 페인트_ 기름_ 콘크리트 등의 물질이 사용된 목재를 말한다)",
+      "임목폐목재(건설공사ㆍ산지개간 등의 과정에서 발생된 나무뿌리ㆍ가지ㆍ줄기 등을 말한다)",
+      "그 밖의 폐목재류"
+    ],
     "sources": [
-      "daedeok_air"
+      "daedeok_air",
+      "daedeok_waste"
     ]
   },
   {
@@ -1642,10 +1770,13 @@
     "district": "대덕구",
     "industry": "동제련, 정련 및 합금제조업",
     "product": "동제련,정련 및 합금 제조업",
-    "waste_types": [],
+    "waste_types": [
+      "점토점결폐주물사"
+    ],
     "sources": [
       "daedeok_air",
-      "daedeok_factory"
+      "daedeok_factory",
+      "daedeok_waste"
     ]
   },
   {
@@ -2426,9 +2557,12 @@
     "district": "대덕구",
     "industry": "",
     "product": "레미콘, 아스콘",
-    "waste_types": [],
+    "waste_types": [
+      "폐콘크리트"
+    ],
     "sources": [
-      "daedeok_factory"
+      "daedeok_factory",
+      "daedeok_waste"
     ]
   },
   {
@@ -2462,9 +2596,12 @@
     "district": "대덕구",
     "industry": "",
     "product": "스티로폼",
-    "waste_types": [],
+    "waste_types": [
+      "폐합성수지류"
+    ],
     "sources": [
-      "daedeok_factory"
+      "daedeok_factory",
+      "daedeok_waste"
     ]
   },
   {
@@ -2633,9 +2770,15 @@
     "district": "대덕구",
     "industry": "",
     "product": "농약",
-    "waste_types": [],
+    "waste_types": [
+      "그 밖의 분진",
+      "폐활성탄",
+      "음식물류폐기물",
+      "폐합성수지류(폐염화비닐수지류는 제외한다)"
+    ],
     "sources": [
-      "daedeok_factory"
+      "daedeok_factory",
+      "daedeok_waste"
     ]
   },
   {
@@ -2741,9 +2884,13 @@
     "district": "대덕구",
     "industry": "",
     "product": "자동차기어, 자동차기어, 자동차기어, 자동차기어, 자동차기어",
-    "waste_types": [],
+    "waste_types": [
+      "그 밖의 광재류",
+      "폐합성수지류(폐염화비닐수지류는 제외한다)"
+    ],
     "sources": [
-      "daedeok_factory"
+      "daedeok_factory",
+      "daedeok_waste"
     ]
   },
   {
@@ -2873,9 +3020,12 @@
     "district": "대덕구",
     "industry": "",
     "product": "두부",
-    "waste_types": [],
+    "waste_types": [
+      "그 밖의 식물성잔재물"
+    ],
     "sources": [
-      "daedeok_factory"
+      "daedeok_factory",
+      "daedeok_waste"
     ]
   },
   {
@@ -2945,9 +3095,12 @@
     "district": "대덕구",
     "industry": "",
     "product": "탄약포장용 철상자",
-    "waste_types": [],
+    "waste_types": [
+      "폐수처리오니"
+    ],
     "sources": [
-      "daedeok_factory"
+      "daedeok_factory",
+      "daedeok_waste"
     ]
   },
   {
@@ -3425,9 +3578,12 @@
     "district": "대덕구",
     "industry": "",
     "product": "금속성형기기, 구조용금속제품 등, 금속성형기기, 구조용금속제품 등, 금속성형기기, 구조용금속제품 등, 금속성형기기, 구조용금속제품 등",
-    "waste_types": [],
+    "waste_types": [
+      "폐토사"
+    ],
     "sources": [
-      "daedeok_factory"
+      "daedeok_factory",
+      "daedeok_waste"
     ]
   },
   {
@@ -3437,9 +3593,13 @@
     "district": "대덕구",
     "industry": "",
     "product": "철골소부재,BH-Beam,태양광",
-    "waste_types": [],
+    "waste_types": [
+      "그 밖의 분진",
+      "그 밖의 광재류"
+    ],
     "sources": [
-      "daedeok_factory"
+      "daedeok_factory",
+      "daedeok_waste"
     ]
   },
   {
@@ -3629,9 +3789,12 @@
     "district": "대덕구",
     "industry": "",
     "product": "폴리실라잔, 폴리실라잔, 폴리실라잔",
-    "waste_types": [],
+    "waste_types": [
+      "폐합성수지류(폐염화비닐수지류는 제외한다)"
+    ],
     "sources": [
-      "daedeok_factory"
+      "daedeok_factory",
+      "daedeok_waste"
     ]
   },
   {
@@ -3737,9 +3900,22 @@
     "district": "대덕구",
     "industry": "",
     "product": "폴리에틸렌, 폴리에틸렌, 폴리에틸렌",
-    "waste_types": [],
+    "waste_types": [
+      "그 밖의 폐목재류",
+      "그 밖의 공정오니",
+      "폐석재",
+      "그 밖의 폐기물",
+      "폐합성수지류(폐염화비닐수지류는 제외한다)",
+      "석재ㆍ골재폐수처리오니(석재ㆍ골재 생산 시 발생한 폐수를 처리하는 과정에서 발생한 오니로 한정한다)",
+      "폐수처리오니",
+      "폐활성탄",
+      "그 밖의 분진",
+      "폐받침목",
+      "그 밖의 폐합성고분자화합물(합성수지류로 피복된 폐전선을 포함한다)"
+    ],
     "sources": [
-      "daedeok_factory"
+      "daedeok_factory",
+      "daedeok_waste"
     ]
   },
   {
@@ -3761,9 +3937,13 @@
     "district": "대덕구",
     "industry": "",
     "product": "서미스터",
-    "waste_types": [],
+    "waste_types": [
+      "그 밖의 폐기물",
+      "폐합성수지류(폐염화비닐수지류는 제외한다)"
+    ],
     "sources": [
-      "daedeok_factory"
+      "daedeok_factory",
+      "daedeok_waste"
     ]
   },
   {
@@ -3869,9 +4049,20 @@
     "district": "대덕구",
     "industry": "",
     "product": "전자부품(TR,MSR,IC 등), 전자부품(TR,MSR,IC 등), 전자부품(TR,MSR,IC 등), 전자부품(TR,MSR,IC 등)",
-    "waste_types": [],
+    "waste_types": [
+      "그 밖의 분진",
+      "폐활성탄",
+      "폐흡수제",
+      "폐수처리오니",
+      "그 밖의 폐기물",
+      "폐가구류_ 폐도장목_ 폐목재포장재_ 폐전선드럼(원목상태의 깨끗한 목재를 말한다)",
+      "폐합성수지류(폐염화비닐수지류는 제외한다)",
+      "그 밖의 폐유리",
+      "산업용폐전기전자제품"
+    ],
     "sources": [
-      "daedeok_factory"
+      "daedeok_factory",
+      "daedeok_waste"
     ]
   },
   {
@@ -4121,9 +4312,14 @@
     "district": "대덕구",
     "industry": "",
     "product": "염색사",
-    "waste_types": [],
+    "waste_types": [
+      "그 밖의 폐수처리오니",
+      "그 밖의 폐섬유",
+      "폐합성수지류(폐염화비닐수지류는 제외한다)"
+    ],
     "sources": [
-      "daedeok_factory"
+      "daedeok_factory",
+      "daedeok_waste"
     ]
   },
   {
@@ -4337,9 +4533,12 @@
     "district": "대덕구",
     "industry": "",
     "product": "레미콘",
-    "waste_types": [],
+    "waste_types": [
+      "폐콘크리트"
+    ],
     "sources": [
-      "daedeok_factory"
+      "daedeok_factory",
+      "daedeok_waste"
     ]
   },
   {
@@ -4529,9 +4728,13 @@
     "district": "대덕구",
     "industry": "",
     "product": "식품용기",
-    "waste_types": [],
+    "waste_types": [
+      "폐합성수지류(폐염화비닐수지류는 제외한다)",
+      "그 밖의 폐기물"
+    ],
     "sources": [
-      "daedeok_factory"
+      "daedeok_factory",
+      "daedeok_waste"
     ]
   },
   {
@@ -4541,9 +4744,15 @@
     "district": "대덕구",
     "industry": "",
     "product": "페트병",
-    "waste_types": [],
+    "waste_types": [
+      "폐합성수지류(폐염화비닐수지류는 제외한다)",
+      "그 밖의 폐기물",
+      "폐가구류_ 폐도장목_ 폐목재포장재_ 폐전선드럼(원목상태의 깨끗한 목재를 말한다)",
+      "폐활성탄"
+    ],
     "sources": [
-      "daedeok_factory"
+      "daedeok_factory",
+      "daedeok_waste"
     ]
   },
   {
@@ -4565,9 +4774,13 @@
     "district": "대덕구",
     "industry": "",
     "product": "염색사,면직물",
-    "waste_types": [],
+    "waste_types": [
+      "그 밖의 폐수처리오니",
+      "폐합성수지류(폐염화비닐수지류는 제외한다)"
+    ],
     "sources": [
-      "daedeok_factory"
+      "daedeok_factory",
+      "daedeok_waste"
     ]
   },
   {
@@ -4709,9 +4922,12 @@
     "district": "대덕구",
     "industry": "",
     "product": "조미김, 자반",
-    "waste_types": [],
+    "waste_types": [
+      "폐합성수지류(폐염화비닐수지류는 제외한다)"
+    ],
     "sources": [
-      "daedeok_factory"
+      "daedeok_factory",
+      "daedeok_waste"
     ]
   },
   {
@@ -5081,9 +5297,14 @@
     "district": "대덕구",
     "industry": "",
     "product": "고형 추출차 (홍차), 레몬에이드",
-    "waste_types": [],
+    "waste_types": [
+      "폐합성수지류(폐염화비닐수지류는 제외한다)",
+      "그 밖의 공정오니",
+      "그 밖의 폐수처리오니"
+    ],
     "sources": [
-      "daedeok_factory"
+      "daedeok_factory",
+      "daedeok_waste"
     ]
   },
   {
@@ -5513,9 +5734,19 @@
     "district": "대덕구",
     "industry": "",
     "product": "샴프.린스.치약.비누",
-    "waste_types": [],
+    "waste_types": [
+      "그 밖의 폐수처리오니",
+      "폐합성수지류(폐염화비닐수지류는 제외한다)",
+      "폐받침목",
+      "폐활성탄",
+      "그 밖의 폐유리",
+      "그 밖의 공정오니",
+      "그 밖의 폐기물",
+      "폐유리"
+    ],
     "sources": [
-      "daedeok_factory"
+      "daedeok_factory",
+      "daedeok_waste"
     ]
   },
   {
@@ -5897,9 +6128,13 @@
     "district": "대덕구",
     "industry": "",
     "product": "철강설비, 공기압축기",
-    "waste_types": [],
+    "waste_types": [
+      "그 밖의 폐목재류",
+      "폐합성수지류(폐염화비닐수지류는 제외한다)"
+    ],
     "sources": [
-      "daedeok_factory"
+      "daedeok_factory",
+      "daedeok_waste"
     ]
   },
   {
@@ -6101,9 +6336,13 @@
     "district": "대덕구",
     "industry": "",
     "product": "플라스틱용기.화장품",
-    "waste_types": [],
+    "waste_types": [
+      "그 밖의 폐목재류",
+      "폐합성수지류(폐염화비닐수지류는 제외한다)"
+    ],
     "sources": [
-      "daedeok_factory"
+      "daedeok_factory",
+      "daedeok_waste"
     ]
   },
   {
@@ -6905,9 +7144,14 @@
     "district": "대덕구",
     "industry": "",
     "product": "주형, 금형 제조, 금속절삭기계 제조",
-    "waste_types": [],
+    "waste_types": [
+      "기타 광재류",
+      "폐주물사",
+      "분진(대기오염방지시설에서 포집된 것에 한정하되_ 소각시설에서 발생되는 것은 제외한다)"
+    ],
     "sources": [
-      "daedeok_factory"
+      "daedeok_factory",
+      "daedeok_waste"
     ]
   },
   {
@@ -7421,9 +7665,16 @@
     "district": "대덕구",
     "industry": "",
     "product": "볼트,스크류",
-    "waste_types": [],
+    "waste_types": [
+      "그 밖의 분진",
+      "폐합성수지류(폐염화비닐수지류는 제외한다)",
+      "폐흡착제",
+      "폐수처리오니",
+      "그 밖의 폐기물"
+    ],
     "sources": [
-      "daedeok_factory"
+      "daedeok_factory",
+      "daedeok_waste"
     ]
   },
   {
@@ -7507,11 +7758,14 @@
     "product": "기체여과기",
     "waste_types": [
       "폐합성수지",
-      "그 밖의 폐섬유"
+      "그 밖의 폐섬유",
+      "폐합성수지류(폐염화비닐수지류는 제외한다)",
+      "폐흡착제"
     ],
     "sources": [
       "daedeok_factory",
-      "yuseong_waste"
+      "yuseong_waste",
+      "daedeok_waste"
     ]
   },
   {
@@ -7713,9 +7967,16 @@
     "district": "대덕구",
     "industry": "",
     "product": "볼트, 냉간성형품, 볼트, 냉간성형품, 볼트, 냉간성형품, 볼트, 냉간성형품, 볼트, 냉간성형품",
-    "waste_types": [],
+    "waste_types": [
+      "폐수처리오니",
+      "폐합성수지류(폐염화비닐수지류는 제외한다)",
+      "그 밖의 분진",
+      "폐흡착제",
+      "폐도자기조각"
+    ],
     "sources": [
-      "daedeok_factory"
+      "daedeok_factory",
+      "daedeok_waste"
     ]
   },
   {
@@ -8025,9 +8286,20 @@
     "district": "대덕구",
     "industry": "",
     "product": "화장품",
-    "waste_types": [],
+    "waste_types": [
+      "그 밖의 분진",
+      "폐유리",
+      "폐합성수지류(폐염화비닐수지류는 제외한다)",
+      "그 밖의 공정오니",
+      "그 밖의 폐수처리오니",
+      "그 밖의 폐합성고분자화합물(합성수지류로 피복된 폐전선을 포함한다)",
+      "그 밖의 폐목재류",
+      "폐활성탄",
+      "그 밖의 폐유리"
+    ],
     "sources": [
-      "daedeok_factory"
+      "daedeok_factory",
+      "daedeok_waste"
     ]
   },
   {
@@ -8157,9 +8429,13 @@
     "district": "대덕구",
     "industry": "",
     "product": "스크린골프매트, 미끄럼방지용품, 기타고무제품",
-    "waste_types": [],
+    "waste_types": [
+      "폐합성고무류",
+      "폐합성수지류(폐염화비닐수지류는 제외한다)"
+    ],
     "sources": [
-      "daedeok_factory"
+      "daedeok_factory",
+      "daedeok_waste"
     ]
   },
   {
@@ -8253,9 +8529,12 @@
     "district": "대덕구",
     "industry": "",
     "product": "목상자",
-    "waste_types": [],
+    "waste_types": [
+      "폐도장목ㆍ폐목재포장재ㆍ폐전선드럼ㆍ건설현장 폐목재(원목상태의 깨끗한 목재를 말한다)"
+    ],
     "sources": [
-      "daedeok_factory"
+      "daedeok_factory",
+      "daedeok_waste"
     ]
   },
   {
@@ -8445,9 +8724,14 @@
     "district": "대덕구",
     "industry": "",
     "product": "도금품 및 기타피막저리물, 도금품 및 기타피막저리물",
-    "waste_types": [],
+    "waste_types": [
+      "폐합성수지류(폐염화비닐수지류는 제외한다)",
+      "폐수처리오니",
+      "폐흡착제"
+    ],
     "sources": [
-      "daedeok_factory"
+      "daedeok_factory",
+      "daedeok_waste"
     ]
   },
   {
@@ -8625,9 +8909,16 @@
     "district": "대덕구",
     "industry": "",
     "product": "타이어몰드금형",
-    "waste_types": [],
+    "waste_types": [
+      "폐합성수지류",
+      "폐수처리오니",
+      "점토점결폐주물사",
+      "그 밖의 폐목재류",
+      "폐석고"
+    ],
     "sources": [
-      "daedeok_factory"
+      "daedeok_factory",
+      "daedeok_waste"
     ]
   },
   {
@@ -8673,9 +8964,13 @@
     "district": "대덕구",
     "industry": "",
     "product": "난연보조제",
-    "waste_types": [],
+    "waste_types": [
+      "그 밖의 폐합성고분자화합물(합성수지류로 피복된 폐전선을 포함한다)",
+      "폐수처리오니"
+    ],
     "sources": [
-      "daedeok_factory"
+      "daedeok_factory",
+      "daedeok_waste"
     ]
   },
   {
@@ -8817,9 +9112,16 @@
     "district": "대덕구",
     "industry": "",
     "product": "티타늄 합금 단조 잉곳 등, 티타늄 합금 단조 잉곳 등, 티타늄 합금 단조 잉곳 등, 티타늄 합금 단조 잉곳 등, 티타늄 합금 단조 잉곳 등, 티타늄 합금 단조 잉곳 등, 티타늄 합금 단조 잉곳 등, 티타늄 합금 단조 잉곳 등, 티타늄 합금 단조 잉곳 등, 티타늄 합금 단조 잉곳 등, 티타늄 합금 단조 잉곳 등, 티타늄 합금 단조 잉곳 등, 티타늄 합금 단조 잉곳 등, 티타늄 합금 단조 잉곳 등",
-    "waste_types": [],
+    "waste_types": [
+      "폐받침목",
+      "그 밖의 폐목재류",
+      "그 밖의 광재류",
+      "그 밖의 분진",
+      "폐합성수지류(폐염화비닐수지류는 제외한다)"
+    ],
     "sources": [
-      "daedeok_factory"
+      "daedeok_factory",
+      "daedeok_waste"
     ]
   },
   {
@@ -9021,9 +9323,16 @@
     "district": "대덕구",
     "industry": "",
     "product": "메모리펜.수정액",
-    "waste_types": [],
+    "waste_types": [
+      "폐내화물",
+      "음식물류폐기물",
+      "그 밖의 폐목재류",
+      "그 밖의 폐합성고분자화합물(합성수지류로 피복된 폐전선을 포함한다)",
+      "폐합성수지류"
+    ],
     "sources": [
-      "daedeok_factory"
+      "daedeok_factory",
+      "daedeok_waste"
     ]
   },
   {
@@ -9993,9 +10302,12 @@
     "district": "대덕구",
     "industry": "",
     "product": "삼계탕, 냉면육수",
-    "waste_types": [],
+    "waste_types": [
+      "중간가공음식물류폐기물"
+    ],
     "sources": [
-      "daedeok_factory"
+      "daedeok_factory",
+      "daedeok_waste"
     ]
   },
   {
@@ -10449,9 +10761,13 @@
     "district": "대덕구",
     "industry": "",
     "product": "김치류",
-    "waste_types": [],
+    "waste_types": [
+      "그 밖의 식물성잔재물",
+      "그 밖의 폐수처리오니"
+    ],
     "sources": [
-      "daedeok_factory"
+      "daedeok_factory",
+      "daedeok_waste"
     ]
   },
   {
@@ -10989,9 +11305,13 @@
     "district": "대덕구",
     "industry": "",
     "product": "선박기계, 펌프부품, 발전설비부품, 산업기계부품, 건설중장비부품, 밸브부품",
-    "waste_types": [],
+    "waste_types": [
+      "그 밖의 분진",
+      "화학점결폐주물사"
+    ],
     "sources": [
-      "daedeok_factory"
+      "daedeok_factory",
+      "daedeok_waste"
     ]
   },
   {
@@ -11181,9 +11501,14 @@
     "district": "대덕구",
     "industry": "",
     "product": "면사 염색",
-    "waste_types": [],
+    "waste_types": [
+      "그 밖의 폐수처리오니",
+      "폐합성섬유",
+      "폐합성수지류(폐염화비닐수지류는 제외한다)"
+    ],
     "sources": [
-      "daedeok_factory"
+      "daedeok_factory",
+      "daedeok_waste"
     ]
   },
   {
@@ -11325,9 +11650,14 @@
     "district": "대덕구",
     "industry": "",
     "product": "선염사",
-    "waste_types": [],
+    "waste_types": [
+      "폐수처리오니",
+      "폐합성섬유",
+      "폐합성수지류(폐염화비닐수지류는 제외한다)"
+    ],
     "sources": [
-      "daedeok_factory"
+      "daedeok_factory",
+      "daedeok_waste"
     ]
   },
   {
@@ -11397,9 +11727,13 @@
     "district": "대덕구",
     "industry": "",
     "product": "자동차엔진부품",
-    "waste_types": [],
+    "waste_types": [
+      "폐합성수지류",
+      "폐수처리오니"
+    ],
     "sources": [
-      "daedeok_factory"
+      "daedeok_factory",
+      "daedeok_waste"
     ]
   },
   {
@@ -11409,9 +11743,15 @@
     "district": "대덕구",
     "industry": "",
     "product": "피스톤링.실린더라이너",
-    "waste_types": [],
+    "waste_types": [
+      "폐합성수지류",
+      "점토점결폐주물사",
+      "폐수처리오니",
+      "그 밖의 분진"
+    ],
     "sources": [
-      "daedeok_factory"
+      "daedeok_factory",
+      "daedeok_waste"
     ]
   },
   {
@@ -11697,9 +12037,16 @@
     "district": "대덕구",
     "industry": "",
     "product": "그림물감",
-    "waste_types": [],
+    "waste_types": [
+      "음식물류폐기물",
+      "폐합성수지류(폐염화비닐수지류는 제외한다)",
+      "그 밖의 분진",
+      "폐수처리오니",
+      "그 밖의 폐목재류"
+    ],
     "sources": [
-      "daedeok_factory"
+      "daedeok_factory",
+      "daedeok_waste"
     ]
   },
   {
@@ -11709,9 +12056,17 @@
     "district": "대덕구",
     "industry": "",
     "product": "사무 및 회화용품",
-    "waste_types": [],
+    "waste_types": [
+      "음식물류폐기물",
+      "그 밖의 폐목재류",
+      "그 밖의 공정오니",
+      "폐수처리오니",
+      "폐합성수지류(폐염화비닐수지류는 제외한다)",
+      "그 밖의 분진"
+    ],
     "sources": [
-      "daedeok_factory"
+      "daedeok_factory",
+      "daedeok_waste"
     ]
   },
   {
@@ -11721,9 +12076,12 @@
     "district": "대덕구",
     "industry": "",
     "product": "플라스틱문구류사출물",
-    "waste_types": [],
+    "waste_types": [
+      "폐합성수지류(폐염화비닐수지류는 제외한다)"
+    ],
     "sources": [
-      "daedeok_factory"
+      "daedeok_factory",
+      "daedeok_waste"
     ]
   },
   {
@@ -12405,9 +12763,22 @@
     "district": "대덕구",
     "industry": "",
     "product": "청량음료",
-    "waste_types": [],
+    "waste_types": [
+      "폐가구류_ 폐도장목_ 폐목재포장재_ 폐전선드럼(원목상태의 깨끗한 목재를 말한다)",
+      "폐합성수지류(폐염화비닐수지류는 제외한다)",
+      "그 밖의 폐수처리오니",
+      "산업용폐전기전자제품",
+      "그 밖의 폐기물",
+      "폐유리",
+      "정수처리오니",
+      "그 밖의 식물성잔재물",
+      "폐활성탄",
+      "폐흡착제",
+      "자동차 폐타이어"
+    ],
     "sources": [
-      "daedeok_factory"
+      "daedeok_factory",
+      "daedeok_waste"
     ]
   },
   {
@@ -12621,9 +12992,13 @@
     "district": "대덕구",
     "industry": "",
     "product": "MB(접착가공)",
-    "waste_types": [],
+    "waste_types": [
+      "목재가공공장 부산물(접착제_ 페인트_ 기름_ 콘크리트 등의 물질이 사용된 목재부산물 및 분진을 말한다)",
+      "폐가구류_ 폐도장목_ 폐목재포장재_ 폐전선드럼(접착제_ 페인트_ 기름_ 콘크리트 등의 물질이 사용된 목재를 말한다)"
+    ],
     "sources": [
-      "daedeok_factory"
+      "daedeok_factory",
+      "daedeok_waste"
     ]
   },
   {
@@ -12813,9 +13188,15 @@
     "district": "대덕구",
     "industry": "",
     "product": "농약,방역용살충제",
-    "waste_types": [],
+    "waste_types": [
+      "폐합성수지류(폐염화비닐수지류는 제외한다)",
+      "폐활성탄",
+      "폐금속용기류(폐금속캔류는 제외한다)",
+      "그 밖의 폐합성고분자화합물(합성수지류로 피복된 폐전선을 포함한다)"
+    ],
     "sources": [
-      "daedeok_factory"
+      "daedeok_factory",
+      "daedeok_waste"
     ]
   },
   {
@@ -13161,9 +13542,15 @@
     "district": "대덕구",
     "industry": "",
     "product": "타올염색",
-    "waste_types": [],
+    "waste_types": [
+      "사업장폐기물 소각시설 소각재(바닥재와 비산재가 혼합된 경우를 말한다)",
+      "그 밖의 폐수처리오니",
+      "폐합성섬유",
+      "폐합성수지류(폐염화비닐수지류는 제외한다)"
+    ],
     "sources": [
-      "daedeok_factory"
+      "daedeok_factory",
+      "daedeok_waste"
     ]
   },
   {
@@ -13269,9 +13656,12 @@
     "district": "대덕구",
     "industry": "",
     "product": "선철주물주조업",
-    "waste_types": [],
+    "waste_types": [
+      "화학점결폐주물사"
+    ],
     "sources": [
-      "daedeok_factory"
+      "daedeok_factory",
+      "daedeok_waste"
     ]
   },
   {
@@ -13557,9 +13947,13 @@
     "district": "대덕구",
     "industry": "",
     "product": "톱신수화제",
-    "waste_types": [],
+    "waste_types": [
+      "폐합성수지류",
+      "폐흡착제"
+    ],
     "sources": [
-      "daedeok_factory"
+      "daedeok_factory",
+      "daedeok_waste"
     ]
   },
   {
@@ -14997,9 +15391,12 @@
     "district": "대덕구",
     "industry": "",
     "product": "엔진밸브",
-    "waste_types": [],
+    "waste_types": [
+      "폐합성수지류(폐염화비닐수지류는 제외한다)"
+    ],
     "sources": [
-      "daedeok_factory"
+      "daedeok_factory",
+      "daedeok_waste"
     ]
   },
   {
@@ -15069,9 +15466,14 @@
     "district": "대덕구",
     "industry": "",
     "product": "정수기 필터, 수공구",
-    "waste_types": [],
+    "waste_types": [
+      "폐합성수지류(폐염화비닐수지류는 제외한다)",
+      "폐흡착제",
+      "폐활성탄"
+    ],
     "sources": [
-      "daedeok_factory"
+      "daedeok_factory",
+      "daedeok_waste"
     ]
   },
   {
@@ -17025,9 +17427,12 @@
     "district": "대덕구",
     "industry": "",
     "product": "주물",
-    "waste_types": [],
+    "waste_types": [
+      "화학점결폐주물사"
+    ],
     "sources": [
-      "daedeok_factory"
+      "daedeok_factory",
+      "daedeok_waste"
     ]
   },
   {
@@ -17325,9 +17730,14 @@
     "district": "대덕구",
     "industry": "",
     "product": "변압기, 금구류 외",
-    "waste_types": [],
+    "waste_types": [
+      "폐합성수지류(폐염화비닐수지류는 제외한다)",
+      "폐가구류_ 폐도장목_ 폐목재포장재_ 폐전선드럼(원목상태의 깨끗한 목재를 말한다)",
+      "그 밖의 폐기물"
+    ],
     "sources": [
-      "daedeok_factory"
+      "daedeok_factory",
+      "daedeok_waste"
     ]
   },
   {
@@ -17565,9 +17975,15 @@
     "district": "대덕구",
     "industry": "",
     "product": "배합사료, 배합사료, 배합사료",
-    "waste_types": [],
+    "waste_types": [
+      "그 밖의 식물성잔재물",
+      "폐활성탄",
+      "그 밖의 동ㆍ식물성잔재물",
+      "폐합성수지류(폐염화비닐수지류는 제외한다)"
+    ],
     "sources": [
-      "daedeok_factory"
+      "daedeok_factory",
+      "daedeok_waste"
     ]
   },
   {
@@ -17733,9 +18149,13 @@
     "district": "대덕구",
     "industry": "",
     "product": "의료기관 세탁물",
-    "waste_types": [],
+    "waste_types": [
+      "폐합성수지류(폐염화비닐수지류는 제외한다)",
+      "폐수처리오니"
+    ],
     "sources": [
-      "daedeok_factory"
+      "daedeok_factory",
+      "daedeok_waste"
     ]
   },
   {
@@ -19893,9 +20313,15 @@
     "district": "대덕구",
     "industry": "",
     "product": "판상엽",
-    "waste_types": [],
+    "waste_types": [
+      "음식물류폐기물",
+      "폐가구류_ 폐도장목_ 폐목재포장재_ 폐전선드럼(원목상태의 깨끗한 목재를 말한다)",
+      "폐합성수지류(폐염화비닐수지류는 제외한다)",
+      "그 밖의 폐수처리오니"
+    ],
     "sources": [
-      "daedeok_factory"
+      "daedeok_factory",
+      "daedeok_waste"
     ]
   },
   {
@@ -20649,9 +21075,13 @@
     "district": "대덕구",
     "industry": "",
     "product": "니들베어링,핀",
-    "waste_types": [],
+    "waste_types": [
+      "폐수처리오니",
+      "그 밖의 공정오니"
+    ],
     "sources": [
-      "daedeok_factory"
+      "daedeok_factory",
+      "daedeok_waste"
     ]
   },
   {
@@ -20724,11 +21154,15 @@
     "waste_types": [
       "폐활성탄",
       "폐합성수지",
-      "그 밖의 폐목재류"
+      "그 밖의 폐목재류",
+      "그 밖의 폐기물",
+      "폐합성수지류(폐염화비닐수지류는 제외한다)",
+      "폐합성고무류"
     ],
     "sources": [
       "daedeok_factory",
-      "yuseong_waste"
+      "yuseong_waste",
+      "daedeok_waste"
     ]
   },
   {
@@ -20786,9 +21220,17 @@
     "district": "대덕구",
     "industry": "",
     "product": "타이어",
-    "waste_types": [],
+    "waste_types": [
+      "폐합성수지류(폐염화비닐수지류는 제외한다)",
+      "폐합성고무류",
+      "그 밖의 분진",
+      "폐수처리오니",
+      "폐활성탄",
+      "자동차 폐타이어"
+    ],
     "sources": [
-      "daedeok_factory"
+      "daedeok_factory",
+      "daedeok_waste"
     ]
   },
   {
@@ -20798,9 +21240,12 @@
     "district": "대덕구",
     "industry": "",
     "product": "붓싱",
-    "waste_types": [],
+    "waste_types": [
+      "그 밖의 공정오니"
+    ],
     "sources": [
-      "daedeok_factory"
+      "daedeok_factory",
+      "daedeok_waste"
     ]
   },
   {
@@ -20870,9 +21315,16 @@
     "district": "대덕구",
     "industry": "",
     "product": "타올",
-    "waste_types": [],
+    "waste_types": [
+      "음식물류폐기물",
+      "그 밖의 폐섬유",
+      "폐합성수지류(폐염화비닐수지류는 제외한다)",
+      "폐활성탄",
+      "그 밖의 폐수처리오니"
+    ],
     "sources": [
-      "daedeok_factory"
+      "daedeok_factory",
+      "daedeok_waste"
     ]
   },
   {
@@ -20942,9 +21394,14 @@
     "district": "대덕구",
     "industry": "",
     "product": "염색사",
-    "waste_types": [],
+    "waste_types": [
+      "폐수처리오니",
+      "폐합성수지류(폐염화비닐수지류는 제외한다)",
+      "폐합성섬유"
+    ],
     "sources": [
-      "daedeok_factory"
+      "daedeok_factory",
+      "daedeok_waste"
     ]
   },
   {
@@ -21086,9 +21543,23 @@
     "district": "대덕구",
     "industry": "",
     "product": "자동차용 냉난방제품",
-    "waste_types": [],
+    "waste_types": [
+      "폐수처리오니",
+      "폐합성수지류(폐염화비닐수지류는 제외한다)",
+      "그 밖의 폐기물",
+      "폐가구류_ 폐도장목_ 폐목재포장재_ 폐전선드럼(원목상태의 깨끗한 목재를 말한다)",
+      "음식물류폐기물",
+      "폐활성탄",
+      "산업용폐전기전자제품",
+      "그 밖의 폐유리",
+      "그 밖의 분진",
+      "그 밖의 폐수처리오니",
+      "폐흡착제",
+      "그 밖의 공정오니"
+    ],
     "sources": [
-      "daedeok_factory"
+      "daedeok_factory",
+      "daedeok_waste"
     ]
   },
   {
@@ -21134,9 +21605,13 @@
     "district": "대덕구",
     "industry": "",
     "product": "레미콘",
-    "waste_types": [],
+    "waste_types": [
+      "폐합성수지류(폐염화비닐수지류는 제외한다)",
+      "폐콘크리트"
+    ],
     "sources": [
-      "daedeok_factory"
+      "daedeok_factory",
+      "daedeok_waste"
     ]
   },
   {
@@ -21170,9 +21645,15 @@
     "district": "대덕구",
     "industry": "",
     "product": "음료수금속캔 및 프라스틱병",
-    "waste_types": [],
+    "waste_types": [
+      "폐수처리오니",
+      "폐합성수지류(폐염화비닐수지류는 제외한다)",
+      "그 밖의 폐기물",
+      "음식물류폐기물"
+    ],
     "sources": [
-      "daedeok_factory"
+      "daedeok_factory",
+      "daedeok_waste"
     ]
   },
   {
@@ -21206,9 +21687,13 @@
     "district": "대덕구",
     "industry": "",
     "product": "한방의료 보험약",
-    "waste_types": [],
+    "waste_types": [
+      "그 밖의 식물성잔재물",
+      "폐합성수지류(폐염화비닐수지류는 제외한다)"
+    ],
     "sources": [
-      "daedeok_factory"
+      "daedeok_factory",
+      "daedeok_waste"
     ]
   },
   {
@@ -21682,10 +22167,12 @@
     "product": "",
     "waste_types": [
       "폐합성수지",
-      "그밖의폐기물"
+      "그밖의폐기물",
+      "폐합성수지류(폐염화비닐수지류는 제외한다)"
     ],
     "sources": [
-      "yuseong_waste"
+      "yuseong_waste",
+      "daedeok_waste"
     ]
   },
   {
@@ -21890,10 +22377,12 @@
     "waste_types": [
       "하수처리오니(유)",
       "그밖의(협잡물",
-      "하수도준설토)"
+      "하수도준설토)",
+      "그 밖의 폐기물"
     ],
     "sources": [
-      "yuseong_waste"
+      "yuseong_waste",
+      "daedeok_waste"
     ]
   },
   {
@@ -22716,10 +23205,12 @@
     "industry": "",
     "product": "",
     "waste_types": [
-      "그밖의 유기성오니"
+      "그밖의 유기성오니",
+      "폐내화물 및 도자기편류"
     ],
     "sources": [
-      "yuseong_waste"
+      "yuseong_waste",
+      "daedeok_waste"
     ]
   },
   {
@@ -23531,6 +24022,1316 @@
     ],
     "sources": [
       "yuseong_waste"
+    ]
+  },
+  {
+    "id": "co-1921",
+    "name": "(주)성경식품 제3공장",
+    "address": "대전광역시 대덕구 신탄진로349번길 11 (주)성경식품 3공장 (와동)",
+    "district": "대덕구",
+    "industry": "",
+    "product": "",
+    "waste_types": [
+      "폐합성수지류(폐염화비닐수지류는 제외한다)"
+    ],
+    "sources": [
+      "daedeok_waste"
+    ]
+  },
+  {
+    "id": "co-1922",
+    "name": "키다리식품(주) 대전(신탄진)제2공장",
+    "address": "대전광역시 대덕구 대덕대로1448번길 200 (신일동)",
+    "district": "대덕구",
+    "industry": "",
+    "product": "",
+    "waste_types": [
+      "그 밖의 폐수처리오니",
+      "음식물류폐기물"
+    ],
+    "sources": [
+      "daedeok_waste"
+    ]
+  },
+  {
+    "id": "co-1923",
+    "name": "(주)삼진이앤아이",
+    "address": "대전광역시 대덕구 대화로132번길 22_ 삼진정밀 (대화동)",
+    "district": "대덕구",
+    "industry": "",
+    "product": "",
+    "waste_types": [
+      "폐도장목ㆍ폐목재포장재ㆍ폐전선드럼ㆍ건설현장 폐목재(원목상태의 깨끗한 목재를 말한다)"
+    ],
+    "sources": [
+      "daedeok_waste"
+    ]
+  },
+  {
+    "id": "co-1924",
+    "name": "(주)대덕그린에너지",
+    "address": "대전광역시 대덕구 대덕대로1417번길 8_ 주식회사 대덕그린에너지 (문평동)",
+    "district": "대덕구",
+    "industry": "",
+    "product": "",
+    "waste_types": [
+      "사업장폐기물 소각시설 비산재",
+      "사업장폐기물 소각시설 바닥재"
+    ],
+    "sources": [
+      "daedeok_waste"
+    ]
+  },
+  {
+    "id": "co-1925",
+    "name": "이대박가구리폼",
+    "address": "대전광역시 대덕구 오정로75번길 66-15 (오정동)",
+    "district": "대덕구",
+    "industry": "",
+    "product": "",
+    "waste_types": [
+      "그 밖의 폐목재류"
+    ],
+    "sources": [
+      "daedeok_waste"
+    ]
+  },
+  {
+    "id": "co-1926",
+    "name": "(주)에피온",
+    "address": "대전광역시 대덕구 신일서로18번길 2 (신일동)",
+    "district": "대덕구",
+    "industry": "",
+    "product": "",
+    "waste_types": [
+      "폐유리"
+    ],
+    "sources": [
+      "daedeok_waste"
+    ]
+  },
+  {
+    "id": "co-1927",
+    "name": "스마트씽크텍",
+    "address": "대전광역시 대덕구 대화로 105 (대화동)",
+    "district": "대덕구",
+    "industry": "",
+    "product": "",
+    "waste_types": [
+      "그 밖의 폐목재류"
+    ],
+    "sources": [
+      "daedeok_waste"
+    ]
+  },
+  {
+    "id": "co-1928",
+    "name": "소망글로벌축산 주식회사",
+    "address": "대전광역시 대덕구 한밭대로1006번길 105 (오정동)",
+    "district": "대덕구",
+    "industry": "",
+    "product": "",
+    "waste_types": [
+      "동물성유지류"
+    ],
+    "sources": [
+      "daedeok_waste"
+    ]
+  },
+  {
+    "id": "co-1929",
+    "name": "(주)한국스크롤",
+    "address": "대전광역시 대덕구 신탄진로115번안길 18 (신대동)",
+    "district": "대덕구",
+    "industry": "",
+    "product": "",
+    "waste_types": [
+      "그 밖의 폐목재류"
+    ],
+    "sources": [
+      "daedeok_waste"
+    ]
+  },
+  {
+    "id": "co-1930",
+    "name": "푸디스트(주)대전보훈병원점",
+    "address": "대전광역시 대덕구 대청로82번길 147 (신탄진동)",
+    "district": "대덕구",
+    "industry": "",
+    "product": "",
+    "waste_types": [
+      "음식물류폐기물"
+    ],
+    "sources": [
+      "daedeok_waste"
+    ]
+  },
+  {
+    "id": "co-1931",
+    "name": "주식회사 한돈",
+    "address": "대전광역시 대덕구 남경마을로33번길 22 (신탄진동)",
+    "district": "대덕구",
+    "industry": "",
+    "product": "",
+    "waste_types": [
+      "동물성유지류"
+    ],
+    "sources": [
+      "daedeok_waste"
+    ]
+  },
+  {
+    "id": "co-1932",
+    "name": "케이포크(K포크)",
+    "address": "대전광역시 대덕구 오정로89번길 28 (오정동)",
+    "district": "대덕구",
+    "industry": "",
+    "product": "",
+    "waste_types": [
+      "동물성유지류"
+    ],
+    "sources": [
+      "daedeok_waste"
+    ]
+  },
+  {
+    "id": "co-1933",
+    "name": "대덕구청",
+    "address": "대전광역시 대덕구 대전로1033번길 20 (오정동)",
+    "district": "대덕구",
+    "industry": "",
+    "product": "",
+    "waste_types": [
+      "그 밖의 폐목재류"
+    ],
+    "sources": [
+      "daedeok_waste"
+    ]
+  },
+  {
+    "id": "co-1934",
+    "name": "한국철도공사 대전충남본부 대전차량사업소",
+    "address": "대전광역시 대덕구 아리랑로 166 (읍내동)",
+    "district": "대덕구",
+    "industry": "",
+    "product": "",
+    "waste_types": [
+      "그 밖의 폐기물",
+      "폐합성수지류(폐염화비닐수지류는 제외한다)",
+      "임목폐목재(건설공사ㆍ산지개간 등의 과정에서 발생된 나무뿌리ㆍ가지ㆍ줄기 등을 말한다)"
+    ],
+    "sources": [
+      "daedeok_waste"
+    ]
+  },
+  {
+    "id": "co-1935",
+    "name": "한국지엠(주)대전서비스센터",
+    "address": "대전광역시 대덕구 대화로52번길 137 (대화동)",
+    "district": "대덕구",
+    "industry": "",
+    "product": "",
+    "waste_types": [
+      "전기자동차 폐배터리"
+    ],
+    "sources": [
+      "daedeok_waste"
+    ]
+  },
+  {
+    "id": "co-1936",
+    "name": "(주)아모스프로페셔널",
+    "address": "대전광역시 대덕구 대화로 80 (주)아모레퍼시픽 (대화동)",
+    "district": "대덕구",
+    "industry": "",
+    "product": "",
+    "waste_types": [
+      "폐합성수지류(폐염화비닐수지류는 제외한다)"
+    ],
+    "sources": [
+      "daedeok_waste"
+    ]
+  },
+  {
+    "id": "co-1937",
+    "name": "(주)휴비스",
+    "address": "대전광역시 대덕구 신일서로 90 (주)휴비스 (신일동)",
+    "district": "대덕구",
+    "industry": "",
+    "product": "",
+    "waste_types": [
+      "폐합성수지류(폐염화비닐수지류는 제외한다)"
+    ],
+    "sources": [
+      "daedeok_waste"
+    ]
+  },
+  {
+    "id": "co-1938",
+    "name": "주식회사 한국비아테크",
+    "address": "대전광역시 대덕구 문평동로 31 (문평동)",
+    "district": "대덕구",
+    "industry": "",
+    "product": "",
+    "waste_types": [
+      "그 밖의 폐목재류",
+      "폐합성수지류(폐염화비닐수지류는 제외한다)"
+    ],
+    "sources": [
+      "daedeok_waste"
+    ]
+  },
+  {
+    "id": "co-1939",
+    "name": "대한민국고엽제전우회",
+    "address": "대전광역시 대덕구 대청로82번길 147 (신탄진동_ 대전보훈병원)",
+    "district": "대덕구",
+    "industry": "",
+    "product": "",
+    "waste_types": [
+      "폐합성수지류(폐염화비닐수지류는 제외한다)",
+      "그 밖의 폐기물"
+    ],
+    "sources": [
+      "daedeok_waste"
+    ]
+  },
+  {
+    "id": "co-1940",
+    "name": "안전공업(주)대화공장",
+    "address": "대전광역시 대덕구 대화로32번길 60-29 (대화동)",
+    "district": "대덕구",
+    "industry": "",
+    "product": "",
+    "waste_types": [
+      "폐합성수지류(폐염화비닐수지류는 제외한다)"
+    ],
+    "sources": [
+      "daedeok_waste"
+    ]
+  },
+  {
+    "id": "co-1941",
+    "name": "(주)내산",
+    "address": "대전광역시 대덕구 문평서로 34 (문평동)",
+    "district": "대덕구",
+    "industry": "",
+    "product": "",
+    "waste_types": [
+      "폐합성수지류(폐염화비닐수지류는 제외한다)"
+    ],
+    "sources": [
+      "daedeok_waste"
+    ]
+  },
+  {
+    "id": "co-1942",
+    "name": "비비씨(주)제2공장",
+    "address": "대전광역시 대덕구 문평동로 25 (문평동)",
+    "district": "대덕구",
+    "industry": "",
+    "product": "",
+    "waste_types": [
+      "그 밖의 폐수처리오니"
+    ],
+    "sources": [
+      "daedeok_waste"
+    ]
+  },
+  {
+    "id": "co-1943",
+    "name": "신용자원",
+    "address": "대전광역시 대덕구 옛신탄진로 177 (오정동)",
+    "district": "대덕구",
+    "industry": "",
+    "product": "",
+    "waste_types": [
+      "산업용폐전기전자제품"
+    ],
+    "sources": [
+      "daedeok_waste"
+    ]
+  },
+  {
+    "id": "co-1944",
+    "name": "비알코리아(주)신탄진점",
+    "address": "대전광역시 대덕구 신탄진로738번길 104 (신탄진동)",
+    "district": "대덕구",
+    "industry": "",
+    "product": "",
+    "waste_types": [
+      "폐식용유(식용을 목적으로 식품 재료와 원료를 제조ㆍ조리ㆍ가공하거나 식용유를 유통ㆍ사용 또는 음식물류 폐기물을 처리하는 과정에서 발생하는 기름을 말한다)",
+      "폐합성수지류(폐염화비닐수지류는 제외한다)",
+      "그 밖의 식물성잔재물"
+    ],
+    "sources": [
+      "daedeok_waste"
+    ]
+  },
+  {
+    "id": "co-1945",
+    "name": "효성화학(주)대전공장",
+    "address": "대전광역시 대덕구 신일서로17번길 85 (신일동)",
+    "district": "대덕구",
+    "industry": "",
+    "product": "",
+    "waste_types": [
+      "폐합성수지류(폐염화비닐수지류는 제외한다)",
+      "폐가구류_ 폐도장목_ 폐목재포장재_ 폐전선드럼(원목상태의 깨끗한 목재를 말한다)"
+    ],
+    "sources": [
+      "daedeok_waste"
+    ]
+  },
+  {
+    "id": "co-1946",
+    "name": "(주)라이온켐텍 제2지점",
+    "address": "대전광역시 대덕구 문평서로 70 (주)라이온켐텍 (문평동)",
+    "district": "대덕구",
+    "industry": "",
+    "product": "",
+    "waste_types": [
+      "폐석재",
+      "폐합성수지류(폐염화비닐수지류는 제외한다)",
+      "폐수처리오니",
+      "그 밖의 분진",
+      "그 밖의 폐합성고분자화합물(합성수지류로 피복된 폐전선을 포함한다)",
+      "그 밖의 공정오니"
+    ],
+    "sources": [
+      "daedeok_waste"
+    ]
+  },
+  {
+    "id": "co-1947",
+    "name": "은진물류(주)",
+    "address": "대전광역시 대덕구 신일서로125번길 2 (신일동)",
+    "district": "대덕구",
+    "industry": "",
+    "product": "",
+    "waste_types": [
+      "그 밖의 무기성오니"
+    ],
+    "sources": [
+      "daedeok_waste"
+    ]
+  },
+  {
+    "id": "co-1948",
+    "name": "씨제이대한통운(주)",
+    "address": "대전광역시 대덕구 대덕대로1447번길 39_ 대한통운 (문평동)",
+    "district": "대덕구",
+    "industry": "",
+    "product": "",
+    "waste_types": [
+      "폐합성수지류(폐염화비닐수지류는 제외한다)",
+      "그 밖의 폐기물"
+    ],
+    "sources": [
+      "daedeok_waste"
+    ]
+  },
+  {
+    "id": "co-1949",
+    "name": "(주)재향사업소",
+    "address": "대전광역시 대덕구 대화로139번길 33 (대화동)",
+    "district": "대덕구",
+    "industry": "",
+    "product": "",
+    "waste_types": [
+      "폐합성수지류(폐염화비닐수지류는 제외한다)"
+    ],
+    "sources": [
+      "daedeok_waste"
+    ]
+  },
+  {
+    "id": "co-1950",
+    "name": "주식회사 한국메디칼",
+    "address": "대전광역시 대덕구 대전로 1321 (읍내동_ 한국메디칼)",
+    "district": "대덕구",
+    "industry": "",
+    "product": "",
+    "waste_types": [
+      "폐수처리오니",
+      "폐합성수지류(폐염화비닐수지류는 제외한다)",
+      "그 밖의 폐섬유"
+    ],
+    "sources": [
+      "daedeok_waste"
+    ]
+  },
+  {
+    "id": "co-1951",
+    "name": "삼성웰스토리(주)한국타이어대전",
+    "address": "대전광역시 대덕구 대덕대로1447번길 40_ 한국타이어(주)대전공장 (목상동)",
+    "district": "대덕구",
+    "industry": "",
+    "product": "",
+    "waste_types": [
+      "음식물류폐기물"
+    ],
+    "sources": [
+      "daedeok_waste"
+    ]
+  },
+  {
+    "id": "co-1952",
+    "name": "한밭수산(주)",
+    "address": "대전광역시 대덕구 한밭대로 987 (오정동_ 수농수산물도매시장)",
+    "district": "대덕구",
+    "industry": "",
+    "product": "",
+    "waste_types": [
+      "폐합성수지류(폐염화비닐수지류는 제외한다)",
+      "수산물가공잔재물"
+    ],
+    "sources": [
+      "daedeok_waste"
+    ]
+  },
+  {
+    "id": "co-1953",
+    "name": "주식회사 델리원",
+    "address": "대전광역시 대덕구 신일서로18번길 38-23 (신일동)",
+    "district": "대덕구",
+    "industry": "",
+    "product": "",
+    "waste_types": [
+      "그 밖의 폐수처리오니",
+      "폐합성수지류(폐염화비닐수지류는 제외한다)"
+    ],
+    "sources": [
+      "daedeok_waste"
+    ]
+  },
+  {
+    "id": "co-1954",
+    "name": "삼성웰스토리(주)아모레퍼시픽대전",
+    "address": "대전광역시 대덕구 대화로 80 (대화동)",
+    "district": "대덕구",
+    "industry": "",
+    "product": "",
+    "waste_types": [
+      "음식물류폐기물"
+    ],
+    "sources": [
+      "daedeok_waste"
+    ]
+  },
+  {
+    "id": "co-1955",
+    "name": "비비씨 주식회사",
+    "address": "대전광역시 대덕구 문평동로 25 (문평동)",
+    "district": "대덕구",
+    "industry": "",
+    "product": "",
+    "waste_types": [
+      "그 밖의 폐수처리오니"
+    ],
+    "sources": [
+      "daedeok_waste"
+    ]
+  },
+  {
+    "id": "co-1956",
+    "name": "농업회사법인주식회사푸드몰",
+    "address": "대전광역시 대덕구 대화로 178_ 2동 (대화동)",
+    "district": "대덕구",
+    "industry": "",
+    "product": "",
+    "waste_types": [
+      "식물성잔재물"
+    ],
+    "sources": [
+      "daedeok_waste"
+    ]
+  },
+  {
+    "id": "co-1957",
+    "name": "(주)금강폐차장",
+    "address": "대전광역시 대덕구 아리랑로55번길 151 (신대동)",
+    "district": "대덕구",
+    "industry": "",
+    "product": "",
+    "waste_types": [
+      "그 밖의 폐촉매",
+      "그 밖의 폐합성고분자화합물(합성수지류로 피복된 폐전선을 포함한다)",
+      "폐합성수지류(폐염화비닐수지류는 제외한다)",
+      "자동차 폐타이어",
+      "폐자동차에서 회수한 폐냉매물질"
+    ],
+    "sources": [
+      "daedeok_waste"
+    ]
+  },
+  {
+    "id": "co-1958",
+    "name": "(주)옵트론-텍 대덕사업장",
+    "address": "대전광역시 대덕구 문평서로 52 (문평동)",
+    "district": "대덕구",
+    "industry": "",
+    "product": "",
+    "waste_types": [
+      "폐합성수지류(폐염화비닐수지류는 제외한다)",
+      "그 밖의 폐유리"
+    ],
+    "sources": [
+      "daedeok_waste"
+    ]
+  },
+  {
+    "id": "co-1959",
+    "name": "대전종합폐차(주)",
+    "address": "대전광역시 대덕구 옛신탄진로 246 (오정동)",
+    "district": "대덕구",
+    "industry": "",
+    "product": "",
+    "waste_types": [
+      "자동차 폐타이어",
+      "그 밖의 폐합성고분자화합물(합성수지류로 피복된 폐전선을 포함한다)",
+      "금속성폐촉매",
+      "자동차회수폐냉매물질",
+      "폐합성수지류(폐염화비닐수지류는 제외한다)"
+    ],
+    "sources": [
+      "daedeok_waste"
+    ]
+  },
+  {
+    "id": "co-1960",
+    "name": "한국수출포장공업(주)대전공장",
+    "address": "대전광역시 대덕구 신일동로 42_ 한국수출포장공업(주) (신일동)",
+    "district": "대덕구",
+    "industry": "",
+    "product": "",
+    "waste_types": [
+      "폐수처리오니",
+      "그 밖의 폐목재류",
+      "폐합성수지류(폐염화비닐수지류는 제외한다)"
+    ],
+    "sources": [
+      "daedeok_waste"
+    ]
+  },
+  {
+    "id": "co-1961",
+    "name": "삼성폐차(주)",
+    "address": "대전광역시 대덕구 대화로52번길 171 (대화동)",
+    "district": "대덕구",
+    "industry": "",
+    "product": "",
+    "waste_types": [
+      "폐합성수지류(폐염화비닐수지류는 제외한다)",
+      "금속성폐촉매",
+      "그 밖의 폐촉매",
+      "그 밖의 폐합성고분자화합물(합성수지류로 피복된 폐전선을 포함한다)",
+      "자동차 폐타이어",
+      "자동차회수폐냉매물질"
+    ],
+    "sources": [
+      "daedeok_waste"
+    ]
+  },
+  {
+    "id": "co-1962",
+    "name": "삼진JMC사업부",
+    "address": "대전광역시 대덕구 대화로52번길 20 (대화동)",
+    "district": "대덕구",
+    "industry": "",
+    "product": "",
+    "waste_types": [
+      "폐합성수지류(폐염화비닐수지류는 제외한다)",
+      "그 밖의 폐목재류"
+    ],
+    "sources": [
+      "daedeok_waste"
+    ]
+  },
+  {
+    "id": "co-1963",
+    "name": "(주)장원식품",
+    "address": "대전광역시 대덕구 한밭대로1003번길 161-67 (오정동)",
+    "district": "대덕구",
+    "industry": "",
+    "product": "",
+    "waste_types": [
+      "그 밖의 폐수처리오니",
+      "축산물가공잔재물(동물성 유지류는 제외한다)",
+      "동물성유지류"
+    ],
+    "sources": [
+      "daedeok_waste"
+    ]
+  },
+  {
+    "id": "co-1964",
+    "name": "상수도사업본부 송촌정수사업소",
+    "address": "대전광역시 대덕구 송촌로 50 (송촌동)",
+    "district": "대덕구",
+    "industry": "",
+    "product": "",
+    "waste_types": [
+      "정수처리오니"
+    ],
+    "sources": [
+      "daedeok_waste"
+    ]
+  },
+  {
+    "id": "co-1965",
+    "name": "동원로엑스(주) 대전센터",
+    "address": "대전광역시 대덕구 방두말1길 12 (상서동)",
+    "district": "대덕구",
+    "industry": "",
+    "product": "",
+    "waste_types": [
+      "그 밖의 동ㆍ식물성잔재물"
+    ],
+    "sources": [
+      "daedeok_waste"
+    ]
+  },
+  {
+    "id": "co-1966",
+    "name": "(주)대덕폐차사업소",
+    "address": "대전광역시 대덕구 대화로 91 (대화동)",
+    "district": "대덕구",
+    "industry": "",
+    "product": "",
+    "waste_types": [
+      "자동차 폐타이어",
+      "폐합성수지류(폐염화비닐수지류는 제외한다)",
+      "자동차회수폐냉매물질",
+      "그 밖의 폐합성고분자화합물(합성수지류로 피복된 폐전선을 포함한다)"
+    ],
+    "sources": [
+      "daedeok_waste"
+    ]
+  },
+  {
+    "id": "co-1967",
+    "name": "해태제과식품(주)대전공장",
+    "address": "대전광역시 대덕구 신일서로67번길 57 (신일동)",
+    "district": "대덕구",
+    "industry": "",
+    "product": "",
+    "waste_types": [
+      "그 밖의 식물성잔재물",
+      "폐합성수지류(폐염화비닐수지류는 제외한다)",
+      "그 밖의 동ㆍ식물성잔재물"
+    ],
+    "sources": [
+      "daedeok_waste"
+    ]
+  },
+  {
+    "id": "co-1968",
+    "name": "(주)성경식품",
+    "address": "대전광역시 대덕구 신탄진로 351_ 성경식품 (와동)",
+    "district": "대덕구",
+    "industry": "",
+    "product": "",
+    "waste_types": [
+      "음식물류폐기물",
+      "폐합성수지류(폐염화비닐수지류는 제외한다)",
+      "유박유잔재물"
+    ],
+    "sources": [
+      "daedeok_waste"
+    ]
+  },
+  {
+    "id": "co-1969",
+    "name": "(주)금보산업",
+    "address": "대전광역시 대덕구 대화로132번안길 34-21 (대화동)",
+    "district": "대덕구",
+    "industry": "",
+    "product": "",
+    "waste_types": [
+      "폐합성수지류(폐염화비닐수지류는 제외한다)",
+      "플라스틱폐포장재",
+      "폐유리병류(「자원의 절약과 재활용촉진에 관한 법률 시행령」 제18조제1호에 해당하는 것을 말한다)"
+    ],
+    "sources": [
+      "daedeok_waste"
+    ]
+  },
+  {
+    "id": "co-1970",
+    "name": "(주)전우 대덕지점",
+    "address": "대전광역시 대덕구 신일서로68번길 31 (신일동_ (주)트루윈)",
+    "district": "대덕구",
+    "industry": "",
+    "product": "",
+    "waste_types": [
+      "폐합성수지류(폐염화비닐수지류는 제외한다)"
+    ],
+    "sources": [
+      "daedeok_waste"
+    ]
+  },
+  {
+    "id": "co-1971",
+    "name": "(주)희망그린",
+    "address": "대전광역시 대덕구 대화로32번길 191_ 1층 (대화동)",
+    "district": "대덕구",
+    "industry": "",
+    "product": "",
+    "waste_types": [
+      "폐합성수지류(폐염화비닐수지류는 제외한다)",
+      "그 밖의 폐기물"
+    ],
+    "sources": [
+      "daedeok_waste"
+    ]
+  },
+  {
+    "id": "co-1972",
+    "name": "(주)영남폐차산업",
+    "address": "대전광역시 대덕구 방두말4길 43 (평촌동)",
+    "district": "대덕구",
+    "industry": "",
+    "product": "",
+    "waste_types": [
+      "그 밖의 폐합성고분자화합물(합성수지류로 피복된 폐전선을 포함한다)",
+      "자동차 폐타이어",
+      "금속성폐촉매",
+      "폐합성수지류(폐염화비닐수지류는 제외한다)",
+      "자동차회수폐냉매물질",
+      "그 밖의 폐촉매"
+    ],
+    "sources": [
+      "daedeok_waste"
+    ]
+  },
+  {
+    "id": "co-1973",
+    "name": "(사)시장환경관리위원회",
+    "address": "대전광역시 대덕구 한밭대로 987 (오정동_ 농수산물도매시장)",
+    "district": "대덕구",
+    "industry": "",
+    "product": "",
+    "waste_types": [
+      "그 밖의 폐목재류",
+      "그 밖의 식물성잔재물",
+      "그 밖의 폐기물",
+      "음식물류폐기물처리잔재물(액상의 경우만 해당한다)"
+    ],
+    "sources": [
+      "daedeok_waste"
+    ]
+  },
+  {
+    "id": "co-1974",
+    "name": "(주)바이오니아 대덕센터",
+    "address": "대전광역시 대덕구 문평서로 8-11 (문평동)",
+    "district": "대덕구",
+    "industry": "",
+    "product": "",
+    "waste_types": [
+      "폐합성수지류(폐염화비닐수지류는 제외한다)"
+    ],
+    "sources": [
+      "daedeok_waste"
+    ]
+  },
+  {
+    "id": "co-1975",
+    "name": "(주)크라운제과 대전공장",
+    "address": "대전광역시 대덕구 신일서로67번길 57 (주)크라운제과 (신일동)",
+    "district": "대덕구",
+    "industry": "",
+    "product": "",
+    "waste_types": [
+      "그 밖의 동ㆍ식물성잔재물",
+      "그 밖의 식물성잔재물",
+      "그 밖의 폐기물",
+      "폐합성수지류(폐염화비닐수지류는 제외한다)",
+      "그 밖의 폐수처리오니",
+      "음식물류폐기물",
+      "그 밖의 폐목재류"
+    ],
+    "sources": [
+      "daedeok_waste"
+    ]
+  },
+  {
+    "id": "co-1976",
+    "name": "상수도사업본부 신탄진정수사업소",
+    "address": "대전광역시 대덕구 신탄진로756번안길 223 (용호동)",
+    "district": "대덕구",
+    "industry": "",
+    "product": "",
+    "waste_types": [
+      "정수처리오니",
+      "폐합성수지류(폐염화비닐수지류는 제외한다)"
+    ],
+    "sources": [
+      "daedeok_waste"
+    ]
+  },
+  {
+    "id": "co-1977",
+    "name": "(주)트라이스톤",
+    "address": "대전광역시 대덕구 대화로50번길 57-47 (대화동)",
+    "district": "대덕구",
+    "industry": "",
+    "product": "",
+    "waste_types": [
+      "그 밖의 폐합성고분자화합물(합성수지류로 피복된 폐전선을 포함한다)"
+    ],
+    "sources": [
+      "daedeok_waste"
+    ]
+  },
+  {
+    "id": "co-1978",
+    "name": "육군탄약지원사령부",
+    "address": "대전광역시 대덕구 장동로 283-20 (장동)",
+    "district": "대덕구",
+    "industry": "",
+    "product": "",
+    "waste_types": [
+      "음식물류폐기물",
+      "폐수처리오니",
+      "폐목재류 1등급",
+      "그 밖의 폐기물",
+      "그 밖의 폐목재류",
+      "폐합성수지류(폐염화비닐수지류는 제외한다)"
+    ],
+    "sources": [
+      "daedeok_waste"
+    ]
+  },
+  {
+    "id": "co-1979",
+    "name": "로버트보쉬코리아(유)",
+    "address": "대전광역시 대덕구 신일서로 5 (신일동)",
+    "district": "대덕구",
+    "industry": "",
+    "product": "",
+    "waste_types": [
+      "폐합성수지류(폐염화비닐수지류는 제외한다)"
+    ],
+    "sources": [
+      "daedeok_waste"
+    ]
+  },
+  {
+    "id": "co-1980",
+    "name": "(복)천성원신탄진한일병원",
+    "address": "대전광역시 대덕구 신탄진로 623 (상서동)",
+    "district": "대덕구",
+    "industry": "",
+    "product": "",
+    "waste_types": [
+      "폐유리병류(「자원의 절약과 재활용촉진에 관한 법률 시행령」 제18조제1호에 해당하는 것을 말한다)",
+      "그 밖의 폐기물",
+      "음식물류폐기물",
+      "의료기관 일회용기저귀(별표 3에 따른 의료기관 및 시험ㆍ검사기관 등에서 발생한 것을 말하며_ 같은 표 제14호에 따른 노인요양시설에서 발생한 것과 영 별표 2에 따른 의료폐기물에 해당하는 것은 제외한다)",
+      "폐합성수지류(폐염화비닐수지류는 제외한다)"
+    ],
+    "sources": [
+      "daedeok_waste"
+    ]
+  },
+  {
+    "id": "co-1981",
+    "name": "삼표레미콘(주)",
+    "address": "대전광역시 대덕구 아리랑로 178 (읍내동)",
+    "district": "대덕구",
+    "industry": "",
+    "product": "",
+    "waste_types": [
+      "폐콘크리트"
+    ],
+    "sources": [
+      "daedeok_waste"
+    ]
+  },
+  {
+    "id": "co-1982",
+    "name": "(주)동양환경",
+    "address": "대전광역시 대덕구 문평동로48번길 125 (문평동)",
+    "district": "대덕구",
+    "industry": "",
+    "product": "",
+    "waste_types": [
+      "사업장폐기물 소각시설 바닥재",
+      "폐내화물",
+      "폐수처리오니",
+      "그 밖의 공정오니"
+    ],
+    "sources": [
+      "daedeok_waste"
+    ]
+  },
+  {
+    "id": "co-1983",
+    "name": "(주)한국엔지니어링웍스",
+    "address": "대전광역시 대덕구 대화로52번길 30 (대화동)",
+    "district": "대덕구",
+    "industry": "",
+    "product": "",
+    "waste_types": [
+      "그 밖의 폐기물"
+    ],
+    "sources": [
+      "daedeok_waste"
+    ]
+  },
+  {
+    "id": "co-1984",
+    "name": "부강레미콘(주)",
+    "address": "대전광역시 대덕구 대화로52번안길 112 (대화동)",
+    "district": "대덕구",
+    "industry": "",
+    "product": "",
+    "waste_types": [
+      "폐콘크리트"
+    ],
+    "sources": [
+      "daedeok_waste"
+    ]
+  },
+  {
+    "id": "co-1985",
+    "name": "한국앤컴퍼니(주) 대전공장",
+    "address": "대전광역시 대덕구 대전로1331번길 185 (대화동)",
+    "district": "대덕구",
+    "industry": "",
+    "product": "",
+    "waste_types": [
+      "그 밖의 폐합성고분자화합물(합성수지류로 피복된 폐전선을 포함한다)",
+      "폐합성수지류(폐염화비닐수지류는 제외한다)",
+      "폐도장목ㆍ폐목재포장재ㆍ폐전선드럼ㆍ건설현장 폐목재(원목상태의 깨끗한 목재를 말한다)",
+      "폐수처리오니"
+    ],
+    "sources": [
+      "daedeok_waste"
+    ]
+  },
+  {
+    "id": "co-1986",
+    "name": "티알벨트랙주식회사",
+    "address": "대전광역시 대덕구 대화로106번길 43 (대화동)",
+    "district": "대덕구",
+    "industry": "",
+    "product": "",
+    "waste_types": [
+      "폐합성수지류(폐염화비닐수지류는 제외한다)",
+      "폐합성고무류",
+      "폐가구류_ 폐도장목_ 폐목재포장재_ 폐전선드럼(원목상태의 깨끗한 목재를 말한다)",
+      "그 밖의 폐섬유",
+      "폐활성탄",
+      "그 밖의 폐기물"
+    ],
+    "sources": [
+      "daedeok_waste"
+    ]
+  },
+  {
+    "id": "co-1987",
+    "name": "대정에스알 주식회사",
+    "address": "대전광역시 대덕구 대덕대로1284번길 317 (신일동)",
+    "district": "대덕구",
+    "industry": "",
+    "product": "",
+    "waste_types": [
+      "폐합성고무류"
+    ],
+    "sources": [
+      "daedeok_waste"
+    ]
+  },
+  {
+    "id": "co-1988",
+    "name": "한국도로공사대전지사",
+    "address": "대전광역시 대덕구 동서대로 1855 (송촌동)",
+    "district": "대덕구",
+    "industry": "",
+    "product": "",
+    "waste_types": [
+      "폐합성수지류(폐염화비닐수지류는 제외한다)"
+    ],
+    "sources": [
+      "daedeok_waste"
+    ]
+  },
+  {
+    "id": "co-1989",
+    "name": "신탄진(상)휴게소",
+    "address": "대전광역시 대덕구 산업단지로 27 (상서동)",
+    "district": "대덕구",
+    "industry": "",
+    "product": "",
+    "waste_types": [
+      "폐합성수지류(폐염화비닐수지류는 제외한다)",
+      "음식물류폐기물"
+    ],
+    "sources": [
+      "daedeok_waste"
+    ]
+  },
+  {
+    "id": "co-1990",
+    "name": "대전열병합발전(주)",
+    "address": "대전광역시 대덕구 신일서로68번길 71 (신일동)",
+    "district": "대덕구",
+    "industry": "",
+    "product": "",
+    "waste_types": [
+      "폐활성탄",
+      "정수처리오니",
+      "폐이온교환수지",
+      "그 밖의 폐기물",
+      "그 밖의 분진"
+    ],
+    "sources": [
+      "daedeok_waste"
+    ]
+  },
+  {
+    "id": "co-1991",
+    "name": "대흥염색(주)",
+    "address": "",
+    "district": "대덕구",
+    "industry": "",
+    "product": "",
+    "waste_types": [
+      "폐섬유류",
+      "폐합성수지",
+      "분진",
+      "공정오니",
+      "폐목재류"
+    ],
+    "sources": [
+      "daedeok_waste"
+    ]
+  },
+  {
+    "id": "co-1992",
+    "name": "(주)삼양홀딩스 엠디(MD)공장",
+    "address": "대전광역시 대덕구 문평서로18번길 55 (주)삼양홀딩스 MD공장 (문평동)",
+    "district": "대덕구",
+    "industry": "",
+    "product": "",
+    "waste_types": [
+      "그 밖의 폐기물",
+      "폐활성탄",
+      "폐합성수지류(폐염화비닐수지류는 제외한다)",
+      "폐의약품류",
+      "그 밖의 폐수처리오니"
+    ],
+    "sources": [
+      "daedeok_waste"
+    ]
+  },
+  {
+    "id": "co-1993",
+    "name": "캐스텍(주)",
+    "address": "대전광역시 대덕구 신일동로 55 (신일동)",
+    "district": "대덕구",
+    "industry": "",
+    "product": "",
+    "waste_types": [
+      "폐주물사 및 샌드블라스트폐사"
+    ],
+    "sources": [
+      "daedeok_waste"
+    ]
+  },
+  {
+    "id": "co-1994",
+    "name": "에이치에스효성첨단소재(주)대전공장",
+    "address": "대전광역시 대덕구 문평서로18번길 90 (문평동)",
+    "district": "대덕구",
+    "industry": "",
+    "product": "",
+    "waste_types": [
+      "폐합성수지류(폐염화비닐수지류는 제외한다)"
+    ],
+    "sources": [
+      "daedeok_waste"
+    ]
+  },
+  {
+    "id": "co-1995",
+    "name": "(주)삼양홀딩스 의약공장",
+    "address": "대전광역시 대덕구 신일동로 79 (신일동)",
+    "district": "대덕구",
+    "industry": "",
+    "product": "",
+    "waste_types": [
+      "폐수처리오니",
+      "그 밖의 폐기물",
+      "폐활성탄"
+    ],
+    "sources": [
+      "daedeok_waste"
+    ]
+  },
+  {
+    "id": "co-1996",
+    "name": "애경산업(주)대전공장",
+    "address": "대전광역시 대덕구 대화로32번길 174 (대화동)",
+    "district": "대덕구",
+    "industry": "",
+    "product": "",
+    "waste_types": [
+      "폐합성수지류(폐염화비닐수지류는 제외한다)",
+      "그 밖의 공정오니",
+      "음식물류폐기물"
+    ],
+    "sources": [
+      "daedeok_waste"
+    ]
+  },
+  {
+    "id": "co-1997",
+    "name": "세원화성주식회사",
+    "address": "대전광역시 대덕구 대화로52번길 115 (대화동)",
+    "district": "대덕구",
+    "industry": "",
+    "product": "",
+    "waste_types": [
+      "폐활성탄",
+      "폐합성수지류(폐염화비닐수지류는 제외한다)"
+    ],
+    "sources": [
+      "daedeok_waste"
+    ]
+  },
+  {
+    "id": "co-1998",
+    "name": "한솔제지(주)대전공장",
+    "address": "대전광역시 대덕구 신일서로68번길 50 (신일동)",
+    "district": "대덕구",
+    "industry": "",
+    "product": "",
+    "waste_types": [
+      "펄프ㆍ제지폐수처리오니",
+      "폐활성탄",
+      "폐토사",
+      "사업장폐기물 소각시설 소각재(바닥재와 비산재가 혼합된 경우를 말한다)",
+      "그 밖의 폐기물",
+      "음식물류폐기물",
+      "그 밖의 폐목재류",
+      "폐합성수지류(폐염화비닐수지류는 제외한다)"
+    ],
+    "sources": [
+      "daedeok_waste"
+    ]
+  },
+  {
+    "id": "co-1999",
+    "name": "코오롱제약(주)대전공장",
+    "address": "대전광역시 대덕구 문평서로18번길 45 (문평동)",
+    "district": "대덕구",
+    "industry": "",
+    "product": "",
+    "waste_types": [
+      "폐합성수지류(폐염화비닐수지류는 제외한다)",
+      "폐의약품류",
+      "그 밖의 폐수처리오니",
+      "폐금속용기류(폐금속캔류는 제외한다)",
+      "그 밖의 폐목재류",
+      "음식물류폐기물"
+    ],
+    "sources": [
+      "daedeok_waste"
+    ]
+  },
+  {
+    "id": "co-2000",
+    "name": "유한킴벌리(주)대전공장",
+    "address": "대전광역시 대덕구 대덕대로1277번길 90 (문평동)",
+    "district": "대덕구",
+    "industry": "",
+    "product": "",
+    "waste_types": [
+      "그 밖의 폐기물",
+      "폐유리",
+      "그 밖의 폐목재류",
+      "그 밖의 분진",
+      "폐합성수지류(폐염화비닐수지류는 제외한다)",
+      "임목폐목재(건설공사_ 산지개간 등의 과정에서 발생된 나무뿌리_ 가지_ 줄기 등을 말한다)",
+      "그 밖의 폐수처리오니"
+    ],
+    "sources": [
+      "daedeok_waste"
+    ]
+  },
+  {
+    "id": "co-2001",
+    "name": "롯데웰푸드(주)대전공장",
+    "address": "대전광역시 대덕구 문평동로18번길 21 (문평동)",
+    "district": "대덕구",
+    "industry": "",
+    "product": "",
+    "waste_types": [
+      "폐흡착제",
+      "폐분말소화기",
+      "폐합성수지류(폐염화비닐수지류는 제외한다)",
+      "그 밖의 폐수처리오니",
+      "그 밖의 식물성잔재물",
+      "폐식용유(식용을 목적으로 식품 재료와 원료를 제조ㆍ조리ㆍ가공하거나 식용유를 유통ㆍ사용 또는 음식물류 폐기물을 처리하는 과정에서 발생하는 기름을 말한다)"
+    ],
+    "sources": [
+      "daedeok_waste"
+    ]
+  },
+  {
+    "id": "co-2002",
+    "name": "한솔제지(주)신탄진공장",
+    "address": "대전광역시 대덕구 신일서로126번길 60 (신일동)",
+    "district": "대덕구",
+    "industry": "",
+    "product": "",
+    "waste_types": [
+      "폐활성탄",
+      "펄프ㆍ제지폐수처리오니",
+      "폐합성수지류(폐염화비닐수지류는 제외한다)",
+      "그 밖의 폐수처리오니",
+      "그 밖의 공정오니",
+      "그 밖의 폐목재류"
+    ],
+    "sources": [
+      "daedeok_waste"
+    ]
+  },
+  {
+    "id": "co-2003",
+    "name": "대덕산업단지관리공단 환경사업소",
+    "address": "대전광역시 대덕구 문평동로72번길 65 (문평동)",
+    "district": "대덕구",
+    "industry": "",
+    "product": "",
+    "waste_types": [
+      "폐활성탄",
+      "그 밖의 폐합성고분자화합물(합성수지류로 피복된 폐전선을 포함한다)",
+      "폐토사",
+      "그 밖의 폐수처리오니"
+    ],
+    "sources": [
+      "daedeok_waste"
+    ]
+  },
+  {
+    "id": "co-2004",
+    "name": "주식회사 알루코 제2공장",
+    "address": "대전광역시 대덕구 대화로 100 (대화동)",
+    "district": "대덕구",
+    "industry": "",
+    "product": "",
+    "waste_types": [
+      "폐수처리오니",
+      "폐가구류_ 폐도장목_ 폐목재포장재_ 폐전선드럼(원목상태의 깨끗한 목재를 말한다)",
+      "폐합성수지류(폐염화비닐수지류는 제외한다)"
+    ],
+    "sources": [
+      "daedeok_waste"
     ]
   }
 ]

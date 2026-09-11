@@ -19,6 +19,7 @@ DATA_DIR = Path(__file__).parent.parent / "data"
 AIR_CSV = RAW_DIR / "대전광역시 대덕구_대기배출업소현황_20250904.csv"
 FACTORY_CSV = RAW_DIR / "대전광역시 대덕구_제조업공장등록현황_20260623.csv"
 YUSEONG_JSON = DATA_DIR / "waste_registry_yuseong.json"
+DAEDEOK_WASTE_JSON = DATA_DIR / "waste_registry_daedeok.json"
 OUT_PATH = DATA_DIR / "company_db.json"
 
 CORP_MARKERS = ["㈜", "(주)", "(유)", "(사)", "(재)", "(사단법인)", "(재단법인)", "(합)"]
@@ -87,6 +88,13 @@ def build() -> CompanyDB:
         db.add(
             name=r["company"], address=r["address"], district="유성구",
             waste_types=r["components"], source="yuseong_waste",
+        )
+
+    daedeok_waste = json.loads(DAEDEOK_WASTE_JSON.read_text(encoding="utf-8"))
+    for r in daedeok_waste:
+        db.add(
+            name=r["company"], address=r["address"], district="대덕구",
+            waste_types=r["components"], source="daedeok_waste",
         )
 
     return db
