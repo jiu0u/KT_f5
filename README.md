@@ -32,10 +32,14 @@ DSC 공유대학×KT AI 활용 지역문제 해결 캠프 제출용 프로토타
 
 ### 화학물질안전원(NCIS) PRTR — 진짜 CAS No. 단위 매칭 데이터 ⭐
 - 출처: [icis.mcee.go.kr](https://icis.mcee.go.kr) 화학물질 배출·이동량 정보공개시스템(로그인/API 키 불필요, 공개 조회). 지자체 배출신고 데이터와 달리 **법정 분류명이 아니라 실제 CAS No.로 사업장을 조회**할 수 있음
-- `scripts/load_ncis_prtr.py` → `data/ncis_prtr_daejeon_2024.json` (`python -m scripts.load_ncis_prtr`) — 대전 지역 2024년 조사대상 물질 39종과 각 물질을 취급하는 사업장(이름·주소·업종) 전부를 공개 API처럼 순차 조회
-- `scripts/build_ncis_waste_registry.py` → `data/waste_registry_ncis.json` — (물질, 사업장) 132쌍 → WasteRecord 형식, 사업장 중복제거 52곳
-- **결과: 드디어 진짜 CAS No. 매칭이 나옴.** 예: 황산(CAS 7664-93-9) 취급 사업장 8곳((주)선양소주, (주)알루코 제2공장, 대전그린에너지센터, 비비씨, 한국앤컴퍼니 대전공장, 한솔제지 대전·신탄진공장, 한일제관 대전공장), 수산화나트륨(CAS 1310-73-2) 취급 20곳. `tests/test_load_ncis.py`에서 이 둘 중 두 사업장을 `src/match.py`에 넣으면 CAS No. 완전일치(score=1.0)로 최상위 후보가 나오는 것까지 확인함.
-- **한계**: PRTR은 "이 사업장이 이 물질을 취급·배출한다"는 사실만 알려줄 뿐 그게 폐기물인지 원료인지, 남는 건지 부족한 건지는 구분하지 않음. 같은 물질을 취급하는 두 사업장을 찾아주는 건 3단계(화학·법적 검증)·4단계(경제성)로 넘길 "후보"이지, 확정된 폐기물→원료 관계가 아님. 또 대상 물질이 배출량조사 지정 39종(대전 기준)뿐이라 모든 화학물질을 다루진 않음.
+- `scripts/load_ncis_prtr.py` → `data/ncis_prtr_daejeon_2024.json` — 대전 지역 2024년 조사대상 물질 39종과 각 물질을 취급하는 사업장(이름·주소·업종) 전부 조회
+- `scripts/load_ncis_entrps_detail.py` → `data/ncis_entrps_detail_daejeon_2024.json` — 사업장별 상세 페이지까지 들어가 물질별 **대기/수계/토양배출량, 폐수이동량, 폐기물이동량(kg/년)**을 추가로 확보 (52개 사업장 × 132개 물질취급 레코드)
+- `scripts/build_ncis_waste_registry.py` → `data/waste_registry_ncis.json` — WasteRecord 형식으로 변환, `amount_ton_per_year`에 실제 폐기물이동량(톤/년)을 채움
+- **결과: 진짜 CAS No. 매칭 + 배출 방향 구분까지 나옴.** 132개 (물질,사업장) 레코드 중 **57건은 폐기물이동량 > 0**(실제로 그 물질을 폐기물로 내보낸 증거 있음), 75건은 취급만 확인되고 배출 증거는 없음(생산·원료사용 등으로 추정). `tests/test_load_ncis.py`에서 CAS No. 완전일치(score=1.0) 매칭까지 확인.
+- `scripts/find_matching_candidates.py` → `data/matching_candidates_ncis.json` — 물질별로 "확인된 폐기물 공급 후보"(polygon 폐기물이동량>0)와 "기타 취급 후보"(수요 검토 대상)를 나눔. **19종 물질에서 매칭 후보 발견.** 예시:
+  - **황산(CAS 7664-93-9)**: 확인된 공급 후보 **한국앤컴퍼니(주) 대전공장 1곳**(폐기물이동량 45.1톤/년) ↔ 기타 취급 후보 7곳((주)선양소주, (주)알루코 제2공장, 대전그린에너지센터, 비비씨, 한솔제지 대전·신탄진공장, 한일제관 대전공장)
+  - **수산화나트륨(CAS 1310-73-2)**: 공급 후보 1곳 ↔ 기타 취급 후보 19곳
+- **한계 (솔직히)**: 폐기물이동량 0인 "기타 취급 후보"가 실제로 이 물질을 원료로 더 필요로 한다는 뜻은 아니다 — PRTR은 원료 부족량/구매 의향을 조사하지 않는다. 그리고 대상 물질이 배출량조사 지정 39종(대전 기준)뿐이라 모든 화학물질을 다루진 않는다. 즉 이 리스트는 "검토해볼 후보"이지 확정된 매칭이 아니며, 3단계(화학·법적 검증)·4단계(경제성)에서 개별 기업에 직접 확인이 필요하다.
 
 ### 기업 DB 통합 (대덕구 대기배출업소·제조업공장등록·폐기물배출자 + 유성구 + NCIS PRTR)
 - `data/raw/대전광역시 대덕구_대기배출업소현황_20250904.csv` (178개 사업장, 업종명 포함)
@@ -55,8 +59,10 @@ pip install -r requirements.txt
 python -m scripts.load_ghg_waste
 python -m scripts.load_yuseong_waste
 python -m scripts.load_daedeok_waste
-python -m scripts.load_ncis_prtr        # 공공 서버에 순차 요청, 수십 초 소요
+python -m scripts.load_ncis_prtr          # 공공 서버에 순차 요청, 수십 초 소요
+python -m scripts.load_ncis_entrps_detail # 공공 서버에 순차 요청, 1분 내외
 python -m scripts.build_ncis_waste_registry
+python -m scripts.find_matching_candidates
 python -m scripts.build_company_db
 python -m scripts.find_chemical_companies
 python -m tests.test_match
@@ -68,8 +74,7 @@ python -m tests.test_company_db
 
 ## 다음에 할 일
 
-- NCIS PRTR로 찾은 52개 사업장 × 39개 물질을 실제 매칭 데모(3단계 화학·법적 검증 + 4단계 경제성)로 이어붙이기 — 지금은 "같은 물질을 취급한다"는 사실만 확인했지, 누가 폐기물을 내놓고 누가 원료로 받을지는 아직 모름
+- `data/matching_candidates_ncis.json`의 19종 물질(황산·수산화나트륨 등) 후보쌍 중 1~2개를 골라 3단계(화학·법적 검증: 폐기물관리법 별표5의3, 위험물안전관리법 별표19)와 4단계(경제성: 거리·처리단가 비교)까지 실제로 이어붙여 End-to-End 데모 완성하기 — 지금은 후보를 좁히는 데까지만 왔음
 - `data/company_db.json`의 2,023개 기업 중 폐기물/화학물질 정보가 있는 건 355건(유성구 126 + 대덕구 177 + NCIS 52)뿐 — 나머지는 업종/생산품만 있음
 - `src/match.py`의 word-overlap 유사도가 부족해지면 한국어 문장임베딩(`ko-sroberta` 등)으로 교체
-- 3단계 룰베이스(폐기물관리법 별표5의3, 위험물안전관리법 별표19) 모듈 추가
 - GHG 지정폐기물 합계 불일치(12,154톤 vs 3,600톤) 확인

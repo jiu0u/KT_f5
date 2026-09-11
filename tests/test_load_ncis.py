@@ -33,9 +33,20 @@ def test_sulfuric_acid_companies_match_exactly():
     assert top_candidate.cas_no == sulfuric_acid_cas
 
 
+def test_sulfuric_acid_has_one_confirmed_supplier():
+    candidates = json.loads(
+        (Path(__file__).parent.parent / "data" / "matching_candidates_ncis.json").read_text(encoding="utf-8")
+    )
+    h2so4 = next(c for c in candidates if c["cas_no"] == "007664-93-9")
+    assert len(h2so4["confirmed_suppliers"]) == 1, "황산 실제 폐기물이동량이 확인된 곳은 실측 1곳"
+    assert h2so4["confirmed_suppliers"][0]["amount_ton_per_year"] > 0
+    assert len(h2so4["other_handlers"]) >= 1, "다른 취급 후보가 있어야 매칭할 상대가 생김"
+
+
 def demo():
     test_records_have_real_cas_no()
     test_sulfuric_acid_companies_match_exactly()
+    test_sulfuric_acid_has_one_confirmed_supplier()
     print("OK - NCIS PRTR 실데이터 CAS No. 매칭 자체 점검 통과 (드디어 진짜 매칭 성공)")
 
 

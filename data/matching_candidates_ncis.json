@@ -1,0 +1,724 @@
+[
+  {
+    "cas_no": "001330-20-7",
+    "substance": "자일렌(o-,m-,p- 이성질체 혼합물)",
+    "confirmed_suppliers": [
+      {
+        "company": "(주)농협케미컬",
+        "address": "대전광역시 대덕구 대화로 130  (대화동) (주)농협케미컬",
+        "industry": "화학 물질 및 화학제품 제조업; 의약품 제외",
+        "amount_ton_per_year": 1.92
+      },
+      {
+        "company": "(주)동양환경",
+        "address": "대전광역시 대덕구 문평동로48번길 125",
+        "industry": "폐기물 수집, 운반, 처리 및 원료 재생업",
+        "amount_ton_per_year": 0.692
+      },
+      {
+        "company": "바이엘크롭사이언스(주)",
+        "address": "대전광역시 대덕구 대전로1331번길 141  (대화동) 바이엘크롭사이언스(주)",
+        "industry": "화학 물질 및 화학제품 제조업; 의약품 제외",
+        "amount_ton_per_year": 0.185
+      }
+    ],
+    "other_handlers": []
+  },
+  {
+    "cas_no": "NA-(주10)",
+    "substance": "알루미늄 및 그 화합물",
+    "confirmed_suppliers": [
+      {
+        "company": "(주)농협케미컬",
+        "address": "대전광역시 대덕구 대화로 130  (대화동) (주)농협케미컬",
+        "industry": "화학 물질 및 화학제품 제조업; 의약품 제외",
+        "amount_ton_per_year": 1.5
+      },
+      {
+        "company": "(주)아모레퍼시픽 대전공장",
+        "address": "대전광역시 대덕구 대화로 80 (대화동)",
+        "industry": "화학 물질 및 화학제품 제조업; 의약품 제외",
+        "amount_ton_per_year": 0.024
+      },
+      {
+        "company": "㈜라이온켐텍",
+        "address": "대전광역시 대덕구 대덕대로1277번길 36 1층(문평동)",
+        "industry": "고무 및 플라스틱제품 제조업",
+        "amount_ton_per_year": 3135.768
+      },
+      {
+        "company": "에이치에스효성첨단소재(주) 대전공장",
+        "address": "대전광역시 대덕구 문평서로18번길 90 (문평동) 문평서로18번길 90",
+        "industry": "섬유제품 제조업; 의복 제외",
+        "amount_ton_per_year": 1.651
+      },
+      {
+        "company": "티알벨트랙",
+        "address": "대전광역시 대덕구 대화로106번길 43 (대화동)",
+        "industry": "고무 및 플라스틱제품 제조업",
+        "amount_ton_per_year": 0.176
+      },
+      {
+        "company": "한국타이어앤테크놀로지(주)대전공장",
+        "address": "대전광역시 대덕구 대덕대로1447번길 40  (목상동) 한국타이어",
+        "industry": "고무 및 플라스틱제품 제조업",
+        "amount_ton_per_year": 4.262
+      },
+      {
+        "company": "한솔제지(주) 대전공장",
+        "address": "대전광역시 대덕구 신일서로68번길 50 한솔제지 대전공장",
+        "industry": "펄프, 종이 및 종이제품 제조업",
+        "amount_ton_per_year": 0.011
+      },
+      {
+        "company": "한온시스템(주)",
+        "address": "대전광역시 대덕구 신일서로 95 (신일동) 한온시스템(주) EHS팀",
+        "industry": "자동차 및 트레일러 제조업",
+        "amount_ton_per_year": 0.025
+      },
+      {
+        "company": "한화에어로스페이스(주) 대전사업장",
+        "address": "대전광역시 유성구 외삼로8번길 99 (외삼동)",
+        "industry": "금속 가공제품 제조업; 기계 및 가구 제외",
+        "amount_ton_per_year": 0.558
+      }
+    ],
+    "other_handlers": [
+      {
+        "company": "(주)제이앤드에프",
+        "address": "대전광역시 대덕구 대화로106번길 55 주식회사 제이앤드에프",
+        "industry": "자동차 및 트레일러 제조업",
+        "amount_ton_per_year": 0.0
+      },
+      {
+        "company": "(주)크라운제과 대전공장",
+        "address": "대전광역시 대덕구 신일서로67번길 57 (신일동)",
+        "industry": "식료품 제조업",
+        "amount_ton_per_year": 0.0
+      },
+      {
+        "company": "(주)한나노텍",
+        "address": "대전광역시 대덕구 대덕대로 1330 (신일동)",
+        "industry": "화학 물질 및 화학제품 제조업; 의약품 제외",
+        "amount_ton_per_year": 0.0
+      },
+      {
+        "company": "나노팀 주식회사",
+        "address": "대전광역시 유성구 국제과학2로 14 나노팀 주식회사",
+        "industry": "화학 물질 및 화학제품 제조업; 의약품 제외",
+        "amount_ton_per_year": 0.0
+      },
+      {
+        "company": "대전광역시 상수도사업본부 월평정수사업소",
+        "address": "대전광역시 서구 신갈마로141번길 82 대전광역시 상수도사업본부 월평정수사업소",
+        "industry": "수도업",
+        "amount_ton_per_year": 0.0
+      },
+      {
+        "company": "대전광역시시설관리공단",
+        "address": "대전광역시 유성구 엑스포로 326 (원촌동)",
+        "industry": "하수, 폐수 및 분뇨 처리업",
+        "amount_ton_per_year": 0.0
+      },
+      {
+        "company": "세원화성(주)",
+        "address": "대전광역시 대덕구 대화로52번길 115  (대화동) 세원화성",
+        "industry": "화학 물질 및 화학제품 제조업; 의약품 제외",
+        "amount_ton_per_year": 0.0
+      },
+      {
+        "company": "송촌정수사업소(대전광역시 상수도사업본부)",
+        "address": "대전광역시 대덕구 송촌로 50 송촌정수사업소(대전광역시 상수도사업본부)",
+        "industry": "수도업",
+        "amount_ton_per_year": 0.0
+      },
+      {
+        "company": "신탄진정수사업소",
+        "address": "대전광역시 대덕구 신탄진로756번안길 223  (용호동) 신탄진정수사업소",
+        "industry": "수도업",
+        "amount_ton_per_year": 0.0
+      },
+      {
+        "company": "이엘케이(주)",
+        "address": "대전광역시 유성구 테크노2로 89 관평동 687",
+        "industry": "전자 부품, 컴퓨터, 영상, 음향 및 통신장비 제조업",
+        "amount_ton_per_year": 0.0
+      },
+      {
+        "company": "주)지왕산업",
+        "address": "대전광역시 대덕구 대화로132번안길 34 (대화동) (주)지왕산업",
+        "industry": "하수, 폐수 및 분뇨 처리업",
+        "amount_ton_per_year": 0.0
+      }
+    ]
+  },
+  {
+    "cas_no": "NA-(주15)",
+    "substance": "구리 및 그 화합물",
+    "confirmed_suppliers": [
+      {
+        "company": "(주)농협케미컬",
+        "address": "대전광역시 대덕구 대화로 130  (대화동) (주)농협케미컬",
+        "industry": "화학 물질 및 화학제품 제조업; 의약품 제외",
+        "amount_ton_per_year": 0.32
+      }
+    ],
+    "other_handlers": [
+      {
+        "company": "(주)래트론",
+        "address": "대전광역시 대덕구 대덕대로1448번길 182 (신일동)",
+        "industry": "전자 부품, 컴퓨터, 영상, 음향 및 통신장비 제조업",
+        "amount_ton_per_year": 0.0
+      }
+    ]
+  },
+  {
+    "cas_no": "001310-58-3",
+    "substance": "수산화 칼륨",
+    "confirmed_suppliers": [
+      {
+        "company": "(주)농협케미컬",
+        "address": "대전광역시 대덕구 대화로 130  (대화동) (주)농협케미컬",
+        "industry": "화학 물질 및 화학제품 제조업; 의약품 제외",
+        "amount_ton_per_year": 0.224
+      }
+    ],
+    "other_handlers": [
+      {
+        "company": "(주)로옴코리아",
+        "address": "대전광역시 대덕구 문평서로17번안길 40",
+        "industry": "전자 부품, 컴퓨터, 영상, 음향 및 통신장비 제조업",
+        "amount_ton_per_year": 0.0
+      },
+      {
+        "company": "비비씨",
+        "address": "대전광역시 대덕구 대덕대로1448번길 210 (신일동)",
+        "industry": "고무 및 플라스틱제품 제조업",
+        "amount_ton_per_year": 0.0
+      }
+    ]
+  },
+  {
+    "cas_no": "000108-88-3",
+    "substance": "톨루엔",
+    "confirmed_suppliers": [
+      {
+        "company": "(주)동양환경",
+        "address": "대전광역시 대덕구 문평동로48번길 125",
+        "industry": "폐기물 수집, 운반, 처리 및 원료 재생업",
+        "amount_ton_per_year": 5.281
+      },
+      {
+        "company": "(주)이노켐 대전",
+        "address": "대전광역시 대덕구 신일동로33번길 1 이노켐 대전",
+        "industry": "금속 가공제품 제조업; 기계 및 가구 제외",
+        "amount_ton_per_year": 5.92
+      }
+    ],
+    "other_handlers": [
+      {
+        "company": "세원화성(주)",
+        "address": "대전광역시 대덕구 대화로52번길 115  (대화동) 세원화성",
+        "industry": "화학 물질 및 화학제품 제조업; 의약품 제외",
+        "amount_ton_per_year": 0.0
+      }
+    ]
+  },
+  {
+    "cas_no": "000067-56-1",
+    "substance": "메틸 알코올",
+    "confirmed_suppliers": [
+      {
+        "company": "(주)동양환경",
+        "address": "대전광역시 대덕구 문평동로48번길 125",
+        "industry": "폐기물 수집, 운반, 처리 및 원료 재생업",
+        "amount_ton_per_year": 1.641
+      },
+      {
+        "company": "(주)바이오니아 대덕센터",
+        "address": "대전광역시 대덕구 문평서로 8-11 (문평동)",
+        "industry": "의료용 물질 및 의약품 제조업",
+        "amount_ton_per_year": 10.509
+      },
+      {
+        "company": "(주)삼양홀딩스 엠디(MD)공장",
+        "address": "대전광역시 대덕구 문평서로18번길 55 문평동",
+        "industry": "의료용 물질 및 의약품 제조업",
+        "amount_ton_per_year": 252.831
+      },
+      {
+        "company": "(주)삼양홀딩스 의약공장",
+        "address": "대전광역시 대덕구 신일동로 79 신일동",
+        "industry": "의료용 물질 및 의약품 제조업",
+        "amount_ton_per_year": 13.4
+      }
+    ],
+    "other_handlers": [
+      {
+        "company": "(주)제이앤드에프",
+        "address": "대전광역시 대덕구 대화로106번길 55 주식회사 제이앤드에프",
+        "industry": "자동차 및 트레일러 제조업",
+        "amount_ton_per_year": 0.0
+      }
+    ]
+  },
+  {
+    "cas_no": "000141-78-6",
+    "substance": "아세트산 에틸",
+    "confirmed_suppliers": [
+      {
+        "company": "(주)동양환경",
+        "address": "대전광역시 대덕구 문평동로48번길 125",
+        "industry": "폐기물 수집, 운반, 처리 및 원료 재생업",
+        "amount_ton_per_year": 1.413
+      },
+      {
+        "company": "(주)바이오니아 대덕센터",
+        "address": "대전광역시 대덕구 문평서로 8-11 (문평동)",
+        "industry": "의료용 물질 및 의약품 제조업",
+        "amount_ton_per_year": 10.828
+      },
+      {
+        "company": "(주)삼양홀딩스 엠디(MD)공장",
+        "address": "대전광역시 대덕구 문평서로18번길 55 문평동",
+        "industry": "의료용 물질 및 의약품 제조업",
+        "amount_ton_per_year": 11.434
+      },
+      {
+        "company": "(주)한켐",
+        "address": "대전광역시 유성구 테크노11로 55-11 (탑립동)",
+        "industry": "화학 물질 및 화학제품 제조업; 의약품 제외",
+        "amount_ton_per_year": 49.0
+      }
+    ],
+    "other_handlers": []
+  },
+  {
+    "cas_no": "000075-09-2",
+    "substance": "디클로로메탄",
+    "confirmed_suppliers": [
+      {
+        "company": "(주)동양환경",
+        "address": "대전광역시 대덕구 문평동로48번길 125",
+        "industry": "폐기물 수집, 운반, 처리 및 원료 재생업",
+        "amount_ton_per_year": 0.156
+      },
+      {
+        "company": "(주)바이오니아 대덕센터",
+        "address": "대전광역시 대덕구 문평서로 8-11 (문평동)",
+        "industry": "의료용 물질 및 의약품 제조업",
+        "amount_ton_per_year": 13.306
+      },
+      {
+        "company": "(주)삼양홀딩스 엠디(MD)공장",
+        "address": "대전광역시 대덕구 문평서로18번길 55 문평동",
+        "industry": "의료용 물질 및 의약품 제조업",
+        "amount_ton_per_year": 23.592
+      },
+      {
+        "company": "(주)삼양홀딩스 의약공장",
+        "address": "대전광역시 대덕구 신일동로 79 신일동",
+        "industry": "의료용 물질 및 의약품 제조업",
+        "amount_ton_per_year": 31.928
+      }
+    ],
+    "other_handlers": [
+      {
+        "company": "(주)래트론",
+        "address": "대전광역시 대덕구 대덕대로1448번길 182 (신일동)",
+        "industry": "전자 부품, 컴퓨터, 영상, 음향 및 통신장비 제조업",
+        "amount_ton_per_year": 0.0
+      }
+    ]
+  },
+  {
+    "cas_no": "000067-63-0",
+    "substance": "2-프로판올",
+    "confirmed_suppliers": [
+      {
+        "company": "(주)동양환경",
+        "address": "대전광역시 대덕구 문평동로48번길 125",
+        "industry": "폐기물 수집, 운반, 처리 및 원료 재생업",
+        "amount_ton_per_year": 0.144
+      },
+      {
+        "company": "주식회사 켐옵틱스",
+        "address": "대전광역시 유성구 테크노2로 261 (탑립동)",
+        "industry": "전자 부품, 컴퓨터, 영상, 음향 및 통신장비 제조업",
+        "amount_ton_per_year": 58.106
+      }
+    ],
+    "other_handlers": []
+  },
+  {
+    "cas_no": "001310-73-2",
+    "substance": "수산화 나트륨",
+    "confirmed_suppliers": [
+      {
+        "company": "(주)알루코 제5공장",
+        "address": "대전광역시 대덕구 대화로 220  (대화동) (주) 알루코 제5공장",
+        "industry": "1차 금속 제조업",
+        "amount_ton_per_year": 0.129
+      }
+    ],
+    "other_handlers": [
+      {
+        "company": "(주)동양환경",
+        "address": "대전광역시 대덕구 문평동로48번길 125",
+        "industry": "폐기물 수집, 운반, 처리 및 원료 재생업",
+        "amount_ton_per_year": 0.0
+      },
+      {
+        "company": "(주)선양소주",
+        "address": "대전광역시 서구 영골길 158 (㈜맥키스컴퍼니대전공장)",
+        "industry": "음료 제조업",
+        "amount_ton_per_year": 0.0
+      },
+      {
+        "company": "(주)알루코 제2공장",
+        "address": "대전광역시 대덕구 대화로 100 (주)알루코 제2공장",
+        "industry": "1차 금속 제조업",
+        "amount_ton_per_year": 0.0
+      },
+      {
+        "company": "(주)제이앤드에프",
+        "address": "대전광역시 대덕구 대화로106번길 55 주식회사 제이앤드에프",
+        "industry": "자동차 및 트레일러 제조업",
+        "amount_ton_per_year": 0.0
+      },
+      {
+        "company": "(주)진합",
+        "address": "대전광역시 대덕구 문평서로 42 (문평동)",
+        "industry": "자동차 및 트레일러 제조업",
+        "amount_ton_per_year": 0.0
+      },
+      {
+        "company": "(주)피앤씨테크",
+        "address": "대전광역시 대덕구 신일동로67번길 24  (신일동) 1층",
+        "industry": "금속 가공제품 제조업; 기계 및 가구 제외",
+        "amount_ton_per_year": 0.0
+      },
+      {
+        "company": "대전그린에너지센터(주)",
+        "address": "대전광역시 유성구 불무로 186 일원(금고동)",
+        "industry": "폐기물 수집, 운반, 처리 및 원료 재생업",
+        "amount_ton_per_year": 0.0
+      },
+      {
+        "company": "대전열병합발전(주)",
+        "address": "대전광역시 대덕구 신일서로68번길 71 (신일동)",
+        "industry": "전기, 가스, 증기 및 공기 조절 공급업",
+        "amount_ton_per_year": 0.0
+      },
+      {
+        "company": "대청산업",
+        "address": "대전광역시 대덕구 신일서로 104번길 24 (신일동)",
+        "industry": "섬유제품 제조업; 의복 제외",
+        "amount_ton_per_year": 0.0
+      },
+      {
+        "company": "롯데웰푸드(주) 대전공장",
+        "address": "대전광역시 대덕구 문평동로18번길 21 롯데웰푸드(주) 대전공장",
+        "industry": "식료품 제조업",
+        "amount_ton_per_year": 0.0
+      },
+      {
+        "company": "롯데칠성음료(주)대전공장",
+        "address": "대전광역시 대덕구 문평서로 57  (문평동) 문평서로 57",
+        "industry": "음료 제조업",
+        "amount_ton_per_year": 0.0
+      },
+      {
+        "company": "비비씨",
+        "address": "대전광역시 대덕구 대덕대로1448번길 210 (신일동)",
+        "industry": "고무 및 플라스틱제품 제조업",
+        "amount_ton_per_year": 0.0
+      },
+      {
+        "company": "신탄진정수사업소",
+        "address": "대전광역시 대덕구 신탄진로756번안길 223  (용호동) 신탄진정수사업소",
+        "industry": "수도업",
+        "amount_ton_per_year": 0.0
+      },
+      {
+        "company": "태아산업(주)",
+        "address": "대전광역시 대덕구 대전로1331번길 75 (읍내동)",
+        "industry": "담배 제조업",
+        "amount_ton_per_year": 0.0
+      },
+      {
+        "company": "한국수출포장공업㈜대전공장",
+        "address": "대전광역시 대덕구 신일동로 42  (신일동) 한국수출포장공업 대전공장",
+        "industry": "펄프, 종이 및 종이제품 제조업",
+        "amount_ton_per_year": 0.0
+      },
+      {
+        "company": "한백섬유(주)",
+        "address": "대전광역시 대덕구 대전로1331번길 310 (대화동)",
+        "industry": "섬유제품 제조업; 의복 제외",
+        "amount_ton_per_year": 0.0
+      },
+      {
+        "company": "한솔제지(주) 대전공장",
+        "address": "대전광역시 대덕구 신일서로68번길 50 한솔제지 대전공장",
+        "industry": "펄프, 종이 및 종이제품 제조업",
+        "amount_ton_per_year": 0.0
+      },
+      {
+        "company": "한솔제지(주)신탄진공장",
+        "address": "대전광역시 대덕구 신일서로126번길 60 (신일동)",
+        "industry": "펄프, 종이 및 종이제품 제조업",
+        "amount_ton_per_year": 0.0
+      },
+      {
+        "company": "한전원자력연료(주)TSA플랜트",
+        "address": "대전광역시 유성구 테크노6로 8",
+        "industry": "금속 가공제품 제조업; 기계 및 가구 제외",
+        "amount_ton_per_year": 0.0
+      }
+    ]
+  },
+  {
+    "cas_no": "NA-(주18)",
+    "substance": "주석 및 그 화합물",
+    "confirmed_suppliers": [
+      {
+        "company": "한국앤컴퍼니(주) 대전공장",
+        "address": "대전광역시 대덕구 대전로1331번길 185 한국앤컴퍼니(주) 대전공장",
+        "industry": "전기장비 제조업",
+        "amount_ton_per_year": 2.288
+      }
+    ],
+    "other_handlers": [
+      {
+        "company": "(주)래트론",
+        "address": "대전광역시 대덕구 대덕대로1448번길 182 (신일동)",
+        "industry": "전자 부품, 컴퓨터, 영상, 음향 및 통신장비 제조업",
+        "amount_ton_per_year": 0.0
+      }
+    ]
+  },
+  {
+    "cas_no": "NA-(주1)",
+    "substance": "납 및 그 화합물",
+    "confirmed_suppliers": [
+      {
+        "company": "한국앤컴퍼니(주) 대전공장",
+        "address": "대전광역시 대덕구 대전로1331번길 185 한국앤컴퍼니(주) 대전공장",
+        "industry": "전기장비 제조업",
+        "amount_ton_per_year": 1079.975
+      }
+    ],
+    "other_handlers": [
+      {
+        "company": "(주)로옴코리아",
+        "address": "대전광역시 대덕구 문평서로17번안길 40",
+        "industry": "전자 부품, 컴퓨터, 영상, 음향 및 통신장비 제조업",
+        "amount_ton_per_year": 0.0
+      }
+    ]
+  },
+  {
+    "cas_no": "000110-54-3",
+    "substance": "n-헥산",
+    "confirmed_suppliers": [
+      {
+        "company": "(주)삼양홀딩스 의약공장",
+        "address": "대전광역시 대덕구 신일동로 79 신일동",
+        "industry": "의료용 물질 및 의약품 제조업",
+        "amount_ton_per_year": 5.434
+      },
+      {
+        "company": "(주)한켐",
+        "address": "대전광역시 유성구 테크노11로 55-11 (탑립동)",
+        "industry": "화학 물질 및 화학제품 제조업; 의약품 제외",
+        "amount_ton_per_year": 18.522
+      }
+    ],
+    "other_handlers": []
+  },
+  {
+    "cas_no": "007664-93-9",
+    "substance": "황산",
+    "confirmed_suppliers": [
+      {
+        "company": "한국앤컴퍼니(주) 대전공장",
+        "address": "대전광역시 대덕구 대전로1331번길 185 한국앤컴퍼니(주) 대전공장",
+        "industry": "전기장비 제조업",
+        "amount_ton_per_year": 45.136
+      }
+    ],
+    "other_handlers": [
+      {
+        "company": "(주)선양소주",
+        "address": "대전광역시 서구 영골길 158 (㈜맥키스컴퍼니대전공장)",
+        "industry": "음료 제조업",
+        "amount_ton_per_year": 0.0
+      },
+      {
+        "company": "(주)알루코 제2공장",
+        "address": "대전광역시 대덕구 대화로 100 (주)알루코 제2공장",
+        "industry": "1차 금속 제조업",
+        "amount_ton_per_year": 0.0
+      },
+      {
+        "company": "대전그린에너지센터(주)",
+        "address": "대전광역시 유성구 불무로 186 일원(금고동)",
+        "industry": "폐기물 수집, 운반, 처리 및 원료 재생업",
+        "amount_ton_per_year": 0.0
+      },
+      {
+        "company": "비비씨",
+        "address": "대전광역시 대덕구 대덕대로1448번길 210 (신일동)",
+        "industry": "고무 및 플라스틱제품 제조업",
+        "amount_ton_per_year": 0.0
+      },
+      {
+        "company": "한솔제지(주) 대전공장",
+        "address": "대전광역시 대덕구 신일서로68번길 50 한솔제지 대전공장",
+        "industry": "펄프, 종이 및 종이제품 제조업",
+        "amount_ton_per_year": 0.0
+      },
+      {
+        "company": "한솔제지(주)신탄진공장",
+        "address": "대전광역시 대덕구 신일서로126번길 60 (신일동)",
+        "industry": "펄프, 종이 및 종이제품 제조업",
+        "amount_ton_per_year": 0.0
+      },
+      {
+        "company": "한일제관㈜ 대전공장",
+        "address": "대전광역시 대덕구 대덕대로1448번길 50 한일제관㈜ 대전공장",
+        "industry": "금속 가공제품 제조업; 기계 및 가구 제외",
+        "amount_ton_per_year": 0.0
+      }
+    ]
+  },
+  {
+    "cas_no": "NA-(주20)",
+    "substance": "아연 및 그 화합물",
+    "confirmed_suppliers": [
+      {
+        "company": "(주)피앤씨테크",
+        "address": "대전광역시 대덕구 신일동로67번길 24  (신일동) 1층",
+        "industry": "금속 가공제품 제조업; 기계 및 가구 제외",
+        "amount_ton_per_year": 0.003
+      },
+      {
+        "company": "티알벨트랙",
+        "address": "대전광역시 대덕구 대화로106번길 43 (대화동)",
+        "industry": "고무 및 플라스틱제품 제조업",
+        "amount_ton_per_year": 0.993
+      },
+      {
+        "company": "한국타이어앤테크놀로지(주)대전공장",
+        "address": "대전광역시 대덕구 대덕대로1447번길 40  (목상동) 한국타이어",
+        "industry": "고무 및 플라스틱제품 제조업",
+        "amount_ton_per_year": 5.858
+      }
+    ],
+    "other_handlers": [
+      {
+        "company": "(주)제이앤드에프",
+        "address": "대전광역시 대덕구 대화로106번길 55 주식회사 제이앤드에프",
+        "industry": "자동차 및 트레일러 제조업",
+        "amount_ton_per_year": 0.0
+      },
+      {
+        "company": "세원화성(주)",
+        "address": "대전광역시 대덕구 대화로52번길 115  (대화동) 세원화성",
+        "industry": "화학 물질 및 화학제품 제조업; 의약품 제외",
+        "amount_ton_per_year": 0.0
+      },
+      {
+        "company": "에이치에스효성첨단소재(주) 대전공장",
+        "address": "대전광역시 대덕구 문평서로18번길 90 (문평동) 문평서로18번길 90",
+        "industry": "섬유제품 제조업; 의복 제외",
+        "amount_ton_per_year": 0.0
+      }
+    ]
+  },
+  {
+    "cas_no": "NA-(주3)",
+    "substance": "니켈 및 그 화합물",
+    "confirmed_suppliers": [
+      {
+        "company": "(주)피앤씨테크",
+        "address": "대전광역시 대덕구 신일동로67번길 24  (신일동) 1층",
+        "industry": "금속 가공제품 제조업; 기계 및 가구 제외",
+        "amount_ton_per_year": 0.001
+      }
+    ],
+    "other_handlers": [
+      {
+        "company": "(주)제이앤드에프",
+        "address": "대전광역시 대덕구 대화로106번길 55 주식회사 제이앤드에프",
+        "industry": "자동차 및 트레일러 제조업",
+        "amount_ton_per_year": 0.0
+      }
+    ]
+  },
+  {
+    "cas_no": "NA-(주7)",
+    "substance": "크롬 및 그 화합물",
+    "confirmed_suppliers": [
+      {
+        "company": "(주)피앤씨테크",
+        "address": "대전광역시 대덕구 신일동로67번길 24  (신일동) 1층",
+        "industry": "금속 가공제품 제조업; 기계 및 가구 제외",
+        "amount_ton_per_year": 0.002
+      },
+      {
+        "company": "대한이연(주) 제1공장",
+        "address": "대전광역시 대덕구 평촌2길 24 대한이연(주) 제1공장",
+        "industry": "자동차 및 트레일러 제조업",
+        "amount_ton_per_year": 0.067
+      }
+    ],
+    "other_handlers": [
+      {
+        "company": "한온시스템(주)",
+        "address": "대전광역시 대덕구 신일서로 95 (신일동) 한온시스템(주) EHS팀",
+        "industry": "자동차 및 트레일러 제조업",
+        "amount_ton_per_year": 0.0
+      }
+    ]
+  },
+  {
+    "cas_no": "007704-34-9",
+    "substance": "황",
+    "confirmed_suppliers": [
+      {
+        "company": "티알벨트랙",
+        "address": "대전광역시 대덕구 대화로106번길 43 (대화동)",
+        "industry": "고무 및 플라스틱제품 제조업",
+        "amount_ton_per_year": 0.438
+      },
+      {
+        "company": "한국타이어앤테크놀로지(주)대전공장",
+        "address": "대전광역시 대덕구 대덕대로1447번길 40  (목상동) 한국타이어",
+        "industry": "고무 및 플라스틱제품 제조업",
+        "amount_ton_per_year": 1.096
+      }
+    ],
+    "other_handlers": []
+  },
+  {
+    "cas_no": "NA-(주11)",
+    "substance": "안티몬 및 그 화합물",
+    "confirmed_suppliers": [
+      {
+        "company": "티알벨트랙",
+        "address": "대전광역시 대덕구 대화로106번길 43 (대화동)",
+        "industry": "고무 및 플라스틱제품 제조업",
+        "amount_ton_per_year": 0.231
+      },
+      {
+        "company": "한국앤컴퍼니(주) 대전공장",
+        "address": "대전광역시 대덕구 대전로1331번길 185 한국앤컴퍼니(주) 대전공장",
+        "industry": "전기장비 제조업",
+        "amount_ton_per_year": 4.254
+      }
+    ],
+    "other_handlers": []
+  }
+]
