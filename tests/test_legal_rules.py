@@ -29,8 +29,15 @@ def test_mixing_same_class_is_unknown_not_incompatible():
     assert result.verdict == "미상"
 
 
+def test_mixing_confirmed_not_hazmat():
+    # 황산·수산화나트륨은 "모름"이 아니라 "확인된 위험물 아님" - 미적용이어야 함
+    result = check_mixing_compatibility("007664-93-9", "000108-88-3")
+    assert result.verdict == "미적용"
+    assert "황산" in result.note
+
+
 def test_mixing_unknown_class():
-    result = check_mixing_compatibility("007664-93-9", "000108-88-3")  # 황산은 유별 미상
+    result = check_mixing_compatibility("000108-88-3", "999999-99-9")  # 존재 안 하는 CAS = 진짜 미상
     assert result.verdict == "미상"
 
 
@@ -90,6 +97,7 @@ def demo():
     test_water_treatment_reuse_not_applicable_for_non_acid()
     test_mixing_incompatible_classes()
     test_mixing_same_class_is_unknown_not_incompatible()
+    test_mixing_confirmed_not_hazmat()
     test_mixing_unknown_class()
     test_solvent_quality_not_applicable_for_non_solvent()
     test_solvent_quality_unknown_without_test_data()
