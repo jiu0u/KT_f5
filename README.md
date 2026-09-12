@@ -2,6 +2,8 @@
 
 DSC 공유대학×KT AI 활용 지역문제 해결 캠프 제출용 프로토타입. 전체 스펙은 [CLAUDE.md](CLAUDE.md) 참고.
 
+**진행 현황 한 페이지 요약**: [docs/report.html](docs/report.html) — 브라우저로 열면 전체 파이프라인 진행도, 황산 매칭 사례, 19종 물질 요약표, 데이터 출처, 한계를 한 번에 볼 수 있다(`python -m scripts.generate_report`로 만든 `data/full_matching_report.json` 기반, 발표자료 초안으로 바로 써도 됨).
+
 ## 데모 실행
 
 ```bash

@@ -1,0 +1,410 @@
+<title>반도체 순환경제 매칭 리포트</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<style>
+:root{
+  --ink:#1a2420; --ink-soft:#48564f; --ink-faint:#7c8b84;
+  --paper:#eef1ee; --surface:#ffffff; --surface-2:#f6f8f6; --line:#d7ddd6;
+  --accent:#2b6f77; --accent-soft:#dfeceb; --accent-ink:#0f3d42;
+  --ok:#54732f; --ok-soft:#e6edd9; --ok-ink:#33471c;
+  --warn:#a84f39; --warn-soft:#f3e0d8; --warn-ink:#6b2f20;
+  --font-display:'IBM Plex Sans KR', 'Noto Sans KR', sans-serif;
+  --font-body:'IBM Plex Sans KR', 'Noto Sans KR', sans-serif;
+  --font-mono:'IBM Plex Mono', 'D2Coding', monospace;
+  --radius:10px;
+  --shadow:0 1px 2px rgba(15,30,25,.06), 0 6px 20px -8px rgba(15,30,25,.12);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --ink:#dfe6e2; --ink-soft:#aab6af; --ink-faint:#71827b;
+    --paper:#101615; --surface:#171f1e; --surface-2:#1c2624; --line:#2a3634;
+    --accent:#5db3ab; --accent-soft:#1b3634; --accent-ink:#bfe9e4;
+    --ok:#96b56d; --ok-soft:#233420; --ok-ink:#c9dfa9;
+    --warn:#dd8a6c; --warn-soft:#3a241c; --warn-ink:#f0bfa9;
+    --shadow:0 1px 2px rgba(0,0,0,.3), 0 8px 24px -10px rgba(0,0,0,.5);
+  }
+}
+:root[data-theme="dark"]{
+  --ink:#dfe6e2; --ink-soft:#aab6af; --ink-faint:#71827b;
+  --paper:#101615; --surface:#171f1e; --surface-2:#1c2624; --line:#2a3634;
+  --accent:#5db3ab; --accent-soft:#1b3634; --accent-ink:#bfe9e4;
+  --ok:#96b56d; --ok-soft:#233420; --ok-ink:#c9dfa9;
+  --warn:#dd8a6c; --warn-soft:#3a241c; --warn-ink:#f0bfa9;
+  --shadow:0 1px 2px rgba(0,0,0,.3), 0 8px 24px -10px rgba(0,0,0,.5);
+}
+
+*{box-sizing:border-box;}
+body{
+  background:var(--paper); color:var(--ink); font-family:var(--font-body);
+  font-size:15px; line-height:1.6; -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3{font-family:var(--font-display); text-wrap:balance; margin:0; color:var(--ink);}
+.mono{font-family:var(--font-mono);}
+.tnum{font-variant-numeric:tabular-nums;}
+
+.wrap{max-width:1040px; margin:0 auto; padding:56px 28px 80px;}
+
+/* ---------- header ---------- */
+header{margin-bottom:44px;}
+.eyebrow{
+  font-family:var(--font-mono); font-size:12px; letter-spacing:.08em; text-transform:uppercase;
+  color:var(--accent); font-weight:600; margin-bottom:12px; display:flex; align-items:center; gap:8px;
+}
+.eyebrow::before{content:""; width:7px; height:7px; border-radius:50%; background:var(--accent); display:inline-block;}
+h1{font-size:34px; font-weight:700; letter-spacing:-.01em; margin-bottom:10px;}
+.sub{color:var(--ink-soft); font-size:16px; max-width:640px;}
+.meta{
+  margin-top:20px; padding-top:20px; border-top:1px solid var(--line);
+  display:flex; flex-wrap:wrap; gap:24px; font-size:13px; color:var(--ink-faint); font-family:var(--font-mono);
+}
+.meta b{color:var(--ink-soft); font-weight:500;}
+
+/* ---------- stats ---------- */
+.stats{
+  display:grid; grid-template-columns:repeat(4,1fr); gap:1px;
+  background:var(--line); border:1px solid var(--line); border-radius:var(--radius);
+  overflow:hidden; margin-bottom:56px;
+}
+.stat{background:var(--surface); padding:20px 18px;}
+.stat .num{font-family:var(--font-mono); font-size:28px; font-weight:600; color:var(--accent-ink); letter-spacing:-.02em;}
+.stat .label{font-size:12.5px; color:var(--ink-soft); margin-top:4px; line-height:1.4;}
+
+/* ---------- section heading ---------- */
+section{margin-bottom:56px;}
+.section-head{display:flex; align-items:baseline; justify-content:space-between; gap:16px; margin-bottom:20px; flex-wrap:wrap;}
+.section-head h2{font-size:20px; font-weight:700;}
+.section-note{font-size:13px; color:var(--ink-faint); max-width:420px; text-align:right;}
+
+/* ---------- pipeline ---------- */
+.pipeline{display:grid; grid-template-columns:repeat(5,1fr); gap:12px;}
+.stage{
+  background:var(--surface); border:1px solid var(--line); border-radius:var(--radius);
+  padding:16px 14px; display:flex; flex-direction:column; gap:8px; box-shadow:var(--shadow);
+}
+.stage .n{font-family:var(--font-mono); font-size:12px; color:var(--ink-faint);}
+.stage .name{font-weight:600; font-size:14.5px;}
+.badge{
+  align-self:flex-start; font-size:11px; font-weight:600; padding:3px 8px; border-radius:100px;
+  font-family:var(--font-mono); letter-spacing:.02em;
+}
+.badge.ok{background:var(--ok-soft); color:var(--ok-ink);}
+.badge.warn{background:var(--warn-soft); color:var(--warn-ink);}
+.stage p{font-size:12.5px; color:var(--ink-soft); margin:0; line-height:1.5;}
+
+/* ---------- case study ---------- */
+.case{
+  background:var(--surface); border:1px solid var(--line); border-radius:14px; padding:28px;
+  box-shadow:var(--shadow);
+}
+.case-top{display:flex; justify-content:space-between; align-items:flex-start; gap:20px; flex-wrap:wrap; margin-bottom:22px;}
+.case-title{display:flex; align-items:baseline; gap:10px;}
+.case-title h3{font-size:22px;}
+.case-title .cas{font-family:var(--font-mono); font-size:13px; color:var(--ink-faint);}
+.supplier-card{
+  display:flex; gap:16px; align-items:center; background:var(--accent-soft); border-radius:10px;
+  padding:14px 16px; margin-bottom:20px;
+}
+.supplier-card .tag{
+  font-family:var(--font-mono); font-size:11px; font-weight:600; letter-spacing:.03em; text-transform:uppercase;
+  color:var(--accent-ink); background:var(--surface); padding:4px 9px; border-radius:100px; white-space:nowrap;
+}
+.supplier-card .name{font-weight:600; font-size:15px;}
+.supplier-card .addr{font-size:12.5px; color:var(--ink-soft);}
+.supplier-card .amount{margin-left:auto; text-align:right;}
+.supplier-card .amount .v{font-family:var(--font-mono); font-size:20px; font-weight:600; color:var(--accent-ink);}
+.supplier-card .amount .u{font-size:11.5px; color:var(--ink-soft);}
+
+table{width:100%; border-collapse:collapse; font-size:13.5px;}
+th{
+  text-align:left; font-size:11px; text-transform:uppercase; letter-spacing:.04em; color:var(--ink-faint);
+  font-weight:600; padding:0 10px 8px; border-bottom:1px solid var(--line);
+}
+td{padding:10px 10px; border-bottom:1px solid var(--line); vertical-align:middle;}
+tr:last-child td{border-bottom:none;}
+td.num, th.num{text-align:right; font-family:var(--font-mono);}
+.rank{
+  display:inline-flex; align-items:center; justify-content:center; width:22px; height:22px; border-radius:6px;
+  background:var(--surface-2); font-family:var(--font-mono); font-size:12px; font-weight:600; color:var(--ink-soft);
+}
+.rank.first{background:var(--accent); color:var(--surface);}
+.chip{font-size:11.5px; font-weight:600; padding:3px 9px; border-radius:100px; white-space:nowrap; display:inline-block;}
+.chip.ok{background:var(--ok-soft); color:var(--ok-ink);}
+.chip.warn{background:var(--warn-soft); color:var(--warn-ink);}
+.scroll-x{overflow-x:auto;}
+.case-foot{margin-top:16px; font-size:12.5px; color:var(--ink-faint);}
+
+/* ---------- full table ---------- */
+.full-table-wrap{background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); padding:6px 18px; box-shadow:var(--shadow);}
+.full-table-wrap table{font-size:13px;}
+.full-table-wrap td, .full-table-wrap th{padding:9px 8px;}
+.subst{font-weight:500;}
+.subst .cas{display:block; font-family:var(--font-mono); font-size:10.5px; color:var(--ink-faint); margin-top:1px;}
+.dim{color:var(--ink-faint);}
+
+/* ---------- sources ---------- */
+.sources{display:grid; gap:10px;}
+.source{
+  display:grid; grid-template-columns:200px 90px 1fr; gap:16px; align-items:start;
+  background:var(--surface); border:1px solid var(--line); border-radius:10px; padding:14px 16px; box-shadow:var(--shadow);
+}
+.source .name{font-weight:600; font-size:14px;}
+.source .name span{display:block; font-size:11.5px; color:var(--ink-faint); font-weight:400; margin-top:2px;}
+.source .count{font-family:var(--font-mono); font-weight:600; color:var(--accent-ink); font-size:15px;}
+.source .note{font-size:12.5px; color:var(--ink-soft); line-height:1.5;}
+
+/* ---------- limits ---------- */
+.limits{
+  background:var(--warn-soft); border:1px solid color-mix(in srgb, var(--warn) 35%, var(--line));
+  border-radius:var(--radius); padding:20px 22px;
+}
+.limits h3{font-size:14px; color:var(--warn-ink); margin-bottom:12px; font-family:var(--font-mono); text-transform:uppercase; letter-spacing:.03em;}
+.limits ul{margin:0; padding-left:18px; display:grid; gap:8px;}
+.limits li{font-size:13.5px; color:var(--ink); line-height:1.55;}
+
+footer{
+  margin-top:64px; padding-top:20px; border-top:1px solid var(--line);
+  font-size:12.5px; color:var(--ink-faint); display:flex; justify-content:space-between; flex-wrap:wrap; gap:8px;
+}
+
+@media (max-width:760px){
+  .stats{grid-template-columns:repeat(2,1fr);}
+  .pipeline{grid-template-columns:repeat(2,1fr);}
+  .source{grid-template-columns:1fr; gap:6px;}
+}
+</style>
+
+<div class="wrap">
+
+  <header>
+    <div class="eyebrow">DSC 공유대학 × KT · AI 활용 지역문제 해결 캠프</div>
+    <h1>반도체 폐기물 순환경제 매칭 AI</h1>
+    <p class="sub">대전 유성구·대덕구·동구의 실측 폐기물·화학물질 데이터로 "누가 무엇을 배출하고, 누가 그걸 받을 수 있는가"를 자동으로 좁혀보는 프로토타입 진행 보고.</p>
+    <div class="meta">
+      <span><b>대상 지역</b> 대전광역시 5개 구 중 3개(유성·대덕·동구 데이터 공개, 서·중구는 미공개)</span>
+      <span><b>기준 연도</b> 2024</span>
+      <span><b>커밋</b> 15건 · 자체 점검 테스트 9개 통과</span>
+    </div>
+  </header>
+
+  <div class="stats">
+    <div class="stat"><div class="num tnum">2,059</div><div class="label">통합 기업 DB (중복 제거)</div></div>
+    <div class="stat"><div class="num tnum">52</div><div class="label">CAS No. 확인된 화학물질 취급 사업장</div></div>
+    <div class="stat"><div class="num tnum">19<span style="font-size:15px;color:var(--ink-faint)">종</span></div><div class="label">매칭 후보가 있는 물질</div></div>
+    <div class="stat"><div class="num tnum">57<span style="font-size:15px;color:var(--ink-faint)">/132</span></div><div class="label">실제 폐기물이동량이 확인된 (물질,사업장) 쌍</div></div>
+  </div>
+
+  <section>
+    <div class="section-head">
+      <h2>5단계 파이프라인 진행도</h2>
+      <div class="section-note">완료 = 실데이터로 채움 · 부분구현 = 동작은 하지만 근거가 좁음</div>
+    </div>
+    <div class="pipeline">
+      <div class="stage">
+        <span class="n">01</span>
+        <span class="name">정보구조화</span>
+        <span class="badge ok">완료</span>
+        <p>PRTR 132건에 실제 CAS No.·배출량(kg) 반영</p>
+      </div>
+      <div class="stage">
+        <span class="n">02</span>
+        <span class="name">AI 후보탐색</span>
+        <span class="badge ok">완료</span>
+        <p>CAS 완전일치 → word-overlap 유사도 순 Top-K</p>
+      </div>
+      <div class="stage">
+        <span class="n">03</span>
+        <span class="name">화학·법적 검증</span>
+        <span class="badge warn">부분구현</span>
+        <p>별표5의3 R-4-9·R-4-6, 별표19 혼재기준 딱 3개 규칙만</p>
+      </div>
+      <div class="stage">
+        <span class="n">04</span>
+        <span class="name">경제성·물류</span>
+        <span class="badge warn">부분구현</span>
+        <p>지오코딩 없이 "같은 구인지"만 보는 근접도 프록시</p>
+      </div>
+      <div class="stage">
+        <span class="n">05</span>
+        <span class="name">TOPSIS</span>
+        <span class="badge warn">부분구현</span>
+        <p>근접도·종업원수 2개 기준, 가중치 0.5/0.5 임시값</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-head">
+      <h2>사례: 황산 (CAS 007664-93-9)</h2>
+      <div class="section-note"><code class="mono">python -m scripts.demo --cas 007664-93-9</code></div>
+    </div>
+    <div class="case">
+      <div class="case-top">
+        <div class="case-title">
+          <h3>확인된 공급 후보 1곳 → 기타 취급 후보 7곳 순위</h3>
+        </div>
+      </div>
+
+      <div class="supplier-card">
+        <span class="tag">공급 확인</span>
+        <div>
+          <div class="name">한국앤컴퍼니(주) 대전공장</div>
+          <div class="addr">대덕구 · 전기장비 제조업 · PRTR 2024 폐기물이동량 실측</div>
+        </div>
+        <div class="amount">
+          <div class="v tnum">45.1</div>
+          <div class="u">톤/년</div>
+        </div>
+      </div>
+
+      <div class="scroll-x">
+        <table>
+          <thead>
+            <tr>
+              <th>순위</th><th>기업</th><th>구</th><th class="num">종업원</th><th class="num">근접도</th><th class="num">TOPSIS</th><th>3단계 판정</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="rank first">1</span></td>
+              <td>한솔제지(주) 대전공장</td><td>대덕구</td>
+              <td class="num tnum">360</td><td class="num tnum">1.0</td><td class="num tnum">1.000</td>
+              <td><span class="chip warn">미상</span></td>
+            </tr>
+            <tr>
+              <td><span class="rank">2</span></td>
+              <td>한솔제지(주) 신탄진공장</td><td>대덕구</td>
+              <td class="num tnum">172</td><td class="num tnum">1.0</td><td class="num tnum">0.466</td>
+              <td><span class="chip warn">미상</span></td>
+            </tr>
+            <tr>
+              <td><span class="rank">3</span></td>
+              <td>한일제관㈜ 대전공장</td><td>대덕구</td>
+              <td class="num tnum">170</td><td class="num tnum">1.0</td><td class="num tnum">0.461</td>
+              <td><span class="chip warn">미상</span></td>
+            </tr>
+            <tr>
+              <td><span class="rank">4</span></td>
+              <td>(주)선양소주</td><td>서구</td>
+              <td class="num tnum">170</td><td class="num tnum">0.5</td><td class="num tnum">0.366</td>
+              <td><span class="chip warn">미상</span></td>
+            </tr>
+            <tr>
+              <td><span class="rank">5</span></td>
+              <td>비비씨</td><td>대덕구</td>
+              <td class="num tnum">114</td><td class="num tnum">1.0</td><td class="num tnum">0.336</td>
+              <td><span class="chip warn">미상</span></td>
+            </tr>
+            <tr>
+              <td><span class="rank">6</span></td>
+              <td>(주)알루코 제2공장</td><td>대덕구</td>
+              <td class="num tnum">45</td><td class="num tnum">1.0</td><td class="num tnum">0.247</td>
+              <td><span class="chip warn">미상</span></td>
+            </tr>
+            <tr>
+              <td><span class="rank">7</span></td>
+              <td>대전그린에너지센터(주)</td><td>유성구</td>
+              <td class="num tnum">58</td><td class="num tnum">0.5</td><td class="num tnum">0.039</td>
+              <td><span class="chip ok">가능성있음</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="case-foot">TOPSIS 1위는 한솔제지지만, 3단계에서 "가능성있음"(별표5의3 R-4-9, 폐산 수처리제 재활용)이 뜨는 건 업종이 폐기물처리업인 대전그린에너지센터 하나뿐 — 순위와 법적 근거는 별개로 봐야 함.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-head">
+      <h2>19종 물질 전체 요약</h2>
+      <div class="section-note">공급후보 = 폐기물이동량 &gt; 0 확인 · 3단계 근거 = R-4-9/R-4-6/별표19 중 하나라도 "가능성있음"</div>
+    </div>
+    <div class="full-table-wrap scroll-x">
+      <table>
+        <thead>
+          <tr>
+            <th>물질</th><th class="num">공급량</th><th class="num">공급처</th><th class="num">기타취급</th><th>1위 추천</th><th>3단계 근거</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td class="subst">황산<span class="cas">007664-93-9</span></td><td class="num tnum">45.1t</td><td class="num tnum">1</td><td class="num tnum">7</td><td>한솔제지(주) 대전공장</td><td><span class="chip ok">1건</span></td></tr>
+          <tr><td class="subst">수산화 나트륨<span class="cas">001310-73-2</span></td><td class="num tnum">0.1t</td><td class="num tnum">1</td><td class="num tnum">19</td><td>(주)진합</td><td><span class="chip ok">2건</span></td></tr>
+          <tr><td class="subst">납 및 그 화합물<span class="cas">NA-(주1)</span></td><td class="num tnum">1,080.0t</td><td class="num tnum">1</td><td class="num tnum">1</td><td>(주)로옴코리아</td><td class="dim">—</td></tr>
+          <tr><td class="subst">알루미늄 및 그 화합물<span class="cas">NA-(주10)</span></td><td class="num tnum">1.5t</td><td class="num tnum">9</td><td class="num tnum">11</td><td>(주)크라운제과 대전공장</td><td class="dim">—</td></tr>
+          <tr><td class="subst">톨루엔<span class="cas">000108-88-3</span></td><td class="num tnum">5.3t</td><td class="num tnum">2</td><td class="num tnum">1</td><td>세원화성(주)</td><td class="dim">—</td></tr>
+          <tr><td class="subst">주석 및 그 화합물<span class="cas">NA-(주18)</span></td><td class="num tnum">2.3t</td><td class="num tnum">1</td><td class="num tnum">1</td><td>(주)래트론</td><td class="dim">—</td></tr>
+          <tr><td class="subst">n-헥산<span class="cas">000110-54-3</span></td><td class="num tnum">5.4t</td><td class="num tnum">2</td><td class="num tnum">0</td><td class="dim">후보 없음</td><td class="dim">—</td></tr>
+          <tr><td class="subst">메틸 알코올<span class="cas">000067-56-1</span></td><td class="num tnum">1.6t</td><td class="num tnum">4</td><td class="num tnum">1</td><td>(주)제이앤드에프</td><td class="dim">—</td></tr>
+          <tr><td class="subst">아연 및 그 화합물<span class="cas">NA-(주20)</span></td><td class="num tnum">0.003t</td><td class="num tnum">3</td><td class="num tnum">3</td><td>(주)제이앤드에프</td><td class="dim">—</td></tr>
+          <tr><td class="subst">아세트산 에틸<span class="cas">000141-78-6</span></td><td class="num tnum">1.4t</td><td class="num tnum">4</td><td class="num tnum">0</td><td class="dim">후보 없음</td><td class="dim">—</td></tr>
+          <tr><td class="subst">디클로로메탄<span class="cas">000075-09-2</span></td><td class="num tnum">0.2t</td><td class="num tnum">4</td><td class="num tnum">1</td><td>(주)래트론</td><td class="dim">—</td></tr>
+          <tr><td class="subst">수산화 칼륨<span class="cas">001310-58-3</span></td><td class="num tnum">0.2t</td><td class="num tnum">1</td><td class="num tnum">2</td><td>(주)로옴코리아</td><td class="dim">—</td></tr>
+          <tr><td class="subst">크롬 및 그 화합물<span class="cas">NA-(주7)</span></td><td class="num tnum">0.002t</td><td class="num tnum">2</td><td class="num tnum">1</td><td>한온시스템(주)</td><td class="dim">—</td></tr>
+          <tr><td class="subst">구리 및 그 화합물<span class="cas">NA-(주15)</span></td><td class="num tnum">0.3t</td><td class="num tnum">1</td><td class="num tnum">1</td><td>(주)래트론</td><td class="dim">—</td></tr>
+          <tr><td class="subst">2-프로판올<span class="cas">000067-63-0</span></td><td class="num tnum">0.1t</td><td class="num tnum">2</td><td class="num tnum">0</td><td class="dim">후보 없음</td><td class="dim">—</td></tr>
+          <tr><td class="subst">니켈 및 그 화합물<span class="cas">NA-(주3)</span></td><td class="num tnum">0.001t</td><td class="num tnum">1</td><td class="num tnum">1</td><td>(주)제이앤드에프</td><td class="dim">—</td></tr>
+          <tr><td class="subst">황<span class="cas">007704-34-9</span></td><td class="num tnum">0.4t</td><td class="num tnum">2</td><td class="num tnum">0</td><td class="dim">후보 없음</td><td class="dim">—</td></tr>
+          <tr><td class="subst">안티몬 및 그 화합물<span class="cas">NA-(주11)</span></td><td class="num tnum">0.2t</td><td class="num tnum">2</td><td class="num tnum">0</td><td class="dim">후보 없음</td><td class="dim">—</td></tr>
+          <tr><td class="subst">자일렌(이성질체 혼합물)<span class="cas">001330-20-7</span></td><td class="num tnum">1.9t</td><td class="num tnum">3</td><td class="num tnum">0</td><td class="dim">후보 없음</td><td class="dim">—</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-head">
+      <h2>데이터 출처</h2>
+      <div class="section-note">지자체 배출신고 3건 + 전국 공개시스템 1건 + 대기업 실측 1건</div>
+    </div>
+    <div class="sources">
+      <div class="source">
+        <div class="name">NCIS PRTR<span>icis.mcee.go.kr · 화학물질안전원</span></div>
+        <div class="count tnum">52곳</div>
+        <div class="note">유일하게 CAS No.와 실제 배출·이동량(kg)이 사업장 단위로 연결된 출처. 대상 물질 39종에 한정.</div>
+      </div>
+      <div class="source">
+        <div class="name">유성구 폐기물배출자<span>data.go.kr 자동 다운로드</span></div>
+        <div class="count tnum">126곳</div>
+        <div class="note">회사명·주소·폐기물종류 확보. 법정 분류명뿐이라 CAS 매핑 0/130건.</div>
+      </div>
+      <div class="source">
+        <div class="name">대덕구 폐기물배출자<span>data.go.kr 자동 다운로드</span></div>
+        <div class="count tnum">177곳</div>
+        <div class="note">처리업소명·처리방법까지 포함. 역시 CAS 매핑 0/177건.</div>
+      </div>
+      <div class="source">
+        <div class="name">동구 폐기물배출자<span>data.go.kr 자동 다운로드</span></div>
+        <div class="count tnum">36곳</div>
+        <div class="note">행마다 실측 배출량(톤) 포함. 서구·중구는 이 유형 데이터 자체가 미공개.</div>
+      </div>
+      <div class="source">
+        <div class="name">대덕구 대기배출·공장등록<span>data.go.kr</span></div>
+        <div class="count tnum">1,842곳</div>
+        <div class="note">업종·주생산품만 확보 — 기업 DB 규모(300개+ 목표)를 채우는 용도.</div>
+      </div>
+      <div class="source">
+        <div class="name">GHG 배출권대상 실측치<span>대전시 제공 원본 xlsx</span></div>
+        <div class="count tnum">73곳</div>
+        <div class="note">대기업 폐기물 총량(톤/년) 앵커 데이터. 지정폐기물 합계가 제안서 수치(3,600톤)와 안 맞아 원인 조사 중.</div>
+      </div>
+    </div>
+  </section>
+
+  <section style="margin-bottom:0;">
+    <div class="section-head"><h2>지금 단계에서 정직하게 말해야 할 한계</h2></div>
+    <div class="limits">
+      <h3>이 리포트가 숨기지 않는 것</h3>
+      <ul>
+        <li><b>지자체 배출신고 데이터(유성·대덕·동구, 339개 사업장)는 법정 폐기물 분류명뿐</b>이라 화학물질명과 겹치지 않는다 — CAS 매칭은 전부 NCIS PRTR 52곳에서만 나온다.</li>
+        <li><b>PRTR의 "취급 확인"은 폐기물 배출을 의미하지 않는다.</b> 132개 (물질,사업장) 쌍 중 57건만 실제 폐기물이동량(&gt;0)이 있고, 나머지 75건은 원료사용 등으로 추정될 뿐이다.</li>
+        <li><b>3단계 법적 검증은 규칙 3개뿐</b>이며, 여기 안 걸리면 "적법"이 아니라 "미상"이다. 19종 중 법적 근거가 확인된 건 황산·수산화나트륨 2종뿐.</li>
+        <li><b>4단계 거리는 "같은 구인지"만 보는 근접도 프록시</b>다 — 실제 km 거리·운송비가 아니며, 카카오맵/네이버 지도 API 연동이 필요하다.</li>
+        <li><b>GHG 지정폐기물 합계(12,154톤)가 제안서의 "약 3,600톤"과 재현되지 않는다</b> — 여러 부분집합을 다 계산해봤지만 일치하는 조합을 못 찾았다.</li>
+      </ul>
+    </div>
+  </section>
+
+  <footer>
+    <span>C:\kt-dsc · git 로그 15건 · 자체 점검 테스트 9개(tests/test_*.py) 통과</span>
+    <span>DSC 공유대학 × KT AI 활용 지역문제 해결 캠프 프로토타입</span>
+  </footer>
+
+</div>
