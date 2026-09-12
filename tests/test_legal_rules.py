@@ -1,5 +1,5 @@
-"""3단계 법적 규칙(별표5의3 R-4-9, 별표19 혼재기준) 자체 점검. 실행: python -m tests.test_legal_rules"""
-from src.legal_rules import check_mixing_compatibility, check_water_treatment_reuse
+"""3단계 법적 규칙(별표5의3 R-4-9/R-4-6, 별표19 혼재기준) 자체 점검. 실행: python -m tests.test_legal_rules"""
+from src.legal_rules import check_mixing_compatibility, check_recycled_solvent_quality, check_water_treatment_reuse
 
 
 def test_water_treatment_reuse_matches_recycling_industry():
@@ -34,6 +34,56 @@ def test_mixing_unknown_class():
     assert result.verdict == "미상"
 
 
+def test_solvent_quality_not_applicable_for_non_solvent():
+    result = check_recycled_solvent_quality("007664-93-9")  # 황산은 유기용제 아님
+    assert result.verdict == "미적용"
+
+
+def test_solvent_quality_unknown_without_test_data():
+    result = check_recycled_solvent_quality("000108-88-3")  # 톨루엔, 데이터 없음
+    assert result.verdict == "미상"
+
+
+def test_solvent_quality_fails_over_heavy_metal_limit():
+    result = check_recycled_solvent_quality(
+        "000108-88-3",
+        heavy_metals_mg_per_l={"납": 2.0, "비소": 0.1},
+        evaporation_residue_pct=0.05,
+    )
+    assert result.verdict == "미적용"
+    assert "납" in result.note
+
+
+def test_solvent_quality_passes_within_limits():
+    result = check_recycled_solvent_quality(
+        "000108-88-3",
+        heavy_metals_mg_per_l={"납": 0.5, "비소": 0.1},
+        evaporation_residue_pct=0.05,
+    )
+    assert result.verdict == "가능성있음"
+
+
+def test_isopropanol_needs_purity_and_water_data():
+    result = check_recycled_solvent_quality(
+        "000067-63-0",  # 2-프로판올
+        heavy_metals_mg_per_l={"납": 0.1},
+        evaporation_residue_pct=0.05,
+    )
+    assert result.verdict == "미상"
+    assert "순도" in result.note
+
+
+def test_isopropanol_fails_low_purity():
+    result = check_recycled_solvent_quality(
+        "000067-63-0",
+        heavy_metals_mg_per_l={"납": 0.1},
+        evaporation_residue_pct=0.05,
+        purity_pct=60.0,
+        water_content_pct=5.0,
+    )
+    assert result.verdict == "미적용"
+
+
 def demo():
     test_water_treatment_reuse_matches_recycling_industry()
     test_water_treatment_reuse_unknown_for_other_industry()
@@ -41,7 +91,13 @@ def demo():
     test_mixing_incompatible_classes()
     test_mixing_same_class_is_unknown_not_incompatible()
     test_mixing_unknown_class()
-    print("OK - 3단계 법적 규칙(R-4-9, 혼재기준) 자체 점검 통과")
+    test_solvent_quality_not_applicable_for_non_solvent()
+    test_solvent_quality_unknown_without_test_data()
+    test_solvent_quality_fails_over_heavy_metal_limit()
+    test_solvent_quality_passes_within_limits()
+    test_isopropanol_needs_purity_and_water_data()
+    test_isopropanol_fails_low_purity()
+    print("OK - 3단계 법적 규칙(R-4-9, R-4-6, 혼재기준) 자체 점검 통과")
 
 
 if __name__ == "__main__":

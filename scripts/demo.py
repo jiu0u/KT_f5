@@ -23,7 +23,7 @@ import math
 from pathlib import Path
 
 from scripts.build_company_db import infer_district
-from src.legal_rules import check_water_treatment_reuse
+from src.legal_rules import check_recycled_solvent_quality, check_water_treatment_reuse
 
 DATA_DIR = Path(__file__).parent.parent / "data"
 CANDIDATES_PATH = DATA_DIR / "matching_candidates_ncis.json"
@@ -64,7 +64,9 @@ def topsis(alternatives: list[dict], criteria: list[str], weights: list[float]) 
     for i in range(n):
         dist_best = math.sqrt(sum((weighted[i][c] - ideal_best[c]) ** 2 for c in criteria))
         dist_worst = math.sqrt(sum((weighted[i][c] - ideal_worst[c]) ** 2 for c in criteria))
-        closeness = dist_worst / (dist_best + dist_worst) if (dist_best + dist_worst) else 0.0
+        # 후보가 하나뿐이거나 전부 동률이면 best==worst가 되어 0/0 — 이 경우 구분할
+        # 다른 후보가 없다는 뜻이므로 1.0(순위 없음, 그대로 채택)으로 둔다.
+        closeness = dist_worst / (dist_best + dist_worst) if (dist_best + dist_worst) else 1.0
         scores.append((alternatives[i], closeness))
     return sorted(scores, key=lambda pair: pair[1], reverse=True)
 
@@ -85,10 +87,13 @@ def run(cas_no: str):
         print(f"    - {s['company']} ({s['industry']}) 폐기물이동량 {s['amount_ton_per_year']}톤/년")
     print(f"  기타 취급 후보(수요 검토 대상): {len(entry['other_handlers'])}곳\n")
 
-    print("[3단계] 화학·법적 검증 (규칙 2개만 인코딩 - src/legal_rules.py)")
+    print("[3단계] 화학·법적 검증 (규칙 3개만 인코딩 - src/legal_rules.py)")
     legal_by_company = {}
     for h in entry["other_handlers"]:
-        verdict = check_water_treatment_reuse(cas_no, h["industry"])
+        water_verdict = check_water_treatment_reuse(cas_no, h["industry"])
+        solvent_verdict = check_recycled_solvent_quality(cas_no)  # 성분분석 데이터 없어 대부분 "미상"
+        # 물질에 실제로 적용되는 규칙(미적용이 아닌 쪽)을 우선 보여줌
+        verdict = water_verdict if water_verdict.verdict != "미적용" else solvent_verdict
         legal_by_company[h["company"]] = verdict
         print(f"  - {h['company']} ({h['industry']}): [{verdict.rule}] {verdict.verdict} - {verdict.note}")
     print()
@@ -116,7 +121,7 @@ def run(cas_no: str):
         legal = legal_by_company[cand["company"]].verdict
         print(f"  {rank:<4}{cand['company']:<26}{district:<8}{int(cand['scale']):>8}{cand['proximity']:>8.1f}{score:>10.3f}  {legal}")
 
-    print(f"\n  1위 추천: {ranked[0][0]['company']} - TOPSIS 순위이며, 3단계 법적 검증은 규칙 2개뿐이라 '미상'이면 직접 확인 필요")
+    print(f"\n  1위 추천: {ranked[0][0]['company']} - TOPSIS 순위이며, 3단계 법적 검증은 규칙 3개뿐이라 '미상'이면 직접 확인 필요")
 
 
 def main():

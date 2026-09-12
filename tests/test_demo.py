@@ -20,9 +20,16 @@ def test_topsis_ranks_better_alternative_first():
     assert ranked[0][1] > ranked[1][1]
 
 
+def test_topsis_single_alternative_gets_full_score():
+    # 후보가 하나뿐이면 best==worst라 0/0 나올 수 있음 — 1.0으로 처리해야 함 (버그였음)
+    ranked = topsis([{"name": "유일후보", "proximity": 1.0, "scale": 100.0}], ["proximity", "scale"], [0.5, 0.5])
+    assert ranked[0][1] == 1.0
+
+
 def demo():
     test_proximity_same_district_scores_higher()
     test_topsis_ranks_better_alternative_first()
+    test_topsis_single_alternative_gets_full_score()
     print("OK - 데모 파이프라인(근접도/TOPSIS) 자체 점검 통과")
 
 
