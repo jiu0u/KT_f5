@@ -5,15 +5,19 @@ AI 후보탐색, data/waste_registry_ncis.json)뿐이었다. 이 데모는 거�
 3~5단계를 "지금 있는 real data로 할 수 있는 만큼" 이어붙여서 전체 흐름을 보여준다.
 
 ⚠ 정직하게 밝히는 한계:
-- 3단계(화학·법적 검증): src/legal_rules.py에 규칙 딱 2개만 인코딩했다(전체 별표
-  아님) — 폐산·폐알칼리 수처리제 재활용(별표5의3 R-4-9), 위험물 혼재기준(별표19,
-  유별을 아는 소수 물질만). 이 규칙에 안 걸리면 "적법"이 아니라 "미상"이다.
+- 3단계(화학·법적 검증): src/legal_rules.py에 규칙 딱 3개만 인코딩했다(전체 별표
+  아님) — 폐산·폐알칼리 수처리제 재활용(별표5의3 R-4-9), 재생유기용제(R-4-6),
+  위험물 혼재기준(별표19, 유별을 아는 소수 물질만). 이 규칙에 안 걸리면 "적법"이
+  아니라 "미상"이다.
 - 4단계(경제성·물류): 실제 지오코딩(카카오맵/네이버 API) 없이, 주소의 구(區)가
   같은지만 보는 근접도 프록시를 쓴다. ponytail: naive 근접도 프록시, 실제 좌표
   기반 거리 계산으로 교체 가능(카카오맵 API 키 확보 시).
 - 5단계(TOPSIS): 기준이 근접도·사업장 규모(종업원 수) 두 가지뿐이라 가중치는
   동일(0.5/0.5)로 둔 placeholder. 실제 화학적합성·법적리스크 점수가 생기면 기준을
   늘려야 한다.
+
+analyze(cas_no)는 콘솔 출력 없이 결과를 dict로 반환한다 — scripts/generate_report.py가
+전체 물질에 대해 이 함수를 재사용한다(중복 구현 안 함).
 
 실행: python -m scripts.demo [--cas 007664-93-9]
 """
@@ -71,57 +75,83 @@ def topsis(alternatives: list[dict], criteria: list[str], weights: list[float]) 
     return sorted(scores, key=lambda pair: pair[1], reverse=True)
 
 
-def run(cas_no: str):
+def analyze(cas_no: str) -> dict | None:
+    """물질 하나에 대해 1~5단계를 전부 돌려 구조화된 결과를 반환. 없으면 None."""
     candidates = json.loads(CANDIDATES_PATH.read_text(encoding="utf-8"))
     entry = next((c for c in candidates if c["cas_no"] == cas_no), None)
     if entry is None:
+        return None
+
+    employees = load_employee_lookup()
+    suppliers = entry["confirmed_suppliers"]
+    supplier = suppliers[0]
+
+    ranked_out = []
+    if entry["other_handlers"]:
+        alternatives = []
+        for h in entry["other_handlers"]:
+            water_verdict = check_water_treatment_reuse(cas_no, h["industry"])
+            solvent_verdict = check_recycled_solvent_quality(cas_no)
+            verdict = water_verdict if water_verdict.verdict != "미적용" else solvent_verdict
+            alternatives.append({
+                **h,
+                "proximity": infer_proximity(supplier["address"], h["address"]),
+                "scale": float(employees.get(h["company"], 0)),
+                "legal_verdict": verdict,
+            })
+        ranked = topsis(alternatives, ["proximity", "scale"], [0.5, 0.5])
+        for rank, (cand, score) in enumerate(ranked, start=1):
+            ranked_out.append({
+                "rank": rank, "company": cand["company"],
+                "district": infer_district(cand["address"]) or "-",
+                "employees": int(cand["scale"]), "proximity": cand["proximity"],
+                "topsis_score": round(score, 3),
+                "legal_verdict": cand["legal_verdict"].verdict,
+                "legal_rule": cand["legal_verdict"].rule,
+                "legal_note": cand["legal_verdict"].note,
+            })
+
+    return {
+        "cas_no": cas_no,
+        "substance": entry["substance"],
+        "supplier": supplier,
+        "supplier_count": len(suppliers),
+        "other_handler_count": len(entry["other_handlers"]),
+        "ranked_candidates": ranked_out,
+        "top_pick": ranked_out[0]["company"] if ranked_out else None,
+    }
+
+
+def run(cas_no: str):
+    result = analyze(cas_no)
+    if result is None:
         print(f"'{cas_no}'에 대한 매칭 후보가 없습니다. data/matching_candidates_ncis.json 확인.")
         return
 
-    print(f"=== {entry['substance']} (CAS {cas_no}) 순환경제 매칭 데모 ===\n")
+    print(f"=== {result['substance']} (CAS {cas_no}) 순환경제 매칭 데모 ===\n")
 
     print("[1~2단계] 정보구조화 + AI 후보탐색 (실데이터: NCIS PRTR 2024, 대전)")
-    suppliers = entry["confirmed_suppliers"]
-    print(f"  확인된 폐기물 공급 후보: {len(suppliers)}곳")
-    for s in suppliers:
-        print(f"    - {s['company']} ({s['industry']}) 폐기물이동량 {s['amount_ton_per_year']}톤/년")
-    print(f"  기타 취급 후보(수요 검토 대상): {len(entry['other_handlers'])}곳\n")
+    print(f"  확인된 폐기물 공급 후보: {result['supplier_count']}곳")
+    s = result["supplier"]
+    print(f"    - {s['company']} ({s['industry']}) 폐기물이동량 {s['amount_ton_per_year']}톤/년")
+    print(f"  기타 취급 후보(수요 검토 대상): {result['other_handler_count']}곳\n")
 
     print("[3단계] 화학·법적 검증 (규칙 3개만 인코딩 - src/legal_rules.py)")
-    legal_by_company = {}
-    for h in entry["other_handlers"]:
-        water_verdict = check_water_treatment_reuse(cas_no, h["industry"])
-        solvent_verdict = check_recycled_solvent_quality(cas_no)  # 성분분석 데이터 없어 대부분 "미상"
-        # 물질에 실제로 적용되는 규칙(미적용이 아닌 쪽)을 우선 보여줌
-        verdict = water_verdict if water_verdict.verdict != "미적용" else solvent_verdict
-        legal_by_company[h["company"]] = verdict
-        print(f"  - {h['company']} ({h['industry']}): [{verdict.rule}] {verdict.verdict} - {verdict.note}")
+    for c in result["ranked_candidates"]:
+        print(f"  - {c['company']} ({c['district']}): [{c['legal_rule']}] {c['legal_verdict']} - {c['legal_note']}")
     print()
 
-    employees = load_employee_lookup()
-    supplier = suppliers[0]
-    print(f"[4~5단계] 경제성·물류 근접도 + TOPSIS (기준: 근접도, 사업장 규모)")
-    alternatives = []
-    for h in entry["other_handlers"]:
-        alternatives.append({
-            **h,
-            "proximity": infer_proximity(supplier["address"], h["address"]),
-            "scale": float(employees.get(h["company"], 0)),
-        })
-    if not alternatives:
-        print("  기타 취급 후보가 없어 순위를 매길 수 없음")
+    if not result["ranked_candidates"]:
+        print("[4~5단계] 기타 취급 후보가 없어 순위를 매길 수 없음")
         return
 
-    ranked = topsis(alternatives, ["proximity", "scale"], [0.5, 0.5])
-
-    print(f"  공급 후보: {supplier['company']} ({supplier['address']})\n")
+    print("[4~5단계] 경제성·물류 근접도 + TOPSIS (기준: 근접도, 사업장 규모)")
+    print(f"  공급 후보: {s['company']} ({s['address']})\n")
     print(f"  {'순위':<4}{'기업':<26}{'구':<8}{'종업원수':>8}{'근접도':>8}{'종합점수':>10}  3단계")
-    for rank, (cand, score) in enumerate(ranked, start=1):
-        district = infer_district(cand["address"]) or "-"
-        legal = legal_by_company[cand["company"]].verdict
-        print(f"  {rank:<4}{cand['company']:<26}{district:<8}{int(cand['scale']):>8}{cand['proximity']:>8.1f}{score:>10.3f}  {legal}")
+    for c in result["ranked_candidates"]:
+        print(f"  {c['rank']:<4}{c['company']:<26}{c['district']:<8}{c['employees']:>8}{c['proximity']:>8.1f}{c['topsis_score']:>10.3f}  {c['legal_verdict']}")
 
-    print(f"\n  1위 추천: {ranked[0][0]['company']} - TOPSIS 순위이며, 3단계 법적 검증은 규칙 3개뿐이라 '미상'이면 직접 확인 필요")
+    print(f"\n  1위 추천: {result['top_pick']} - TOPSIS 순위이며, 3단계 법적 검증은 규칙 3개뿐이라 '미상'이면 직접 확인 필요")
 
 
 def main():
