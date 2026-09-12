@@ -57,6 +57,12 @@ python -m scripts.demo --cas 001310-73-2  # 수산화나트륨 등 다른 물질
 - `scripts/load_daedeok_waste.py` → `data/waste_registry_daedeok.json` (`python -m scripts.load_daedeok_waste`) — 상호+주소 기준으로 묶어 177개 사업장, 각 사업장의 폐기물 종류 목록 + 실제 처리업소명·처리방법(4단계 참고용) 포함
 - 유성구와 마찬가지로 **CAS No. 자동 매핑 0/177건** — 이 데이터도 법정 폐기물 분류명뿐이라 화학물질취급정보 15종과 안 겹침. 두 지자체 데이터셋 모두 같은 한계를 보이는 걸로 봐서, 공공 배출신고 데이터 자체가 물질명이 아니라 법정 분류명 단위로 되어 있다는 구조적 문제로 보임.
 
+### 동구 사업장폐기물배출자 신고현황 (5개 구 중 3번째, 자동 다운로드)
+- `data/raw/대전광역시 동구_사업장폐기물배출자 신고현황.csv` — 공공데이터포털(data.go.kr, 데이터셋 15081140)에서 자동으로 찾아 다운로드함. 138행(사업장×폐기물종류)
+- `scripts/load_donggu_waste.py` → `data/waste_registry_donggu.json` — 36개 사업장. 유성구·대덕구와 달리 이 데이터는 **행마다 배출량(톤) 숫자가 있어** 사업장별로 실제 톤수를 합산함
+- 역시 **CAS No. 자동 매핑 0/36건** — 3개 지자체 데이터셋 전부 같은 한계(법정 분류명뿐)를 보임
+- 서구·중구는 "사업장폐기물배출자" 유형 데이터셋 자체가 data.go.kr에 없음(대형폐기물·음식물류 다량배출 등 다른 유형만 있음) — 대전 5개 구 중 유성·대덕·동구 3곳만 이 유형 데이터를 공개하고 있는 것으로 확인됨
+
 ### 화학물질안전원(NCIS) PRTR — 진짜 CAS No. 단위 매칭 데이터 ⭐
 - 출처: [icis.mcee.go.kr](https://icis.mcee.go.kr) 화학물질 배출·이동량 정보공개시스템(로그인/API 키 불필요, 공개 조회). 지자체 배출신고 데이터와 달리 **법정 분류명이 아니라 실제 CAS No.로 사업장을 조회**할 수 있음
 - `scripts/load_ncis_prtr.py` → `data/ncis_prtr_daejeon_2024.json` — 대전 지역 2024년 조사대상 물질 39종과 각 물질을 취급하는 사업장(이름·주소·업종) 전부 조회
@@ -68,11 +74,11 @@ python -m scripts.demo --cas 001310-73-2  # 수산화나트륨 등 다른 물질
   - **수산화나트륨(CAS 1310-73-2)**: 공급 후보 1곳 ↔ 기타 취급 후보 19곳
 - **한계 (솔직히)**: 폐기물이동량 0인 "기타 취급 후보"가 실제로 이 물질을 원료로 더 필요로 한다는 뜻은 아니다 — PRTR은 원료 부족량/구매 의향을 조사하지 않는다. 그리고 대상 물질이 배출량조사 지정 39종(대전 기준)뿐이라 모든 화학물질을 다루진 않는다. 즉 이 리스트는 "검토해볼 후보"이지 확정된 매칭이 아니며, 3단계(화학·법적 검증)·4단계(경제성)에서 개별 기업에 직접 확인이 필요하다.
 
-### 기업 DB 통합 (대덕구 대기배출업소·제조업공장등록·폐기물배출자 + 유성구 + NCIS PRTR)
+### 기업 DB 통합 (대덕구 대기배출업소·제조업공장등록·폐기물배출자 + 유성구·동구 폐기물배출자 + NCIS PRTR)
 - `data/raw/대전광역시 대덕구_대기배출업소현황_20250904.csv` (178개 사업장, 업종명 포함)
 - `data/raw/대전광역시 대덕구_제조업공장등록현황_20260623.csv` (1,739개 사업장, 주생산품 포함)
-- `scripts/build_company_db.py` → `data/company_db.json` (`python -m scripts.build_company_db`) — 위 파일들 + 유성구/대덕구 폐기물배출자 + NCIS PRTR을 회사명 기준(법인 표기 ㈜/(주)/(유) 등만 제거하고 병합, 지점명이 다르면 별개로 취급)으로 합침
-- 결과: **2,023개 기업**(중복 제거 후) — PDF 목표(300개 이상)를 크게 상회. 2개 이상 출처에 겹치는 기업 146건. 이 중 52곳은 `chemicals` 필드에 NCIS로 확인된 실제 CAS No.가 채워져 있음.
+- `scripts/build_company_db.py` → `data/company_db.json` (`python -m scripts.build_company_db`) — 위 파일들 + 유성구/대덕구/동구 폐기물배출자 + NCIS PRTR을 회사명 기준(법인 표기 ㈜/(주)/(유) 등만 제거하고 병합, 지점명이 다르면 별개로 취급)으로 합침
+- 결과: **2,059개 기업**(중복 제거 후) — PDF 목표(300개 이상)를 크게 상회. 2개 이상 출처에 겹치는 기업 146건. 이 중 52곳은 `chemicals` 필드에 NCIS로 확인된 실제 CAS No.가 채워져 있음.
 - `scripts/find_chemical_companies.py` → `data/chemical_candidate_companies.json` — (보조 수단) 기업 DB의 product/industry 텍스트를 화학물질취급정보(15종)와 문자열 대조. 결과 2건(보림산업, (주)동양이앤씨) — NCIS PRTR 쪽이 훨씬 신뢰도 높은 1차 출처이고, 이건 참고용으로만 남겨둠.
 
 ### 아직 안 쓰는 것
@@ -86,6 +92,7 @@ pip install -r requirements.txt
 python -m scripts.load_ghg_waste
 python -m scripts.load_yuseong_waste
 python -m scripts.load_daedeok_waste
+python -m scripts.load_donggu_waste
 python -m scripts.load_ncis_prtr          # 공공 서버에 순차 요청, 수십 초 소요
 python -m scripts.load_ncis_entrps_detail # 공공 서버에 순차 요청, 1분 내외
 python -m scripts.build_ncis_waste_registry
@@ -95,6 +102,7 @@ python -m scripts.find_chemical_companies
 python -m tests.test_match
 python -m tests.test_load_yuseong
 python -m tests.test_load_daedeok
+python -m tests.test_load_donggu
 python -m tests.test_load_ncis
 python -m tests.test_company_db
 python -m tests.test_demo
@@ -107,6 +115,6 @@ python -m scripts.demo   # End-to-End 데모 실행
 - `src/legal_rules.py`의 R-4-6(재생유기용제)은 실측 성분분석값(중금속·증발찌꺼기 등)이 있어야 실제로 통과/불합격을 가릴 수 있음 — 기업이 시험성적서를 입력하는 경로 필요
 - R-4-9 외 다른 재활용 유형(금속회수·중화제 등) 추가 — 황산·수산화나트륨의 위험물 해당 여부는 확인 완료(둘 다 위험물 아님)
 - 데모의 4단계 근접도 프록시를 실제 지오코딩(카카오맵/네이버 API) 기반 거리로 교체
-- `data/company_db.json`의 2,023개 기업 중 폐기물/화학물질 정보가 있는 건 355건(유성구 126 + 대덕구 177 + NCIS 52)뿐 — 나머지는 업종/생산품만 있음
+- `data/company_db.json`의 2,059개 기업 중 폐기물/화학물질 정보가 있는 건 391건(유성구 126 + 대덕구 177 + 동구 36 + NCIS 52)뿐 — 나머지는 업종/생산품만 있음. 서구·중구는 이 유형 데이터 자체가 공개돼 있지 않음
 - `src/match.py`의 word-overlap 유사도가 부족해지면 한국어 문장임베딩(`ko-sroberta` 등)으로 교체
 - GHG 지정폐기물 합계 불일치(12,154톤 vs 3,600톤) 확인

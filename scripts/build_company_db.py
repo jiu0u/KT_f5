@@ -1,4 +1,4 @@
-"""대덕구 대기배출업소·제조업공장등록 + 유성구 폐기물배출자 → 통합 기업 DB.
+"""대덕구 대기배출업소·제조업공장등록 + 유성구·대덕구·동구 폐기물배출자 + NCIS PRTR → 통합 기업 DB.
 
 PDF 제안서의 "기업 300개 이상의 데이터베이스(기업명·주소·업종·배출 폐기물 종류)" 목표에 대응.
 같은 기업이 여러 원본에 나오면 이름 기준(법인 표기 ㈜/(주)/(유) 등만 제거하고 나머지는
@@ -20,6 +20,7 @@ AIR_CSV = RAW_DIR / "대전광역시 대덕구_대기배출업소현황_20250904
 FACTORY_CSV = RAW_DIR / "대전광역시 대덕구_제조업공장등록현황_20260623.csv"
 YUSEONG_JSON = DATA_DIR / "waste_registry_yuseong.json"
 DAEDEOK_WASTE_JSON = DATA_DIR / "waste_registry_daedeok.json"
+DONGGU_WASTE_JSON = DATA_DIR / "waste_registry_donggu.json"
 NCIS_PRTR_JSON = DATA_DIR / "ncis_prtr_daejeon_2024.json"
 OUT_PATH = DATA_DIR / "company_db.json"
 
@@ -108,6 +109,13 @@ def build() -> CompanyDB:
         db.add(
             name=r["company"], address=r["address"], district="대덕구",
             waste_types=r["components"], source="daedeok_waste",
+        )
+
+    donggu_waste = json.loads(DONGGU_WASTE_JSON.read_text(encoding="utf-8"))
+    for r in donggu_waste:
+        db.add(
+            name=r["company"], address=r["address"], district="동구",
+            waste_types=r["components"], source="donggu_waste",
         )
 
     ncis_prtr = json.loads(NCIS_PRTR_JSON.read_text(encoding="utf-8"))
