@@ -101,6 +101,7 @@ python -m scripts.build_ncis_waste_registry
 python -m scripts.find_matching_candidates
 python -m scripts.build_company_db
 python -m scripts.find_chemical_companies
+python -m scripts.generate_report   # data/full_matching_report.json -> docs/report.html가 참조
 python -m tests.test_match
 python -m tests.test_load_yuseong
 python -m tests.test_load_daedeok
@@ -109,6 +110,7 @@ python -m tests.test_load_ncis
 python -m tests.test_company_db
 python -m tests.test_demo
 python -m tests.test_legal_rules
+python -m tests.test_generate_report
 python -m scripts.demo   # End-to-End 데모 실행
 ```
 
