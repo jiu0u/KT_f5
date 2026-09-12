@@ -5,9 +5,9 @@ AI 후보탐색, data/waste_registry_ncis.json)뿐이었다. 이 데모는 거�
 3~5단계를 "지금 있는 real data로 할 수 있는 만큼" 이어붙여서 전체 흐름을 보여준다.
 
 ⚠ 정직하게 밝히는 한계:
-- 3단계(화학·법적 검증): 폐기물관리법 별표5의3·위험물안전관리법 별표19의 실제 룰
-  엔진은 아직 없다. 여기서는 그 자리에 "수동 확인 필요" 표시만 남긴다 — 없는 룰을
-  있는 것처럼 판정하지 않는다.
+- 3단계(화학·법적 검증): src/legal_rules.py에 규칙 딱 2개만 인코딩했다(전체 별표
+  아님) — 폐산·폐알칼리 수처리제 재활용(별표5의3 R-4-9), 위험물 혼재기준(별표19,
+  유별을 아는 소수 물질만). 이 규칙에 안 걸리면 "적법"이 아니라 "미상"이다.
 - 4단계(경제성·물류): 실제 지오코딩(카카오맵/네이버 API) 없이, 주소의 구(區)가
   같은지만 보는 근접도 프록시를 쓴다. ponytail: naive 근접도 프록시, 실제 좌표
   기반 거리 계산으로 교체 가능(카카오맵 API 키 확보 시).
@@ -23,6 +23,7 @@ import math
 from pathlib import Path
 
 from scripts.build_company_db import infer_district
+from src.legal_rules import check_water_treatment_reuse
 
 DATA_DIR = Path(__file__).parent.parent / "data"
 CANDIDATES_PATH = DATA_DIR / "matching_candidates_ncis.json"
@@ -84,9 +85,13 @@ def run(cas_no: str):
         print(f"    - {s['company']} ({s['industry']}) 폐기물이동량 {s['amount_ton_per_year']}톤/년")
     print(f"  기타 취급 후보(수요 검토 대상): {len(entry['other_handlers'])}곳\n")
 
-    print("[3단계] 화학·법적 검증")
-    print("  [!] 폐기물관리법 별표5의3 / 위험물안전관리법 별표19 룰 엔진 미구현")
-    print("  [!] 아래 후보는 전부 '검토 필요' 상태이며, 법적 적합 여부를 판정한 것이 아님\n")
+    print("[3단계] 화학·법적 검증 (규칙 2개만 인코딩 - src/legal_rules.py)")
+    legal_by_company = {}
+    for h in entry["other_handlers"]:
+        verdict = check_water_treatment_reuse(cas_no, h["industry"])
+        legal_by_company[h["company"]] = verdict
+        print(f"  - {h['company']} ({h['industry']}): [{verdict.rule}] {verdict.verdict} - {verdict.note}")
+    print()
 
     employees = load_employee_lookup()
     supplier = suppliers[0]
@@ -105,12 +110,13 @@ def run(cas_no: str):
     ranked = topsis(alternatives, ["proximity", "scale"], [0.5, 0.5])
 
     print(f"  공급 후보: {supplier['company']} ({supplier['address']})\n")
-    print(f"  {'순위':<4}{'기업':<26}{'구':<8}{'종업원수':>8}{'근접도':>8}{'종합점수':>10}")
+    print(f"  {'순위':<4}{'기업':<26}{'구':<8}{'종업원수':>8}{'근접도':>8}{'종합점수':>10}  3단계")
     for rank, (cand, score) in enumerate(ranked, start=1):
         district = infer_district(cand["address"]) or "-"
-        print(f"  {rank:<4}{cand['company']:<26}{district:<8}{int(cand['scale']):>8}{cand['proximity']:>8.1f}{score:>10.3f}")
+        legal = legal_by_company[cand["company"]].verdict
+        print(f"  {rank:<4}{cand['company']:<26}{district:<8}{int(cand['scale']):>8}{cand['proximity']:>8.1f}{score:>10.3f}  {legal}")
 
-    print(f"\n  1위 추천: {ranked[0][0]['company']} - 화학적합성·법적기준은 별도 확인 필요")
+    print(f"\n  1위 추천: {ranked[0][0]['company']} - TOPSIS 순위이며, 3단계 법적 검증은 규칙 2개뿐이라 '미상'이면 직접 확인 필요")
 
 
 def main():
