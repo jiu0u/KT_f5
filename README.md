@@ -2,13 +2,28 @@
 
 DSC 공유대학×KT AI 활용 지역문제 해결 캠프 제출용 프로토타입. 전체 스펙은 [CLAUDE.md](CLAUDE.md) 참고.
 
-## 현재 범위 (1~2단계만 구현)
+## 데모 실행
+
+```bash
+python -m scripts.demo                    # 기본값: 황산(007664-93-9)
+python -m scripts.demo --cas 001310-73-2  # 수산화나트륨 등 다른 물질도 가능
+```
+
+`data/matching_candidates_ncis.json`에 있는 물질(19종) 중 하나를 골라 1~5단계를
+실제로 이어서 보여준다: 확인된 폐기물 공급 후보 → 화학·법적 검증(현재는 "수동 확인
+필요" 표시) → 근접도(같은 구 여부)·사업장 규모(종업원 수) 기준 TOPSIS 순위. 황산
+기준 1위 추천은 한솔제지(주) 대전공장(공급처와 같은 대덕구, 종업원 360명).
+
+## 현재 범위
 
 - `src/schema.py` — 3.1단계(정보구조화) 출력 형식인 `WasteRecord`
 - `src/match.py` — 3.2단계(AI 후보탐색): CAS No. 완전일치 우선, 없으면 word-overlap 텍스트 유사도로 Top-K 후보 반환
+- `scripts/demo.py` — 1~5단계를 실데이터로 잇는 End-to-End 데모 (아래 "데모 실행" 참고)
 - `data/sample_waste.json` — 로직 검증용 합성 샘플 데이터 (실제 기업 데이터 아님)
 
-3단계(화학·법적 검증), 4단계(경제성·물류), 5단계(TOPSIS)는 아직 구현하지 않음.
+3단계(화학·법적 검증)는 실제 룰 엔진 없이 "검토 필요" 표시만 하고, 4~5단계(경제성·TOPSIS)는
+지오코딩 없는 근접도 프록시 + 종업원수 2개 기준짜리 간이 버전이다. 데모 코드의 주석에
+한계와 교체 지점을 명시해 뒀다.
 
 ## 실제 데이터
 
@@ -70,10 +85,14 @@ python -m tests.test_load_yuseong
 python -m tests.test_load_daedeok
 python -m tests.test_load_ncis
 python -m tests.test_company_db
+python -m tests.test_demo
+python -m scripts.demo   # End-to-End 데모 실행
 ```
 
 ## 다음에 할 일
 
+- 데모의 3단계(화학·법적 검증)를 실제 룰 엔진으로 교체 — 지금은 전부 "검토 필요"
+- 데모의 4단계 근접도 프록시를 실제 지오코딩(카카오맵/네이버 API) 기반 거리로 교체
 - `data/matching_candidates_ncis.json`의 19종 물질(황산·수산화나트륨 등) 후보쌍 중 1~2개를 골라 3단계(화학·법적 검증: 폐기물관리법 별표5의3, 위험물안전관리법 별표19)와 4단계(경제성: 거리·처리단가 비교)까지 실제로 이어붙여 End-to-End 데모 완성하기 — 지금은 후보를 좁히는 데까지만 왔음
 - `data/company_db.json`의 2,023개 기업 중 폐기물/화학물질 정보가 있는 건 355건(유성구 126 + 대덕구 177 + NCIS 52)뿐 — 나머지는 업종/생산품만 있음
 - `src/match.py`의 word-overlap 유사도가 부족해지면 한국어 문장임베딩(`ko-sroberta` 등)으로 교체
