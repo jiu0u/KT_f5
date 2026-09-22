@@ -82,7 +82,8 @@ python -m scripts.demo --cas 001310-73-2  # 수산화나트륨 등 다른 물질
 - `scripts/build_company_db.py` → `data/company_db.json` (`python -m scripts.build_company_db`) — 위 파일들 + 유성구/대덕구/동구 폐기물배출자 + NCIS PRTR을 회사명 기준(법인 표기 ㈜/(주)/(유) 등만 제거하고 병합, 지점명이 다르면 별개로 취급)으로 합침
 - 결과: **2,059개 기업**(중복 제거 후) — PDF 목표(300개 이상)를 크게 상회. 2개 이상 출처에 겹치는 기업 146건. 이 중 52곳은 `chemicals` 필드에 NCIS로 확인된 실제 CAS No.가 채워져 있음.
 - `scripts/find_chemical_companies.py` → `data/chemical_candidate_companies.json` — (보조 수단) 기업 DB의 product/industry 텍스트를 화학물질취급정보(15종)와 문자열 대조. 결과 2건(보림산업, (주)동양이앤씨) — NCIS PRTR 쪽이 훨씬 신뢰도 높은 1차 출처이고, 이건 참고용으로만 남겨둠.
-- `scripts/find_recycling_companies.py` → `data/recycling_companies_daejeon.json` — `matching_candidates_ncis.json` 안에서 업종이 "폐기물 수집,운반,처리 및 원료재생업"인 기업만 추출. **재활용업체 대상 리드매칭(피벗 방향) 수요자 후보 2곳 확인**: (주)동양환경(대덕구, IPA 포함 6개 물질 취급), 대전그린에너지센터(주)(유성구, 수산화나트륨·황산). 이 둘은 배출기업이 아니라 이미 폐기물을 처리·재생하는 게 본업인 회사임.
+- `scripts/find_recycling_companies.py` → `data/recycling_companies_daejeon.json` — `matching_candidates_ncis.json` 안에서 업종이 "폐기물 수집,운반,처리 및 원료재생업"인 기업만 추출. **재활용업체 대상 리드매칭(피벗 방향) 수요자 후보 2곳 확인**: (주)동양환경(대덕구, 6개 물질 취급), 대전그린에너지센터(주)(유성구, 2개 물질 취급). 이 둘은 배출기업이 아니라 이미 폐기물을 처리·재생하는 게 본업인 회사임.
+- `scripts/find_semiconductor_companies.py` → `data/semiconductor_companies_daejeon.json` — `company_db.json`에서 업종/주생산품에 "반도체·전자부품·웨이퍼·소자"가 들어간 기업만 추출(43곳). 이 중 NCIS로 실제 화학물질까지 확인된 곳은 4곳(주식회사 켐옵틱스, (주)로옴코리아, (주)래트론, 이엘케이㈜) — 나머지 39곳은 업종상 후보일 뿐 폐기물 데이터는 아직 없음. 대전 반도체 배출기업 컨택 대상 풀을 넓히는 용도.
 
 ### 아직 안 쓰는 것
 - `한국환경산업기술원_... 상세정보_20241231.csv`(전국 4,355건) — `data/ghg_waste_2024.json`이 이 파일의 대전 부분집합(73건)과 일치함을 확인, 별도 보관 안 함
@@ -102,6 +103,7 @@ python -m scripts.build_ncis_waste_registry
 python -m scripts.find_matching_candidates
 python -m scripts.find_recycling_companies
 python -m scripts.build_company_db
+python -m scripts.find_semiconductor_companies
 python -m scripts.find_chemical_companies
 python -m scripts.generate_report   # data/full_matching_report.json -> docs/report.html가 참조
 python -m tests.test_match
@@ -114,6 +116,7 @@ python -m tests.test_demo
 python -m tests.test_legal_rules
 python -m tests.test_generate_report
 python -m tests.test_find_recycling_companies
+python -m tests.test_find_semiconductor_companies
 python -m scripts.demo   # End-to-End 데모 실행
 ```
 

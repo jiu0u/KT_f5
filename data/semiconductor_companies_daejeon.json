@@ -1,0 +1,358 @@
+[
+  {
+    "name": "(주)래트론",
+    "district": "대덕구",
+    "address": "대전광역시 대덕구 대덕대로1448번길 182 (신일동, (주)래트론)",
+    "industry": "전자 부품, 컴퓨터, 영상, 음향 및 통신장비 제조업",
+    "product": "서미스터",
+    "confirmed_chemicals": [
+      "디클로로메탄",
+      "구리 및 그 화합물",
+      "주석 및 그 화합물"
+    ]
+  },
+  {
+    "name": "(주)로옴코리아",
+    "district": "대덕구",
+    "address": "대전광역시 대덕구 문평서로17번안길 40 (문평동, 로옴코리아)",
+    "industry": "전자 부품, 컴퓨터, 영상, 음향 및 통신장비 제조업",
+    "product": "전자부품(TR,MSR,IC 등), 전자부품(TR,MSR,IC 등), 전자부품(TR,MSR,IC 등), 전자부품(TR,MSR,IC 등)",
+    "confirmed_chemicals": [
+      "납 및 그 화합물",
+      "수산화 칼륨"
+    ]
+  },
+  {
+    "name": "주식회사 켐옵틱스",
+    "district": "유성구",
+    "address": "대전광역시 유성구 테크노2로 261 (탑립동)",
+    "industry": "전자 부품, 컴퓨터, 영상, 음향 및 통신장비 제조업",
+    "product": "",
+    "confirmed_chemicals": [
+      "메틸 tert-부틸 에테르",
+      "2-프로판올"
+    ]
+  },
+  {
+    "name": "이엘케이㈜",
+    "district": "유성구",
+    "address": "대전광역시 유성구 관평동 687",
+    "industry": "전자 부품, 컴퓨터, 영상, 음향 및 통신장비 제조업",
+    "product": "",
+    "confirmed_chemicals": [
+      "알루미늄 및 그 화합물"
+    ]
+  },
+  {
+    "name": "(주)넥스컴스",
+    "district": "대덕구",
+    "address": "대전광역시 대덕구 신일서로67번길 56(신일동)",
+    "industry": "",
+    "product": "LCD, 반도체 자동화 부품",
+    "confirmed_chemicals": []
+  },
+  {
+    "name": "(주)더뷰나인",
+    "district": "대덕구",
+    "address": "대전광역시 대덕구 대화로 120, 7층 722호(대화동, 가온비즈타워) 7층 722호",
+    "industry": "",
+    "product": "반도체용 검사장비 및 자동화 장비",
+    "confirmed_chemicals": []
+  },
+  {
+    "name": "(주)디엔에프 제2공장",
+    "district": "대덕구",
+    "address": "대전광역시 대덕구 대전로1331번길 190, 디엔에프 대화2공장 (대화동)",
+    "industry": "",
+    "product": "표면 광택제, 반도체 전구체, 반도체 전구체",
+    "confirmed_chemicals": []
+  },
+  {
+    "name": "(주)명테크",
+    "district": "대덕구",
+    "address": "대전광역시 대덕구 상서당1길 52-7, 상서동 (상서동)",
+    "industry": "",
+    "product": "반도체설비부품, 태양력 발전업",
+    "confirmed_chemicals": []
+  },
+  {
+    "name": "(주)성신테크",
+    "district": "대덕구",
+    "address": "대전광역시 대덕구 대덕대로1448번길 190 (신일동)",
+    "industry": "",
+    "product": "반도체 부품",
+    "confirmed_chemicals": []
+  },
+  {
+    "name": "(주)암페어머티리얼즈",
+    "district": "대덕구",
+    "address": "대전광역시 대덕구 대화로 120, 7층 736호(대화동, 가온비즈타워) 7층 736호",
+    "industry": "",
+    "product": "기체여과기(반도체장비 구동용)",
+    "confirmed_chemicals": []
+  },
+  {
+    "name": "(주)엘엔티",
+    "district": "대덕구",
+    "address": "대전광역시 대덕구 문평서로17번길 55 (문평동)",
+    "industry": "",
+    "product": "전기전자부품",
+    "confirmed_chemicals": []
+  },
+  {
+    "name": "(주)엠유니크",
+    "district": "대덕구",
+    "address": "대전광역시 대덕구 문평동로48번길 112, 1동(문평동)",
+    "industry": "",
+    "product": "반도체기기 부품",
+    "confirmed_chemicals": []
+  },
+  {
+    "name": "(주)우성하이백",
+    "district": "대덕구",
+    "address": "대전광역시 대덕구 대덕대로1448번길 170 (신일동, (주)우성하이백)",
+    "industry": "",
+    "product": "반도체장비",
+    "confirmed_chemicals": []
+  },
+  {
+    "name": "(주)위스팩",
+    "district": "대덕구",
+    "address": "대전광역시 대덕구 대화동 활성화구역 M08",
+    "industry": "",
+    "product": "웨이퍼 검사 시스템",
+    "confirmed_chemicals": []
+  },
+  {
+    "name": "(주)유피세미콘",
+    "district": "대덕구",
+    "address": "대전광역시 대덕구 문평동로48번길 56(문평동)",
+    "industry": "",
+    "product": "반도체 소재 가공, 초음파 설비 제작",
+    "confirmed_chemicals": []
+  },
+  {
+    "name": "(주)지엘테크",
+    "district": "대덕구",
+    "address": "대전광역시 대덕구 신일서로85번길 65 (신일동)",
+    "industry": "",
+    "product": "반도체측정장비",
+    "confirmed_chemicals": []
+  },
+  {
+    "name": "(주)켐이",
+    "district": "대덕구",
+    "address": "대전광역시 대덕구 문평서로 8-8 (문평동)",
+    "industry": "",
+    "product": "반도체 관련수지 등, 반도체 관련수지 등",
+    "confirmed_chemicals": []
+  },
+  {
+    "name": "(주)태백진공",
+    "district": "대덕구",
+    "address": "대전광역시 대덕구 대화로139번길 29 (대화동)",
+    "industry": "",
+    "product": "진공펌프 및 관련부품, 반도체장비 및 실험기기",
+    "confirmed_chemicals": []
+  },
+  {
+    "name": "(주)티제이텍",
+    "district": "대덕구",
+    "address": "대전광역시 대덕구 문평동로 43 (문평동)",
+    "industry": "",
+    "product": "전자부품",
+    "confirmed_chemicals": []
+  },
+  {
+    "name": "(주)포올",
+    "district": "대덕구",
+    "address": "대전광역시 대덕구 덕암로125번안길 141, (주)포올 (덕암동)",
+    "industry": "",
+    "product": "반도체장비 및 부품",
+    "confirmed_chemicals": []
+  },
+  {
+    "name": "(주)프로타빅코리아",
+    "district": "대덕구",
+    "address": "대전광역시 대덕구 신일서로 70 (신일동, (주)프로타빅코리아)",
+    "industry": "",
+    "product": "반도체용접착제",
+    "confirmed_chemicals": []
+  },
+  {
+    "name": "(주)피코팩",
+    "district": "대덕구",
+    "address": "대전광역시 대덕구 신일서로85번길 91, 105호(신일동, 벤쳐타운다산관) 105호 외 9필지",
+    "industry": "",
+    "product": "전자부품",
+    "confirmed_chemicals": []
+  },
+  {
+    "name": "(주)현진에프엔에스",
+    "district": "대덕구",
+    "address": "대전광역시 대덕구 대화로106번길 66, 7층 726호(대화동, 펜타플렉스) 7층 726호",
+    "industry": "",
+    "product": "반도체용 Utility line flange 및 Fitting, 시험 및 측정장비 등",
+    "confirmed_chemicals": []
+  },
+  {
+    "name": "VnC",
+    "district": "대덕구",
+    "address": "대전광역시 대덕구 대화로106번길 66, 10층 1014호(대화동, 펜타플렉스) 10층 1014호",
+    "industry": "",
+    "product": "방폭형 진공 게이지, 진공장비제조(디스플레이반도체)",
+    "confirmed_chemicals": []
+  },
+  {
+    "name": "나노엠텍",
+    "district": "대덕구",
+    "address": "대전광역시 대덕구 대화로 120, B1층 FB102호(대화동, 가온비즈타워) B1층 FB102호",
+    "industry": "",
+    "product": "반도체부품 (브라켓)",
+    "confirmed_chemicals": []
+  },
+  {
+    "name": "대동산업",
+    "district": "대덕구",
+    "address": "대전광역시 대덕구 대화로139번길 34, 1층 (대화동)",
+    "industry": "",
+    "product": "연구소 시험기기, 반도체베이스판",
+    "confirmed_chemicals": []
+  },
+  {
+    "name": "삼보금속",
+    "district": "대덕구",
+    "address": "대전광역시 대덕구 방두말1길 20-17 (상서동)",
+    "industry": "그 외 기타 금속가공업",
+    "product": "기계부품, 알루미늄부품-반도체장비",
+    "confirmed_chemicals": []
+  },
+  {
+    "name": "수정테크",
+    "district": "대덕구",
+    "address": "대전광역시 대덕구 방두말5길 17(상서동)",
+    "industry": "",
+    "product": "반도체설비부품가공",
+    "confirmed_chemicals": []
+  },
+  {
+    "name": "시스넥스(주)",
+    "district": "대덕구",
+    "address": "대전광역시 대덕구 대화로150번길 113, 104 (대화동)",
+    "industry": "",
+    "product": "반도체 제조용 기계 장비, 유기화학기상증착장비",
+    "confirmed_chemicals": []
+  },
+  {
+    "name": "엔브이에스(NVS)",
+    "district": "대덕구",
+    "address": "대전광역시 대덕구 상서당1길 52-2 (상서동)",
+    "industry": "",
+    "product": "반도체장비, 연구용장비",
+    "confirmed_chemicals": []
+  },
+  {
+    "name": "영진정밀",
+    "district": "대덕구",
+    "address": "대전광역시 대덕구 덕암로168번길 14 (평촌동)",
+    "industry": "",
+    "product": "반도체금형 및 기계부품",
+    "confirmed_chemicals": []
+  },
+  {
+    "name": "영환정밀",
+    "district": "대덕구",
+    "address": "대전광역시 대덕구 대화로106번길 66, 4층 412호(대화동, 펜타플렉스) 4층 412호",
+    "industry": "",
+    "product": "금형부품, 반도체 장비부품",
+    "confirmed_chemicals": []
+  },
+  {
+    "name": "와이투라인(주)",
+    "district": "대덕구",
+    "address": "대전광역시 대덕구 대화로106번길 66, 7층 720호(대화동, 펜타플렉스) 7층 720호",
+    "industry": "",
+    "product": "반도체 생산용 큐어챔버, 건조기",
+    "confirmed_chemicals": []
+  },
+  {
+    "name": "자이온",
+    "district": "대덕구",
+    "address": "대전광역시 대덕구 대화로106번길 66, 3층 328호(대화동, 펜타플렉스) 3층 328호",
+    "industry": "",
+    "product": "반도체 기계장치, 실험기기",
+    "confirmed_chemicals": []
+  },
+  {
+    "name": "정은테크",
+    "district": "대덕구",
+    "address": "대전광역시 대덕구 대화로32번길 79 (대화동, 대원종합물산)",
+    "industry": "",
+    "product": "반도체장비, 자동차부품",
+    "confirmed_chemicals": []
+  },
+  {
+    "name": "주식회사 대덕테크",
+    "district": "대덕구",
+    "address": "대전광역시 대덕구 대덕대로1417번길 34 (문평동)",
+    "industry": "",
+    "product": "반도체 장비 정밀부품 외",
+    "confirmed_chemicals": []
+  },
+  {
+    "name": "주식회사 에프티이디",
+    "district": "대덕구",
+    "address": "대전광역시 대덕구 대화로106번길 66,(대화동, 펜타플렉스) 1동 5층 514호",
+    "industry": "",
+    "product": "유연열전소자를 활용한 응용제품",
+    "confirmed_chemicals": []
+  },
+  {
+    "name": "주식회사 킴스레퍼런스",
+    "district": "대덕구",
+    "address": "대전광역시 대덕구 대화로 120, (대화동, 가온비즈타워) 1동 12층 1213호 외 4필지",
+    "industry": "",
+    "product": "반도체 표준물질",
+    "confirmed_chemicals": []
+  },
+  {
+    "name": "주식회사 포엠일렉트로옵틱",
+    "district": "대덕구",
+    "address": "대전광역시 대덕구 대화로 120,(대화동, 가온비즈타워) 1동 8층 812호 외 5필지",
+    "industry": "",
+    "product": "반도체 전공정 장비",
+    "confirmed_chemicals": []
+  },
+  {
+    "name": "주식회사 한국엔텍",
+    "district": "대덕구",
+    "address": "대전광역시 대덕구 신탄진로 575 (상서동)",
+    "industry": "",
+    "product": "반도체 부품 및 의료기기 부품",
+    "confirmed_chemicals": []
+  },
+  {
+    "name": "태정산기",
+    "district": "대덕구",
+    "address": "대전광역시 대덕구 평촌2길 6 (평촌동)",
+    "industry": "",
+    "product": "타이어설비기계, 반도체장비",
+    "confirmed_chemicals": []
+  },
+  {
+    "name": "태진세미텍 주식회사",
+    "district": "대덕구",
+    "address": "대전광역시 대덕구 방두말5길 21(상서동)",
+    "industry": "기타반도체소자제조업",
+    "product": "",
+    "confirmed_chemicals": []
+  },
+  {
+    "name": "한국센서연구소(주)",
+    "district": "대덕구",
+    "address": "대전광역시 대덕구 한남로 70, A동 601호 (오정동, 한남대학교) A동 601호 외 3필지",
+    "industry": "",
+    "product": "전자 부품 제조",
+    "confirmed_chemicals": []
+  }
+]
