@@ -84,6 +84,7 @@ python -m scripts.demo --cas 001310-73-2  # 수산화나트륨 등 다른 물질
 - `scripts/find_chemical_companies.py` → `data/chemical_candidate_companies.json` — (보조 수단) 기업 DB의 product/industry 텍스트를 화학물질취급정보(15종)와 문자열 대조. 결과 2건(보림산업, (주)동양이앤씨) — NCIS PRTR 쪽이 훨씬 신뢰도 높은 1차 출처이고, 이건 참고용으로만 남겨둠.
 - `scripts/find_recycling_companies.py` → `data/recycling_companies_daejeon.json` — `matching_candidates_ncis.json` 안에서 업종이 "폐기물 수집,운반,처리 및 원료재생업"인 기업만 추출. **재활용업체 대상 리드매칭(피벗 방향) 수요자 후보 2곳 확인**: (주)동양환경(대덕구, 6개 물질 취급), 대전그린에너지센터(주)(유성구, 2개 물질 취급). 이 둘은 배출기업이 아니라 이미 폐기물을 처리·재생하는 게 본업인 회사임.
 - `scripts/find_semiconductor_companies.py` → `data/semiconductor_companies_daejeon.json` — `company_db.json`에서 업종/주생산품에 "반도체·전자부품·웨이퍼·소자"가 들어간 기업만 추출(43곳). 이 중 NCIS로 실제 화학물질까지 확인된 곳은 4곳(주식회사 켐옵틱스, (주)로옴코리아, (주)래트론, 이엘케이㈜) — 나머지 39곳은 업종상 후보일 뿐 폐기물 데이터는 아직 없음. 대전 반도체 배출기업 컨택 대상 풀을 넓히는 용도.
+- `scripts/find_intermediate_treatment_companies.py` → `data/intermediate_treatment_companies_daedeok.json` — `waste_registry_daedeok.json`의 `handlers`/`methods`(수탁업체별 실제 처리방법: 재활용/중간처분/매립)를 이용해 처리방법이 "중간처분"(소각·중화 등)으로 시작하는 수탁업체만 추출(대덕구 66곳). **동양환경 인터뷰로 "재활용업체는 원료가 필요하다"는 가정이 깨진 뒤, 타겟을 중간처분업체로 넓히기 위해 만듦**. `find_recycling_companies.py`가 쓰는 NCIS 업종명("폐기물 수집,운반,처리 및 원료재생업")은 재활용/중간처분/수집운반을 구분 못 하는 단일 KSIC 코드라 못 씀 — 처리방법이 구분된 원본 데이터는 대덕구 정보공개 자료에만 있어 범위가 대덕구로 한정됨(동구/유성구/NCIS 소스는 처리방법 컬럼 자체가 없음). 검증: 결과 1위가 (주)동양환경(32건)으로, 실제 인터뷰에서 확인된 소각전문업체와 일치.
 
 ### 아직 안 쓰는 것
 - `한국환경산업기술원_... 상세정보_20241231.csv`(전국 4,355건) — `data/ghg_waste_2024.json`이 이 파일의 대전 부분집합(73건)과 일치함을 확인, 별도 보관 안 함
@@ -104,6 +105,7 @@ python -m scripts.find_matching_candidates
 python -m scripts.find_recycling_companies
 python -m scripts.build_company_db
 python -m scripts.find_semiconductor_companies
+python -m scripts.find_intermediate_treatment_companies
 python -m scripts.find_chemical_companies
 python -m scripts.generate_report   # data/full_matching_report.json -> docs/report.html가 참조
 python -m tests.test_match
@@ -117,6 +119,7 @@ python -m tests.test_legal_rules
 python -m tests.test_generate_report
 python -m tests.test_find_recycling_companies
 python -m tests.test_find_semiconductor_companies
+python -m tests.test_find_intermediate_treatment_companies
 python -m scripts.demo   # End-to-End 데모 실행
 ```
 
