@@ -86,6 +86,19 @@ python -m scripts.demo --cas 001310-73-2  # 수산화나트륨 등 다른 물질
 - `scripts/find_semiconductor_companies.py` → `data/semiconductor_companies_daejeon.json` — `company_db.json`에서 업종/주생산품에 "반도체·전자부품·웨이퍼·소자"가 들어간 기업만 추출(43곳). 이 중 NCIS로 실제 화학물질까지 확인된 곳은 4곳(주식회사 켐옵틱스, (주)로옴코리아, (주)래트론, 이엘케이㈜) — 나머지 39곳은 업종상 후보일 뿐 폐기물 데이터는 아직 없음. 대전 반도체 배출기업 컨택 대상 풀을 넓히는 용도.
 - `scripts/find_intermediate_treatment_companies.py` → `data/intermediate_treatment_companies_daedeok.json` — `waste_registry_daedeok.json`의 `handlers`/`methods`(수탁업체별 실제 처리방법: 재활용/중간처분/매립)를 이용해 처리방법이 "중간처분"(소각·중화 등)으로 시작하는 수탁업체만 추출(대덕구 66곳). **동양환경 인터뷰로 "재활용업체는 원료가 필요하다"는 가정이 깨진 뒤, 타겟을 중간처분업체로 넓히기 위해 만듦**. `find_recycling_companies.py`가 쓰는 NCIS 업종명("폐기물 수집,운반,처리 및 원료재생업")은 재활용/중간처분/수집운반을 구분 못 하는 단일 KSIC 코드라 못 씀 — 처리방법이 구분된 원본 데이터는 대덕구 정보공개 자료에만 있어 범위가 대덕구로 한정됨(동구/유성구/NCIS 소스는 처리방법 컬럼 자체가 없음). 검증: 결과 1위가 (주)동양환경(32건)으로, 실제 인터뷰에서 확인된 소각전문업체와 일치.
 
+### 기술사업화 매칭 피벗 후보 데이터 (대덕특구 출연연 ↔ 지역기업)
+
+재활용업체 리드매칭의 핵심 가정이 동양환경 인터뷰로 깨진 뒤 검토한 대안 주제. 대전은
+정부출연연구기관이 전국에서 가장 밀집한 지역(대덕특구)인데, 이 출연연들이 보유한
+이전 가능 기술이 지역 중소기업으로 잘 안 넘어간다는 문제 — 지금까지 만든 매칭 엔진
+(공급자/수요자 구조, TOPSIS 랭킹)을 물질이 아니라 기술로 바꿔서 그대로 재사용 가능.
+
+- `scripts/find_daedeok_tech_transfer.py` → `data/daedeok_tech_transfer_candidates.json` — 국가기술은행(NTB, 한국산업기술진흥원) Open API에서 2023~2026년 등록된 이전가능기술 49,553건을 훑어 대전 지역 후보를 추출. **API의 기관명(`orgName`) 검색 파라미터는 못 믿을 값**(정확한 기관명으로 검색해도 0건 — 필터링 버그) 이라 서버 필터를 안 쓰고, 유일하게 실제 값이 들어있는 `devPhone`(담당자 전화번호)이 "042"(대전 지역번호)로 시작하는 것만 클라이언트에서 걸러내는 방식으로 우회.
+- 결과: **15,080건** 확인. 기관명 집계 상위: 한국화학연구원(5,045건), 한국전자통신연구원(4,823건), 한국에너지기술연구원(1,130건), 한국항공우주연구원(1,110건), 한국기계연구원(711건), 한국원자력연구원(447건) 등 — **대덕특구 정부출연연 명단과 정확히 일치**해서 devPhone 필터링 방식이 유효함을 확인.
+- API 키는 `NTB_SERVICE_KEY` 환경변수로 주입(레포에 커밋 안 함). data.go.kr 개인 계정 발급, 개발계정 자동승인·일 1,000건 무료. 이번 수집에 496페이지(~500회) 호출 사용, 상한(`MAX_CALLS=550`)으로 일일 한도 초과 방지.
+- 아직 안 한 것: 기업 쪽 "수요기술" 데이터(NTB `기술은행 수요기술 조회 서비스`, 미확인) 매칭, 15,080건 중 실제로 유효한(만료 안 된) 기술만 골라내는 필터.
+- `data/daedeok_tech_transfer_candidates.json`(22MB, 전문 요약문 포함)은 용량 때문에 레포에 안 올림(`.gitignore` 등록) — 다른 큰 원본 공공데이터와 같은 방침, 스크립트로 재생성 가능.
+
 ### 아직 안 쓰는 것
 - `한국환경산업기술원_... 상세정보_20241231.csv`(전국 4,355건) — `data/ghg_waste_2024.json`이 이 파일의 대전 부분집합(73건)과 일치함을 확인, 별도 보관 안 함
 - `전국폐기물배출업체표준데이터.csv`(전국 4,242건) — 대전 언급 1건뿐이라 CLAUDE.md의 기존 결론("대전 커버리지 없음")대로 사용 안 함
@@ -106,6 +119,7 @@ python -m scripts.find_recycling_companies
 python -m scripts.build_company_db
 python -m scripts.find_semiconductor_companies
 python -m scripts.find_intermediate_treatment_companies
+NTB_SERVICE_KEY=... python -m scripts.find_daedeok_tech_transfer  # 별도 API 키 필요, ~500회 호출·몇 분 소요
 python -m scripts.find_chemical_companies
 python -m scripts.generate_report   # data/full_matching_report.json -> docs/report.html가 참조
 python -m tests.test_match
@@ -120,6 +134,7 @@ python -m tests.test_generate_report
 python -m tests.test_find_recycling_companies
 python -m tests.test_find_semiconductor_companies
 python -m tests.test_find_intermediate_treatment_companies
+python -m tests.test_find_daedeok_tech_transfer
 python -m scripts.demo   # End-to-End 데모 실행
 ```
 
