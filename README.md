@@ -135,8 +135,38 @@ python -m tests.test_find_recycling_companies
 python -m tests.test_find_semiconductor_companies
 python -m tests.test_find_intermediate_treatment_companies
 python -m tests.test_find_daedeok_tech_transfer
+python -m scripts.build_vacant_house_candidates
+python -m tests.test_build_vacant_house_candidates
+python -m tests.test_vacant_house_match
 python -m scripts.demo   # End-to-End 데모 실행
+python -m scripts.demo_vacant_house   # 빈집 활용 추천 데모 실행
 ```
+
+## 빈집 활용 최적화 피벗 (진행 중) — 추천 로직 뼈대 + 한계점
+
+재활용업체 리드매칭 → 기술사업화 매칭에 이어 검토 중인 세 번째 피벗. 대전 5개 구의
+빈집을 행정동·등급까지는 실측/실제 사례로, 개별 건물 속성(면적·층수·노후연수)은
+합성으로 채운 뒤(`src/vacant_house.py`, `scripts/build_vacant_house_candidates.py`),
+기존 TOPSIS 매칭 구조를 "물질→처리업체 순위"에서 "빈집 하나→활용 용도 순위"로
+뒤집어 추천 로직 뼈대를 만들었다(`src/vacant_house_match.py`, `scripts/demo_vacant_house.py`).
+
+```bash
+python -m scripts.build_vacant_house_candidates
+python -m scripts.demo_vacant_house                    # 기본값: 대덕구 읍내동 실제 사례
+python -m scripts.demo_vacant_house --house-id donggu-중앙동-1-1
+python -m tests.test_build_vacant_house_candidates
+python -m tests.test_vacant_house_match
+```
+
+### 개발자 입장에서 실제로 만들다 찾은 한계점
+
+1. **9개 판단기준 중 지금 실 데이터는 `전략산업인접도` 1개뿐**(`semiconductor_companies_daejeon.json` 구별 집계 재사용). 인구구조·유동인구·상권·생활SOC·주차장·교통 6개는 전부 API 소스는 찾아뒀지만(행안부 인구, 통계청 SGIS 유동인구, 소상공인시장진흥공단 상권, 전국주차장 표준데이터 등) 아직 안 붙였다 — API 하나 붙이는 데 신청·필드확인·실호출 테스트가 매번 필요해서(NTB 때처럼) 이 작업 자체가 다음 단계의 대부분을 차지한다.
+2. **신호가 1개뿐이라 생기는 구조적 왜곡을 실제로 확인함**: `recommend_top3`이 coverage(가중치 중 실제로 채워진 비율)로 점수를 재정규화하는데, 신호가 하나뿐이고 그 값이 최댓값(1.0)이면 가중치와 무관하게 무조건 만점(1.000)이 나온다 — 대덕구 읍내동 사례에서 "청년창업공간"과 "전략산업연계공간"이 서로 다른 용도인데 똑같이 1.000으로 동점 나오는 걸 데모로 직접 확인했다. 신호가 늘어나기 전까지 이 점수는 숫자로서 의미가 없다(순위 참고용도 아님).
+3. **`전략산업인접도`가 가중치에 없는 용도(문화학습공간·고령자커뮤니티시설·공유주차장) 3개는 coverage 0%라 지금 시스템에서 절대 추천되지 않는다** — 즉 지금 실제로 작동하는 건 5개 용도 중 2개뿐이고 나머지 3개는 데이터 하나도 못 붙이면 영원히 후보에서 빠진다. `tests/test_vacant_house_match.py`에 이 동작을 그대로 고정해 뒀다(신호를 추가하면 이 테스트부터 깨질 것).
+4. **score=0.0도 "추천 Top N"에 그냥 포함된다** — "이 용도가 안 좋다"(진짜 낮은 점수)와 "판단할 근거가 없다"가 구분이 안 되는 케이스가 실제로 나왔다(동구 중앙동처럼 전략산업 기업이 0곳인 지역). coverage를 같이 보라고 안내는 해뒀지만, 코드 차원에서 더 명확히 분리할 필요가 있다.
+5. **용도별 가중치(`USE_TYPE_WEIGHTS`)는 도메인 전문가 검증 없이 상식선에서 잡은 추정치**다 — `legal_rules.py`의 "미상" 처리와 같은 취지로 정직하게 표시는 해뒀지만, 실제 도시계획·부동산 전문가 자문 없이는 이 숫자 자체의 타당성을 주장할 수 없다.
+6. **빈집 위치·등급 실측치는 "동구_빈집현황" 페이지의 미리보기 표에서 가져온 것**이다 — 공식 전체 CSV 다운로드 메커니즘을 못 찾아서(다운로드 버튼을 눌러도 무관한 이미지 파일만 받아짐) 원본 파일 전체를 검증하지 못했다. 미리보기에 나온 16개 행정동 값(합계 385건)은 실측이 맞지만, "전체 행 35"라는 메타데이터와 정확히 안 맞아 빠진 행이 있을 가능성은 남아있다.
+7. **대전 5개 구 중 사실상 2개 구 분량만 들어있다** — 동구(실측 385건)와 5개 실제 사례(동구·중구·서구·대덕구 각 1~2곳)뿐이고, 유성구(921건 개별기록, 2021년 1회성이라 오래됨)·서구·대덕구 자체의 행정동×등급 표는 아직 이 파이프라인에 안 옮겼다.
 
 ## 다음에 할 일
 
