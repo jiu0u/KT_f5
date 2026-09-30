@@ -2,12 +2,14 @@
 "물질별 처리업체 순위"에서 "빈집 하나에 대한 활용방안(용도) 순위"로 뒤집은 버전.
 
 **지금 단계의 진짜 상태(중요)**: 아래 9개 판단 기준(criteria) 중 실제 데이터로
-채워진 건 `전략산업인접도` 하나뿐이다(`data/semiconductor_companies_daejeon.json`
-기반, 구 단위 집계). 나머지 8개(청년/고령인구비율, 1인가구비율, 유동인구,
-상권밀도, 생활SOC밀도, 주차장부족도, 교통접근성)는 아직 실제 데이터를 못
-붙여서 전부 None(미확보)이다. 그래서 지금 이 모듈로 나오는 추천은 "로직이
-작동은 하는지" 확인용이지, 실제로 신뢰할 수 있는 추천이 아니다 -- 용도별로
-coverage(가중치 기준 데이터 확보 비율)가 항상 같이 나오는 이유가 이것이다.
+채워진 건 4개 -- `전략산업인접도`(반도체 관련 기업 구별 분포), `1인가구비율`/
+`청년인구비율`/`고령인구비율`(행안부 주민등록 API, `scripts/build_daejeon_population_signals.py`).
+나머지 5개(유동인구, 상권밀도, 생활SOC밀도, 주차장부족도, 교통접근성)는 아직
+못 붙여서 None(미확보)이다. `청년/고령인구비율`은 이름과 달리 **전체 인구가 아니라
+1인가구 중** 연령대 비중이라는 것도 실제 한계다(build_daejeon_population_signals.py
+참고). 그래서 지금 이 모듈로 나오는 추천은 "로직이 작동은 하는지" 확인용에 가깝지,
+아직 전적으로 신뢰할 수 있는 추천은 아니다 -- 용도별로 coverage(가중치 기준 데이터
+확보 비율)가 항상 같이 나오는 이유가 이것이다.
 """
 from dataclasses import dataclass, field
 from pathlib import Path
@@ -26,6 +28,12 @@ USE_TYPE_WEIGHTS: dict[str, dict[str, float]] = {
 }
 
 ALL_CRITERIA = sorted({c for w in USE_TYPE_WEIGHTS.values() for c in w})
+
+# coverage가 이 밑이면 score를 아예 안 낸다. 신호가 1~2개뿐일 때 renormalize를 그대로
+# 쓰면(가중치 대비 실제로 가진 것만으로 나눔) 그 하나가 최댓값이기만 해도 무조건 만점이
+# 나와서 서로 다른 용도가 동점 처리되는 왜곡이 실제로 있었다(대덕구 읍내동 사례,
+# 청년창업공간·전략산업연계공간 둘 다 1.000). 최소 절반 이상 근거가 있어야 점수를 믿는다.
+MIN_COVERAGE = 0.5
 
 
 @dataclass
@@ -55,10 +63,25 @@ def _strategic_industry_density_by_district() -> dict[str, float]:
     return {district: n / max_count for district, n in counts.items()}
 
 
+def _population_signals_by_district() -> dict[str, dict]:
+    path = DATA_DIR / "daejeon_population_signals.json"
+    if not path.exists():
+        return {}  # scripts/build_daejeon_population_signals.py 아직 안 돌렸으면 전부 미확보로 처리
+    return {r["district"]: r for r in json.loads(path.read_text(encoding="utf-8"))}
+
+
 def build_location_signals(district: str, dong: str) -> LocationSignals:
     density = _strategic_industry_density_by_district()
+    population = _population_signals_by_district()
+
     criteria: dict[str, float | None] = {c: None for c in ALL_CRITERIA}
     criteria["전략산업인접도"] = density.get(district, 0.0)  # 데이터에 없는 구는 0(실제로 기업이 0곳)
+    if district in population:
+        p = population[district]
+        criteria["1인가구비율"] = p["one_person_household_ratio"]
+        # 이름은 "청년/고령인구비율"이지만 실제로는 1인가구 중 연령대 비중(전체 인구 아님) -- 모듈 docstring 참고
+        criteria["청년인구비율"] = p["youth_one_person_household_ratio"]
+        criteria["고령인구비율"] = p["elderly_one_person_household_ratio"]
     return LocationSignals(district=district, dong=dong, criteria=criteria)
 
 
@@ -75,13 +98,14 @@ def score_use_type(signals: LocationSignals, use_type: str) -> Recommendation:
         available_weight += weight
 
     coverage = available_weight / sum(weights.values())
-    score = (weighted_sum / available_weight) if available_weight > 0 else None
+    # coverage 미달이면 score는 항상 None -- "근거 부족"과 "실제로 낮은 점수"를 구조적으로 분리
+    score = (weighted_sum / available_weight) if coverage >= MIN_COVERAGE else None
     return Recommendation(use_type, score, coverage, used, missing)
 
 
 def recommend_top3(signals: LocationSignals) -> list[Recommendation]:
     scored = [score_use_type(signals, ut) for ut in USE_TYPE_WEIGHTS]
-    # coverage가 0(판단 근거가 아예 없음)인 용도는 순위에서 제외 -- 점수를 0으로 깔고 순위 매기면
+    # score가 None인 용도(coverage 미달 포함)는 순위에서 제외 -- 점수를 0으로 깔고 순위 매기면
     # "데이터가 없어서 낮게 나온 것"과 "데이터상 실제로 안 맞는 것"이 구분 안 되기 때문
     ranked = sorted((r for r in scored if r.score is not None), key=lambda r: -r.score)
     return ranked[:3]

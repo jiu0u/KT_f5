@@ -1,15 +1,17 @@
-"""빈집 추천 로직 자체 점검 -- 지금 상태(신호 9개 중 1개만 실 데이터)에서
+"""빈집 추천 로직 자체 점검 -- 지금 상태(신호 9개 중 4개 실 데이터)에서
 실제로 어떻게 동작하는지를 고정해 둔다. 신호를 더 붙이면 이 중 일부는
 당연히 깨져야 정상(그때 다시 맞게 고치면 됨).
 실행: python -m tests.test_vacant_house_match
 """
-from src.vacant_house_match import ALL_CRITERIA, USE_TYPE_WEIGHTS, build_location_signals, recommend_top3
+from src.vacant_house_match import MIN_COVERAGE, build_location_signals, recommend_top3, score_use_type
+
+REAL_CRITERIA_NOW = {"전략산업인접도", "1인가구비율", "청년인구비율", "고령인구비율"}
 
 
-def test_only_strategic_industry_signal_is_real_right_now():
+def test_exactly_four_signals_are_real_right_now():
     signals = build_location_signals("대덕구", "읍내동")
-    filled = [c for c, v in signals.criteria.items() if v is not None]
-    assert filled == ["전략산업인접도"], "지금은 전략산업인접도 하나만 실 데이터여야 함 -- 늘었으면 이 테스트를 고칠 것"
+    filled = {c for c, v in signals.criteria.items() if v is not None}
+    assert filled == REAL_CRITERIA_NOW, "늘었으면(혹은 줄었으면) 이 테스트부터 고칠 것"
 
 
 def test_strategic_industry_signal_matches_real_company_distribution():
@@ -19,28 +21,46 @@ def test_strategic_industry_signal_matches_real_company_distribution():
     assert build_location_signals("중구", "부사동").criteria["전략산업인접도"] == 0.0
 
 
-def test_use_types_without_the_wired_signal_are_currently_unscoreable():
-    signals = build_location_signals("대덕구", "읍내동")
-    scoreable = {r.use_type for r in recommend_top3(signals)}
-    assert scoreable == {"청년창업공간", "전략산업연계공간"}, (
-        "전략산업인접도가 가중치에 없는 문화학습공간/고령자커뮤니티시설/공유주차장은 "
-        "coverage 0%라 지금은 절대 추천에 안 나와야 함 -- 이게 지금 시스템의 핵심 한계"
-    )
+def test_population_signal_reflects_real_daejeon_demographics():
+    # 유성구(대학가)는 청년1인가구 비중이 대전 5개구 중 가장 높아야 함(행안부 실데이터, 202607 기준 53.3%)
+    yuseong = build_location_signals("유성구", "진잠동").criteria
+    donggu = build_location_signals("동구", "중앙동").criteria
+    assert yuseong["청년인구비율"] > donggu["청년인구비율"]
+    assert yuseong["고령인구비율"] < donggu["고령인구비율"]
 
 
-def test_low_coverage_recommendations_are_flagged():
+def test_recommendations_now_differ_by_real_district_data():
+    # 전략산업 기업이 몰린 대덕구는 전략산업연계공간이 1위, 원도심 고령층 비중이 높은
+    # 동구는 고령자커뮤니티시설이 1위여야 함 -- 신호가 1개뿐이던 이전엔 구분이 안 됐던 부분
+    daedeok_top = recommend_top3(build_location_signals("대덕구", "읍내동"))[0]
+    donggu_top = recommend_top3(build_location_signals("동구", "중앙동"))[0]
+    assert daedeok_top.use_type == "전략산업연계공간"
+    assert donggu_top.use_type == "고령자커뮤니티시설"
+
+
+def test_low_coverage_use_types_still_return_no_score():
+    # 문화학습공간은 지금 신호 4개 중 1인가구비율(가중치 0.20)만 걸리므로 여전히 coverage 미달
     signals = build_location_signals("대덕구", "읍내동")
-    for r in recommend_top3(signals):
-        assert r.coverage < 1.0, "지금은 100% coverage인 용도가 있으면 안 됨(신호 하나뿐이므로)"
-        assert r.missing_criteria, "빠진 기준이 항상 표시되어야 함"
+    r = score_use_type(signals, "문화학습공간")
+    assert r.coverage < MIN_COVERAGE
+    assert r.score is None, "coverage 미달이면 score=0이 아니라 None(판단불가)이어야 함"
+
+
+def test_all_returned_recommendations_meet_min_coverage():
+    for district, dong in [("대덕구", "읍내동"), ("동구", "중앙동")]:
+        for r in recommend_top3(build_location_signals(district, dong)):
+            assert r.coverage >= MIN_COVERAGE
+            assert r.missing_criteria, "빠진 기준이 있으면 항상 표시되어야 함(지금은 100% coverage가 없음)"
 
 
 def demo():
-    test_only_strategic_industry_signal_is_real_right_now()
+    test_exactly_four_signals_are_real_right_now()
     test_strategic_industry_signal_matches_real_company_distribution()
-    test_use_types_without_the_wired_signal_are_currently_unscoreable()
-    test_low_coverage_recommendations_are_flagged()
-    print("OK - 빈집 추천 로직 자체 점검 통과 (지금은 9개 기준 중 1개만 실데이터인 상태를 고정 확인)")
+    test_population_signal_reflects_real_daejeon_demographics()
+    test_recommendations_now_differ_by_real_district_data()
+    test_low_coverage_use_types_still_return_no_score()
+    test_all_returned_recommendations_meet_min_coverage()
+    print("OK - 빈집 추천 로직 자체 점검 통과 (신호 9개 중 4개 실데이터, 구별로 실제로 다른 추천 확인)")
 
 
 if __name__ == "__main__":
