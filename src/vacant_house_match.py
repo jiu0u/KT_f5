@@ -2,14 +2,18 @@
 "물질별 처리업체 순위"에서 "빈집 하나에 대한 활용방안(용도) 순위"로 뒤집은 버전.
 
 **지금 단계의 진짜 상태(중요)**: 아래 9개 판단 기준(criteria) 중 실제 데이터로
-채워진 건 4개 -- `전략산업인접도`(반도체 관련 기업 구별 분포), `1인가구비율`/
-`청년인구비율`/`고령인구비율`(행안부 주민등록 API, `scripts/build_daejeon_population_signals.py`).
-나머지 5개(유동인구, 상권밀도, 생활SOC밀도, 주차장부족도, 교통접근성)는 아직
-못 붙여서 None(미확보)이다. `청년/고령인구비율`은 이름과 달리 **전체 인구가 아니라
-1인가구 중** 연령대 비중이라는 것도 실제 한계다(build_daejeon_population_signals.py
-참고). 그래서 지금 이 모듈로 나오는 추천은 "로직이 작동은 하는지" 확인용에 가깝지,
-아직 전적으로 신뢰할 수 있는 추천은 아니다 -- 용도별로 coverage(가중치 기준 데이터
-확보 비율)가 항상 같이 나오는 이유가 이것이다.
+채워진 건 6개 -- `전략산업인접도`(반도체 관련 기업 구별 분포), `1인가구비율`/
+`청년인구비율`/`고령인구비율`(행안부 주민등록 API, `scripts/build_daejeon_population_signals.py`),
+`상권밀도`(소상공인시장진흥공단 상가업소 수, `scripts/build_daejeon_commercial_density.py`),
+`주차장부족도`(전국주차장정보 표준데이터, `scripts/build_daejeon_parking_supply.py`).
+나머지 3개(유동인구, 생활SOC밀도, 교통접근성)는 아직 못 붙여서 None(미확보)이다.
+`청년/고령인구비율`은 이름과 달리 **전체 인구가 아니라 1인가구 중** 연령대
+비중이고, `상권밀도`도 이름과 달리 면적/인구로 나눈 진짜 밀도가 아니라 구별
+상가업소 총 개수를 정규화한 것이며, `주차장부족도`는 실제 수요 대비 부족량이
+아니라 공급량(주차구획수)의 역수로 근사한 것이다 -- 셋 다 실제 한계로 각
+build 스크립트에 명시해 뒀다. 그래서 지금 이 모듈로 나오는 추천은 "로직이
+작동은 하는지" 확인용에 가깝지, 아직 전적으로 신뢰할 수 있는 추천은 아니다 --
+용도별로 coverage(가중치 기준 데이터 확보 비율)가 항상 같이 나오는 이유가 이것이다.
 """
 from dataclasses import dataclass, field
 from pathlib import Path
@@ -70,9 +74,31 @@ def _population_signals_by_district() -> dict[str, dict]:
     return {r["district"]: r for r in json.loads(path.read_text(encoding="utf-8"))}
 
 
+def _commercial_density_by_district() -> dict[str, float]:
+    """구별 상가업소 수를 0~1로 정규화 -- 이름은 밀도지만 실제론 총량(모듈 docstring 참고)."""
+    path = DATA_DIR / "daejeon_commercial_density.json"
+    if not path.exists():
+        return {}
+    rows = json.loads(path.read_text(encoding="utf-8"))
+    max_count = max((r["store_count"] for r in rows), default=1)
+    return {r["district"]: r["store_count"] / max_count for r in rows}
+
+
+def _parking_scarcity_by_district() -> dict[str, float]:
+    """구별 주차구획수를 0~1로 정규화한 뒤 뒤집음(공급 적을수록 부족도 높음) -- 수요 데이터 없는 약한 근사."""
+    path = DATA_DIR / "daejeon_parking_supply.json"
+    if not path.exists():
+        return {}
+    rows = json.loads(path.read_text(encoding="utf-8"))
+    max_capacity = max((r["capacity"] for r in rows), default=1)
+    return {r["district"]: 1 - (r["capacity"] / max_capacity) for r in rows}
+
+
 def build_location_signals(district: str, dong: str) -> LocationSignals:
     density = _strategic_industry_density_by_district()
     population = _population_signals_by_district()
+    commercial = _commercial_density_by_district()
+    parking = _parking_scarcity_by_district()
 
     criteria: dict[str, float | None] = {c: None for c in ALL_CRITERIA}
     criteria["전략산업인접도"] = density.get(district, 0.0)  # 데이터에 없는 구는 0(실제로 기업이 0곳)
@@ -82,6 +108,10 @@ def build_location_signals(district: str, dong: str) -> LocationSignals:
         # 이름은 "청년/고령인구비율"이지만 실제로는 1인가구 중 연령대 비중(전체 인구 아님) -- 모듈 docstring 참고
         criteria["청년인구비율"] = p["youth_one_person_household_ratio"]
         criteria["고령인구비율"] = p["elderly_one_person_household_ratio"]
+    if district in commercial:
+        criteria["상권밀도"] = commercial[district]
+    if district in parking:
+        criteria["주차장부족도"] = parking[district]
     return LocationSignals(district=district, dong=dong, criteria=criteria)
 
 
