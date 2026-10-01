@@ -2,10 +2,10 @@
 저밀도 구의 신호등 지점에 적용해, 사고 기록은 없지만 조건이 비슷한 후보를 뽑는다.
 
 절차:
-1. 모든 신호등 지점에 대해 (사고다발지역까지 거리, 150m 내 횡단보도 수, 가까운
-   도로폭) 특징을 공간조인으로 계산한다.
-2. 고밀도 구(서구·중구)에서, (도로폭구간, 횡단보도수구간) 조합별로 실제
-   사고다발지역 150m 이내 비율을 집계한다 -- 이게 "학습된" 위험 비율표다.
+1. 모든 신호등 지점에 대해 (사고다발지역까지 거리, 100m 내 횡단보도 수, 가까운
+   도로폭, 100m 내 보안등 수) 특징을 공간조인으로 계산한다.
+2. 고밀도 구(서구·중구)에서, (도로폭구간, 횡단보도수구간, 보안등수구간) 조합별로
+   실제 사고다발지역 150m 이내 비율을 집계한다 -- 이게 "학습된" 위험 비율표다.
 3. 저밀도 구(동구·유성구·대덕구)의 신호등 중 사고다발지역에서 150m 넘게
    떨어진(=기록 없는) 지점에 같은 비율표를 적용해 추정 위험도를 매긴다.
 4. 추정 위험도가 높은데 기록이 없는 지점을 "예측 위험지점 후보"로 출력한다.
@@ -27,6 +27,7 @@ from src.accident_risk import (
     load_crosswalk_points,
     load_low_density_districts,
     load_road_sign_points,
+    load_street_light_points,
     load_traffic_light_points,
 )
 
@@ -58,7 +59,16 @@ def crosswalk_bucket(count: int) -> str:
     return "횡단보도2+"
 
 
-def build_features(lights: list[dict], accident_idx: GridIndex, crosswalk_idx: GridIndex, sign_idx: GridIndex) -> list[dict]:
+def light_bucket(count: int) -> str:
+    # 100m 반경 보안등 개수 -- 적을수록 야간 시야 확보가 안 되는 지점이라고 본다
+    if count == 0:
+        return "보안등0"
+    if count <= 2:
+        return "보안등1~2"
+    return "보안등3+"
+
+
+def build_features(lights: list[dict], accident_idx: GridIndex, crosswalk_idx: GridIndex, sign_idx: GridIndex, street_light_idx: GridIndex) -> list[dict]:
     rows = []
     for light in lights:
         dist = accident_idx.nearest_distance_m(light["lat"], light["lon"])
@@ -72,6 +82,7 @@ def build_features(lights: list[dict], accident_idx: GridIndex, crosswalk_idx: G
                 nearest_width = closest["width_m"]
 
         crosswalk_count = crosswalk_idx.count_within(light["lat"], light["lon"], NEARBY_RADIUS_M)
+        street_light_count = street_light_idx.count_within(light["lat"], light["lon"], NEARBY_RADIUS_M)
 
         rows.append({
             **light,
@@ -79,14 +90,15 @@ def build_features(lights: list[dict], accident_idx: GridIndex, crosswalk_idx: G
             "is_known_hotspot": is_known_hotspot,
             "road_width_bucket": width_bucket(nearest_width),
             "crosswalk_bucket": crosswalk_bucket(crosswalk_count),
+            "light_bucket": light_bucket(street_light_count),
         })
     return rows
 
 
-def learn_risk_rates(high_density_rows: list[dict]) -> dict[tuple[str, str], dict]:
-    buckets: dict[tuple[str, str], list[bool]] = {}
+def learn_risk_rates(high_density_rows: list[dict]) -> dict[tuple[str, str, str], dict]:
+    buckets: dict[tuple[str, str, str], list[bool]] = {}
     for r in high_density_rows:
-        key = (r["road_width_bucket"], r["crosswalk_bucket"])
+        key = (r["road_width_bucket"], r["crosswalk_bucket"], r["light_bucket"])
         buckets.setdefault(key, []).append(r["is_known_hotspot"])
 
     rates = {}
@@ -104,9 +116,10 @@ def build() -> list[dict]:
     accident_idx = GridIndex(load_accident_points())
     crosswalk_idx = GridIndex(load_crosswalk_points())
     sign_idx = GridIndex(load_road_sign_points())
+    street_light_idx = GridIndex(load_street_light_points())
     low_density = load_low_density_districts()
 
-    all_rows = build_features(lights, accident_idx, crosswalk_idx, sign_idx)
+    all_rows = build_features(lights, accident_idx, crosswalk_idx, sign_idx, street_light_idx)
     high_density_rows = [r for r in all_rows if r["district"] in HIGH_DENSITY_DISTRICTS]
     risk_rates = learn_risk_rates(high_density_rows)
 
@@ -114,7 +127,7 @@ def build() -> list[dict]:
     for r in all_rows:
         if r["district"] not in low_density or r["is_known_hotspot"]:
             continue  # 저밀도 구이면서 아직 기록 없는 지점만 후보
-        key = (r["road_width_bucket"], r["crosswalk_bucket"])
+        key = (r["road_width_bucket"], r["crosswalk_bucket"], r["light_bucket"])
         learned = risk_rates.get(key, {"rate": None, "support": 0, "reliable": False})
         candidates.append({**r, "estimated_risk_rate": learned["rate"], "rate_support": learned["support"], "rate_reliable": learned["reliable"]})
 
@@ -131,7 +144,7 @@ def main():
     print("\n[추정 위험도 상위 10곳 (표본 신뢰 가능한 것만)]")
     for c in reliable[:10]:
         print(f"  {c['district']} {c['address']} - 추정위험률 {c['estimated_risk_rate']:.0%} "
-              f"(도로폭:{c['road_width_bucket']}, {c['crosswalk_bucket']}, 버킷표본 {c['rate_support']}건)")
+              f"(도로폭:{c['road_width_bucket']}, {c['crosswalk_bucket']}, {c['light_bucket']}, 버킷표본 {c['rate_support']}건)")
     print(f"\n완료 -> {OUT_PATH}")
 
 

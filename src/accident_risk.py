@@ -16,13 +16,15 @@
 - 고밀도 구의 표본(서구 104건, 중구 80건)도 통계적으로 크지 않다 -- 버킷을
   세분화할수록(도로폭 구간 더 쪼개기 등) 표본이 더 희박해져 추정이 불안정해진다.
 - **도로폭(roadBt)이 대전 데이터에서 전부 "0"(플레이스홀더)이라 실질적으로
-  못 쓴다** — 그래서 지금 위험도 추정은 사실상 "횡단보도 밀집도" 한 가지
-  차원으로만 갈린다(scripts/build_daejeon_road_signs.py 한계 참고). 애초에
-  5개 신호(신호등 유무, 도로폭, 조명, 시간대, 인구밀도, 대중교통접근성) 중
-  "도로폭"은 데이터 품질 문제로 탈락, "조명"은 전국 표준데이터 자체를 못
-  찾았고, "시간대별"은 이 표준데이터셋에 발생 시각 필드가 없고, "대중교통접근성"은
-  아직 안 붙였다 — 처음 구상한 6개 신호 중 실질적으로 쓰는 건 인구밀도(저밀도
-  판정)와 횡단보도뿐이다.
+  못 쓴다**(scripts/build_daejeon_road_signs.py 한계 참고) — width_bucket()에서
+  "정보없음"으로 따로 처리한다.
+- **조명(보안등)은 처음엔 "전국 표준데이터 자체를 못 찾았다"고 잘못 결론
+  냈었다** — 실제로는 `tn_pubr_public_scrty_lmp_api`로 존재했고, 대전만
+  59,518건 확보했다(load_street_light_points). 애초에 구상했던 6개 신호
+  (신호등 유무, 도로폭, 조명, 시간대, 인구밀도, 대중교통접근성) 중 지금
+  실질적으로 쓰는 건 인구밀도(저밀도 판정)·횡단보도·조명 3개다 — "시간대별"은
+  이 표준데이터셋에 발생 시각 필드가 없고, "대중교통접근성"은 국가 API가
+  죽어 있어(build_daejeon_street_lights.py와 별개로 확인함) 포기했다.
 """
 import json
 import math
@@ -108,6 +110,11 @@ def load_road_sign_points() -> list[dict]:
         if p:
             points.append(p)
     return points
+
+
+def load_street_light_points() -> list[dict]:
+    rows = json.loads((DATA_DIR / "daejeon_street_lights.json").read_text(encoding="utf-8"))
+    return [p for r in rows if (p := _to_point(r["latitude"], r["longitude"], district=r["district"]))]
 
 
 def load_low_density_districts() -> set[str]:

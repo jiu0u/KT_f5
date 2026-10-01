@@ -1,5 +1,5 @@
 """교통사고 위험지점 예측 로직 자체 점검. 실행: python -m tests.test_predict_accident_risk_candidates"""
-from scripts.predict_accident_risk_candidates import HIGH_DENSITY_DISTRICTS, build, width_bucket
+from scripts.predict_accident_risk_candidates import HIGH_DENSITY_DISTRICTS, build, light_bucket, width_bucket
 from src.accident_risk import load_low_density_districts
 
 
@@ -8,6 +8,17 @@ def test_road_width_zero_is_treated_as_missing_not_narrow():
     assert width_bucket(0.0) == "도로폭정보없음"
     assert width_bucket(None) == "도로폭정보없음"
     assert width_bucket(5.0) == "6m미만(좁음)"
+
+
+def test_light_bucket_covers_full_range():
+    assert light_bucket(0) == "보안등0"
+    assert light_bucket(2) == "보안등1~2"
+    assert light_bucket(10) == "보안등3+"
+
+
+def test_candidates_carry_light_bucket():
+    candidates = build()
+    assert all("light_bucket" in c for c in candidates)
 
 
 def test_high_and_low_density_districts_do_not_overlap():
@@ -25,8 +36,10 @@ def test_candidates_are_only_from_low_density_unrecorded_locations():
 
 def demo():
     test_road_width_zero_is_treated_as_missing_not_narrow()
+    test_light_bucket_covers_full_range()
     test_high_and_low_density_districts_do_not_overlap()
     test_candidates_are_only_from_low_density_unrecorded_locations()
+    test_candidates_carry_light_bucket()
     print("OK - 교통사고 위험지점 예측 자체 점검 통과")
 
 

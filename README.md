@@ -201,17 +201,20 @@ TAAS 안에 "위험도로예보시스템"(국내 최초 AI 기반 교통사고 �
 | 전국신호등표준데이터 | `scripts/build_daejeon_traffic_lights.py` → `data/daejeon_traffic_lights.json` | 20,149개 — 유성구 최다 |
 | 전국횡단보도표준데이터 | `scripts/build_daejeon_crosswalks.py` → `data/daejeon_crosswalks.json` | 9,393개 — 유성구 최다 |
 | 전국도로안전표지표준데이터(도로폭) | `scripts/build_daejeon_road_signs.py` → `data/daejeon_road_signs.json` | 7,221건 — ⚠ 도로폭(roadBt) 값이 전부 "0"(플레이스홀더)이라 실질적으로 못 씀, 아래 참고 |
+| 전국보안등정보표준데이터(조명) | `scripts/build_daejeon_street_lights.py` → `data/daejeon_street_lights.json` | 59,518개 — 서구 최다(15,446), 처음엔 "표준데이터 자체가 없다"고 잘못 결론 냈던 걸 뒤늦게 복구함 |
 
 ```bash
 DATA_GO_KR_SERVICE_KEY=... python -m scripts.build_daejeon_accident_hotspots
 DATA_GO_KR_SERVICE_KEY=... python -m scripts.build_daejeon_traffic_lights   # 전국 99페이지, 몇 분 소요
 DATA_GO_KR_SERVICE_KEY=... python -m scripts.build_daejeon_crosswalks      # 전국 59페이지
 DATA_GO_KR_SERVICE_KEY=... python -m scripts.build_daejeon_road_signs      # 전국 114페이지, 가장 오래 걸림
-python -m scripts.predict_accident_risk_candidates   # 매칭+위험도 추정, 위 4개 결과 파일 필요
+DATA_GO_KR_SERVICE_KEY=... python -m scripts.build_daejeon_street_lights   # 전국 1,858페이지(약 186만건) -- 동시요청(8)로 처리, 가장 오래 걸림
+python -m scripts.predict_accident_risk_candidates   # 매칭+위험도 추정, 위 5개 결과 파일 필요
 python -m tests.test_build_daejeon_accident_hotspots
 python -m tests.test_build_daejeon_traffic_lights
 python -m tests.test_build_daejeon_crosswalks
 python -m tests.test_build_daejeon_road_signs
+python -m tests.test_build_daejeon_street_lights
 python -m tests.test_predict_accident_risk_candidates
 ```
 
@@ -224,12 +227,13 @@ python -m tests.test_predict_accident_risk_candidates
 3. **사고다발지역 데이터의 "시군구명"에 알 수 없는 일련번호가 붙어있다**: "대전광역시 동구1", "대전광역시 동구2"처럼 구 이름 뒤에 숫자가 붙는다(연도별 순위로 추정, 확인 안 됨) — 그래서 정확한 문자열 일치 대신 "대전"과 구 이름이 둘 다 포함되는지로 느슨하게 매칭했다.
 4. **큰 결과 파일 3개(합계 ~17MB)를 그대로 커밋**: NTB 기술이전 데이터(22MB) 때와 달리 이번엔 커밋했다 — 전국 원본이 아니라 이미 대전으로 필터링된 결과물이고 개별 파일이 10MB 미만이라 저장소 부담이 상대적으로 적다고 판단.
 5. **"도로폭 값 7221/7221 확보"라고 잘못 보고했었다**: 빈 문자열만 아니면 통과하는 테스트였는데, 실제로 열어보니 대전에서 매칭된 모든 행의 roadBt가 "0"(플레이스홀더)이었다 — 전국 샘플엔 6~15m대 실제 값도 섞여 있으니 대전 쪽 제출 데이터 자체의 품질 문제다. **지표가 수상하게 완벽하면(100%) 측정 방법을 의심해야 한다**는, 이번 세션 다른 프로젝트에서도 겪은 것과 같은 함정.
+6. **"조명(보안등) 전국 표준데이터가 없다"고 잘못 결론 냈었다**: 처음엔 안 찾아본 걸 "없다"로 보고했는데, 실제로는 `tn_pubr_public_scrty_lmp_api`(전국보안등정보표준데이터)가 기존 4개와 똑같은 패턴으로 존재했다. 다만 전국 총량이 약 186만 건(1,858페이지)으로 기존 데이터셋보다 한 자릿수 더 커서, 순차 요청(기존 방식)으로 돌렸다가 동시접속 16개로 묶었을 때 `WinError 10060`(연결 타임아웃)으로 중간에 죽었다 — 동시 요청 수를 8개로 낮추고 페이지별 재시도(최대 4회, 지수 백오프)를 넣어서 전수 스캔을 끝냈다.
 
 ### 매칭 로직 — 공간 조인 + 간이 위험도 추정
 
 `src/accident_risk.py`(격자 기반 최근접 탐색) + `scripts/predict_accident_risk_candidates.py`로
-① 모든 신호등 지점에 사고다발지역까지 거리·150m 내 횡단보도 수·가까운 도로폭을 공간조인하고,
-② 고밀도 구(서구·중구)에서 (도로폭구간, 횡단보도수구간) 조합별 실제 사고다발 근접 비율을 집계한 뒤,
+① 모든 신호등 지점에 사고다발지역까지 거리·100m 내 횡단보도 수·가까운 도로폭·100m 내 보안등 수를 공간조인하고,
+② 고밀도 구(서구·중구)에서 (도로폭구간, 횡단보도수구간, 보안등수구간) 조합별 실제 사고다발 근접 비율을 집계한 뒤,
 ③ 저밀도 구(동구·유성구·대덕구)에서 **아직 사고 기록이 없는** 신호등 지점에 그 비율을 적용해 추정 위험도로 정렬한다.
 
 ```bash
@@ -237,11 +241,11 @@ python -m scripts.predict_accident_risk_candidates
 python -m tests.test_predict_accident_risk_candidates
 ```
 
-- 결과: 저밀도 구 신호등 10,554개 중 사고 기록 없는 지점에 추정 위험률을 매김(상위는 28%, `data/accident_risk_candidates.json`).
-- **도로폭이 전부 "0"이라 못 써서, 지금 위험도는 사실상 "횡단보도 밀집도" 한 가지 차원으로만 갈린다** — `width_bucket()`에서 0 이하는 "6m미만(좁음)"이 아니라 "정보없음"으로 고쳐서, 데이터 없는 지점이 "도로가 좁아서 위험"으로 잘못 집계되는 걸 막았다.
-- 애초에 구상했던 6개 신호(신호등 유무·도로폭·조명·시간대·인구밀도·대중교통접근성) 중 지금 실제로 쓰는 건 **인구밀도(저밀도 판정)와 횡단보도뿐**이다 — 조명은 전국 표준데이터를 못 찾았고, 시간대는 이 데이터셋에 발생시각 필드가 없고, 대중교통접근성은 아직 안 붙였다.
+- 결과: 저밀도 구 신호등 10,554개 중 사고 기록 없는 지점에 추정 위험률을 매김(상위는 **32%**, 보안등 신호 추가 전엔 28% — `data/accident_risk_candidates.json`).
+- **도로폭이 전부 "0"이라 못 써서** `width_bucket()`에서 0 이하는 "6m미만(좁음)"이 아니라 "정보없음"으로 처리해, 데이터 없는 지점이 "도로가 좁아서 위험"으로 잘못 집계되는 걸 막았다.
+- 애초에 구상했던 6개 신호(신호등 유무·도로폭·조명·시간대·인구밀도·대중교통접근성) 중 지금 실제로 쓰는 건 **인구밀도(저밀도 판정)·횡단보도·조명(보안등) 3개**다 — 시간대는 이 데이터셋에 발생시각 필드가 없고, 대중교통접근성은 국가 API가 죽어 있어(아래 "다음에 할 일" 참고) 포기했다.
 - 150m 기준은 도로교통공단이 사고다발지역을 묶을 때 쓰는 반경을 그대로 가져온 것뿐 — 신호등-사고 간 실제 인과 반경을 검증한 게 아니다.
-- 고밀도 구 표본(서구 104건·중구 80건)도 크지 않아서, 버킷을 더 쪼갤수록(조명·시간대 등을 추가하면) 추정이 더 불안정해질 수 있다.
+- 고밀도 구 표본(서구 104건·중구 80건)도 크지 않아서, 버킷을 더 쪼갤수록(지금처럼 3개 신호를 조합할수록) 추정이 더 불안정해질 수 있다 — `MIN_SUPPORT=5` 미달 버킷은 `rate_reliable=False`로 표시한다.
 
 ### 방향 전환 — "예측"에서 "활용"으로
 
@@ -260,7 +264,7 @@ python -m tests.test_build_route_demo
 ```
 
 - 경로: 동구 가양동의 실제 교차로 두 곳(서쪽 끝 ↔ 동쪽 끝, 약 1.7km)을 직선으로 이음.
-- 결과: 그 경로 150m 반경 안에 추정위험률 28%(신뢰 가능한 버킷) 후보 **42건** — 기존
+- 결과: 그 경로 150m 반경 안에 추정위험률 32%(신뢰 가능한 버킷) 후보 **42건** — 기존
   사고다발지역 지도나 일반 길찾기 앱에는 안 뜨는 지점들이다.
 - **한계**: 실제 도로를 따라가는 경로가 아니라 두 점을 이은 직선 근사다(`src/accident_risk.py`의
   `point_to_segment_distance_m`/`candidates_along_route`). 카카오모빌리티·네이버 길찾기 같은
