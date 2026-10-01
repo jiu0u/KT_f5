@@ -193,18 +193,35 @@ TAAS 안에 "위험도로예보시스템"(국내 최초 AI 기반 교통사고 �
 - `scripts/build_daejeon_density_tiers.py` → `data/daejeon_district_density.json` — 대전 5개 구 인구밀도 계산(위키백과 공식 면적 수치 + 이미 있는 인구 데이터 재사용, 새 API 불필요). 결과: **동구가 구 전체로는 밀도 최하위**(1,596명/km²) — 산내동 등 산간지역을 포함해서 원도심인데도 그렇다. 서구가 최고(4,864명/km²).
 - 한계: 구 단위 밀도라 동구 안에서도 중앙동(원도심, 실제로는 고밀도일 것)과 산내동(실제 저밀도)이 뭉뚱그려진다 — 동 단위 면적 데이터를 구하면 바로 교체 대상.
 
-### 핵심 데이터 확인됨, API 키 등록 필요 (4개)
+### 핵심 데이터 4개 전부 수집 완료
 
-| 데이터 | 엔드포인트 | 용도 |
+| 데이터 | 스크립트 → 결과 | 건수(대전) |
 |---|---|---|
-| 전국교통사고다발지역표준데이터(도로교통공단) | `tn_pubr_public_acdnt_area_api` | 라벨 데이터 — 위도/경도/폴리곤/사고유형/사상자수, `CTPRVN_SIGNGU_NM`으로 대전 구 필터 가능 |
-| 전국신호등표준데이터 | `tn_pubr_public_traffic_light_api` | 신호등 유무·보행자작동신호기·음향신호기 유무 |
-| 전국횡단보도표준데이터 | `tn_pubr_public_crosswalk_api` | 횡단보도 위치 |
-| 전국도로안전표지표준데이터 | `tn_pubr_public_road_safety_mark_api` | 도로폭 등 도로 제원 |
+| 전국교통사고다발지역표준데이터(도로교통공단) | `scripts/build_daejeon_accident_hotspots.py` → `data/daejeon_accident_hotspots.json` | 360건 — 서구 104·동구 96·중구 80·유성구 43·대덕구 37 |
+| 전국신호등표준데이터 | `scripts/build_daejeon_traffic_lights.py` → `data/daejeon_traffic_lights.json` | 20,149개 — 유성구 최다 |
+| 전국횡단보도표준데이터 | `scripts/build_daejeon_crosswalks.py` → `data/daejeon_crosswalks.json` | 9,393개 — 유성구 최다 |
+| 전국도로안전표지표준데이터(도로폭) | `scripts/build_daejeon_road_signs.py` → `data/daejeon_road_signs.json` | 7,221건, 도로폭 값 100% 확보 |
 
-4개 다 자동승인이지만 전부 새 기관(경찰청/지자체 소관)이라 지금 키로는
-`SERVICE_KEY_IS_NOT_REGISTERED_ERROR`가 난다 — data.go.kr에서 개별 활용신청 필요.
-**가로등(조명) 데이터는 아직 전국 단위 표준데이터를 못 찾음**(서울시 자체 데이터만 확인) — 대전 자체 공개 여부 추가 확인 필요.
+```bash
+DATA_GO_KR_SERVICE_KEY=... python -m scripts.build_daejeon_accident_hotspots
+DATA_GO_KR_SERVICE_KEY=... python -m scripts.build_daejeon_traffic_lights   # 전국 99페이지, 몇 분 소요
+DATA_GO_KR_SERVICE_KEY=... python -m scripts.build_daejeon_crosswalks      # 전국 59페이지
+DATA_GO_KR_SERVICE_KEY=... python -m scripts.build_daejeon_road_signs      # 전국 114페이지, 가장 오래 걸림
+python -m tests.test_build_daejeon_accident_hotspots
+python -m tests.test_build_daejeon_traffic_lights
+python -m tests.test_build_daejeon_crosswalks
+python -m tests.test_build_daejeon_road_signs
+```
+
+**핵심 실증 — 산내동 사례**: 동구 사고다발지역 96건을 동별로 쪼개보면 전부 가양동·용전동·삼성동 같은 원도심 동에 몰려있고, **빈집이 가장 많았던(44채) 산내동엔 사고다발지역이 0건**이다. "저밀도 지역은 사고가 안 나서 안전한 게 아니라 기록 자체가 없을 뿐"이라는 피벗의 핵심 전제를 실데이터 교차검증으로 확인했다(`tests/test_build_daejeon_accident_hotspots.py`).
+
+### 수집 과정에서 겪은 문제들
+
+1. **부분 페이지네이션으로 "데이터가 없다"고 잘못 결론 낼 뻔함**: 전국신호등표준데이터를 처음 14페이지(14,000건)만 보고 대전이 안 보여서 "대전은 신호등 데이터 미참여"라고 결론 냈었다. 지역이 제출 순서대로 쌓이는 구조라 앞쪽 페이지만 보면 특정 시도가 통째로 안 보일 수 있다 — 전국 99페이지를 끝까지 다 돌고 나서야 대전이 있다는 걸 확인했다. **부분 샘플로 "없다"를 단정하면 안 된다**는 걸 직접 겪었다.
+2. **지역 필터 파라미터(`CTPRVN_SIGNGU_NM`, `signguNm`)가 전부 안 먹는다**: 문서에 분명히 있는 요청변수인데 어떤 값을 넣어도 `NODATA_ERROR`만 났다(사고다발지역·신호등·횡단보도 전부 동일 증상). 원인은 못 찾았다 — 응답 필드와 요청 파라미터의 대소문자/네이밍이 다르거나(응답은 camelCase, 문서는 UPPER_SNAKE), 실제 저장값 포맷이 다른 것으로 추정. 결국 4개 API 전부 **전국 데이터를 numOfRows=1000으로 끝까지 받은 뒤 클라이언트에서 "대전"/구 이름으로 필터링**하는 방식으로 우회했다 — 느리지만 확실하다.
+3. **사고다발지역 데이터의 "시군구명"에 알 수 없는 일련번호가 붙어있다**: "대전광역시 동구1", "대전광역시 동구2"처럼 구 이름 뒤에 숫자가 붙는다(연도별 순위로 추정, 확인 안 됨) — 그래서 정확한 문자열 일치 대신 "대전"과 구 이름이 둘 다 포함되는지로 느슨하게 매칭했다.
+4. **큰 결과 파일 3개(합계 ~17MB)를 그대로 커밋**: NTB 기술이전 데이터(22MB) 때와 달리 이번엔 커밋했다 — 전국 원본이 아니라 이미 대전으로 필터링된 결과물이고 개별 파일이 10MB 미만이라 저장소 부담이 상대적으로 적다고 판단.
+5. **아직 안 한 것**: 사고 유형(`acdntTypeSe`)·사고 위치와 신호등/횡단보도/도로폭을 좌표 기준으로 결합(최근접 매칭)하는 로직, 고밀도 지역에서 "위험 조건↔사고" 관계를 학습해 저밀도 지역에 적용하는 실제 스코어링 모델, 가로등(조명) 데이터(전국 단위 표준데이터를 아직 못 찾음 — 대전 자체 공개 여부 확인 필요).
 
 ## 다음에 할 일
 
