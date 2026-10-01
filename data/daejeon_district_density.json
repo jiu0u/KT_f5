@@ -1,0 +1,37 @@
+[
+  {
+    "district": "동구",
+    "population": 218050,
+    "area_km2": 136.63,
+    "density_per_km2": 1595.9,
+    "is_low_density": true
+  },
+  {
+    "district": "유성구",
+    "population": 371855,
+    "area_km2": 177.27,
+    "density_per_km2": 2097.7,
+    "is_low_density": true
+  },
+  {
+    "district": "대덕구",
+    "population": 163823,
+    "area_km2": 68.46,
+    "density_per_km2": 2393.0,
+    "is_low_density": true
+  },
+  {
+    "district": "중구",
+    "population": 224034,
+    "area_km2": 62.13,
+    "density_per_km2": 3605.9,
+    "is_low_density": false
+  },
+  {
+    "district": "서구",
+    "population": 464428,
+    "area_km2": 95.48,
+    "density_per_km2": 4864.1,
+    "is_low_density": false
+  }
+]
