@@ -113,3 +113,38 @@ def load_road_sign_points() -> list[dict]:
 def load_low_density_districts() -> set[str]:
     rows = json.loads((DATA_DIR / "daejeon_district_density.json").read_text(encoding="utf-8"))
     return {r["district"] for r in rows if r["is_low_density"]}
+
+
+def point_to_segment_distance_m(lat: float, lon: float, lat1: float, lon1: float, lat2: float, lon2: float) -> float:
+    """점-선분 최단거리(m). 평면(등거리원통) 근사 -- 수백m~수km 구간 경로에선
+    오차가 무시할 수준이라 GIS 라이브러리 없이 이 정도로 충분하다고 판단."""
+    lat0 = math.radians((lat1 + lat2) / 2)
+    mx, my = 111320.0 * math.cos(lat0), 111320.0
+
+    def to_xy(la, lo):
+        return (lo - lon1) * mx, (la - lat1) * my
+
+    px, py = to_xy(lat, lon)
+    bx, by = to_xy(lat2, lon2)
+    if bx == 0 and by == 0:
+        return haversine_m(lat, lon, lat1, lon1)
+    t = max(0.0, min(1.0, (px * bx + py * by) / (bx * bx + by * by)))
+    cx, cy = t * bx, t * by
+    return math.hypot(px - cx, py - cy)
+
+
+def candidates_along_route(route_points: list[tuple[float, float]], points: list[dict], buffer_m: float) -> list[dict]:
+    """경로(위경도 점들을 이은 직선 구간들) 주변 buffer_m 안의 지점만 추려
+    "이 경로에서 거리별 위험도" 를 보여주기 위한 함수. 경로는 실제 도로를 따라가지
+    않는 직선 근사다 -- 도로망 데이터·길찾기 API가 없어서 그대로 쓸 수 없다는
+    한계를 그대로 안고 간다(목업 단계에서는 개념 증명이 목적)."""
+    segments = list(zip(route_points, route_points[1:]))
+    result = []
+    for p in points:
+        min_dist = min(
+            point_to_segment_distance_m(p["lat"], p["lon"], lat1, lon1, lat2, lon2)
+            for (lat1, lon1), (lat2, lon2) in segments
+        )
+        if min_dist <= buffer_m:
+            result.append({**p, "dist_to_route_m": round(min_dist, 1)})
+    return result
