@@ -200,17 +200,19 @@ TAAS 안에 "위험도로예보시스템"(국내 최초 AI 기반 교통사고 �
 | 전국교통사고다발지역표준데이터(도로교통공단) | `scripts/build_daejeon_accident_hotspots.py` → `data/daejeon_accident_hotspots.json` | 360건 — 서구 104·동구 96·중구 80·유성구 43·대덕구 37 |
 | 전국신호등표준데이터 | `scripts/build_daejeon_traffic_lights.py` → `data/daejeon_traffic_lights.json` | 20,149개 — 유성구 최다 |
 | 전국횡단보도표준데이터 | `scripts/build_daejeon_crosswalks.py` → `data/daejeon_crosswalks.json` | 9,393개 — 유성구 최다 |
-| 전국도로안전표지표준데이터(도로폭) | `scripts/build_daejeon_road_signs.py` → `data/daejeon_road_signs.json` | 7,221건, 도로폭 값 100% 확보 |
+| 전국도로안전표지표준데이터(도로폭) | `scripts/build_daejeon_road_signs.py` → `data/daejeon_road_signs.json` | 7,221건 — ⚠ 도로폭(roadBt) 값이 전부 "0"(플레이스홀더)이라 실질적으로 못 씀, 아래 참고 |
 
 ```bash
 DATA_GO_KR_SERVICE_KEY=... python -m scripts.build_daejeon_accident_hotspots
 DATA_GO_KR_SERVICE_KEY=... python -m scripts.build_daejeon_traffic_lights   # 전국 99페이지, 몇 분 소요
 DATA_GO_KR_SERVICE_KEY=... python -m scripts.build_daejeon_crosswalks      # 전국 59페이지
 DATA_GO_KR_SERVICE_KEY=... python -m scripts.build_daejeon_road_signs      # 전국 114페이지, 가장 오래 걸림
+python -m scripts.predict_accident_risk_candidates   # 매칭+위험도 추정, 위 4개 결과 파일 필요
 python -m tests.test_build_daejeon_accident_hotspots
 python -m tests.test_build_daejeon_traffic_lights
 python -m tests.test_build_daejeon_crosswalks
 python -m tests.test_build_daejeon_road_signs
+python -m tests.test_predict_accident_risk_candidates
 ```
 
 **핵심 실증 — 산내동 사례**: 동구 사고다발지역 96건을 동별로 쪼개보면 전부 가양동·용전동·삼성동 같은 원도심 동에 몰려있고, **빈집이 가장 많았던(44채) 산내동엔 사고다발지역이 0건**이다. "저밀도 지역은 사고가 안 나서 안전한 게 아니라 기록 자체가 없을 뿐"이라는 피벗의 핵심 전제를 실데이터 교차검증으로 확인했다(`tests/test_build_daejeon_accident_hotspots.py`).
@@ -221,7 +223,25 @@ python -m tests.test_build_daejeon_road_signs
 2. **지역 필터 파라미터(`CTPRVN_SIGNGU_NM`, `signguNm`)가 전부 안 먹는다**: 문서에 분명히 있는 요청변수인데 어떤 값을 넣어도 `NODATA_ERROR`만 났다(사고다발지역·신호등·횡단보도 전부 동일 증상). 원인은 못 찾았다 — 응답 필드와 요청 파라미터의 대소문자/네이밍이 다르거나(응답은 camelCase, 문서는 UPPER_SNAKE), 실제 저장값 포맷이 다른 것으로 추정. 결국 4개 API 전부 **전국 데이터를 numOfRows=1000으로 끝까지 받은 뒤 클라이언트에서 "대전"/구 이름으로 필터링**하는 방식으로 우회했다 — 느리지만 확실하다.
 3. **사고다발지역 데이터의 "시군구명"에 알 수 없는 일련번호가 붙어있다**: "대전광역시 동구1", "대전광역시 동구2"처럼 구 이름 뒤에 숫자가 붙는다(연도별 순위로 추정, 확인 안 됨) — 그래서 정확한 문자열 일치 대신 "대전"과 구 이름이 둘 다 포함되는지로 느슨하게 매칭했다.
 4. **큰 결과 파일 3개(합계 ~17MB)를 그대로 커밋**: NTB 기술이전 데이터(22MB) 때와 달리 이번엔 커밋했다 — 전국 원본이 아니라 이미 대전으로 필터링된 결과물이고 개별 파일이 10MB 미만이라 저장소 부담이 상대적으로 적다고 판단.
-5. **아직 안 한 것**: 사고 유형(`acdntTypeSe`)·사고 위치와 신호등/횡단보도/도로폭을 좌표 기준으로 결합(최근접 매칭)하는 로직, 고밀도 지역에서 "위험 조건↔사고" 관계를 학습해 저밀도 지역에 적용하는 실제 스코어링 모델, 가로등(조명) 데이터(전국 단위 표준데이터를 아직 못 찾음 — 대전 자체 공개 여부 확인 필요).
+5. **"도로폭 값 7221/7221 확보"라고 잘못 보고했었다**: 빈 문자열만 아니면 통과하는 테스트였는데, 실제로 열어보니 대전에서 매칭된 모든 행의 roadBt가 "0"(플레이스홀더)이었다 — 전국 샘플엔 6~15m대 실제 값도 섞여 있으니 대전 쪽 제출 데이터 자체의 품질 문제다. **지표가 수상하게 완벽하면(100%) 측정 방법을 의심해야 한다**는, 이번 세션 다른 프로젝트에서도 겪은 것과 같은 함정.
+
+### 매칭 로직 — 공간 조인 + 간이 위험도 추정
+
+`src/accident_risk.py`(격자 기반 최근접 탐색) + `scripts/predict_accident_risk_candidates.py`로
+① 모든 신호등 지점에 사고다발지역까지 거리·150m 내 횡단보도 수·가까운 도로폭을 공간조인하고,
+② 고밀도 구(서구·중구)에서 (도로폭구간, 횡단보도수구간) 조합별 실제 사고다발 근접 비율을 집계한 뒤,
+③ 저밀도 구(동구·유성구·대덕구)에서 **아직 사고 기록이 없는** 신호등 지점에 그 비율을 적용해 추정 위험도로 정렬한다.
+
+```bash
+python -m scripts.predict_accident_risk_candidates
+python -m tests.test_predict_accident_risk_candidates
+```
+
+- 결과: 저밀도 구 신호등 10,554개 중 사고 기록 없는 지점에 추정 위험률을 매김(상위는 28%, `data/accident_risk_candidates.json`).
+- **도로폭이 전부 "0"이라 못 써서, 지금 위험도는 사실상 "횡단보도 밀집도" 한 가지 차원으로만 갈린다** — `width_bucket()`에서 0 이하는 "6m미만(좁음)"이 아니라 "정보없음"으로 고쳐서, 데이터 없는 지점이 "도로가 좁아서 위험"으로 잘못 집계되는 걸 막았다.
+- 애초에 구상했던 6개 신호(신호등 유무·도로폭·조명·시간대·인구밀도·대중교통접근성) 중 지금 실제로 쓰는 건 **인구밀도(저밀도 판정)와 횡단보도뿐**이다 — 조명은 전국 표준데이터를 못 찾았고, 시간대는 이 데이터셋에 발생시각 필드가 없고, 대중교통접근성은 아직 안 붙였다.
+- 150m 기준은 도로교통공단이 사고다발지역을 묶을 때 쓰는 반경을 그대로 가져온 것뿐 — 신호등-사고 간 실제 인과 반경을 검증한 게 아니다.
+- 고밀도 구 표본(서구 104건·중구 80건)도 크지 않아서, 버킷을 더 쪼갤수록(조명·시간대 등을 추가하면) 추정이 더 불안정해질 수 있다.
 
 ## 다음에 할 일
 
