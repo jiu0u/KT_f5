@@ -3,3 +3,5 @@ __pycache__/
 .venv/
 .env
 data/daedeok_tech_transfer_candidates.json
+# 지붕 AI 모델·결과 (브이월드 영상 포함, 용량·이용약관 때문에 제외)
+data/raw/aihub_solar/
