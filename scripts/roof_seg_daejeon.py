@@ -49,18 +49,28 @@ def world_px(lat, lon):
     return x, y
 
 
+def features(lat, lon, r_m, size=100):
+    dy, dx = r_m / 111320, r_m / (111320 * math.cos(math.radians(lat)))
+    q = dict(service="data", request="GetFeature", data="LT_C_BLDGINFO", key=key(), domain="http://localhost",
+             geomFilter=f"BOX({lon - dx},{lat - dy},{lon + dx},{lat + dy})", format="json", size=str(size),
+             crs="EPSG:4326")
+    r = json.loads(get("https://api.vworld.kr/req/data?" + urllib.parse.urlencode(q)))["response"]
+    return r["result"]["featureCollection"]["features"] if r["status"] == "OK" else []
+
+
 def building(lat, lon, r_m=50):
     # 데모 좌표가 건물 밖에 찍힌 경우가 있어 주변 r_m 안에서 건축면적이 가장 큰 건물
     # ponytail: 옆에 더 큰 건물이 있으면 그걸 잡음. 정확히 하려면 건물명/PNU로 조회.
-    dy, dx = r_m / 111320, r_m / (111320 * math.cos(math.radians(lat)))
-    q = dict(service="data", request="GetFeature", data="LT_C_BLDGINFO", key=key(), domain="http://localhost",
-             geomFilter=f"BOX({lon - dx},{lat - dy},{lon + dx},{lat + dy})", format="json", size="100",
-             crs="EPSG:4326")
-    r = json.loads(get("https://api.vworld.kr/req/data?" + urllib.parse.urlencode(q)))["response"]
-    if r["status"] != "OK":
+    fs = features(lat, lon, r_m)
+    if not fs:
         return None
-    f = max(r["result"]["featureCollection"]["features"], key=lambda f: float(f["properties"]["archarea"] or 0))
+    f = max(fs, key=lambda f: float(f["properties"]["archarea"] or 0))
     return f["properties"], f["geometry"]["coordinates"]
+
+
+def bld_height(p):
+    h = float(p["height"] or 0)
+    return h if h > 0 else float(p["grnd_flr"] or 0) * 3.5  # 높이 비어 있으면 층수 x 3.5m
 
 
 def tiles(x0, y0, x1, y1, cache):
@@ -81,9 +91,68 @@ def tiles(x0, y0, x1, y1, cache):
 
 # 패널 배치 규칙 (평지붕, 정남향 고정식 가정). 수치는 팀 검토 필요.
 MOD_W, MOD_D, TILT = 2.28, 1.13, 25  # 모듈 가로(동서)·세로(m), 경사각
-SETBACK_M = 1.0   # 지붕 가장자리 이격
-STRUCT_BUF_M = 1.0  # 구조물·기존 패널 주변 여유
+SETBACK_M = 0.5   # 지붕 가장자리 이격: 국토부 건축물 태양광 운영지침(2015) 난간 안쪽 50cm 이내 설치 금지
+STRUCT_BUF_M = 1.0  # 구조물·기존 패널 주변 여유 (근거 없음, 그늘·점검통로 가정 — 팀 검토)
 MIN_PART_M2 = 20  # 이보다 작은 조각은 버림
+
+
+def shift(m, dy, dx):
+    return np.roll(np.roll(m, dy, 0), dx, 1)
+
+
+def align(fp, roof, max_m=12, px_m=0.25):
+    """fp를 ±max_m 안에서 평행이동해 roof와 IoU가 가장 큰 (dy, dx)와 그 IoU."""
+    r = round(max_m / px_m)
+    near = cv2.dilate((fp > 0).astype(np.uint8), np.ones((2 * r + 1,) * 2, np.uint8)) > 0
+    fp, roof = fp > 0, (roof > 0) & near  # 멀리 있는 다른 건물 지붕은 셈에서 뺌
+
+    def iou(dy, dx):
+        s = shift(fp, dy, dx)
+        return (s & roof).sum() / max((s | roof).sum(), 1)
+    best = max(((iou(dy, dx), dy, dx) for dy in range(-r, r + 1, 4) for dx in range(-r, r + 1, 4)))
+    _, by, bx = best
+    best = max(((iou(dy, dx), dy, dx) for dy in range(by - 3, by + 4) for dx in range(bx - 3, bx + 4)))
+    return (best[1], best[2]), float(best[0])
+
+
+SHADE_R_M = 150   # 이 거리 안의 건물만 그림자 계산
+SHADE_MAX = 0.2   # 연간 일사(가중) 중 이 비율 넘게 가려지는 곳에는 패널 안 깜. 팀 검토 필요
+
+
+def sun_positions(lat=36.35):
+    """매월 21일 07~17시(태양시) 태양 (고도, 북쪽 기준 방위각, 가중치=sin 고도)."""
+    phi = math.radians(lat)
+    for m in range(12):
+        dec = math.radians(23.44 * math.sin(math.radians(360 / 365 * (284 + 21 + 30.4 * m))))
+        for hour in range(7, 18):
+            ha = math.radians(15 * (hour - 12))
+            sin_h = math.sin(phi) * math.sin(dec) + math.cos(phi) * math.cos(dec) * math.cos(ha)
+            if sin_h < math.sin(math.radians(5)):
+                continue
+            h = math.asin(sin_h)
+            c = (math.sin(dec) - sin_h * math.sin(phi)) / (math.cos(h) * math.cos(phi))
+            az = math.acos(max(-1, min(1, c)))
+            yield h, (2 * math.pi - az if ha > 0 else az), sin_h
+
+
+def shade_loss(H, S=None, px_m=1.0, lat=36.35, max_m=SHADE_R_M):
+    """높이지도 H(m, 위=북)에서 높이 S(기본 H)인 면이 1년 동안 주변 건물에 가려지는 비율(일사 가중)."""
+    S = H if S is None else S
+    pad = int(max_m / px_m) + 1
+    Hp = np.pad(H, pad)
+    hmax = H.max()
+    lost = np.zeros(H.shape); total = 0.0
+    for h, az, w in sun_positions(lat):
+        t = math.tan(h)
+        sx, sy = math.sin(az), -math.cos(az)  # 태양 쪽으로 한 걸음: 동(+x), 북(-y)
+        shaded = np.zeros(H.shape, bool)
+        for step in range(1, int(min(max_m, hmax / t) / px_m) + 1):
+            d = step * px_m
+            ox, oy = round(sx * step), round(sy * step)
+            ob = Hp[pad + oy:pad + oy + H.shape[0], pad + ox:pad + ox + H.shape[1]]
+            shaded |= ob > S + d * t
+        lost += w * shaded; total += w
+    return lost / total
 
 
 def row_pitch(lat=36.35, tilt=TILT, depth=MOD_D):
@@ -96,7 +165,7 @@ def row_pitch(lat=36.35, tilt=TILT, depth=MOD_D):
     return depth * math.cos(t) + depth * math.sin(t) / math.tan(h) * cos_az
 
 
-def layout(pred, px_m=0.25, pitch_m=None):
+def layout(pred, px_m=0.25, pitch_m=None, blocked=None):
     """pred(1=설치가능, 2=구조물)에 패널 직사각형(x, y, w, h px)을 깐다. 이미지 위쪽이 북쪽."""
     pitch = round((pitch_m or row_pitch()) / px_m)
     w, d = round(MOD_W / px_m), round(MOD_D * math.cos(math.radians(TILT)) / px_m)
@@ -105,6 +174,8 @@ def layout(pred, px_m=0.25, pitch_m=None):
     ok = cv2.erode(roof, np.ones((2 * sb + 1,) * 2, np.uint8), borderValue=0)
     sbuf = round(STRUCT_BUF_M / px_m)
     ok[cv2.dilate((pred == 2).astype(np.uint8), np.ones((2 * sbuf + 1,) * 2, np.uint8)) > 0] = 0
+    if blocked is not None:
+        ok[blocked] = 0
     n, lab, st, _ = cv2.connectedComponentsWithStats(ok)
     for i in range(1, n):
         if st[i, cv2.CC_STAT_AREA] * px_m ** 2 < MIN_PART_M2:
@@ -149,39 +220,67 @@ def main():
         fp = np.zeros(img.shape[:2], np.uint8)
         for p in polys:
             cv2.fillPoly(fp, [np.round((p - (x0, y0)) * scale).astype(np.int32)], 1)
-        k = int(MARGIN_M / 0.25)
-        zone = cv2.dilate(fp, cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (2 * k + 1,) * 2))
 
         H, W = img.shape[:2]
         ph, pw = -H % 32, -W % 32
         x = np.pad(img, ((0, ph), (0, pw), (0, 0)), mode="reflect")[None]
         with torch.no_grad():
             pred = model(to_t(x))["out"].argmax(1)[0, :H, :W].numpy().astype(np.uint8)
+        # 건물 경계(지상 기준·대장 오차)와 사진 속 지붕이 수 m 어긋나서, AI 지붕에 가장 잘 겹치게 평행이동
+        (dy, dx), fit = align(fp, pred > 0)
+        fp = shift(fp, dy, dx)
+        k = int(MARGIN_M / 0.25)
+        zone = cv2.dilate(fp, cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (2 * k + 1,) * 2))
         pred[zone == 0] = 0
+
+        # 연간 그림자: 주변 건물 높이로 1m 격자 높이지도를 만들어 계산
+        # ponytail: 건물 하나(MultiPolygon)는 높이 하나라 같은 건물 안 고층동이 저층 지붕을 가리는 건 못 셈.
+        g, M = 4, SHADE_R_M
+        hm = np.zeros((H // g + 2 * M, W // g + 2 * M), np.float32)
+        nb = sorted(features(lat, lon, SHADE_R_M + 50, size=1000), key=lambda f: bld_height(f["properties"]))
+        for f in nb:
+            hv = bld_height(f["properties"])
+            for poly in f["geometry"]["coordinates"]:
+                q = np.array([world_px(la, lo) for lo, la in poly[0]])
+                cv2.fillPoly(hm, [np.round((q - (x0, y0)) * scale / g + M).astype(np.int32)], hv)
+        hm = np.roll(np.roll(hm, round(dy / g), 0), round(dx / g), 1)
+        # 지붕면 높이: AI 지붕이 경계 밖으로 조금 나간 칸이 땅(0m)으로 잡혀 자기 건물에 가려지는 것 방지
+        surf = cv2.dilate(hm, np.ones((2 * MARGIN_M + 1,) * 2, np.uint8))
+        loss = shade_loss(hm, surf)[M:M + H // g, M:M + W // g]
+        loss = cv2.resize(loss.astype(np.float32), (W, H), interpolation=cv2.INTER_NEAREST)
+        shaded = (loss > SHADE_MAX) & (pred > 0)
 
         arch = float(props["archarea"] or 0)
         fpa = float(fp.sum() * PX_M2)  # 경계 다각형 면적 (archarea 속성이 틀린 건물이 있음)
         ai = float((pred == 1).sum() * PX_M2)
         st = float((pred == 2).sum() * PX_M2)
-        rects = layout(pred)
+        rects = layout(pred, blocked=shaded)
+        n_noshade = len(layout(pred))
         mod_m2 = len(rects) * MOD_W * MOD_D
-        rows.append(dict(name=name, archarea_m2=arch, demo_roof_m2=demo_roof, footprint_m2=round(fpa),
-                         ai_usable_m2=round(ai), ai_structure_m2=round(st), panels=len(rects),
+        rows.append(dict(name=name, archarea_m2=arch, demo_roof_m2=demo_roof, footprint_m2=round(fpa), fp_shift_m=[dy * .25, dx * .25], fp_fit_iou=round(fit, 2),
+                         ai_usable_m2=round(ai), ai_structure_m2=round(st), shaded_m2=round(float(shaded.sum() * PX_M2)),
+                         panels=len(rects), panels_noshade=n_noshade,
                          module_m2=round(mod_m2), module_ratio=round(mod_m2 / fpa, 3),
                          kw_ai=round(mod_m2 * 0.2), kw_rule25=round(fpa * .25 * 0.2),
                          height_m=props["height"], floors=props["grnd_flr"], bld_nm=props["bld_nm"]))
-        print(f"{name}: 경계 {fpa:,.0f}㎡ | 빈지붕 {ai:,.0f} | 패널 {len(rects)}장 = 모듈 {mod_m2:,.0f}㎡ "
-              f"({mod_m2 / fpa:.0%}) | {mod_m2 * .2:,.0f}kW vs 25%가정 {fpa * .25 * .2:,.0f}kW", flush=True)
+        print(f"{name}: 경계 이동 ({dx * .25:+.1f}, {dy * .25:+.1f})m 겹침 {fit:.2f}{' ⚠경계 확인' if fit < .5 or max(abs(dx), abs(dy)) * .25 >= 11 else ''} | 경계 {fpa:,.0f}㎡ | 빈지붕 {ai:,.0f} | 패널 {len(rects)}장 = 모듈 {mod_m2:,.0f}㎡ "
+              f"({mod_m2 / fpa:.0%}) | {mod_m2 * .2:,.0f}kW vs 25%가정 {fpa * .25 * .2:,.0f}kW "
+              f"| 그림자 {shaded.sum() * PX_M2:,.0f}㎡, 패널 {n_noshade - len(rects)}장 감소", flush=True)
 
         vis = overlay(img, pred)
         cnts, _ = cv2.findContours(fp, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
         cv2.drawContours(vis, cnts, -1, (255, 60, 60), 2)
         pan = img.copy()
+        pan[shaded] = (0.5 * pan[shaded] + [120, 0, 0]).astype(np.uint8)  # 그림자로 뺀 곳: 붉게
         for x, y, w, h in rects:
             cv2.rectangle(pan, (x, y), (x + w - 1, y + h - 1), (20, 40, 120), -1)
             cv2.rectangle(pan, (x, y), (x + w - 1, y + h - 1), (200, 220, 255), 1)
         cv2.drawContours(pan, cnts, -1, (255, 60, 60), 2)
         Image.fromarray(np.hstack([img, vis, pan])).save(os.path.join(out, f"{name}.png"))
+        # 정답 라벨링·평가용 (roof_label_eval.py): 원본(25cm), 경계(0/1), 셈 영역(0/1), AI 예측(0/1/2)
+        lab = os.path.join(out, "label"); os.makedirs(lab, exist_ok=True)
+        Image.fromarray(img).save(os.path.join(lab, f"{name}.png"))
+        np.savez_compressed(os.path.join(lab, f"{name}.npz"), fp=fp, zone=zone, pred=pred, shade=loss)
     json.dump(rows, open(os.path.join(out, "result.json"), "w", encoding="utf-8"), ensure_ascii=False, indent=1)
 
 
