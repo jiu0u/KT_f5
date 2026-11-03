@@ -90,9 +90,12 @@ def tiles(x0, y0, x1, y1, cache):
 
 
 # 패널 배치 규칙 (평지붕, 정남향 고정식 가정). 수치는 팀 검토 필요.
-MOD_W, MOD_D, TILT = 2.28, 1.13, 25  # 모듈 가로(동서)·세로(m), 경사각
+MOD_W, MOD_D, TILT = 2.28, 1.13, 15  # 모듈 가로(동서)·세로(m), 경사각 15°: 지붕당 발전량 우선 (docs/panel_params_review.md 4번)
+KW_M2 = 0.22  # 모듈 효율 22% (TOPCon 상업용 580W급)
 SETBACK_M = 0.5   # 지붕 가장자리 이격: 국토부 건축물 태양광 운영지침(2015) 난간 안쪽 50cm 이내 설치 금지
-STRUCT_BUF_M = 1.0  # 구조물·기존 패널 주변 여유 (근거 없음, 그늘·점검통로 가정 — 팀 검토)
+# 구조물·기존 패널 주변 여유(m): 높이 3m 옥탑이 연간 일사 20% 넘게 가리는 범위 + 남쪽은 점검통로
+STRUCT_BUF_N, STRUCT_BUF_EW, STRUCT_BUF_S = 3.0, 2.0, 0.5
+STRUCT_REVIEW_YEAR = 1988  # 내진설계 의무화(1988) 전 사용승인 건물은 '구조검토 필요' 표시
 MIN_PART_M2 = 20  # 이보다 작은 조각은 버림
 
 
@@ -167,13 +170,15 @@ def row_pitch(lat=36.35, tilt=TILT, depth=MOD_D):
 
 def layout(pred, px_m=0.25, pitch_m=None, blocked=None):
     """pred(1=설치가능, 2=구조물)에 패널 직사각형(x, y, w, h px)을 깐다. 이미지 위쪽이 북쪽."""
-    pitch = round((pitch_m or row_pitch()) / px_m)
+    pitch = round((pitch_m or row_pitch(tilt=TILT)) / px_m)
     w, d = round(MOD_W / px_m), round(MOD_D * math.cos(math.radians(TILT)) / px_m)
     roof = (pred > 0).astype(np.uint8)
     sb = round(SETBACK_M / px_m)
     ok = cv2.erode(roof, np.ones((2 * sb + 1,) * 2, np.uint8), borderValue=0)
-    sbuf = round(STRUCT_BUF_M / px_m)
-    ok[cv2.dilate((pred == 2).astype(np.uint8), np.ones((2 * sbuf + 1,) * 2, np.uint8)) > 0] = 0
+    # 구조물은 북쪽으로 그림자를 드리우므로 북쪽(이미지 위)으로 더 넓게 막음
+    n, ew, so = (round(v / px_m) for v in (STRUCT_BUF_N, STRUCT_BUF_EW, STRUCT_BUF_S))
+    k = np.ones((n + so + 1, 2 * ew + 1), np.uint8)
+    ok[cv2.dilate((pred == 2).astype(np.uint8), k, anchor=(ew, so)) > 0] = 0
     if blocked is not None:
         ok[blocked] = 0
     n, lab, st, _ = cv2.connectedComponentsWithStats(ok)
@@ -257,14 +262,16 @@ def main():
         rects = layout(pred, blocked=shaded)
         n_noshade = len(layout(pred))
         mod_m2 = len(rects) * MOD_W * MOD_D
+        yr = (props.get("useapr_day") or "")[:4]
         rows.append(dict(name=name, archarea_m2=arch, demo_roof_m2=demo_roof, footprint_m2=round(fpa), fp_shift_m=[dy * .25, dx * .25], fp_fit_iou=round(fit, 2),
                          ai_usable_m2=round(ai), ai_structure_m2=round(st), shaded_m2=round(float(shaded.sum() * PX_M2)),
                          panels=len(rects), panels_noshade=n_noshade,
                          module_m2=round(mod_m2), module_ratio=round(mod_m2 / fpa, 3),
-                         kw_ai=round(mod_m2 * 0.2), kw_rule25=round(fpa * .25 * 0.2),
+                         kw_ai=round(mod_m2 * KW_M2), kw_rule25=round(fpa * .25 * KW_M2),
+                         use_year=yr or None, struct_review=(int(yr) < STRUCT_REVIEW_YEAR) if yr else None,  # 연도 모르면 None
                          height_m=props["height"], floors=props["grnd_flr"], bld_nm=props["bld_nm"]))
         print(f"{name}: 경계 이동 ({dx * .25:+.1f}, {dy * .25:+.1f})m 겹침 {fit:.2f}{' ⚠경계 확인' if fit < .5 or max(abs(dx), abs(dy)) * .25 >= 11 else ''} | 경계 {fpa:,.0f}㎡ | 빈지붕 {ai:,.0f} | 패널 {len(rects)}장 = 모듈 {mod_m2:,.0f}㎡ "
-              f"({mod_m2 / fpa:.0%}) | {mod_m2 * .2:,.0f}kW vs 25%가정 {fpa * .25 * .2:,.0f}kW "
+              f"({mod_m2 / fpa:.0%}) | {mod_m2 * KW_M2:,.0f}kW vs 25%가정 {fpa * .25 * KW_M2:,.0f}kW "
               f"| 그림자 {shaded.sum() * PX_M2:,.0f}㎡, 패널 {n_noshade - len(rects)}장 감소", flush=True)
 
         vis = overlay(img, pred)

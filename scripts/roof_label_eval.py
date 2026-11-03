@@ -10,7 +10,7 @@ import numpy as np
 from PIL import Image
 
 sys.path.insert(0, os.path.dirname(__file__))
-from roof_seg_daejeon import MOD_D, MOD_W, layout
+from roof_seg_daejeon import KW_M2, MOD_D, MOD_W, layout
 
 PX_M2 = 0.25 ** 2
 
@@ -38,7 +38,7 @@ def compare(gt, pred, zone):
     ng, na = len(layout(gt)), len(layout(pred))
     return dict(iou_roof=iou(1), iou_obs=iou(2), roof_gt_m2=(gt == 1).sum() * PX_M2,
                 roof_ai_m2=(pred == 1).sum() * PX_M2, panels_gt=ng, panels_ai=na,
-                kw_gt=ng * MOD_W * MOD_D * .2, kw_ai=na * MOD_W * MOD_D * .2)
+                kw_gt=ng * MOD_W * MOD_D * KW_M2, kw_ai=na * MOD_W * MOD_D * KW_M2)
 
 
 def evaluate(d, labels_path):
@@ -53,14 +53,14 @@ def evaluate(d, labels_path):
         rows.append((name, r))
         print(f"{name}: 지붕 IoU {r['iou_roof']:.2f} 장애물 IoU {r['iou_obs']:.2f} | "
               f"패널 정답 {r['panels_gt']} / AI {r['panels_ai']} ({r['kw_gt']:.0f} / {r['kw_ai']:.0f}kW) | "
-              f"25% 가정 {r['fp_m2'] * .25 * .2:.0f}kW")
+              f"25% 가정 {r['fp_m2'] * .25 * KW_M2:.0f}kW")
     if not rows:
         print("라벨 없음"); return
     kg = sum(r["kw_gt"] for _, r in rows)
     ka = sum(r["kw_ai"] for _, r in rows)
-    k25 = sum(r["fp_m2"] * .25 * .2 for _, r in rows)
+    k25 = sum(r["fp_m2"] * .25 * KW_M2 for _, r in rows)
     e_ai = [abs(r["kw_ai"] - r["kw_gt"]) / r["kw_gt"] for _, r in rows if r["kw_gt"] > 0]
-    e_25 = [abs(r["fp_m2"] * .05 - r["kw_gt"]) / r["kw_gt"] for _, r in rows if r["kw_gt"] > 0]
+    e_25 = [abs(r["fp_m2"] * .25 * KW_M2 - r["kw_gt"]) / r["kw_gt"] for _, r in rows if r["kw_gt"] > 0]
     print(f"\n{len(rows)}곳 | 지붕 IoU 평균 {np.mean([r['iou_roof'] for _, r in rows]):.2f} | "
           f"합계 정답 {kg:.0f}kW, AI {ka:.0f}kW, 25% 가정 {k25:.0f}kW")
     if e_ai:
