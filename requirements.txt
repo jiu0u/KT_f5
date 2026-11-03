@@ -1,2 +1,6 @@
-openpyxl
-defusedxml
+# 지붕 AI (scripts/roof_*.py). torch/torchvision은 CPU판: pip install torch torchvision --index-url https://download.pytorch.org/whl/cpu
+torch
+torchvision
+opencv-python
+numpy
+pillow
