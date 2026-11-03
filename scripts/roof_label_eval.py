@@ -1,7 +1,7 @@
 """대전 정답 라벨(roof_label_tool.html)로 지붕 AI 평가.
 
 python -I scripts/roof_label_eval.py guide <label 폴더>                  # 라벨링 도구용 경계선 _fp.png 생성
-python -I scripts/roof_label_eval.py eval <label 폴더> <roof_labels.json>  # 정답 vs AI
+python -I scripts/roof_label_eval.py eval <label 폴더> <roof_labels_*.json ...>  # 정답 vs AI (여러 명 파일 가능)
 """
 import glob, json, os, sys
 
@@ -41,8 +41,25 @@ def compare(gt, pred, zone):
                 kw_gt=ng * MOD_W * MOD_D * KW_M2, kw_ai=na * MOD_W * MOD_D * KW_M2)
 
 
-def evaluate(d, labels_path):
-    labels = json.load(open(labels_path, encoding="utf-8"))
+def load_labels(paths, d):
+    """여러 사람 JSON을 합침. 같은 건물을 여러 명이 칠했으면 첫 파일 것을 정답으로 쓰고, 사람 간 IoU를 출력."""
+    by = {}
+    for p in paths:
+        for name, lab in json.load(open(p, encoding="utf-8")).items():
+            if lab["polygons"]:
+                by.setdefault(name, []).append((os.path.basename(p), lab))
+    for name, labs in by.items():
+        if len(labs) > 1:
+            shape = np.load(os.path.join(d, name + ".npz"))["pred"].shape
+            ms = [(who, rasterize(lab, shape)) for who, lab in labs]
+            for i in range(1, len(ms)):
+                a, b = ms[0][1] == 1, ms[i][1] == 1
+                print(f"[사람 간] {name}: {ms[0][0]} vs {ms[i][0]} 지붕 IoU {(a & b).sum() / max((a | b).sum(), 1):.2f}")
+    return {name: labs[0][1] for name, labs in by.items()}
+
+
+def evaluate(d, labels_paths):
+    labels = load_labels(labels_paths, d)
     rows = []
     for name, lab in sorted(labels.items()):
         if not lab["polygons"]:
@@ -79,5 +96,5 @@ def _check():
 
 if __name__ == "__main__":
     cmd = sys.argv[1] if len(sys.argv) > 1 else "check"
-    {"guide": lambda: guide(sys.argv[2]), "eval": lambda: evaluate(sys.argv[2], sys.argv[3]),
+    {"guide": lambda: guide(sys.argv[2]), "eval": lambda: evaluate(sys.argv[2], sys.argv[3:]),
      "check": _check}[cmd]()
