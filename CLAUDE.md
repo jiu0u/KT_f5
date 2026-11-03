@@ -8,6 +8,10 @@ AI 활용 지역문제 해결 공모전(DSC 공유대학×KT) 제출용 프로�
 
 ## 2. 파이프라인
 
+AI는 두 갈래로 나눠 맡음:
+- **지붕 AI** (항공사진 → 실제로 패널을 깔 수 있는 지붕 면적) — 아래 1·2·4번
+- **전력 사용량 예측 AI** (건물별 과거 월 전기사용량 → 미래 사용량 → 자가소비율·펀드 수익) — 다른 팀원 담당. 데이터 수집은 `scripts/build_daejeon_bldg_power.py`(건축HUB 에너지 API) → `data/processed/daejeon_public_bldg_power.csv`
+
 1. **지붕 분할 AI** (`scripts/roof_seg_train.py`): AI Hub 71348 「태양광 발전 현황 및 적지 분석 데이터」 적지분석 25cm로 LR-ASPP(MobileNetV3) 학습. 클래스: 배경 / 설치 가능 지붕 / 구조물.
 2. **대전 적용** (`scripts/roof_seg_daejeon.py`): 브이월드 항공사진(z19)·건물경계(LT_C_BLDGINFO) → AI 예측 → 경계 자동 정렬 → 연간 그림자(주변 건물 높이) → 패널 배치 규칙 → 건물별 kW.
 3. **수익·펀드 계산** (`docs/solar_demo.html`, `docs/solar_map.html`): 발전량 × 판매단가 − 운영비, 시민펀드 배당·원금 상환.
