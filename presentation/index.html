@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>발표</title>
+<link rel="stylesheet" href="theme.css">
+<style>
+  html, body { margin: 0; height: 100%; overflow: hidden; background: var(--backdrop); }
+  #stage { position: absolute; left: 50%; top: 50%; width: 1920px; height: 1080px; transform-origin: center; }
+</style>
+</head>
+<body>
+<div id="stage"></div>
+<script>
+  // 장 순서. 장을 늘리면 slides/ 에 파일을 만들고 여기에 이름을 넣는다.
+  const SLIDES = ['01', '02', '03', '04', '05'];
+
+  const stage = document.getElementById('stage');
+  let pages = [];
+  let cur = 0;
+
+  function fit() {
+    const s = Math.min(innerWidth / 1920, innerHeight / 1080);
+    stage.style.transform = `translate(-50%, -50%) scale(${s})`;
+  }
+
+  function show(i) {
+    cur = Math.max(0, Math.min(pages.length - 1, i));
+    stage.innerHTML = pages[cur];
+    history.replaceState(null, '', '#' + (cur + 1));
+  }
+
+  addEventListener('resize', fit);
+  addEventListener('keydown', e => {
+    if (['ArrowRight', 'ArrowDown', 'PageDown', ' '].includes(e.key)) show(cur + 1);
+    if (['ArrowLeft', 'ArrowUp', 'PageUp'].includes(e.key)) show(cur - 1);
+  });
+
+  Promise.all(SLIDES.map(n => fetch(`slides/${n}.html`).then(r => r.text())))
+    .then(texts => { pages = texts; fit(); show((parseInt(location.hash.slice(1)) || 1) - 1); })
+    .catch(() => { stage.textContent = '장 파일을 못 불러왔습니다. README 의 "여는 법"대로 로컬 서버로 여세요.'; stage.style.color = '#fff'; });
+</script>
+</body>
+</html>

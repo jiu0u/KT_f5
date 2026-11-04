@@ -1,0 +1,38 @@
+/* 색·글꼴·글자 크기는 여기서만 정한다 */
+:root {
+  --bg: #ffffff;
+  --fg: #1a1a1a;
+  --accent: #2b6cb0;
+  --backdrop: #000000;
+
+  --font: "Pretendard", "Noto Sans KR", "Malgun Gothic", sans-serif;
+  --title-size: 72px;
+  --body-size: 40px;
+
+  --pad: 120px;
+}
+
+.slide {
+  width: 1920px;
+  height: 1080px;
+  box-sizing: border-box;
+  padding: var(--pad);
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font);
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+}
+
+.slide .title {
+  margin: 0;
+  font-size: var(--title-size);
+  color: var(--accent);
+}
+
+.slide .body {
+  flex: 1;
+  font-size: var(--body-size);
+  line-height: 1.5;
+}
