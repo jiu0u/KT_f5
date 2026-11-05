@@ -1,0 +1,1059 @@
+<title>대전 태양광 발표 설계도</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<style>
+/* 레이아웃 개념: 좌측 고정 목차 + 우측 단일 열 설계 카드 스트림. 카드마다 16:9 와이어프레임과 콘텐츠 사양을 나란히 둔다. */
+:root{
+  --bg:#F2F4F6;
+  --surface:#FFFFFF;
+  --surface-2:#E9EDF1;
+  --ink:#141C24;
+  --ink-2:#47566A;
+  --ink-3:#7C8B9D;
+  --line:#D3DAE2;
+  --line-2:#BCC6D1;
+  --accent:#C87912;        /* 태양광 앰버 */
+  --accent-soft:#FBF0DD;
+  --slate:#2F5A7E;         /* 보조 데이터 계열 */
+  --slate-soft:#E3EDF5;
+  --alert:#B23A2E;
+  --alert-soft:#FAE8E5;
+  --ok:#2E6B4F;
+  --ok-soft:#E3F0E9;
+  --font-sans:"IBM Plex Sans KR","Malgun Gothic",system-ui,sans-serif;
+  --font-mono:"IBM Plex Mono","Consolas",monospace;
+  --maxw:1180px;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0D141B; --surface:#141E27; --surface-2:#1C2833;
+    --ink:#E8EDF2; --ink-2:#A7B5C4; --ink-3:#74849A;
+    --line:#2A3845; --line-2:#3A4B5C;
+    --accent:#E9A64A; --accent-soft:#2C2314;
+    --slate:#79B0D8; --slate-soft:#172835;
+    --alert:#E0786B; --alert-soft:#2E1917;
+    --ok:#6FBF95; --ok-soft:#14271E;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0D141B; --surface:#141E27; --surface-2:#1C2833;
+  --ink:#E8EDF2; --ink-2:#A7B5C4; --ink-3:#74849A;
+  --line:#2A3845; --line-2:#3A4B5C;
+  --accent:#E9A64A; --accent-soft:#2C2314;
+  --slate:#79B0D8; --slate-soft:#172835;
+  --alert:#E0786B; --alert-soft:#2E1917;
+  --ok:#6FBF95; --ok-soft:#14271E;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{
+  background:var(--bg); color:var(--ink);
+  font-family:var(--font-sans); font-size:15px; line-height:1.65;
+  word-break:keep-all; -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3,h4{text-wrap:balance; margin:0; line-height:1.3; font-weight:600}
+p{margin:0}
+ul{margin:0; padding-left:1.1em}
+li{margin:.22em 0}
+a{color:var(--slate)}
+.num{font-family:var(--font-mono); font-variant-numeric:tabular-nums}
+
+.wrap{
+  max-width:var(--maxw); margin:0 auto;
+  padding-left:max(16px,env(safe-area-inset-left,0px));
+  padding-right:max(16px,env(safe-area-inset-right,0px));
+}
+
+/* ── 문서 머리말 ───────────────────────────── */
+.masthead{background:var(--surface); border-bottom:1px solid var(--line)}
+.masthead .wrap{padding-block:40px 28px}
+.eyebrow{
+  font-size:11px; letter-spacing:.14em; text-transform:uppercase;
+  color:var(--accent); font-weight:600; margin-bottom:10px;
+}
+.masthead h1{font-size:clamp(26px,4.2vw,40px); letter-spacing:-.02em}
+.masthead .lede{color:var(--ink-2); margin-top:12px; max-width:62ch}
+.meta-row{
+  display:flex; flex-wrap:wrap; gap:0 28px; margin-top:22px;
+  padding-top:18px; border-top:1px solid var(--line);
+}
+.meta-row div{min-width:0}
+.meta-row dt{font-size:11px; letter-spacing:.08em; color:var(--ink-3); text-transform:uppercase}
+.meta-row dd{margin:2px 0 0; font-weight:500; font-size:14px}
+
+/* ── 목차 ─────────────────────────────────── */
+.layout{display:grid; grid-template-columns:200px minmax(0,1fr); gap:36px; align-items:start}
+.toc{
+  position:sticky; top:calc(env(safe-area-inset-top,0px) + 16px);
+  font-size:13px; padding-block:28px;
+}
+.toc h2{font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:var(--ink-3); margin-bottom:10px}
+.toc ol{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:1px}
+.toc a{
+  display:flex; gap:8px; padding:4px 6px; text-decoration:none; color:var(--ink-2);
+  border-left:2px solid transparent; border-radius:0 3px 3px 0;
+}
+.toc a:hover{background:var(--surface); color:var(--ink)}
+.toc a.on{border-left-color:var(--accent); background:var(--surface); color:var(--ink); font-weight:600}
+.toc a span:first-child{font-family:var(--font-mono); color:var(--ink-3); font-size:11px; padding-top:2px}
+.toc .part-sep{margin-top:10px; font-size:10px; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-3); padding-left:8px}
+.main{padding-block:28px 60px; min-width:0}
+
+/* ── 공통 블록 ────────────────────────────── */
+.block{background:var(--surface); border:1px solid var(--line); border-radius:6px; margin-bottom:28px}
+.block > h2{
+  font-size:13px; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-2);
+  padding:14px 20px; border-bottom:1px solid var(--line);
+}
+.block .inner{padding:20px}
+.grid-2{display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:20px}
+.field dt{font-size:11px; letter-spacing:.08em; text-transform:uppercase; color:var(--ink-3); margin-bottom:4px}
+.field dd{margin:0; color:var(--ink)}
+.callout{
+  background:var(--accent-soft); border:1px solid var(--accent); border-radius:5px;
+  padding:14px 16px; color:var(--ink);
+}
+.callout.red{background:var(--alert-soft); border-color:var(--alert)}
+
+/* 배점 카드 */
+.score{display:grid; grid-template-columns:repeat(auto-fit,minmax(190px,1fr)); gap:12px}
+.score .sc{border:1px solid var(--line); border-radius:5px; padding:12px 14px}
+.score .sc .pt{font-family:var(--font-mono); font-size:19px; font-weight:600; color:var(--accent)}
+.score .sc h4{font-size:13.5px; margin-top:2px}
+.score .sc p{font-size:12.5px; color:var(--ink-2); margin-top:5px}
+.score .sc .map{font-size:11.5px; color:var(--slate); font-family:var(--font-mono); margin-top:7px}
+
+table{border-collapse:collapse; width:100%; font-size:13px}
+th,td{text-align:left; padding:7px 10px; border-bottom:1px solid var(--line)}
+th{font-size:11px; letter-spacing:.06em; text-transform:uppercase; color:var(--ink-3); font-weight:600}
+td.n{font-family:var(--font-mono); font-variant-numeric:tabular-nums; text-align:right}
+.scroll-x{overflow-x:auto}
+
+/* ── 슬라이드 설계 카드 ───────────────────── */
+.card{
+  background:var(--surface); border:1px solid var(--line); border-radius:6px;
+  margin-bottom:26px; overflow:hidden; scroll-margin-top:20px;
+}
+.card__bar{
+  display:flex; flex-wrap:wrap; align-items:baseline; gap:10px;
+  padding:14px 20px; border-bottom:1px solid var(--line); background:var(--surface-2);
+}
+.card__no{font-family:var(--font-mono); font-size:20px; font-weight:600; color:var(--accent)}
+.badge{
+  font-size:10px; letter-spacing:.1em; text-transform:uppercase; font-weight:600;
+  padding:3px 8px; border-radius:3px; background:var(--slate-soft); color:var(--slate);
+}
+.badge.b{background:var(--alert-soft); color:var(--alert)}
+.badge.c{background:var(--accent-soft); color:var(--accent)}
+.badge.d{background:var(--ok-soft); color:var(--ok)}
+.sec{font-family:var(--font-mono); font-size:11px; color:var(--ink-3); margin-left:auto}
+.card__title{font-size:17px; font-weight:600; flex:1 1 320px; min-width:0}
+.card__msg{padding:16px 20px; border-bottom:1px solid var(--line); display:flex; gap:12px}
+.card__msg .tag{
+  flex:0 0 auto; font-size:10px; letter-spacing:.08em; text-transform:uppercase;
+  color:var(--ink-3); padding-top:4px;
+}
+.card__msg p{font-size:15.5px; font-weight:500; line-height:1.55}
+.card__body{display:grid; grid-template-columns:minmax(0,1.08fr) minmax(0,1fr); gap:0}
+.card__body > div{padding:18px 20px; min-width:0}
+.card__body > div:first-child{border-right:1px solid var(--line)}
+.sub{font-size:11px; letter-spacing:.09em; text-transform:uppercase; color:var(--ink-3); margin:0 0 7px}
+.detail-sec + .detail-sec{margin-top:16px}
+.detail-sec ul{font-size:13.5px; color:var(--ink-2)}
+.detail-sec ul strong{color:var(--ink)}
+.chips{display:flex; flex-wrap:wrap; gap:6px}
+.chip{
+  font-family:var(--font-mono); font-size:12px; font-weight:600;
+  background:var(--accent-soft); color:var(--accent);
+  border:1px solid var(--accent); border-radius:3px; padding:3px 8px;
+}
+.chip.s{background:var(--slate-soft); color:var(--slate); border-color:var(--slate)}
+.chip.a{background:var(--alert-soft); color:var(--alert); border-color:var(--alert)}
+.card__foot{display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); border-top:1px solid var(--line)}
+.card__foot > div{padding:14px 20px; font-size:13px; color:var(--ink-2)}
+.card__foot > div + div{border-left:1px solid var(--line)}
+.need{color:var(--alert); font-weight:600}
+.struct{
+  display:inline-block; font-size:10px; font-weight:600; letter-spacing:.06em;
+  background:var(--slate-soft); color:var(--slate); border:1px solid var(--slate);
+  border-radius:3px; padding:1px 6px; margin:0 4px 0 2px; vertical-align:1px;
+}
+
+/* ── 와이어프레임 ─────────────────────────── */
+.wf{
+  aspect-ratio:16/9; max-width:100%; background:var(--bg);
+  border:1px solid var(--line-2); border-radius:3px; padding:8px;
+  display:grid; gap:6px; font-size:10.5px; line-height:1.3;
+}
+.wf div{
+  background:var(--surface); border:1px dashed var(--line-2); border-radius:2px;
+  padding:5px 7px; min-width:0; overflow:hidden; color:var(--ink-2);
+}
+.wf .t{font-weight:600; color:var(--ink); display:block; font-size:10px}
+.wf .hi{background:var(--accent-soft); border-color:var(--accent); border-style:solid}
+.wf .hi .t{color:var(--accent)}
+.wf .data{background:var(--slate-soft); border-color:var(--slate)}
+.wf .data .t{color:var(--slate)}
+.wf .warn{background:var(--alert-soft); border-color:var(--alert)}
+.wf .warn .t{color:var(--alert)}
+.wf .ok{background:var(--ok-soft); border-color:var(--ok)}
+.wf .ok .t{color:var(--ok)}
+.wf .ctr{display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center}
+.wf-cap{font-size:11px; color:var(--ink-3); margin-top:6px}
+
+.bars{display:flex; flex-direction:column; gap:3px; margin-top:4px}
+.bar{display:flex; align-items:center; gap:4px; font-size:9px}
+.bar i{display:block; height:7px; background:var(--line-2); border-radius:1px}
+.bar i.on{background:var(--accent)}
+.bar i.s{background:var(--slate)}
+.bar span{color:var(--ink-3); white-space:nowrap}
+.flowrow{display:flex; align-items:center; gap:3px}
+.flowrow em{color:var(--ink-3); font-style:normal}
+
+/* 검증 */
+.check{display:grid; gap:12px}
+.check .q{border-left:3px solid var(--ok); padding:4px 0 4px 12px}
+.check .q h4{font-size:14px}
+.check .q p{font-size:13.5px; color:var(--ink-2); margin-top:3px}
+.gaps li{font-size:13.5px; color:var(--ink-2); margin:.4em 0}
+.gaps li strong{color:var(--ink)}
+
+footer{border-top:1px solid var(--line); margin-top:40px; padding-block:24px 48px; font-size:12.5px; color:var(--ink-3)}
+
+@media (max-width:900px){
+  .layout{grid-template-columns:1fr; gap:0}
+  .toc{position:static; padding-block:20px 0; border-bottom:1px solid var(--line)}
+  .toc ol{display:grid; grid-template-columns:repeat(auto-fill,minmax(160px,1fr)); gap:2px}
+  .toc .part-sep{display:none}
+  .card__body{grid-template-columns:1fr}
+  .card__body > div:first-child{border-right:0; border-bottom:1px solid var(--line)}
+  .card__foot > div + div{border-left:0; border-top:1px solid var(--line)}
+  .sec{margin-left:0}
+}
+</style>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600&family=IBM+Plex+Mono:wght@400;600&display=swap">
+
+<header class="masthead">
+  <div class="wrap">
+    <div class="eyebrow">발표자료 설계도 · 발표 7분 + 질의응답 3분</div>
+    <h1>대전 공공건물 지붕 태양광 AI + 시민펀드</h1>
+    <p class="lede">AI 활용 지역문제 해결 공모전(DSC 공유대학 × KT) 제출용 발표자료의 슬라이드별 설계안이다. 심사 배점(4항목 × 25점)과 발표 7분·시연영상 포함 조건에 맞춰 <strong>12장</strong>으로 구성했다. 근거가 없는 항목은 <span class="need">추가 자료 필요</span>로 표시했다.</p>
+    <dl class="meta-row">
+      <div><dt>작성일</dt><dd class="num">2026-11-06</dd></div>
+      <div><dt>제출 마감</dt><dd class="num">2026-11-25</dd></div>
+      <div><dt>발표</dt><dd><span class="num">7</span>분(시연영상 포함) + Q&A <span class="num">3</span>분</dd></div>
+      <div><dt>슬라이드 수</dt><dd><span class="num">12</span>장 (목표 6분 40초)</dd></div>
+      <div><dt>발표 환경</dt><dd>운영사 PC · 개인 노트북 연결 불가</dd></div>
+    </dl>
+  </div>
+</header>
+
+<div class="wrap layout">
+
+<nav class="toc">
+  <h2>목차</h2>
+  <ol id="toclist">
+    <li class="part-sep">기획</li>
+    <li><a href="#plan"><span>00</span><span>전체 기획·배점</span></a></li>
+    <li><a href="#rules"><span>00</span><span>제작 기준</span></a></li>
+    <li class="part-sep">① 주제 적절성</li>
+    <li><a href="#s1"><span>01</span><span>표지</span></a></li>
+    <li><a href="#s2"><span>02</span><span>자립도 꼴찌</span></a></li>
+    <li><a href="#s3"><span>03</span><span>막힌 두 가지 벽</span></a></li>
+    <li><a href="#s4"><span>04</span><span>사각지대와 공백</span></a></li>
+    <li class="part-sep">② AI 구현</li>
+    <li><a href="#s5"><span>05</span><span>면적×상수의 함정</span></a></li>
+    <li><a href="#s6"><span>06</span><span>전체 모델</span></a></li>
+    <li><a href="#s7"><span>07</span><span>지붕 AI 방법론</span></a></li>
+    <li><a href="#s8"><span>08</span><span>결과와 한계</span></a></li>
+    <li><a href="#s9"><span>09</span><span>시연영상</span></a></li>
+    <li class="part-sep">③ 실현가능성</li>
+    <li><a href="#s10"><span>10</span><span>채권형 SPC</span></a></li>
+    <li><a href="#s11"><span>11</span><span>사업화 로드맵</span></a></li>
+    <li class="part-sep">④ 파급효과</li>
+    <li><a href="#s12"><span>12</span><span>효과와 확장</span></a></li>
+    <li class="part-sep">검토</li>
+    <li><a href="#verify"><span>✓</span><span>논리·배점 검증</span></a></li>
+    <li><a href="#gaps"><span>!</span><span>보강 필요 자료</span></a></li>
+  </ol>
+</nav>
+
+<main class="main">
+
+<!-- ══════════ 전체 기획 ══════════ -->
+<section class="block" id="plan">
+  <h2>전체 프레젠테이션 기획</h2>
+  <div class="inner">
+    <div class="grid-2">
+      <dl class="field">
+        <dt>핵심 목적</dt>
+        <dd>7분 안에 <strong>“문제를 정확히 좁혔고, AI가 실제로 돌아가며, 돈이 어디서 오는지까지 설계했다”</strong>를 입증한다. 배점이 4등분이므로 어느 한 항목도 비워 둘 수 없다 — 특히 시연과 사업화 계획은 각각 25점짜리 독립 항목이다.</dd>
+      </dl>
+      <dl class="field">
+        <dt>발표 운영 조건</dt>
+        <dd>발표 <strong class="num">7분</strong>(시연영상 포함) + Q&A 3분. 초과하면 사회자가 끊는다. 운영사 PC에 자료를 미리 세팅하고 <strong>개인 노트북은 연결하지 않는다</strong> → 라이브 데모 불가, 시연은 <strong>영상 재생</strong>. 발표자 1인 + 화면 전환 서포트 1인.</dd>
+      </dl>
+    </div>
+
+    <div style="margin-top:22px">
+      <p class="sub">심사 배점과 슬라이드 대응 (각 25점)</p>
+      <div class="score">
+        <div class="sc">
+          <div class="pt">25</div><h4>① 발표주제의 적절성</h4>
+          <p>지역 문제 정의의 명확성, 대회 취지(대전 주력산업·경제·사회 문제)와의 부합성</p>
+          <div class="map">S2 · S3 · S4 — 1분 45초</div>
+        </div>
+        <div class="sc">
+          <div class="pt">25</div><h4>② AI 개발·구현의 적합성</h4>
+          <p>AI 모델 설계의 타당성, <strong>시연을 통한 실제 구현 수준</strong></p>
+          <div class="map">S5~S9 — 3분 10초</div>
+        </div>
+        <div class="sc">
+          <div class="pt">25</div><h4>③ AI 기술·서비스의 실현가능성</h4>
+          <p>서비스 구조와 현장 적용 가능성, 사업화·운영 계획의 구체성</p>
+          <div class="map">S10 · S11 — 1분 15초</div>
+        </div>
+        <div class="sc">
+          <div class="pt">25</div><h4>④ 해당분야의 파급효과</h4>
+          <p>지역·산업에 미치는 효과, 타 지역·분야로의 확장 가능성</p>
+          <div class="map">S12 — 30초</div>
+        </div>
+      </div>
+      <p class="wf-cap">④는 한 장뿐이지만 25점이다. 겸손한 마무리로 끝내면 손해이므로, <strong>확장 가능성을 근거와 함께 분명히 말하는 장</strong>으로 설계했다(S12).</p>
+    </div>
+
+    <div class="callout" style="margin-top:20px">
+      <p class="sub" style="margin-bottom:6px">전체를 관통하는 핵심 메시지</p>
+      <p style="font-size:17px; font-weight:600; line-height:1.5">막혀 있던 대전의 에너지 전환을, <strong>갈등 없는 공공 옥상</strong>에서 <strong>AI가 다시 잰 실제 면적</strong>과 <strong>시민이 주인인 채권</strong>으로 지금 시작한다.</p>
+    </div>
+
+    <div style="margin-top:22px" class="scroll-x">
+      <p class="sub">12장 시간 배분 — 목표 6분 40초(20초 여유)</p>
+      <table>
+        <thead><tr><th class="n">#</th><th>슬라이드</th><th>배점</th><th class="n">초</th><th>이 장이 버는 점수</th></tr></thead>
+        <tbody>
+          <tr><td class="n">1</td><td>표지</td><td>—</td><td class="n">10</td><td>주제 각인</td></tr>
+          <tr><td class="n">2</td><td>전력자립도 3.06% 꼴찌</td><td>①</td><td class="n">30</td><td>지역 문제 정의</td></tr>
+          <tr><td class="n">3</td><td>막힌 두 가지 벽 — 수용성·예산</td><td>①</td><td class="n">40</td><td>원인 분석의 명확성</td></tr>
+          <tr><td class="n">4</td><td>옥상이라는 사각지대·두 공백</td><td>①</td><td class="n">35</td><td>대회 취지 부합</td></tr>
+          <tr><td class="n">5</td><td>기존 잠재량은 면적×상수</td><td>②</td><td class="n">30</td><td>AI 필요성</td></tr>
+          <tr><td class="n">6</td><td>전체 모델 파이프라인</td><td>②</td><td class="n">25</td><td>모델 설계 타당성</td></tr>
+          <tr><td class="n">7</td><td>지붕 AI 방법론</td><td>②</td><td class="n">35</td><td>모델 설계 타당성</td></tr>
+          <tr><td class="n">8</td><td>11곳 결과·정확도·한계</td><td>②</td><td class="n">40</td><td>구현 수준</td></tr>
+          <tr><td class="n">9</td><td><strong>시연영상</strong></td><td>②</td><td class="n">60</td><td><strong>시연을 통한 구현 수준</strong></td></tr>
+          <tr><td class="n">10</td><td>채권형 SPC·법적 근거</td><td>③</td><td class="n">45</td><td>서비스 구조</td></tr>
+          <tr><td class="n">11</td><td>사업화·운영 로드맵</td><td>③</td><td class="n">30</td><td>운영 계획 구체성</td></tr>
+          <tr><td class="n">12</td><td>파급효과와 확장 가능성</td><td>④</td><td class="n">30</td><td>확장 가능성</td></tr>
+        </tbody>
+      </table>
+      <p class="wf-cap">목차 슬라이드는 넣지 않는다 — 7분에서 20초는 비싸다. 흐름은 각 장 우상단의 파트 표시(①~④)로 대신한다. 초과 위험이 보이면 S6을 S7에 흡수해 11장으로 줄인다.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ 제작 기준 ══════════ -->
+<section class="block" id="rules">
+  <h2>제작 기준 — 디자인 4요소 · 도식 5구조 · 장별 점검표</h2>
+  <div class="inner">
+
+    <p class="sub">① 먼저 고정하는 디자인 기준 4가지</p>
+    <div class="grid-2">
+      <dl class="field">
+        <dt>폰트</dt>
+        <dd>제목 본고딕 Bold / 본문 Medium / 숫자는 고정폭(모노스페이스). 숫자를 고정폭으로 써야 표에서 자릿수가 맞는다. HTML에서 웹폰트로 쓰고 <strong>최종은 이미지로 구워지므로 운영사 PC의 폰트 설치 여부와 무관</strong>하다. 캡처 전에 웹폰트가 실제로 적용됐는지만 확인한다.</dd>
+      </dl>
+      <dl class="field">
+        <dt>색 4개</dt>
+        <dd>배경(다크 네이비 또는 화이트) · 메인 강조(앰버) · 서브 데이터(슬레이트 블루) · 텍스트(잉크). <strong>강조색은 하나만, 한 장에서 강조는 한 곳만.</strong> 경고 레드는 한계·마감에만 예외적으로.</dd>
+      </dl>
+      <dl class="field">
+        <dt>비율</dt>
+        <dd>16:9 · <strong class="num">1920×1080</strong> 고정 캔버스. 검토할 때만 <span class="num">transform: scale</span>로 화면에 맞추고, 캡처는 100% 배율로 한다. 영상도 같은 해상도로 맞춰 전환이 끊기지 않게 한다.</dd>
+      </dl>
+      <dl class="field">
+        <dt>레퍼런스</dt>
+        <dd>번호를 붙여 “R1처럼”으로 지목한다. 현재: <strong>R1</strong> 지붕 색칠 결과(예술의전당·미술관), <strong>R2</strong> 건물 상세 화면(대전시청). <span class="need">디자인 레퍼런스 2~3개 추가 필요</span></dd>
+      </dl>
+    </div>
+
+    <div style="margin-top:22px" class="scroll-x">
+      <p class="sub">② 도식 5구조 — 장마다 이 중 하나를 고르고 이름을 적는다</p>
+      <table>
+        <thead><tr><th>구조</th><th>쓰는 곳</th><th>그리는 규칙</th><th>적용</th></tr></thead>
+        <tbody>
+          <tr><td><strong>나열형</strong></td><td>요소 N개, 구성 항목</td><td>같은 도형을 일정 간격으로. 강조할 것만 다른 색. 허전하면 아이콘 또는 도형 안 얇은 선 하나</td><td>S3 · S12</td></tr>
+          <tr><td><strong>대조형</strong></td><td>전후·경쟁 비교</td><td>강조할 쪽만 지정색·굵은 선·더 큰 크기. 두 도형 사이에 사다리꼴 그라데이션(아래로 갈수록 투명)</td><td>S2 · S4 · S5 · S8</td></tr>
+          <tr><td><strong>과정형</strong></td><td>절차·단계·연혁</td><td>화살표가 중심. 선 화살표를 두껍게, 그라데이션 선. 단계 도형은 같은 모양·같은 가로 간격</td><td>S6 · S7 · S10</td></tr>
+          <tr><td><strong>확장형</strong></td><td>사업 확장 로드맵</td><td>같은 도형을 점점 크게, 색은 점점 진하게. 원이면 방사형 그라데이션(바깥으로 갈수록 투명)</td><td>S11</td></tr>
+          <tr><td><strong>설명형</strong></td><td>제품·화면 소개</td><td>대상을 가운데, 설명 도형 일부는 뒤·일부는 앞에 둬 입체감. 밝은 배경엔 어두운 그림자, 어두운 배경엔 흰 그림자</td><td>S9</td></tr>
+        </tbody>
+      </table>
+      <p class="wf-cap">구조에 내용을 끼워 맞추지 않는다. 내용이 가장 잘 드러나는 도식을 고르고, 안 맞으면 구조를 바꾼다. 이미지의 한 부분을 강조할 때는 원으로 잘라 옆에 크게 키우고 원래 자리와 사다리꼴 그라데이션으로 잇는다(S5·S8).</p>
+    </div>
+
+    <div style="margin-top:22px">
+      <p class="sub">③ 장을 완성할 때마다 돌리는 점검표</p>
+      <ul>
+        <li>결론형 제목(핵심 메시지)이 섹션 라벨·설명문보다 <strong>확실히 크게</strong> 보이는가</li>
+        <li>장마다 외워 갈 숫자가 하나 있는가 — 3.06% · 20년 · 0.46 · 2.99MW · 4.5%</li>
+        <li>그래프 막대 길이가 실제 값과 비례하는가 (경북 216%처럼 축을 깨는 값은 축약 표시)</li>
+        <li>원인 → 결과 순서로 배치했는가 (좌→우, 위→아래)</li>
+        <li>그래프가 꼭 필요하지 않으면 선으로 칸만 나누고 수치를 적었는가</li>
+        <li>아래 여백이 남으면 키워드를 키우고, 아이콘은 배경처럼 흐리게 깐다</li>
+        <li>줄바꿈이 단어 중간에서 끊기지 않는가</li>
+        <li><strong>이 장을 30~40초에 말할 수 있는가</strong> — 못 하면 내용을 줄인다</li>
+      </ul>
+    </div>
+
+    <div class="callout" style="margin-top:20px">
+      <p class="sub" style="margin-bottom:6px">④ 제작 방식 — HTML로 만들고 PPT로 변환한다</p>
+      <p><strong>제작은 HTML/CSS로, 제출·발표는 PPT로.</strong> 1920×1080 고정 캔버스에 12장을 만들고, 각 장을 PNG로 캡처해 PPT 슬라이드에 전면 배치한다. 디자인 자유도와 수정 속도는 HTML이 빠르고, 최종 산출물은 운영사 PC에서 확실히 열리는 PPT가 된다. <strong>글자가 이미지로 고정되므로 폰트 깨짐·레이아웃 틀어짐이 원천적으로 없다.</strong></p>
+      <ul style="margin-top:8px">
+        <li>캡처는 브라우저 자동화(헤드리스 스크린샷)로 일괄 처리한다 — 장마다 수동 캡처하면 배율이 틀어진다</li>
+        <li><strong>대가: PPT에서 텍스트를 못 고친다</strong> → <span class="num">11/20</span> 숫자 동결 뒤에 변환한다. 그전까지 수정은 HTML에서만</li>
+        <li>단계별로 나타나는 장은 상태별로 2~3장을 캡처해 PPT에서 겹쳐 띄운다(엔터마다 한 단계). 복잡한 모션은 포기한다</li>
+        <li>시연영상은 PPT에 삽입하고 <strong>mp4 원본도 함께 제출</strong>한다(삽입 재생 실패 대비)</li>
+        <li>발표 중 인터넷이 필요한 화면(3D 지도)은 어차피 영상 안에 들어간다 — 개인 노트북 연결이 없기 때문</li>
+      </ul>
+      <p style="margin-top:8px">제작 순서: <strong>S2와 S8 두 장을 먼저 완성해 확인받은 뒤</strong> 나머지로 넓힌다(가장 데이터가 무겁고 톤을 결정하는 장).</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════ S1 ══════════ -->
+<section class="card" id="s1">
+  <div class="card__bar"><span class="card__no">01</span><span class="badge">표지</span><span class="card__title">대전 공공건물 옥상, AI가 다시 재고 시민이 투자한다</span><span class="sec">10초</span></div>
+  <div class="card__msg"><span class="tag">핵심 메시지</span><p>이 발표는 “태양광을 늘리자”가 아니라 <strong>어디에 몇 kW를 깔 수 있고 그 돈을 누가 대는지</strong>에 관한 것이다.</p></div>
+  <div class="card__body">
+    <div>
+      <p class="sub">레이아웃 와이어프레임 (16:9)</p>
+      <div class="wf" style="grid-template-rows:1fr auto auto; grid-template-columns:1fr">
+        <div class="ctr hi"><span class="t">메인 타이틀 (2행)</span>대전 공공건물 지붕 태양광<br>적지분석 AI + 시민펀드</div>
+        <div class="ctr"><span class="t">부제 한 줄</span>항공사진으로 실제 설치 가능 면적을 재고, 시민 채권으로 재원을 모은다</div>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:6px; background:none; border:0; padding:0">
+          <div><span class="t">팀명 / 팀원</span>추가 자료 필요</div>
+          <div><span class="t">공모전명</span>DSC 공유대학 × KT</div>
+        </div>
+      </div>
+      <p class="wf-cap">10초짜리 장이다. 읽을 거리를 늘리지 말고 타이틀 한 줄만 말하고 넘어간다.</p>
+    </div>
+    <div>
+      <div class="detail-sec">
+        <p class="sub">작성 목적</p>
+        <ul><li>주제를 한 줄로 각인시키고 발표 톤(데이터 기반·절제)을 정한다.</li></ul>
+      </div>
+      <div class="detail-sec">
+        <p class="sub">발표 멘트 (10초)</p>
+        <ul><li>“대전 공공건물 옥상에 태양광을 몇 kW 깔 수 있는지 AI로 다시 재고, 그 돈을 시민이 대는 모델입니다.”</li></ul>
+      </div>
+      <div class="detail-sec">
+        <p class="sub">강조</p>
+        <div class="chips"><span class="chip">AI</span><span class="chip">시민펀드</span><span class="chip s">대전</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="card__foot">
+    <div><strong>시각화</strong> <span class="struct">구조 없음</span> — 차트 없음. 배경에 패널 배치 격자 패턴(불투명도 5%)만.</div>
+    <div><strong>디자인</strong> — 다크 네이비 배경 + 앰버 타이틀 1색. 수미상관을 위해 S12와 같은 배경을 쓴다.</div>
+  </div>
+</section>
+
+<!-- ══════════ S2 ══════════ -->
+<section class="card" id="s2">
+  <div class="card__bar"><span class="card__no">02</span><span class="badge">① 주제 적절성</span><span class="card__title">대전의 전력자립도는 3.06%, 17개 시·도 중 최하위다</span><span class="sec">30초</span></div>
+  <div class="card__msg"><span class="tag">핵심 메시지</span><p>대전은 쓰는 전기의 <strong>97%를 바깥에서 받아 오는 도시</strong>이고, 이 숫자는 이미 기업 유치의 걸림돌로 지적되고 있다.</p></div>
+  <div class="card__body">
+    <div>
+      <p class="sub">레이아웃 와이어프레임 (16:9)</p>
+      <div class="wf" style="grid-template-rows:auto 1fr auto; grid-template-columns:1fr">
+        <div><span class="t">헤드라인</span>대전 전력자립도 3.06% — 전국 최하위 (2023)</div>
+        <div style="display:grid; grid-template-columns:0.9fr 1.1fr; gap:6px; background:none; border:0; padding:0">
+          <div class="hi ctr"><span class="t">킬러 넘버</span><strong style="font-size:26px; font-family:var(--font-mono)">3.06%</strong>발전 304GWh / 소비 9,922GWh</div>
+          <div class="data"><span class="t">가로 막대 — 시·도별 자립도</span>
+            <div class="bars">
+              <div class="bar"><span>경북</span><i class="s" style="width:62%"></i><span>216%</span></div>
+              <div class="bar"><span>서울</span><i class="s" style="width:14%"></i><span>10.4%</span></div>
+              <div class="bar"><span>광주</span><i class="s" style="width:12%"></i><span>9.3%</span></div>
+              <div class="bar"><span>대전</span><i class="on" style="width:5%"></i><span>3.06%</span></div>
+            </div>
+          </div>
+        </div>
+        <div><span class="t">하단 한 줄</span>“전력자급도 꼴찌가 기업 유치 걸림돌” — 2026.7 보도 · 대전 주력산업과 직결</div>
+      </div>
+      <p class="wf-cap">경북 216%는 축을 깨므로 막대를 잘라 축약 표시(//)한다.</p>
+    </div>
+    <div>
+      <div class="detail-sec">
+        <p class="sub">작성 목적</p>
+        <ul><li>지역 문제를 한 숫자로 정의한다. <strong>배점 ①의 ‘문제 정의 명확성’</strong>이 이 장에서 판가름 난다.</li></ul>
+      </div>
+      <div class="detail-sec">
+        <p class="sub">데이터·근거</p>
+        <ul>
+          <li>대전 전력자립도 <strong class="num">3.06%</strong>(2023) — 발전 <span class="num">304GWh</span> / 소비 <span class="num">9,922GWh</span>. 에너지경제연구원 지역에너지통계연보</li>
+          <li>비교: 광주 <span class="num">9.3%</span>, 서울 <span class="num">10.4%</span>, 경북 <span class="num">216%</span></li>
+          <li>한전통계 기준 <span class="num">2.96%</span>로 발표되기도 함 → <strong>출처를 슬라이드에 명시</strong></li>
+          <li>2026.7 보도: 전력자급도 최하위가 <strong>기업 유치 걸림돌</strong>로 지적 — 대회 취지(주력산업·경제 문제)와 연결되는 고리</li>
+        </ul>
+      </div>
+      <div class="detail-sec">
+        <p class="sub">강조 수치</p>
+        <div class="chips"><span class="chip">3.06%</span><span class="chip">전국 최하위</span><span class="chip s">기업 유치 걸림돌</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="card__foot">
+    <div><strong>시각화</strong> <span class="struct">대조형</span> — 가로 막대그래프 1종만. 대전 막대만 앰버, 나머지는 중립 그레이. 막대 길이는 실제 값과 비례.</div>
+    <div><strong>디자인</strong> — 3.06%를 48pt 이상 모노스페이스로. 출처는 8pt 각주로 하단 고정(이후 모든 데이터 장 동일 위치).</div>
+  </div>
+</section>
+
+<!-- ══════════ S3 ══════════ -->
+<section class="card" id="s3">
+  <div class="card__bar"><span class="card__no">03</span><span class="badge">① 주제 적절성</span><span class="card__title">부지·행정은 풀렸고, 남은 벽은 수용성과 예산이다</span><span class="sec">40초</span></div>
+  <div class="card__msg"><span class="tag">핵심 메시지</span><p>대전은 대형 발전시설마다 주민 반대로 좌절했고, <strong>예산만으로 채우면 20년이 걸린다.</strong> 네 장벽 중 이 둘이 남는다.</p></div>
+  <div class="card__body">
+    <div>
+      <p class="sub">레이아웃 와이어프레임 (16:9)</p>
+      <div class="wf" style="grid-template-rows:auto auto 1fr; grid-template-columns:1fr">
+        <div><span class="t">헤드라인</span>장벽을 지워 보면 둘이 남는다</div>
+        <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:6px; background:none; border:0; padding:0">
+          <div class="ok"><span class="t">① 부지 — 해소</span>옥상은 이미 지어진 면적</div>
+          <div class="ok"><span class="t">② 행정 — 해소</span>대전 에너지 조례 제29조: 수의계약 사용허가 가능</div>
+          <div class="warn"><span class="t">③ 수용성 — 남음</span>대형 발전시설 반복 무산</div>
+          <div class="warn"><span class="t">④ 예산 — 남음</span>연 45.2억 원</div>
+        </div>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:6px; background:none; border:0; padding:0">
+          <div class="warn"><span class="t">좌 · 무산 사례</span>2019 평촌산단 LNG 건설계획 중단 · 도안지구·연축동 수소연료전지 무산 · 대전열병합 증설 반대 서명 4천여 명</div>
+          <div class="data"><span class="t">우 · 예산 나눗셈</span>45.2억 원 ÷ 109만 원/kW = 연 4.1MW → 자립도 +0.05%p/년
+            <div class="bars">
+              <div class="bar"><span>필요 ~90MW</span><i class="s" style="width:70%"></i></div>
+              <div class="bar"><span>연 4.1MW</span><i class="on" style="width:4%"></i><span>→ 20년+</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <p class="wf-cap">상단은 나열형(4칸, 해소 2칸은 톤다운), 하단은 대조형(사람이 막는다 / 돈이 모자란다).</p>
+    </div>
+    <div>
+      <div class="detail-sec">
+        <p class="sub">작성 목적</p>
+        <ul><li>원인을 나열하는 데서 끝내지 않고 <strong>범위를 좁힌다.</strong> “부지는? 인허가는?” 질문을 미리 닫고, 시민펀드의 필요성을 나눗셈으로 세운다.</li></ul>
+      </div>
+      <div class="detail-sec">
+        <p class="sub">데이터·근거</p>
+        <ul>
+          <li><strong>대전광역시 에너지 조례 제29조</strong>(2026.4.10 시행): 공유재산을 수의계약으로 사용허가·대부 가능. 상위법은 재생에너지법 제26조(임대료 50% 범위 경감) <span class="need">실제 적용 사례는 확인 못 함 — 정보공개청구 중</span></li>
+          <li>2019 평촌산단 LNG 발전소 건설계획 중단, 유성 도안지구·대덕구 연축동 수소연료전지 무산</li>
+          <li>대전열병합 LNG 증설(113→495MW): 반대 서명 <span class="num">4천여 명</span>, 시민단체 <span class="num">80여 곳</span></li>
+          <li>2026년 대전 재생에너지 예산 <strong class="num">45.2억 원</strong> ÷ 설치비 <span class="num">109만 원/kW</span>(에너지경제연구원 2024, 건물형) = 연 <span class="num">4.1MW</span> → 잠재량 약 90MW를 채우는 데 <strong class="num">20년 이상</strong></li>
+        </ul>
+      </div>
+      <div class="detail-sec">
+        <p class="sub">강조 수치</p>
+        <div class="chips"><span class="chip a">20년+</span><span class="chip">45.2억 원</span><span class="chip s">조례 제29조</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="card__foot">
+    <div><strong>시각화</strong> <span class="struct">나열형</span><span class="struct">대조형</span> — 상단 4칸 동일 도형(해소 2칸은 회색+체크), 하단 좌우 대비. 나눗셈 수식을 그대로 보여주는 편이 설득력이 높다.</div>
+    <div><strong>디자인</strong> — “20년+”를 이 장에서 가장 큰 숫자로. 무산 사례는 기사 제목이 아니라 <em>결과</em>(중단·무산)를 굵게. 감정적 사진은 쓰지 않는다.</div>
+  </div>
+</section>
+
+<!-- ══════════ S4 ══════════ -->
+<section class="card" id="s4">
+  <div class="card__bar"><span class="card__no">04</span><span class="badge">① 주제 적절성</span><span class="card__title">갈등 없는 옥상이 비어 있는데, 얼마나 깔리는지는 아무도 모른다</span><span class="sec">35초</span></div>
+  <div class="card__msg"><span class="tag">핵심 메시지</span><p>기존 공공건물 옥상은 반대도 없고 설치 의무도 없는 사각지대다. 그런데 <strong>건물별 설치 가능 용량도, 재원 주체도 비어 있다.</strong></p></div>
+  <div class="card__body">
+    <div>
+      <p class="sub">레이아웃 와이어프레임 (16:9)</p>
+      <div class="wf" style="grid-template-rows:auto 1fr 1fr; grid-template-columns:1fr">
+        <div><span class="t">헤드라인</span>왜 옥상인가 → 그런데 무엇이 비어 있나</div>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:6px; background:none; border:0; padding:0">
+          <div><span class="t">갈등</span>LNG·연료전지 → 무산 / 지상 태양광 → 이격거리 조례 129곳 / <strong>공공건물 옥상 → 확인된 민원 1건</strong></div>
+          <div class="hi"><span class="t">의무</span>신축 1,000㎡↑ 신재생 36%(2026) / <strong>기존 공공건물 = 의무 대상 아님</strong></div>
+        </div>
+        <div style="display:grid; grid-template-columns:1fr auto 1fr; gap:6px; align-items:center; background:none; border:0; padding:0">
+          <div class="warn"><span class="t">공백 ① 얼마나</span>건물별 설치 가능 용량 데이터 없음</div>
+          <div class="ctr" style="border:0; background:none">→</div>
+          <div class="data"><span class="t">공백 ② 누가 내나</span>예산은 20년, 대전엔 시민출자 선례 없음</div>
+        </div>
+      </div>
+      <p class="wf-cap">공백 칸은 점선 빈 상자로 그려 ‘비어 있음’을 형태로 보여준다. 다음 장부터 이 두 칸을 채운다.</p>
+    </div>
+    <div>
+      <div class="detail-sec">
+        <p class="sub">작성 목적</p>
+        <ul><li>대상을 공공건물 옥상으로 확정하고, <strong>문제를 두 문장으로 고정</strong>한다. 이후 모든 해법이 이 두 칸에 대응한다.</li></ul>
+      </div>
+      <div class="detail-sec">
+        <p class="sub">데이터·근거</p>
+        <ul>
+          <li>옥상 태양광 반대는 거의 없음 — 확인된 건 서울 구로구 초등학교 <strong>반사광 민원 1건</strong>(국민권익위, 2021)</li>
+          <li>공공기관 신축·증축(연면적 1,000㎡ 이상) 신재생 공급의무비율 <span class="num">36%</span>(2026) — <strong>기존 건물은 대상 아님</strong></li>
+          <li>지상 태양광은 이격거리 조례 <span class="num">129곳</span>(이 중 92곳이 법령 상한 200m 초과)</li>
+          <li>대전 공유재산 건물 목록·태양광 설치 현황 공개 데이터셋 없음 → 2026-11-01 정보공개청구, <span class="need">답변 대기</span></li>
+          <li>시민 인식: 재생에너지 확대 지지 <span class="num">82%</span>, 공공시설 설치 의무화 찬성 <span class="num">79.7%</span>(에너지정보문화재단 2026.5, 전국 2,000명)</li>
+        </ul>
+      </div>
+      <div class="detail-sec">
+        <p class="sub">강조 수치</p>
+        <div class="chips"><span class="chip a">민원 1건</span><span class="chip">79.7% 찬성</span><span class="chip s">기존 건물 = 의무 밖</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="card__foot">
+    <div><strong>시각화</strong> <span class="struct">대조형</span> — 상단 갈등/의무 2칸 대비, 하단 공백 2칸. 빈 칸과 채운 칸 사이를 사다리꼴 그라데이션으로 잇는다.</div>
+    <div><strong>디자인</strong> — “민원 1건”을 의도적으로 작게 쓰고 옆에 큰 여백을 둬 갈등이 적다는 사실을 형태로 보여준다.</div>
+  </div>
+</section>
+
+<!-- ══════════ S5 ══════════ -->
+<section class="card" id="s5">
+  <div class="card__bar"><span class="card__no">05</span><span class="badge c">② AI 적합성</span><span class="card__title">지금까지의 잠재량은 지붕 면적에 상수를 곱한 값이었다</span><span class="sec">30초</span></div>
+  <div class="card__msg"><span class="tag">핵심 메시지</span><p>공신력 있는 잠재량 데이터조차 <strong>면적 × 일사량 × 0.2 × 0.25</strong>라는 고정 공식이다. 실제 옥상의 구조물·그림자는 반영된 적이 없다.</p></div>
+  <div class="card__body">
+    <div>
+      <p class="sub">레이아웃 와이어프레임 (16:9)</p>
+      <div class="wf" style="grid-template-rows:auto 1fr auto; grid-template-columns:1fr">
+        <div><span class="t">헤드라인</span>잠재량 지도는 지붕을 본 적이 없다</div>
+        <div style="display:grid; grid-template-columns:1fr 1.1fr; gap:6px; background:none; border:0; padding:0">
+          <div class="data"><span class="t">좌 · 공식 분해 (경기기후플랫폼)</span>
+            <div style="font-family:var(--font-mono); font-size:9.5px; margin-top:4px">일사량 × 모듈효율 20% × 부지대비 모듈면적 25%</div>
+            수원 검증: 지붕 격자값 5.83~6.41MWh,<br>표준편차 1.5% → 사실상 상수
+          </div>
+          <div class="hi"><span class="t">우 · 실제 옥상 (AI 결과 이미지 R1)</span>옥탑·실외기·물탱크·옥상정원·그림자<br>같은 면적도 결과가 다르다 — 구조물 한 곳 원형 확대</div>
+        </div>
+        <div><span class="t">결론 띠</span>면적만 알면 되는 문제였다면 AI가 필요 없다. 필요한 건 지붕 위를 보는 눈이다.</div>
+      </div>
+      <p class="wf-cap">오른쪽에 실제 AI 출력(R1)을 크게 쓴다. 주장과 증거를 같은 화면에 붙이는 장.</p>
+    </div>
+    <div>
+      <div class="detail-sec">
+        <p class="sub">작성 목적</p>
+        <ul><li>배점 ②의 출발점. <strong>“AI를 왜 쓰냐”에 대한 답이 여기서 끝나야</strong> 뒤의 방법론·결과가 의미를 갖는다.</li></ul>
+      </div>
+      <div class="detail-sec">
+        <p class="sub">데이터·근거</p>
+        <ul>
+          <li>경기기후플랫폼 기술적 잠재량 공식: <strong>이론적 일사량 × 모듈효율 20% × 부지 대비 모듈면적 25%(옥상형) − 비오톱 제외지역</strong></li>
+          <li>수원시 파일 직접 확인: GeoTIFF 10m 격자, 지붕 칸 값 <span class="num">5.83~6.41MWh</span>, 표준편차 <span class="num">0.09</span>(약 1.5%) → 칸 차이는 일사량뿐, <strong>지붕 방향·그늘·구조는 미반영</strong></li>
+          <li>교차 검증: 기존 계산(지붕 × 25% × 0.2kW/㎡ × 1,189kWh/kW = <span class="num">59.5kWh/㎡</span>)이 경기 값 <span class="num">61kWh/㎡</span>와 3% 이내 일치 → 같은 수준의 근사임을 자인하는 근거</li>
+        </ul>
+      </div>
+      <div class="detail-sec">
+        <p class="sub">강조 수치</p>
+        <div class="chips"><span class="chip">표준편차 1.5%</span><span class="chip s">25% 가정</span><span class="chip a">지붕 미관측</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="card__foot">
+    <div><strong>시각화</strong> <span class="struct">대조형</span> — 좌 수식 분해(각 항에 꼬리표) / 우 실제 지붕 이미지. 구조물 한 곳을 원으로 잘라 옆에 키우고 사다리꼴 그라데이션으로 잇는다.</div>
+    <div><strong>디자인</strong> — 수식은 모노스페이스, ‘25%’와 ‘20%’에만 하이라이트. 오른쪽 이미지가 화면의 45%를 차지하게 크게.</div>
+  </div>
+</section>
+
+<!-- ══════════ S6 ══════════ -->
+<section class="card" id="s6">
+  <div class="card__bar"><span class="card__no">06</span><span class="badge c">② AI 적합성</span><span class="card__title">면적에서 모집액까지 하나의 숫자 흐름으로 잇는다</span><span class="sec">25초</span></div>
+  <div class="card__msg"><span class="tag">핵심 메시지</span><p>AI가 뽑은 면적이 kW가 되고, kW가 수익이 되고, 수익이 <strong>모집액과 상환 기간</strong>이 된다. 적지분석과 시민펀드는 같은 숫자로 연결된다.</p></div>
+  <div class="card__body">
+    <div>
+      <p class="sub">레이아웃 와이어프레임 (16:9)</p>
+      <div class="wf" style="grid-template-rows:auto 1.1fr auto; grid-template-columns:1fr">
+        <div><span class="t">헤드라인</span>4단 파이프라인 — 항공사진에서 모집액까지</div>
+        <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:6px; background:none; border:0; padding:0">
+          <div class="data"><span class="t">① 학습</span>AI Hub 71348<br>적지분석 25cm<br>LR-ASPP(MobileNetV3)</div>
+          <div class="hi"><span class="t">② 대전 적용</span>브이월드 항공사진 + 건물경계<br>→ 그림자·배치 → <strong>건물별 kW</strong></div>
+          <div><span class="t">③ 전력 사용량 예측</span>건축HUB 월 전기사용량 754건<br><em>자가소비 비중 산출</em></div>
+          <div class="ok"><span class="t">④ 수익·펀드</span>발전량 × 147원 − 운영비<br>→ 모집액·이자·상환연도</div>
+        </div>
+        <div><span class="t">화살표 위 라벨</span>㎡ → kW → kWh/년 → 원 → 모집액</div>
+      </div>
+      <p class="wf-cap">블록 사이에 ‘무엇이 넘어가는지’를 단위로 적는다. 이 한 줄이 “연결이 매끄럽지 않다”는 지적을 막는다.</p>
+    </div>
+    <div>
+      <div class="detail-sec">
+        <p class="sub">작성 목적</p>
+        <ul><li>해법 전체 지도를 먼저 깔고 S7~S10에서 확대한다. 모델이 <strong>하나의 서비스로 묶여 있음</strong>을 보이는 장(배점 ②·③ 양쪽에 걸친다).</li></ul>
+      </div>
+      <div class="detail-sec">
+        <p class="sub">들어갈 내용</p>
+        <ul>
+          <li>① 학습: AI Hub 「태양광 발전 현황 및 적지 분석 데이터」(71348), 적지분석 25cm, 클래스 3종(배경/설치 가능 지붕/구조물)</li>
+          <li>② 대전 적용: 브이월드 항공사진(z19)·건물경계(LT_C_BLDGINFO) → 경계 자동 정렬 → 연간 그림자 → 패널 배치 → <strong>건물별 kW</strong></li>
+          <li>③ 전력 사용량: 건축HUB 건물에너지 API로 월 전기사용량 <span class="num">754건</span>(2020.01~2026.06) 수집 — 현재 확인된 사실은 “지붕을 꽉 채워도 그 건물 전기의 <span class="num">2~34%</span>”. <span class="need">채권형 구조에선 펀드 수익에 직접 영향이 없어 역할 재정의 중 — 팀 결정 필요</span></li>
+          <li>④ 수익·펀드: 발전량 × 판매단가 − 운영비 → 채권 모집액·연 이자·원금 상환 연도</li>
+        </ul>
+      </div>
+      <div class="detail-sec">
+        <p class="sub">강조 표현</p>
+        <div class="chips"><span class="chip">㎡ → kW → 원</span><span class="chip s">같은 숫자, 한 흐름</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="card__foot">
+    <div><strong>시각화</strong> <span class="struct">과정형</span> — 좌→우 4블록. 블록은 같은 모양·같은 간격, 화살표만 굵게·그라데이션으로.</div>
+    <div><strong>디자인</strong> — ③ 블록은 결론이 안 난 영역이므로 점선 테두리 + 각주 한 줄로 상태를 밝힌다. 숨기면 Q&A에서 더 크게 맞는다.</div>
+  </div>
+</section>
+
+<!-- ══════════ S7 ══════════ -->
+<section class="card" id="s7">
+  <div class="card__bar"><span class="card__no">07</span><span class="badge c">② AI 적합성</span><span class="card__title">패널 한 장 단위까지 내려가 실제 배치 가능 수를 센다</span><span class="sec">35초</span></div>
+  <div class="card__msg"><span class="tag">핵심 메시지</span><p>면적을 비율로 가정하지 않고 <strong>구조물 여유·그림자 줄 간격·모듈 규격</strong>을 적용해 패널 수를 센다. 모든 변수에 출처가 있다.</p></div>
+  <div class="card__body">
+    <div>
+      <p class="sub">레이아웃 와이어프레임 (16:9)</p>
+      <div class="wf" style="grid-template-rows:auto auto 1fr; grid-template-columns:1fr">
+        <div><span class="t">헤드라인</span>지붕 AI 4단계</div>
+        <div class="flowrow" style="background:none; border:0; padding:0">
+          <div class="data" style="flex:1"><span class="t">1 분할</span>지붕 / 구조물 / 배경</div><em>→</em>
+          <div class="data" style="flex:1"><span class="t">2 정합</span>건물경계 자동 정렬(≤8m)</div><em>→</em>
+          <div class="data" style="flex:1"><span class="t">3 그림자</span>동지 9~15시 기준</div><em>→</em>
+          <div class="hi" style="flex:1"><span class="t">4 배치</span>패널 수 → kW</div>
+        </div>
+        <div style="display:grid; grid-template-columns:1.1fr 1fr; gap:6px; background:none; border:0; padding:0">
+          <div><span class="t">좌 · 적용 변수 (선으로 칸만 나눔)</span>
+            모듈 2278×1134mm · 효율 22% · 경사 15°<br>
+            가장자리 이격 0.5m / 구조물 여유 북3·동서2·남0.5m<br>
+            열화 연 0.5% · 발전량 1,333kWh/kWp
+          </div>
+          <div class="ok"><span class="t">우 · 배치 결과 이미지</span>패널 배치도(파랑=설치 가능, 노랑=구조물)</div>
+        </div>
+      </div>
+      <p class="wf-cap">변수 표는 다 읽히지 않아도 된다. “근거가 문서로 있다”는 인상이 목적이므로 선으로 칸만 나누고 수치만 적는다.</p>
+    </div>
+    <div>
+      <div class="detail-sec">
+        <p class="sub">작성 목적</p>
+        <ul><li>배점 ②의 ‘모델 설계 타당성’. AI를 썼다는 선언이 아니라 <strong>어떤 판단을 자동화했는지</strong>를 보인다.</li></ul>
+      </div>
+      <div class="detail-sec">
+        <p class="sub">데이터·근거 (출처는 panel_params_review.md)</p>
+        <ul>
+          <li>모듈 <span class="num">2278×1134mm</span>, 효율 <span class="num">22%</span>(TOPCon 상용 580W급), 열화 연 <span class="num">0.5%</span>(NREL 중앙값)</li>
+          <li>경사 <strong>15°</strong> — 25° 대비 패널 수 +28%, 같은 지붕 연 발전량 +23%(패널 1장당은 −4%)</li>
+          <li>가장자리 이격 <span class="num">0.5m</span>(국토부 2015 운영지침), 구조물 여유 <strong>북 3m·동서 2m·남 0.5m</strong> — 자체 그림자 계산(연 일사량 20% 이상 손실 범위)으로 도출</li>
+          <li>발전량은 PVGIS 대전 15° 기준 <span class="num">1,333kWh/kWp</span>(수평값 1,189과 혼용 금지)</li>
+          <li>지붕 하중은 사진으로 판정 불가 → 수치 판정 없이 <strong>“구조검토 필요”</strong> 표시(1988년 내진설계 의무화 이전 사용승인 건물)</li>
+        </ul>
+      </div>
+      <div class="detail-sec">
+        <p class="sub">강조 수치</p>
+        <div class="chips"><span class="chip">15° · 1,333kWh/kWp</span><span class="chip s">북3·동서2·남0.5m</span><span class="chip">효율 22%</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="card__foot">
+    <div><strong>시각화</strong> <span class="struct">과정형</span><span class="struct">나열형</span> — 상단 4단 프로세스(같은 도형·같은 간격) + 하단 좌 변수/우 배치 이미지. 그림자 여유는 작은 평면 모식도(북쪽만 길게)가 한 번에 이해된다.</div>
+    <div><strong>디자인</strong> — 핵심 3개(15°, 22%, 북3m)만 앰버. 모델명(LR-ASPP)은 각주로 내린다 — 말로 설명할 시간이 없다.</div>
+  </div>
+</section>
+
+<!-- ══════════ S8 ══════════ -->
+<section class="card" id="s8">
+  <div class="card__bar"><span class="card__no">08</span><span class="badge c">② AI 적합성</span><span class="card__title">11개 건물 2,985kW — 오차는 절반으로 줄었고, 한계는 공개한다</span><span class="sec">40초</span></div>
+  <div class="card__msg"><span class="tag">핵심 메시지</span><p>AI는 25% 가정보다 건물별 오차를 <strong>49% → 25%</strong>로 줄였다. 동시에 지붕 IoU 0.46은 사람 간 합의 0.72에 못 미친다. 두 사실을 같이 말한다.</p></div>
+  <div class="card__body">
+    <div>
+      <p class="sub">레이아웃 와이어프레임 (16:9)</p>
+      <div class="wf" style="grid-template-rows:auto 1.3fr auto; grid-template-columns:1fr">
+        <div><span class="t">헤드라인</span>대전 11곳 적용 결과 · 정답 라벨 대비 검증</div>
+        <div style="display:grid; grid-template-columns:1.15fr 1fr; gap:6px; background:none; border:0; padding:0">
+          <div class="data"><span class="t">좌 · 건물별 결과 (선으로 칸 나눔)</span>
+            컨벤션센터 1,080kW · 예술의전당 627 · 시청 204<br>동구청 177 · 한밭도서관 177 · 중구청 167<br>대덕구청 131 · 미술관 133 · 박물관 128<br>서구청 125 · 유성구청 36 → <strong>합계 2,985kW</strong>
+          </div>
+          <div><span class="t">우 · 정확도 비교 (차트 2개로 분리)</span>
+            <div class="bars">
+              <div class="bar"><span>25% 가정</span><i style="width:92%"></i><span>오차 49%</span></div>
+              <div class="bar"><span>AI</span><i class="on" style="width:47%"></i><span>오차 25%</span></div>
+              <div class="bar"><span>AI IoU</span><i class="s" style="width:46%"></i><span>0.46</span></div>
+              <div class="bar"><span>사람 간</span><i class="s" style="width:72%"></i><span>0.72</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="warn"><span class="t">하단 · 알려진 한계</span>① AI 합계는 정답보다 23% 작음 ② 미술관·한밭도서관은 경계 정렬·구조물 과다 인식 ③ 박물관은 수동 보정이 들어가 이 건물 평가는 유리</div>
+      </div>
+      <p class="wf-cap">한계를 ‘붙임’이 아니라 같은 크기 블록으로 둔다. 발표에서 직접 읽는다 — 이게 Q&A 3분을 우리 쪽으로 가져오는 방법이다.</p>
+    </div>
+    <div>
+      <div class="detail-sec">
+        <p class="sub">작성 목적</p>
+        <ul><li>배점 ②의 ‘구현 수준’을 숫자로 증명하고, <strong>숨긴 게 없다는 인상</strong>으로 신뢰를 산다.</li></ul>
+      </div>
+      <div class="detail-sec">
+        <p class="sub">데이터·근거</p>
+        <ul>
+          <li>대전 11곳 AI 결과 합계 <strong class="num">2,985kW</strong> ≒ <span class="num">2.99MW</span> (박물관·미술관·한밭도서관은 2026-11-05 보정 후 값)</li>
+          <li>지붕 IoU 평균 <strong class="num">0.46</strong>(정답 라벨 1명분, 11곳) / 수도권 검증 <span class="num">0.84</span></li>
+          <li>건물별 용량 오차 중앙값: AI <strong class="num">25%</strong> vs 25% 가정 <span class="num">49%</span>. AI 합계는 정답보다 <span class="num">23%</span> 작음</li>
+          <li>사람 간 합의: 라벨러 2명 기준 IoU 평균 <span class="num">0.72</span>(0.45~0.91) — 세 번째 라벨러는 0.37로 품질이 낮아 재라벨링 권장 <span class="need">평가 확대 필요</span></li>
+          <li>개별 이슈: 유성구청 건축면적 362㎡로 작게 등록, 미술관은 건물 폴리곤 대비 AI 인식 지붕이 44%, 한밭도서관은 구조물 과다 인식(AI 312장 vs 정답 975장)</li>
+        </ul>
+      </div>
+      <div class="detail-sec">
+        <p class="sub">강조 수치</p>
+        <div class="chips"><span class="chip">오차 49% → 25%</span><span class="chip s">IoU 0.46 / 사람 0.72</span><span class="chip a">합계 23% 과소</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="card__foot">
+    <div><strong>시각화</strong> <span class="struct">대조형</span> — 좌 11행 수치(kW 내림차순, 합계 강조), 우 비교 막대. 오차(%)와 IoU는 축이 다르므로 <strong>작은 차트 둘로 분리</strong>. 오차 막대엔 ‘낮을수록 좋음’ 화살표.</div>
+    <div><strong>디자인</strong> — 한계 블록은 레드 계열이되 배경을 연하게 해 패배감이 들지 않게. 합계 2,985kW는 가장 큰 숫자로.</div>
+  </div>
+</section>
+
+<!-- ══════════ S9 ══════════ -->
+<section class="card" id="s9">
+  <div class="card__bar"><span class="card__no">09</span><span class="badge c">② 시연 — 배점 직결</span><span class="card__title">시연영상 60초 — 항공사진에서 모집액까지 끊지 않고</span><span class="sec">60초</span></div>
+  <div class="card__msg"><span class="tag">핵심 메시지</span><p>말로 설명한 파이프라인이 <strong>실제로 돌아가는 화면</strong>으로 이어진다. 심사 항목에 “시연을 통한 실제 구현 수준”이 명시돼 있으므로 이 60초가 25점의 절반을 좌우한다.</p></div>
+  <div class="card__body">
+    <div>
+      <p class="sub">영상 컷 구성 (16:9 · 1920×1080 · 60초)</p>
+      <div class="wf" style="grid-template-rows:repeat(5,1fr); grid-template-columns:1fr">
+        <div class="data"><span class="t">0:00–0:12 · 항공사진 → AI 분할</span>예술의전당·미술관 원본 위에 파랑(설치 가능)·노랑(구조물)이 덮이는 과정</div>
+        <div class="data"><span class="t">0:12–0:25 · 패널 배치</span>줄 간격·구조물 여유가 적용되며 패널이 깔리고 kW 숫자가 올라감 (시청 204kW)</div>
+        <div class="hi"><span class="t">0:25–0:42 · 건물 상세</span>발전량 → 수익 → 설치비 → 채권 모집액 → 상환 완료 연도까지 한 화면에서 이어짐</div>
+        <div class="ok"><span class="t">0:42–0:54 · SPC 합계</span>11곳 2,985kW · 약 32.5억 원 · 차수별 모집액 · 20년 누적 시 기금</div>
+        <div><span class="t">0:54–1:00 · 마무리</span>3D 지도(구별 참여율) 1컷 + 자막 한 줄</div>
+      </div>
+      <p class="wf-cap">슬라이드 자체는 영상 전체 화면. 제목 띠만 상단에 얇게 남겨 심사위원이 어느 항목인지 알게 한다.</p>
+    </div>
+    <div>
+      <div class="detail-sec">
+        <p class="sub">제작 조건 (운영사 PC 전제)</p>
+        <ul>
+          <li><strong>라이브 시연 불가</strong> — 개인 노트북 연결 없음, 인터넷 의존 화면(3D 지도)은 반드시 미리 녹화</li>
+          <li>형식: <span class="num">mp4 / H.264 / 1920×1080</span>. PPT에 삽입하되 <strong>원본 파일도 함께 제출</strong>(삽입 재생 실패 대비)</li>
+          <li>자막 번인. 나레이션을 넣으면 발표자 말과 겹치므로 <strong>무음 + 자막</strong>을 기본으로 하고 발표자가 말로 덧붙인다 <span class="need">팀 결정 필요</span></li>
+          <li>재생은 서포트 팀원이 맡는다 — 발표자는 영상 중에도 말을 이어 간다</li>
+          <li>영상 길이는 <strong>60초를 넘기지 않는다.</strong> 7분 중 1분이 영상이면 슬라이드에 5분 40초가 남는다</li>
+        </ul>
+      </div>
+      <div class="detail-sec">
+        <p class="sub">영상 중 발표자 멘트 (요약)</p>
+        <ul><li>“지금 보시는 건 실제로 돌아가는 화면입니다. 항공사진에 AI가 지붕과 구조물을 나누고, 패널을 깔고, 그 kW가 바로 발전 수익과 시민 모집액으로 바뀝니다. 11개 건물을 합치면 약 3MW, 32억 원 규모입니다.”</li></ul>
+      </div>
+      <div class="detail-sec">
+        <p class="sub">강조</p>
+        <div class="chips"><span class="chip">60초</span><span class="chip s">mp4 사전 녹화</span><span class="chip a">라이브 불가</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="card__foot">
+    <div><strong>시각화</strong> <span class="struct">설명형</span> — 화면이 주인공. 화면 안에서 강조할 지점은 원형 확대 + 사다리꼴 그라데이션으로 잇고, 수치가 바뀌는 순간에 숫자를 키운다.</div>
+    <div><strong>디자인</strong> — 컷마다 좌상단에 단계 라벨(①~④, S6 파이프라인과 같은 번호)을 달아 앞 장과 연결한다. 전환은 컷 편집, 화려한 트랜지션 금지.</div>
+  </div>
+</section>
+
+<!-- ══════════ S10 ══════════ -->
+<section class="card" id="s10">
+  <div class="card__bar"><span class="card__no">10</span><span class="badge d">③ 실현가능성</span><span class="card__title">시·도시공사 공동출자 SPC가 연 4.5% 확정 이율 채권을 발행한다</span><span class="sec">45초</span></div>
+  <div class="card__msg"><span class="tag">핵심 메시지</span><p>시민은 기부가 아니라 <strong>확정 이율 채권</strong>을 산다. 발전 수익으로 이자와 원금을 갚고, 상환이 끝나면 수익은 시 기금으로 간다. 근거 조례도 이미 있다.</p></div>
+  <div class="card__body">
+    <div>
+      <p class="sub">레이아웃 와이어프레임 (16:9)</p>
+      <div class="wf" style="grid-template-rows:auto 1.25fr auto; grid-template-columns:1fr">
+        <div><span class="t">헤드라인</span>자금 흐름 — 누가 내고, 누가 갚고, 남은 건 어디로</div>
+        <div style="display:grid; grid-template-columns:repeat(5,1fr); gap:5px; align-items:center; background:none; border:0; padding:0">
+          <div class="ctr"><span class="t">시민</span>크라우드펀딩<br>플랫폼 청약</div>
+          <div class="ctr hi"><span class="t">SPC (가칭 대전햇빛발전)</span>시·대전도시공사 공동출자<br><strong>채권 발행 주체</strong></div>
+          <div class="ctr data"><span class="t">공공건물 옥상</span>사용허가·대부<br>에너지 조례 제29조</div>
+          <div class="ctr data"><span class="t">전력 판매</span>147원/kWh<br>고정가격계약</div>
+          <div class="ctr ok"><span class="t">수익 배분</span>이자 4.5% → 원금 상환<br>→ 이후 시 기금</div>
+        </div>
+        <div><span class="t">하단 근거 띠</span>재생에너지법 제26조(수의계약 임대·임대료 경감) · 대전 에너지 조례 제25조(시민참여형 지원계획 수립 의무)·제29조 · 선례: 서울시 태양광 시민펀드 1호 4.18%, 3년 상환 완료</div>
+      </div>
+      <p class="wf-cap">돈의 방향은 굵은 화살표, 권리·허가는 가는 점선으로 구분한다. SPC 박스를 가장 크게 — 구조의 중심이다.</p>
+    </div>
+    <div>
+      <div class="detail-sec">
+        <p class="sub">작성 목적</p>
+        <ul><li>배점 ③의 ‘서비스 구조’. “시민펀드는 듣기 좋은 말 아니냐”는 공격에 <strong>발행 주체·이율·상환 재원·법적 근거</strong>로 답한다.</li></ul>
+      </div>
+      <div class="detail-sec">
+        <p class="sub">데이터·근거</p>
+        <ul>
+          <li>구조: <strong>채권형</strong>. 확정 이율 <span class="num">4.5%</span>, 남는 발전 수익으로 원금 상환, 상환 후 수익은 시 기금</li>
+          <li>선례: 서울시 태양광 시민펀드 1호(2015) — 4.25MW, <span class="num">82.5억 원</span>, 연 <span class="num">4.18%</span>(세전), <span class="num">1,044명</span>, 3년 만에 원금 상환 완료</li>
+          <li>발행 주체: 대전시·대전도시공사 공동출자 SPC. 시·공사는 주주, 채권은 SPC가 발행 → 지방채 한도·시 부채 논란 회피</li>
+          <li>판매 창구: 증권형 크라우드펀딩 플랫폼, 1차·2차 분할 모집 <span class="need">현행 발행 한도 재확인 필요</span></li>
+          <li>법적 근거: 재생에너지법 제26조 / 대전 에너지 조례 제29조(사용허가·대부), 제25조(시민참여형 에너지 거래체계 지원계획 <strong>수립 의무</strong>)</li>
+          <li>주 대상 40~60대(확정 수익·만기 선호). 지분형은 장기 로드맵 한 줄로만</li>
+        </ul>
+      </div>
+      <div class="detail-sec">
+        <p class="sub">표현 규칙 (발표자 노트)</p>
+        <ul><li>“원금 보장” ✕ → <strong>확정 이율·만기 상환</strong> / “대전시가 발행” ✕ → <strong>공동출자 SPC가 발행</strong> / 오프라인은 “투자 접수” ✕ → <strong>가입 도움 부스</strong></li></ul>
+      </div>
+      <div class="detail-sec">
+        <p class="sub">강조 수치</p>
+        <div class="chips"><span class="chip">연 4.5% 확정</span><span class="chip s">서울 1호 4.18%</span><span class="chip s">조례 제25·29조</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="card__foot">
+    <div><strong>시각화</strong> <span class="struct">과정형</span> — 5단계 자금 흐름(좌→우). 같은 도형·같은 간격, 화살표만 굵게. 하단에 법 근거 띠를 가늘게 깐다.</div>
+    <div><strong>디자인</strong> — 금융 용어는 괄호로 쉬운 말 병기(“SPC = 이 사업만 하는 별도 회사”). 표현 규칙은 슬라이드에 넣지 말고 발표자 노트로.</div>
+  </div>
+</section>
+
+<!-- ══════════ S11 ══════════ -->
+<section class="card" id="s11">
+  <div class="card__bar"><span class="card__no">11</span><span class="badge d">③ 실현가능성</span><span class="card__title">시범 2곳에서 11곳으로, 그다음 공공주차장으로 넓힌다</span><span class="sec">30초</span></div>
+  <div class="card__msg"><span class="tag">핵심 메시지</span><p>한 번에 전부 하지 않는다. <strong>시범 → 공공건물 전체 → 주차장 연계</strong> 3단계로, 각 단계마다 필요한 조건을 명시한다.</p></div>
+  <div class="card__body">
+    <div>
+      <p class="sub">레이아웃 와이어프레임 (16:9)</p>
+      <div class="wf" style="grid-template-rows:auto 1fr auto; grid-template-columns:1fr">
+        <div><span class="t">헤드라인</span>단계별 사업화 — 도형이 커질수록 규모도 커진다</div>
+        <div style="display:grid; grid-template-columns:0.8fr 1fr 1.2fr; gap:8px; align-items:center; background:none; border:0; padding:0">
+          <div class="data ctr"><span class="t">1단계 · 시범</span>공공건물 2곳<br>SPC 설립·1차 모집<br>조건: 조례 적용 사례 확보</div>
+          <div class="hi ctr"><span class="t">2단계 · 확대</span>공공건물 11곳 2,985kW<br>약 32.5억 원<br>조건: 구조검토·2차 모집</div>
+          <div class="ok ctr"><span class="t">3단계 · 연계</span>공공주차장 의무화 물량<br>(158곳 중 24곳만 계획 반영)<br>조건: 시 계획 반영</div>
+        </div>
+        <div><span class="t">하단 · 운영 주체</span>SPC 운영(발전·정산) · 시 사용허가 · 플랫폼 모집 · AI는 후보 선정과 연 1회 재평가에 사용</div>
+      </div>
+      <p class="wf-cap">확장형 도식: 같은 도형을 점점 크게, 색은 점점 진하게. 단계마다 <strong>전제 조건</strong>을 한 줄씩 다는 게 핵심이다.</p>
+    </div>
+    <div>
+      <div class="detail-sec">
+        <p class="sub">작성 목적</p>
+        <ul><li>배점 ③의 ‘사업화·운영 계획의 구체성’. 규모와 조건을 숫자로 적어 <strong>그림이 아니라 계획</strong>임을 보인다.</li></ul>
+      </div>
+      <div class="detail-sec">
+        <p class="sub">데이터·근거</p>
+        <ul>
+          <li>2단계 규모: AI 산출 <span class="num">2,985kW</span> × 설치비 <span class="num">109만 원/kW</span> = <strong class="num">약 32.5억 원</strong></li>
+          <li>3단계 근거: 공공주차장은 2025.11.28부터 설치 의무(주차구획 1,000㎡ 이상 → 100kW 이상)인데, 제7차 지역에너지계획엔 <span class="num">158곳·102.8MW 중 24곳·약 12MW</span>만 반영 — 의무는 생겼는데 계획·재원이 없는 영역</li>
+          <li>운영: SPC가 발전·정산, 시는 공유재산 사용허가, 모집은 크라우드펀딩 플랫폼, AI는 후보 선정과 재평가에 반복 사용</li>
+          <li>설치 전 구조기술사 검토를 비용 항목에 포함(지붕 하중은 AI가 판정하지 않음)</li>
+          <li><span class="need">시범 대상 2곳 선정 기준·일정은 미정 — 팀 결정 필요</span></li>
+        </ul>
+      </div>
+      <div class="detail-sec">
+        <p class="sub">강조 수치</p>
+        <div class="chips"><span class="chip">32.5억 원 · 11곳</span><span class="chip s">주차장 158곳 중 24곳</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="card__foot">
+    <div><strong>시각화</strong> <span class="struct">확장형</span> — 도형 3개를 점점 크게·진하게. 원이면 방사형 그라데이션(바깥으로 갈수록 투명)으로 확장감을 준다.</div>
+    <div><strong>디자인</strong> — 단계 번호는 크게, 전제 조건은 작게. 2단계(지금 숫자가 있는 구간)만 강조색.</div>
+  </div>
+</section>
+
+<!-- ══════════ S12 ══════════ -->
+<section class="card" id="s12">
+  <div class="card__bar"><span class="card__no">12</span><span class="badge b">④ 파급효과</span><span class="card__title">대전에서 검증하면, 전국 어느 도시에서도 같은 방법이 돈다</span><span class="sec">30초</span></div>
+  <div class="card__msg"><span class="tag">핵심 메시지</span><p>쓰는 데이터가 전부 <strong>전국 단위 공공 데이터</strong>라서, 이 파이프라인은 다른 시·도에 그대로 옮겨진다. 대상도 옥상에서 주차장·학교로 넓어진다.</p></div>
+  <div class="card__body">
+    <div>
+      <p class="sub">레이아웃 와이어프레임 (16:9)</p>
+      <div class="wf" style="grid-template-rows:auto 1fr auto; grid-template-columns:1fr">
+        <div><span class="t">헤드라인</span>지역 효과 · 확장 가능성</div>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:6px; background:none; border:0; padding:0">
+          <div class="hi"><span class="t">좌 · 지역 효과 (수치 3개)</span>
+            <strong style="font-family:var(--font-mono)">2.99MW</strong> 11곳 설치 가능 용량<br>
+            <strong style="font-family:var(--font-mono)">32.5억 원</strong> 시민이 대는 재원<br>
+            <strong style="font-family:var(--font-mono)">4.5%</strong> 시민 확정 이율 + 상환 후 시 기금
+          </div>
+          <div class="ok"><span class="t">우 · 확장 가능성 (나열형 3칸)</span>
+            <strong>지역 확장</strong> — AI Hub·브이월드·건축물대장은 전국 공통<br>
+            <strong>대상 확장</strong> — 공공주차장·학교 지붕<br>
+            <strong>기능 확장</strong> — 연 1회 재평가로 설치 우선순위 갱신
+          </div>
+        </div>
+        <div><span class="t">마무리 한 줄</span>“전력자립도 3%를 100%로 만들겠다”가 아니라, “비어 있는 옥상부터 정확히 세고 시민과 함께 채우겠다”</div>
+      </div>
+      <p class="wf-cap">25점짜리 장이다. 겸손한 마무리만 남기지 말고 <strong>확장 근거를 왼쪽 수치와 같은 비중으로</strong> 보여준다.</p>
+    </div>
+    <div>
+      <div class="detail-sec">
+        <p class="sub">작성 목적</p>
+        <ul><li>배점 ④ 전체를 책임지는 장. 지역 효과와 <strong>타 지역·분야 확장 근거</strong>를 함께 말하고, 과장 없이 닫아 Q&A를 준비된 영역으로 끌어온다.</li></ul>
+      </div>
+      <div class="detail-sec">
+        <p class="sub">데이터·근거</p>
+        <ul>
+          <li>지역 효과: 11곳 <strong class="num">2,985kW</strong>, 설치비 <span class="num">약 32.5억 원</span>, 시민 확정 이율 <span class="num">4.5%</span>, 상환 후 발전수익은 시 기금</li>
+          <li><strong>지역 확장 근거</strong>: 학습 데이터(AI Hub 71348)는 전국 항공·드론 영상이고, 적용에 쓰는 브이월드 항공사진·건물경계·건축물대장 API는 <strong>전국 공통 서비스</strong> → 다른 시·도는 좌표만 바꾸면 같은 파이프라인이 돈다</li>
+          <li><strong>대상 확장 근거</strong>: 공공주차장은 2025.11.28 설치 의무화, 계획 반영은 158곳 중 24곳뿐 — 같은 적지분석이 바로 필요한 영역</li>
+          <li>규모 감각(솔직하게): 자립도 <span class="num">+1%p</span>에 약 <span class="num">83MW</span>가 필요하다. 공공건물+주차장을 합치면 약 <span class="num">+1%p</span> 수준 — 현재 자립도 3%의 1/3에 해당 → 메시지는 “자립도 해결”이 아니라 <strong>“공공부문 우선 실행 도구”</strong></li>
+        </ul>
+      </div>
+      <div class="detail-sec">
+        <p class="sub">강조 수치</p>
+        <div class="chips"><span class="chip">2.99MW</span><span class="chip">32.5억 원</span><span class="chip s">전국 공통 데이터</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="card__foot">
+    <div><strong>시각화</strong> <span class="struct">나열형</span> — 좌 수치 타일 3개, 우 확장 3칸(같은 도형·같은 간격). 차트는 쓰지 않는다 — 마지막 장에 그래프가 있으면 시선이 분산된다.</div>
+    <div><strong>디자인</strong> — 표지(S1)와 같은 배경·타이포로 수미상관. 마무리 한 줄은 자막처럼 하단 전폭으로.</div>
+  </div>
+</section>
+
+<!-- ══════════ 검증 ══════════ -->
+<section class="block" id="verify">
+  <h2>논리·배점 검증</h2>
+  <div class="inner check">
+    <div class="q"><h4>배점 4항목이 모두 덮이는가</h4><p>① S2~S4(1분 45초), ② S5~S9(3분 10초, 시연 60초 포함), ③ S10~S11(1분 15초), ④ S12(30초). ②에 시간이 가장 많이 가는 건 시연이 배점 문구에 직접 들어 있기 때문이다. ④는 한 장이지만 25점이므로 확장 근거를 수치와 같은 비중으로 배치했다.</p></div>
+    <div class="q"><h4>7분 안에 끝나는가</h4><p>설계상 6분 40초. 초과 위험이 보이면 S6(파이프라인)을 S7에 흡수해 11장으로 줄인다. 7분이 넘으면 사회자가 끊으므로 <strong>리허설에서 6분 30초를 목표</strong>로 잡고, 넘치면 S3의 무산 사례를 3건에서 1건으로 줄인다.</p></div>
+    <div class="q"><h4>슬라이드 간 연결이 자연스러운가</h4><p>S2 숫자 → S3 원인과 남은 벽 → S4 입지와 공백 → S5 왜 AI → S6~S8 방법과 결과 → S9 시연 → S10~S11 구조와 사업화 → S12 확장. 각 장의 마지막 문장이 다음 장 제목이 되도록 썼다.</p></div>
+    <div class="q"><h4>근거 없이 주장하는 내용이 있는가</h4><p>모든 수치에 출처 문서를 매핑했다. 근거가 약한 둘은 제외했다 — ① “대전시 관계자: 주민 동의가 매우 낮다” 인용(원문 미확인, 무산 사례로 대체), ② 주민참여 REC 가중치 논리(2027 RPS 폐지로 무효).</p></div>
+    <div class="q"><h4>데이터와 주장이 연결되는가</h4><p>가장 약한 고리는 S6의 ③ 전력 사용량 예측이다. 채권형 구조에서는 건물 사용량이 펀드 수익에 영향을 주지 않는다는 점이 11/5에 확인됐다. 현재는 “지붕을 꽉 채워도 자기 전기의 2~34%”라는 확인된 사실만 쓰고 상태를 밝히는 방식으로 처리했다. 팀 결정이 나면 S6을 수정한다.</p></div>
+    <div class="q"><h4>발표 운영 조건과 맞는가</h4><p>개인 노트북 연결이 없으므로 라이브 데모를 전부 영상으로 돌렸고(S9), 인터넷이 필요한 3D 지도도 영상 안에 넣었다. 제작은 HTML로 하되 <strong>캡처해서 PPT로 변환</strong>하므로 글자가 이미지로 고정돼 폰트·레이아웃 사고가 없다. mp4 원본 동시 제출, 서포트 팀원이 영상 재생 — 이 둘이 남은 당일 리스크 대비책이다.</p></div>
+  </div>
+</section>
+
+<!-- ══════════ 보강 필요 ══════════ -->
+<section class="block" id="gaps">
+  <h2>확인·보강이 필요한 항목</h2>
+  <div class="inner">
+    <ul class="gaps">
+      <li><strong>시연영상 제작</strong> — 60초 컷 구성(S9)대로 녹화, 자막·무음 여부 결정, mp4 원본 별도 제출. <span class="need">최우선</span></li>
+      <li><strong>데모 SPC 합계 화면</strong> — 영상 0:42~0:54 구간에 필요. 출자 비율 슬라이더·차수별 모집액·상환 완료 연도. <span class="need">작업 중</span></li>
+      <li><strong>발표자 1인·서포트 1인 지정</strong> — 운영 조건상 필수. 리허설은 두 사람이 같이. <span class="need">미정</span></li>
+      <li><strong>팀명·팀원</strong> — S1 표지. <span class="need">미확인</span></li>
+      <li><strong>정보공개청구 답변</strong>(2026-11-01 신청) — 공공건물 목록·설치 현황·조례 적용 사례. S3·S4·S11에 반영. <span class="need">대기</span></li>
+      <li><strong>증권형 크라우드펀딩 현행 한도</strong> — 회사 연간 발행 한도·투자자 1인 한도. S10의 분할 모집 근거. <span class="need">재확인 필요</span></li>
+      <li><strong>두 번째 AI(전력 사용량 예측) 역할</strong> — 채권형 구조에서 수익에 영향 없음. 발전량·상환 안정성 예측으로 전환할지 결정. S6 수정 대상. <span class="need">팀 미결</span></li>
+      <li><strong>시범 대상 2곳 선정 기준</strong> — S11 1단계. <span class="need">미정</span></li>
+      <li><strong>지붕 AI 라벨 확대</strong> — 신뢰 가능한 정답 라벨이 1명분. 사람 간 IoU 비교가 넓어지면 S8의 0.46 해석이 단단해진다. <span class="need">진행 중</span></li>
+      <li><strong>운영사 PC 환경</strong> — PPT 버전, 영상 코덱, 화면 비율(16:9 확인). 사전 공지가 없으면 질의. <span class="need">확인 필요</span></li>
+    </ul>
+    <div class="callout" style="margin-top:18px">
+      <p><strong>표현 규칙(제작 시 준수)</strong> — “원금 보장”이라고 쓰지 않는다(확정 이율·만기 상환). “대전시가 발행”이라고 쓰지 않는다(공동출자 SPC가 발행). 오프라인 창구는 “투자 접수”가 아니라 “가입 도움”. 발전량은 AI 배치 기준 1,333kWh/kWp를 쓰고 수평값 1,189와 섞지 않는다.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div>근거 문서: <span class="num">CLAUDE.md</span> · <span class="num">docs/solar_research.md</span> · <span class="num">docs/panel_params_review.md</span> · <span class="num">docs/roof_check_sheet.csv</span> · <span class="num">Note/2026-11-05-power-data-museum-fix-fund-structure.md</span> · <span class="num">docs/solar_demo.html</span> · 공모전 심사 기준·발표 방식 공지</div>
+  <div style="margin-top:6px">이 문서는 PPT 설계도다. 수정 의견은 슬라이드 번호(S1~S12)로 적어 주면 해당 카드만 고친다.</div>
+</footer>
+
+</main>
+</div>
+
+<script>
+(function(){
+  var links = Array.prototype.slice.call(document.querySelectorAll('#toclist a'));
+  var targets = links.map(function(a){ return document.querySelector(a.getAttribute('href')); });
+  var obs = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(!e.isIntersecting) return;
+      var i = targets.indexOf(e.target);
+      if(i < 0) return;
+      links.forEach(function(a){ a.classList.remove('on'); });
+      links[i].classList.add('on');
+    });
+  }, {rootMargin:'-10% 0px -75% 0px'});
+  targets.forEach(function(t){ if(t) obs.observe(t); });
+})();
+</script>
