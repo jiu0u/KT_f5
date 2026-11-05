@@ -1044,7 +1044,10 @@ footer{border-top:1px solid var(--line); margin-top:40px; padding-block:24px 48p
 <script>
 (function(){
   var links = Array.prototype.slice.call(document.querySelectorAll('#toclist a'));
-  var targets = links.map(function(a){ return document.querySelector(a.getAttribute('href')); });
+  var targets = links.map(function(a){
+    // htmlpreview 등에서 href가 절대 URL로 바뀌므로 해시만 떼어 쓴다
+    return document.getElementById(a.getAttribute('href').split('#').pop());
+  });
   var obs = new IntersectionObserver(function(entries){
     entries.forEach(function(e){
       if(!e.isIntersecting) return;
