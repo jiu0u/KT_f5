@@ -161,6 +161,23 @@ svg{width:100%;height:auto;display:block}
 
   <section id="view-citizen" role="tabpanel" aria-labelledby="tab-citizen" hidden style="display:grid;gap:16px">
     <div class="strip">
+      <div class="budget">
+        <label for="equity">SPC 출자 비율 (시·대전도시공사)</label>
+        <input id="equity" type="range" min="0" max="60" step="5" value="20">
+        <strong class="num" id="equityOut">20%</strong>
+      </div>
+      <div class="stats">
+        <div class="stat"><span>모집 대상 설치비</span><strong class="num" id="pTotal">-</strong></div>
+        <div class="stat"><span>출자금 (시·공사)</span><strong class="num" id="pEquity">-</strong></div>
+        <div class="stat"><span>채권 모집액 (시민)</span><strong class="num" id="pBond">-</strong></div>
+        <div class="stat"><span>연 발전 수익</span><strong class="num" id="pNet">-</strong></div>
+        <div class="stat"><span>연 이자 지급</span><strong class="num" id="pInt">-</strong></div>
+        <div class="stat"><span>원금 상환 완료</span><strong class="num" id="pPayoff">-</strong></div>
+        <div class="stat"><span>20년 누적 시 기금</span><strong class="num" id="pCityFund">-</strong></div>
+      </div>
+      <p class="why" id="pRoundNote"></p>
+    </div>
+    <div class="strip">
       <div class="calc">
         <div class="top"><label for="invest">내가 넣을 금액</label><strong class="num" id="investV">-</strong></div>
         <input id="invest" type="range" min="10" max="1000" step="10" value="100">
@@ -178,9 +195,10 @@ svg{width:100%;height:auto;display:block}
     <p><strong>계산 가정 (데모용).</strong> 지붕면적은 건물 규모로 잡은 가정값이며 실제 값이 아닙니다. 실제 서비스에서는 AI가 항공사진·건축물대장으로 추정합니다.</p>
     <p><strong>AI 지붕분석(기본).</strong> 설비용량 = 항공사진 AI가 찾은 빈 지붕에 패널을 실제로 배치한 장수 × 0.57kW (2278×1134mm, 효율 22%) — 가장자리 0.5m 이격, 구조물 주변 북3·동서2·남0.5m, 연간 그림자 20% 넘는 곳 제외, 15° 경사·동지 9~15시 그림자 기준 줄 간격 · 발전량 = 용량 × 1,333kWh/kWp (PVGIS, 대전, 15° 경사) × 0.954 (연 0.5% 열화, 20년 평균) · 학습 데이터 AI Hub 「태양광 발전 현황 및 적지 분석 데이터」, 항공사진 브이월드 · 대전 정답 검증 전</p>
     <p><strong>25% 가정(비교용).</strong> 설비용량 = 지붕면적 × 모듈면적 25% × 0.22kW/㎡ (모듈면적 25%는 경기기후플랫폼 옥상형 기준, 효율 22%는 TOPCon 상업용 모듈) · 발전량 = 용량 × 1,189kWh/kWp (PVGIS, 대전) × 0.954 (연 0.5% 열화, 20년 평균) × 음영계수</p>
-    <p>설치비 109만 원/kW (에너지경제연구원 2024, 건물형) · 판매단가 147원/kWh (2026 1차 고정가격계약 낙찰 평균) · 운영비 설치비의 1%/년 · 시민 배당 연 4.5% 확정(서울 태양광펀드 1호 4.18% 참고), 남는 수익으로 원금 상환, 상환 뒤 발전수익은 시 기금</p>
+    <p>설치비 109만 원/kW (에너지경제연구원 2024, 건물형) · 판매단가 147원/kWh (2026 1차 고정가격계약 낙찰 평균) · 운영비 설치비의 1.5%/년 (보험·수선·인버터 교체 포함, 전기저널) · 시민 배당 연 4.5% 확정(서울 태양광펀드 1호 4.18% 참고), 남는 수익으로 원금 상환, 상환 뒤 발전수익은 시 기금</p>
     <p>자립도 기여 = 연 발전량 ÷ 대전 전력소비량 9,922GWh (2023) · 배출계수 0.4594 tCO₂/MWh · 우선순위 점수 = 발전량 40% + 회수기간 30% + 자가소비 수요 15% + 계통 여유 15%</p>
     <p>시민 수 = 펀드 모집액 ÷ 1인 평균 790만 원 (서울 태양광펀드 1호 82.5억 원 ÷ 1,044명) · 지붕 윤곽은 OpenStreetMap 건물 폴리곤 (한밭도서관·시립박물관·중구청은 윤곽 없음)</p>
+    <p><strong>SPC 출자 비율(가정값, 기본 20%).</strong> 채권 모집액 = 모집 대상 설치비 × (1−출자비율), 연 이자 = 채권 모집액 × 4.5%. 매년 발전 수익에서 이자를 뗀 나머지로 채권 원금을 상환하고, 다 갚은 뒤 남은 발전수익은 전액 시 기금으로 간다. 채권 발행 한도(연 15억 원, 자본시장법 시행령 118조의15 — 현행 금액 재확인 필요)를 적용해 필요한 모집 차수를 계산한다.</p>
   </div>
 </div>
 
@@ -208,14 +226,16 @@ const B=[
 ];
 // 지붕 윤곽: OpenStreetMap 건물 폴리곤 (한밭도서관·시립박물관·중구청은 OSM에 없어 핀만 표시)
 const ROOF={"대전광역시청":[[36.350278,127.384181],[36.350279,127.384649],[36.350227,127.384649],[36.350228,127.385259],[36.350278,127.385259],[36.350279,127.385554],[36.350376,127.385554],[36.350376,127.385744],[36.350751,127.385735],[36.350751,127.385093],[36.350789,127.385093],[36.35079,127.384815],[36.350725,127.384814],[36.350726,127.384732],[36.350791,127.384733],[36.350791,127.384422],[36.350756,127.384422],[36.350755,127.384183],[36.350371,127.384181],[36.350278,127.384181]],"대전컨벤션센터":[[36.375382,127.390884],[36.375104,127.390968],[36.375105,127.391015],[36.374596,127.390971],[36.374609,127.391586],[36.374877,127.391625],[36.374858,127.391874],[36.374729,127.391884],[36.374722,127.39255],[36.375175,127.392549],[36.37527,127.392531],[36.375271,127.39248],[36.375305,127.392507],[36.375341,127.392525],[36.37538,127.392532],[36.375419,127.392512],[36.375439,127.392465],[36.375436,127.392397],[36.375407,127.392338],[36.375374,127.392289],[36.375319,127.392249],[36.375288,127.392247],[36.37529,127.391919],[36.375382,127.390884]],"대전예술의전당":[[36.366307,127.38427],[36.366796,127.384273],[36.366794,127.384656],[36.367103,127.384658],[36.367106,127.383903],[36.367066,127.383854],[36.367142,127.383758],[36.367002,127.383587],[36.367084,127.383483],[36.366689,127.383002],[36.366537,127.383196],[36.366386,127.383195],[36.366387,127.383031],[36.366162,127.38303],[36.366161,127.383197],[36.366079,127.383197],[36.366077,127.38378],[36.366309,127.383782],[36.366307,127.38427]],"대전시립미술관":[[36.366577,127.386207],[36.366671,127.38621],[36.366671,127.386135],[36.366765,127.386135],[36.366765,127.386224],[36.366984,127.386224],[36.366984,127.386322],[36.36711,127.386324],[36.36712,127.385195],[36.366981,127.385198],[36.36698,127.385382],[36.366896,127.385382],[36.366896,127.385254],[36.366787,127.385254],[36.366787,127.38535],[36.366669,127.38535],[36.366669,127.385776],[36.366645,127.385776],[36.366643,127.385676],[36.366615,127.385561],[36.366564,127.385428],[36.36651,127.385347],[36.366471,127.385302],[36.36638,127.385423],[36.36643,127.385475],[36.366439,127.385484],[36.366465,127.385527],[36.366487,127.385577],[36.366512,127.385635],[36.366524,127.385688],[36.366534,127.385745],[36.366532,127.385942],[36.366577,127.385941],[36.366577,127.386207]],"유성구청":[[36.362016,127.35593],[36.362125,127.355859],[36.362191,127.356015],[36.362254,127.355974],[36.362321,127.356131],[36.362354,127.356109],[36.362427,127.356284],[36.362394,127.356306],[36.362444,127.356424],[36.362377,127.356468],[36.362439,127.356616],[36.362327,127.35669],[36.362267,127.356549],[36.362303,127.356525],[36.362106,127.356061],[36.362079,127.356079],[36.362016,127.35593]],"대덕구청":[[36.346354,127.415107],[36.346576,127.414836],[36.346698,127.41499],[36.346571,127.415144],[36.346918,127.415582],[36.346969,127.41552],[36.347139,127.415735],[36.346951,127.415964],[36.346476,127.415363],[36.346517,127.415313],[36.346354,127.415107]],"서구청":[[36.355344,127.384366],[36.355637,127.384365],[36.355634,127.383222],[36.355342,127.383223],[36.355342,127.383247],[36.355342,127.383286],[36.355344,127.384366]],"동구청":[[36.311387,127.454604],[36.311356,127.454843],[36.312297,127.455032],[36.312244,127.45544],[36.312449,127.455482],[36.312533,127.454834],[36.311387,127.454604]]};
-const C={ratio:.25,kwm2:.22,yld:1189,deg:.954,cost:109,price:147,om:.01,fund:.045,use:9922e3,co2:.4594};
+const C={ratio:.25,kwm2:.22,yld:1189,deg:.954,cost:109,price:147,om:.015,fund:.045,use:9922e3,co2:.4594};
+const ROUND_LIMIT=150000; // 온라인소액투자중개 채권 발행한도 연 15억 원(자본시장법 시행령 118조의15) · 만 원. 현행 조문 금액 재확인 필요(2026-11-05 리서치)
 // 지붕 AI 결과: scripts/roof_seg_daejeon.py → data/raw/aihub_solar/daejeon/result.json (항공사진 AI + 이격·구조물·그림자 규칙, 15° 경사 배치)
-const AI={"대전광역시청":{kw:204,panels:360},"대전컨벤션센터":{kw:1080,panels:1906},"대전예술의전당":{kw:627,panels:1106},"대전시립미술관":{kw:141,panels:248},"한밭도서관":{kw:175,panels:309},"대전시립박물관":{kw:213,panels:376,note:"잡힌 건물이 실제 박물관과 다를 수 있음"},"유성구청":{kw:36,panels:64,note:"본관이 아닌 건물이 잡혔을 수 있음"},"대덕구청":{kw:131,panels:232,review:1},"중구청":{kw:167,panels:295,review:1},"서구청":{kw:125,panels:220},"동구청":{kw:177,panels:313}};
+const AI={"대전광역시청":{kw:204,panels:360},"대전컨벤션센터":{kw:1080,panels:1906},"대전예술의전당":{kw:627,panels:1106},"대전시립미술관":{kw:133,panels:235},"한밭도서관":{kw:177,panels:312},"대전시립박물관":{kw:128,panels:226,note:"지붕 일부에 기존 태양광 있음 (항공사진)"},"유성구청":{kw:36,panels:64,note:"본관이 아닌 건물이 잡혔을 수 있음"},"대덕구청":{kw:131,panels:232,review:1},"중구청":{kw:167,panels:295,review:1},"서구청":{kw:125,panels:220},"동구청":{kw:177,panels:313}};
 const YLD_AI=1333; // PVGIS 대전 15° 경사 (AI 배치가 15° 거치대 기준. C.yld 1,189는 수평 설치 값이라 25% 가정과 짝)
 let useAI=true;
 const fmt=(x,d=0)=>x.toLocaleString("ko-KR",{maximumFractionDigits:d,minimumFractionDigits:d});
 const won=m=>m>=10000?fmt(m/10000,1)+"억 원":fmt(m)+"만 원"; // 만원 단위 입력
 
+const mx=k=>Math.max(...B.map(b=>b[k])), mn=k=>Math.min(...B.map(b=>b[k]));
 let ranked;
 function calc(){
 B.forEach(b=>{
@@ -227,11 +247,10 @@ B.forEach(b=>{
   b.revM=b.mwh*1000*C.price/1e4;            // 만 원/년
   b.netM=b.revM-b.costM*C.om;
   b.payback=b.costM/b.netM;
-  b.yieldF=C.fund; b.cityM=b.netM-b.costM*C.fund; // 시민 배당은 확정 이율(채권형, 서울 1호 방식), 남는 수익으로 원금 상환 → 상환 뒤 발전수익은 시 기금
+  b.yieldF=C.fund; // 시민 배당은 확정 이율(채권형, 서울 1호 방식). 채권 원금·이자는 SPC 출자 비율(equity)에 따라 render()에서 계산
   b.self=b.mwh/C.use*100;                    // %p, use도 MWh
 });
 // ponytail: 가중합 점수, TOPSIS로 바꿀 때 이 함수만 교체
-const mx=k=>Math.max(...B.map(b=>b[k])), mn=k=>Math.min(...B.map(b=>b[k]));
 B.forEach(b=>{
   const nm=(b.mwh-mn("mwh"))/(mx("mwh")-mn("mwh")), rp=mx("payback")-mn("payback"), np=rp>.05?(mx("payback")-b.payback)/rp:1; // AI 모드는 kW당 경제성이 같아 회수기간이 모두 같음 → 소수점 오차가 점수를 흔들지 않게
   b.score=b.done?-1:Math.round(100*(.4*nm+.3*np+.15*b.demand+.15*b.grid));
@@ -239,7 +258,20 @@ B.forEach(b=>{
 ranked=[...B].sort((a,b)=>b.score-a.score);
 }
 calc();
-let sel=ranked[0], budget=5, zoomIn=true;
+let sel=ranked[0], budget=5, zoomIn=true, equity=.2;
+
+// 채권 원금(bondM)에 20년 상환을 시뮬레이션: 매년 이자 뗀 나머지로 원금을 갚고, 다 갚은 뒤엔 전액 시 기금
+function amortize(bondM, annualNet){
+  let remain=bondM, cityFund20=0, payoffYear=null;
+  for(let y=1;y<=20;y++){
+    if(remain>1e-6){
+      const interest=remain*C.fund, avail=annualNet-interest;
+      if(avail>=remain){ cityFund20+=avail-remain; if(payoffYear===null) payoffYear=y-1+remain/Math.max(avail,1e-6); remain=0; }
+      else remain-=avail;
+    } else cityFund20+=annualNet;
+  }
+  return {payoffYear, cityFund20, remain};
+}
 
 function plan(){
   let left=budget*10000;
@@ -252,6 +284,21 @@ function render(){
   plan();
   const todo=ranked.filter(b=>!b.done), city=todo.filter(b=>b.src==="city"), fund=todo.filter(b=>b.src==="fund");
   const kw=todo.reduce((s,b)=>s+b.kw,0), mwh=todo.reduce((s,b)=>s+b.mwh,0), gapM=fund.reduce((s,b)=>s+b.costM,0);
+  const equityM=gapM*equity, bondM=gapM*(1-equity), netM=fund.reduce((s,b)=>s+b.netM,0), intM=bondM*C.fund;
+  fund.forEach(b=>{ b.bondM=b.costM*(1-equity); b.interestM=b.bondM*C.fund; b.afterInterest=b.netM-b.interestM; });
+  const amort=amortize(bondM, netM);
+  document.getElementById("equityOut").textContent=fmt(equity*100)+"%";
+  document.getElementById("pTotal").textContent=fund.length?won(gapM):"-";
+  document.getElementById("pEquity").textContent=fund.length?won(equityM):"-";
+  document.getElementById("pBond").textContent=fund.length?won(bondM):"-";
+  document.getElementById("pNet").textContent=fund.length?won(netM)+"/년":"-";
+  document.getElementById("pInt").textContent=fund.length?won(intM)+"/년":"-";
+  document.getElementById("pPayoff").textContent=fund.length?(amort.payoffYear!=null?`${fmt(amort.payoffYear,1)}년차`:"20년 내 상환 어려움"):"-";
+  document.getElementById("pCityFund").textContent=fund.length?won(amort.cityFund20):"-";
+  const rounds=fund.length?Math.ceil(bondM/ROUND_LIMIT):0;
+  document.getElementById("pRoundNote").textContent=fund.length?(rounds>1
+    ? `채권 발행 한도(연 15억 원 가정, 상환액만큼 복원)를 적용하면 ${won(bondM)}을 ${rounds}차례로 나눠 모집해야 합니다 — 정확한 현행 한도는 확인 중입니다.`
+    : `연 15억 원 한도(가정) 안이라 한 차수로 모집 가능 — 정확한 현행 한도는 확인 중입니다.`) : "";
   document.getElementById("budgetOut").textContent=fmt(budget,1)+"억 원";
   document.getElementById("headline").textContent=`대전 공공건물 ${todo.length}곳 옥상에 설치하면`;
   document.getElementById("kpis").innerHTML=`
@@ -321,15 +368,15 @@ function render(){
       <div><h3>${b.n} 햇빛발전소</h3><div class="loc">대전 ${b.g} · 옥상 ${fmt(b.kw)}kW</div></div>
       <div><span style="font-size:12px;color:var(--muted)">확정 연 이율 (배당)</span><div class="yield">${fmt(b.yieldF*100,1)}%</div></div>
       <div class="kv">
-        <div><span>모집 목표</span><strong>${won(b.costM)}</strong></div>
+        <div><span>모집 목표 (채권)</span><strong>${won(b.bondM)}</strong></div>
         <div><span>1좌</span><strong>10만 원</strong></div>
-        <div><span>원금 상환 완료</span><strong>약 ${fmt(b.costM/b.cityM,1)}년</strong></div>
+        <div><span>원금 상환 완료</span><strong>약 ${fmt(b.bondM/b.afterInterest,1)}년</strong></div>
         <div><span>상환 후 시 기금</span><strong>연 ${won(b.netM)}</strong></div>
       </div>
       <div><div class="bar"><i style="width:${got*100}%"></i></div><div style="font-size:12px;color:var(--muted);margin-top:4px" class="num">모집 ${Math.round(got*100)}% (예시)</div></div>
       <button type="button" disabled title="데모에서는 투자할 수 없습니다">출자 신청 (데모)</button>
     </article>`}).join(""):`<p>예산으로 모든 건물을 설치할 수 있어 지금은 모집 중인 상품이 없습니다. 담당자 탭에서 예산을 줄여 보세요.</p>`;
-  const inv=+document.getElementById("invest").value, yrs=fund.length?fund.reduce((s,b)=>s+b.costM/b.cityM,0)/fund.length:0;
+  const inv=+document.getElementById("invest").value, yrs=fund.length?fund.reduce((s,b)=>s+b.bondM/b.afterInterest,0)/fund.length:0;
   document.getElementById("investV").textContent=won(inv);
   document.getElementById("investOut").textContent=`${fmt(inv*C.fund,1)}만 원`;
   document.getElementById("investTot").textContent=fund.length?`${fmt(inv*C.fund*yrs)}만 원`:"-";
@@ -361,6 +408,7 @@ function show(k){
 tabs.city.onclick=()=>show("city"); tabs.citizen.onclick=()=>show("citizen");
 document.getElementById("toFund").onclick=()=>show("citizen");
 document.getElementById("budget").oninput=e=>{budget=+e.target.value;render();};
+document.getElementById("equity").oninput=e=>{equity=+e.target.value/100;render();};
 document.getElementById("invest").oninput=render;
 const mb={mAI:true,m25:false};
 for(const [id,v] of Object.entries(mb)) document.getElementById(id).onclick=()=>{

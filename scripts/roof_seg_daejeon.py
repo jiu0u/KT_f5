@@ -26,6 +26,9 @@ BLDGS = [
 ]
 Z = 19
 N = 2 ** Z
+# 건물 경계가 자동 정렬 범위(8m)보다 크게 어긋난 건물: 항공사진 보고 손으로 맞춘 이동량 (남+, 동+ m)
+# 시립박물관: 대장 경계가 실제 쐐기형 건물보다 북쪽 32m. 지붕 대부분이 옥상정원이라 AI 지붕으로 정렬이 안 됨
+FP_FIX = {"대전시립박물관": (31.75, -4.25)}
 MARGIN_M = 3  # 고층 건물은 지붕이 경계에서 밀려 보여서(기울어짐) 경계를 조금 넓혀서 셈. 크게 잡으면 광장·도로까지 지붕으로 셈
 # ponytail: 기울어짐을 margin으로 때움. 정확히 하려면 높이·촬영각으로 경계를 옮기거나 수직정사영상 사용.
 
@@ -103,7 +106,7 @@ def shift(m, dy, dx):
     return np.roll(np.roll(m, dy, 0), dx, 1)
 
 
-def align(fp, roof, max_m=12, px_m=0.25):
+def align(fp, roof, max_m=8, px_m=0.25):  # 12m로 두면 옆 지하차도 덮개 같은 평평한 면을 따라감 (시립박물관 17m)
     """fp를 ±max_m 안에서 평행이동해 roof와 IoU가 가장 큰 (dy, dx)와 그 IoU."""
     r = round(max_m / px_m)
     near = cv2.dilate((fp > 0).astype(np.uint8), np.ones((2 * r + 1,) * 2, np.uint8)) > 0
@@ -232,7 +235,12 @@ def main():
         with torch.no_grad():
             pred = model(to_t(x))["out"].argmax(1)[0, :H, :W].numpy().astype(np.uint8)
         # 건물 경계(지상 기준·대장 오차)와 사진 속 지붕이 수 m 어긋나서, AI 지붕에 가장 잘 겹치게 평행이동
-        (dy, dx), fit = align(fp, pred > 0)
+        if name in FP_FIX:
+            dy, dx = (round(v / 0.25) for v in FP_FIX[name])
+            s, r = shift(fp, dy, dx) > 0, pred > 0
+            fit = float((s & r).sum() / max((s | r).sum(), 1))
+        else:
+            (dy, dx), fit = align(fp, pred > 0)
         fp = shift(fp, dy, dx)
         k = int(MARGIN_M / 0.25)
         zone = cv2.dilate(fp, cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (2 * k + 1,) * 2))
@@ -270,7 +278,7 @@ def main():
                          kw_ai=round(mod_m2 * KW_M2), kw_rule25=round(fpa * .25 * KW_M2),
                          use_year=yr or None, struct_review=(int(yr) < STRUCT_REVIEW_YEAR) if yr else None,  # 연도 모르면 None
                          height_m=props["height"], floors=props["grnd_flr"], bld_nm=props["bld_nm"]))
-        print(f"{name}: 경계 이동 ({dx * .25:+.1f}, {dy * .25:+.1f})m 겹침 {fit:.2f}{' ⚠경계 확인' if fit < .5 or max(abs(dx), abs(dy)) * .25 >= 11 else ''} | 경계 {fpa:,.0f}㎡ | 빈지붕 {ai:,.0f} | 패널 {len(rects)}장 = 모듈 {mod_m2:,.0f}㎡ "
+        print(f"{name}: 경계 이동 ({dx * .25:+.1f}, {dy * .25:+.1f})m 겹침 {fit:.2f}{' ⚠경계 확인' if fit < .5 or max(abs(dx), abs(dy)) * .25 >= 7.5 else ''} | 경계 {fpa:,.0f}㎡ | 빈지붕 {ai:,.0f} | 패널 {len(rects)}장 = 모듈 {mod_m2:,.0f}㎡ "
               f"({mod_m2 / fpa:.0%}) | {mod_m2 * KW_M2:,.0f}kW vs 25%가정 {fpa * .25 * KW_M2:,.0f}kW "
               f"| 그림자 {shaded.sum() * PX_M2:,.0f}㎡, 패널 {n_noshade - len(rects)}장 감소", flush=True)
 
