@@ -1,0 +1,12 @@
+﻿건물,AI가 잡은 건물명,결과 이미지,카카오맵(스카이뷰로 전환),로드뷰,AI 설치가능㎡,AI kW,① 빨간 경계가 그 건물 본관 지붕인가 (O/X/일부),② 파란색이 실제 빈 지붕과 맞나 (O/X/일부),③ 노란색이 놓친 구조물(실외기·옥탑·물탱크),④ 이미 태양광 설치됨 (O/X),⑤ 지붕이 경사지붕·유리·녹화 (O/X),메모
+대전광역시청,대전광역시청사,대전광역시청.png,"https://map.kakao.com/link/map/대전광역시청,36.35055,127.38496","https://map.kakao.com/link/roadview/36.35055,127.38496",2924,204,,,,,,
+대전컨벤션센터,대전컨벤션센터,대전컨벤션센터.png,"https://map.kakao.com/link/map/대전컨벤션센터,36.37499,127.39177","https://map.kakao.com/link/roadview/36.37499,127.39177",8212,1080,,,,,,
+대전예술의전당,,대전예술의전당.png,"https://map.kakao.com/link/map/대전예술의전당,36.36661,127.38368","https://map.kakao.com/link/roadview/36.36661,127.38368",6055,627,,,,,,
+대전시립미술관,,대전시립미술관.png,"https://map.kakao.com/link/map/대전시립미술관,36.36671,127.38574","https://map.kakao.com/link/roadview/36.36671,127.38574",1628,141,,,,,,
+한밭도서관,한밭도서관,한밭도서관.png,"https://map.kakao.com/link/map/한밭도서관,36.30965,127.40935","https://map.kakao.com/link/roadview/36.30965,127.40935",2029,175,,,,,,
+대전시립박물관,대전시립박물관,대전시립박물관.png,"https://map.kakao.com/link/map/대전시립박물관,36.33683,127.33539","https://map.kakao.com/link/roadview/36.33683,127.33539",2688,213,,,,,,
+유성구청,,유성구청.png,"https://map.kakao.com/link/map/유성구청,36.36222,127.35616","https://map.kakao.com/link/roadview/36.36222,127.35616",518,36,,,,,,
+대덕구청,,대덕구청.png,"https://map.kakao.com/link/map/대덕구청,36.34666,127.41557","https://map.kakao.com/link/roadview/36.34666,127.41557",1248,131,,,,,,
+중구청,,중구청.png,"https://map.kakao.com/link/map/중구청,36.32557,127.42149","https://map.kakao.com/link/roadview/36.32557,127.42149",1956,167,,,,,,
+서구청,청사동,서구청.png,"https://map.kakao.com/link/map/서구청,36.35548,127.38379","https://map.kakao.com/link/roadview/36.35548,127.38379",1646,125,,,,,,
+동구청,동구청,동구청.png,"https://map.kakao.com/link/map/동구청,36.31181,127.45481","https://map.kakao.com/link/roadview/36.31181,127.45481",1967,177,,,,,,
