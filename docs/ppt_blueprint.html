@@ -255,8 +255,10 @@ footer{border-top:1px solid var(--line); margin-top:40px; padding-block:24px 48p
   <h2>목차</h2>
   <ol id="toclist">
     <li class="part-sep">기획</li>
+    <li><a href="#analysis"><span>00</span><span>프로젝트 분석</span></a></li>
+    <li><a href="#story"><span>00</span><span>스토리라인·연결</span></a></li>
     <li><a href="#plan"><span>00</span><span>전체 기획·배점</span></a></li>
-    <li><a href="#rules"><span>00</span><span>제작 기준</span></a></li>
+    <li><a href="#rules"><span>00</span><span>디자인 시스템</span></a></li>
     <li class="part-sep">① 주제 적절성</li>
     <li><a href="#s1"><span>01</span><span>표지</span></a></li>
     <li><a href="#s2"><span>02</span><span>자립도 꼴찌</span></a></li>
@@ -280,6 +282,113 @@ footer{border-top:1px solid var(--line); margin-top:40px; padding-block:24px 48p
 </nav>
 
 <main class="main">
+
+<!-- ══════════ 프로젝트 분석 ══════════ -->
+<section class="block" id="analysis">
+  <h2>프로젝트 분석 — 슬라이드를 쓰기 전에 고정한 사실</h2>
+  <div class="inner">
+    <div class="grid-2">
+      <dl class="field"><dt>핵심 목적</dt><dd>대전 공공건물 옥상에 <strong>실제로 몇 kW가 들어가는지</strong>를 항공사진 AI로 산출하고, 그 숫자를 그대로 <strong>시민 채권 모집액과 상환 기간</strong>으로 바꿔 보여 주는 것.</dd></dl>
+      <dl class="field"><dt>해결하려는 문제</dt><dd>대전은 전력자립도 <span class="num">3.06%</span>로 최하위인데, ① 공공건물별 설치 가능 용량 데이터가 없고 ② 예산만으로는 설치에 20년이 걸린다.</dd></dl>
+      <dl class="field"><dt>문제의 심각성</dt><dd>대형 발전시설은 주민 반대로 반복 무산(평촌산단 LNG 중단, 수소연료전지 2곳 무산). 재생에너지 예산 <span class="num">45.2억 원</span>으로는 연 <span class="num">4.1MW</span>, 자립도 <span class="num">+0.05%p/년</span>.</dd></dl>
+      <dl class="field"><dt>기존 해결 방식의 한계</dt><dd>공신력 있는 잠재량 데이터도 <strong>면적 × 일사량 × 0.2 × 0.25</strong> 고정 공식이다. 수원시 파일 검증 결과 지붕 격자값 편차가 <span class="num">1.5%</span>뿐 — 지붕 방향·구조물·그늘이 반영되지 않는다.</dd></dl>
+      <dl class="field"><dt>제안하는 솔루션</dt><dd><strong>지붕 분할 AI + 패널 배치 계산 + 채권형 시민펀드.</strong> 적지분석 결과가 곧 투자 상품 정보가 되도록 하나의 숫자 흐름으로 잇는다.</dd></dl>
+      <dl class="field"><dt>핵심 기능과 사용 시나리오</dt><dd>① 건물 선택 → 지붕·구조물 분할 → 패널 배치 → kW ② 발전량·수익·설치비 산출 ③ 출자 비율 반영한 채권 모집액·이자·상환 연도 ④ 우선순위 목록. 사용자는 시 에너지정책과(후보 선정), SPC(모집 설계), 시민(상품 정보).</dd></dl>
+    </div>
+
+    <div style="margin-top:22px" class="scroll-x">
+      <p class="sub">기술적 구현 방식</p>
+      <table>
+        <thead><tr><th>단계</th><th>쓰는 것</th><th>나오는 것</th></tr></thead>
+        <tbody>
+          <tr><td>학습</td><td>AI Hub 71348 적지분석 25cm 항공·드론 영상 / LR-ASPP(MobileNetV3), 3클래스</td><td>지붕·구조물 분할 모델</td></tr>
+          <tr><td>적용</td><td>브이월드 항공사진 z19 + 건물경계 LT_C_BLDGINFO, 경계 자동 정렬 ≤8m</td><td>건물별 설치 가능 지붕 면적</td></tr>
+          <tr><td>배치</td><td>동지 9~15시 그림자, 구조물 여유 북3·동서2·남0.5m, 모듈 2278×1134mm·효율 22%·경사 15°</td><td>패널 수 → <strong>kW</strong></td></tr>
+          <tr><td>수익</td><td>PVGIS 1,333kWh/kWp, 열화 0.5%/년, 판매 147원/kWh, 설치비 109만 원/kW, 운영비 1.5%/년</td><td>발전수익 → 모집액·이자·상환 연도</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div style="margin-top:22px" class="scroll-x">
+      <p class="sub">차별성 — 같은 건물을 세 방식으로 재면</p>
+      <table>
+        <thead><tr><th>방식</th><th>지붕 구조물·그늘</th><th>건물별 편차</th><th>용량 오차 중앙값</th></tr></thead>
+        <tbody>
+          <tr><td>경기 잠재량 공식(면적×상수)</td><td>미반영</td><td>사실상 없음(편차 1.5%)</td><td class="n">—</td></tr>
+          <tr><td>지붕의 25% 가정</td><td>미반영</td><td>면적에만 비례</td><td class="n">49%</td></tr>
+          <tr><td><strong>지붕 AI + 패널 배치</strong></td><td><strong>반영</strong></td><td><strong>건물마다 다름</strong></td><td class="n"><strong>25%</strong></td></tr>
+        </tbody>
+      </table>
+      <p class="wf-cap">차별성은 독립 슬라이드를 주지 않고 S5(왜 AI인가)와 S8(결과 비교)에 넣었다 — 실제 배점표에 ‘차별성’ 항목이 따로 없고 7분 예산이 빠듯하기 때문이다.</p>
+    </div>
+
+    <div style="margin-top:22px" class="scroll-x">
+      <p class="sub">지금 되는 것 / 아직 아닌 것 — 심사 ②의 ‘실제 구현 수준’에 직결</p>
+      <table>
+        <thead><tr><th>구현 완료</th><th>작업 중 · 예정</th></tr></thead>
+        <tbody>
+          <tr>
+            <td>지붕 분할 모델 학습·추론 / 대전 11곳 적용(2,985kW) / 정답 라벨 대비 검증(IoU 0.46, 오차 25%) / 데모의 수익·채권 계산 / 월 전기사용량 754건 수집</td>
+            <td>SPC 합계 화면(출자 비율·차수별 모집) / <strong>시연영상</strong> / 두 번째 AI 역할 확정 / 정보공개청구 반영 / 라벨 확대</td>
+          </tr>
+        </tbody>
+      </table>
+      <p class="wf-cap">발표에서 이 구분을 흐리지 않는다. “되는 것”만 시연하고, “아직 아닌 것”은 S11·S12에서 일정으로 말한다.</p>
+    </div>
+
+    <div class="grid-2" style="margin-top:22px">
+      <dl class="field"><dt>기대효과</dt><dd>11곳 <span class="num">2,985kW</span>·<span class="num">약 32.5억 원</span> 규모. 시민은 확정 이율 <span class="num">4.5%</span>, 상환 후 발전수익은 시 기금. 자립도 맥락은 과장하지 않는다 — <span class="num">+1%p</span>에 약 <span class="num">83MW</span>가 필요하다.</dd></dl>
+      <dl class="field"><dt>핵심 경쟁력</dt><dd>① 쓰는 데이터가 전부 전국 공통(AI Hub·브이월드·건축물대장) → 좌표만 바꾸면 타 시·도에서 그대로 돈다 ② 적지분석과 재원 조달이 같은 숫자로 이어진다 ③ 정확도 한계까지 공개한 검증을 들고 있다.</dd></dl>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ 스토리라인 ══════════ -->
+<section class="block" id="story">
+  <h2>발표 스토리라인과 장간 연결</h2>
+  <div class="inner">
+    <div class="scroll-x">
+      <p class="sub">피칭 구조 10단계 → 12장 배치</p>
+      <table>
+        <thead><tr><th>단계</th><th>슬라이드</th><th>이 단계에서 심사위원이 받아야 할 것</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Hook</strong></td><td>S2</td><td>“대전이 전국 꼴찌”라는 한 숫자로 주목을 끈다</td></tr>
+          <tr><td><strong>Problem</strong></td><td>S3</td><td>막힌 이유가 수용성과 예산이라는 진단</td></tr>
+          <tr><td><strong>Insight</strong></td><td>S4 · S5</td><td>갈등 없는 옥상이 비어 있고, 기존 숫자는 상수였다</td></tr>
+          <tr><td><strong>Solution</strong></td><td>S6</td><td>면적에서 모집액까지 하나로 잇는 모델</td></tr>
+          <tr><td><strong>Technology</strong></td><td>S7</td><td>패널 한 장 단위까지 내려간 계산 근거</td></tr>
+          <tr><td><strong>Product</strong></td><td>S8</td><td>11곳에 실제로 돌린 결과와 정확도</td></tr>
+          <tr><td><strong>Demo</strong></td><td>S9</td><td>화면이 실제로 돈다는 증거 (60초)</td></tr>
+          <tr><td><strong>Differentiation</strong></td><td>S5 · S8 내장</td><td>25% 가정 대비 오차 절반</td></tr>
+          <tr><td><strong>Impact</strong></td><td>S10 · S11</td><td>돈이 도는 구조와 단계별 사업화</td></tr>
+          <tr><td><strong>Vision</strong></td><td>S12</td><td>타 지역·분야로 옮겨지는 근거</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div style="margin-top:22px" class="scroll-x">
+      <p class="sub">장간 연결 — 앞 장에서 받아서 다음 장에 넘기는 것</p>
+      <table>
+        <thead><tr><th class="n">#</th><th>앞 장에서 받는 것</th><th>다음 장에 넘기는 것</th></tr></thead>
+        <tbody>
+          <tr><td class="n">S1</td><td>—</td><td>주제 한 줄</td></tr>
+          <tr><td class="n">S2</td><td>주제</td><td>“왜 이렇게 낮지?”라는 의문</td></tr>
+          <tr><td class="n">S3</td><td>그 의문</td><td>남은 벽 둘 — 수용성·예산</td></tr>
+          <tr><td class="n">S4</td><td>벽 둘</td><td>갈등 없는 입지 + 비어 있는 두 칸</td></tr>
+          <tr><td class="n">S5</td><td>“얼마나”라는 공백</td><td>기존 방식으론 못 채운다는 근거</td></tr>
+          <tr><td class="n">S6</td><td>AI가 필요한 이유</td><td>4단 파이프라인 전체 지도</td></tr>
+          <tr><td class="n">S7</td><td>파이프라인 ②</td><td>배치 규칙으로 뽑은 kW</td></tr>
+          <tr><td class="n">S8</td><td>kW</td><td>11곳 합계 2,985kW와 정확도</td></tr>
+          <tr><td class="n">S9</td><td>숫자에 대한 의심</td><td>“진짜 돈다”는 확인</td></tr>
+          <tr><td class="n">S10</td><td>설치비 32.5억 원</td><td>그 돈을 대는 구조</td></tr>
+          <tr><td class="n">S11</td><td>구조</td><td>단계별 실행 계획</td></tr>
+          <tr><td class="n">S12</td><td>실행 계획</td><td>타 지역 확장과 마무리</td></tr>
+        </tbody>
+      </table>
+      <p class="wf-cap">각 장의 마지막 문장이 다음 장 제목이 되도록 쓴다. 이 표의 오른쪽 칸이 곧 다음 행 왼쪽 칸이어야 한다.</p>
+    </div>
+  </div>
+</section>
 
 <!-- ══════════ 전체 기획 ══════════ -->
 <section class="block" id="plan">
@@ -354,7 +463,7 @@ footer{border-top:1px solid var(--line); margin-top:40px; padding-block:24px 48p
 
 <!-- ══════════ 제작 기준 ══════════ -->
 <section class="block" id="rules">
-  <h2>제작 기준 — 디자인 4요소 · 도식 5구조 · 장별 점검표</h2>
+  <h2>디자인 시스템 — 토큰 · 도식 5구조 · 점검표 · 제작 방식</h2>
   <div class="inner">
 
     <p class="sub">① 먼저 고정하는 디자인 기준 4가지</p>
@@ -375,6 +484,28 @@ footer{border-top:1px solid var(--line); margin-top:40px; padding-block:24px 48p
         <dt>레퍼런스</dt>
         <dd>번호를 붙여 “R1처럼”으로 지목한다. 현재: <strong>R1</strong> 지붕 색칠 결과(예술의전당·미술관), <strong>R2</strong> 건물 상세 화면(대전시청). <span class="need">디자인 레퍼런스 2~3개 추가 필요</span></dd>
       </dl>
+    </div>
+
+    <div style="margin-top:22px" class="scroll-x">
+      <p class="sub">①-1 색 토큰 · 타입 스케일 · 그리드 (1920×1080 기준)</p>
+      <table>
+        <thead><tr><th>항목</th><th>값</th><th>쓰는 곳</th></tr></thead>
+        <tbody>
+          <tr><td>배경</td><td class="num">#0E1620</td><td>전 슬라이드 공통(다크 피칭 덱)</td></tr>
+          <tr><td>본문 텍스트</td><td class="num">#E8EDF2</td><td>제목·본문</td></tr>
+          <tr><td>보조 텍스트</td><td class="num">#A7B5C4</td><td>설명문·캡션</td></tr>
+          <tr><td>강조(메인)</td><td class="num">#E9A64A</td><td>킬러 넘버, 강조 1곳. <strong>한 장에 한 번만</strong></td></tr>
+          <tr><td>데이터(서브)</td><td class="num">#79B0D8</td><td>차트 기본 계열, 비교 대상</td></tr>
+          <tr><td>경고</td><td class="num">#E0786B</td><td>한계·마감에만. 장식으로 쓰지 않는다</td></tr>
+          <tr><td>헤드라인</td><td class="num">40pt / Bold</td><td>결론형 제목, 2행 이내</td></tr>
+          <tr><td>서브헤드</td><td class="num">24pt / Medium</td><td>블록 제목</td></tr>
+          <tr><td>본문</td><td class="num">18pt / Regular</td><td>설명문. 한 블록 3줄 이내</td></tr>
+          <tr><td>킬러 넘버</td><td class="num">72~96pt / Mono</td><td>3.06% · 20년 · 2,985kW 같은 한 장의 주인공</td></tr>
+          <tr><td>캡션·출처</td><td class="num">12pt</td><td>하단 고정 위치, 전 슬라이드 동일</td></tr>
+          <tr><td>여백</td><td class="num">좌우 120px · 상 100px · 하 80px</td><td>12컬럼 · 거터 32px</td></tr>
+        </tbody>
+      </table>
+      <p class="wf-cap">반복 컴포넌트는 네 개만 쓴다 — KPI 타일(숫자+라벨), 비교 막대, 단계 블록, 하단 근거 띠. 우상단에는 파트 인디케이터(①~④)를 같은 자리에 고정한다.</p>
     </div>
 
     <div style="margin-top:22px" class="scroll-x">
@@ -821,7 +952,7 @@ footer{border-top:1px solid var(--line); margin-top:40px; padding-block:24px 48p
         <div class="ok"><span class="t">0:42–0:54 · SPC 합계</span>11곳 2,985kW · 약 32.5억 원 · 차수별 모집액 · 20년 누적 시 기금</div>
         <div><span class="t">0:54–1:00 · 마무리</span>3D 지도(구별 참여율) 1컷 + 자막 한 줄</div>
       </div>
-      <p class="wf-cap">슬라이드 자체는 영상 전체 화면. 제목 띠만 상단에 얇게 남겨 심사위원이 어느 항목인지 알게 한다.</p>
+      <p class="wf-cap"><span class="need">영상은 아직 제작 전이다.</span> 위 컷 구성은 기존 데모 화면으로 찍을 수 있는 <strong>추천 시연 시나리오</strong>이며, 실제 녹화본이 나오면 초 단위를 다시 맞춘다. 삽입 규격: 슬라이드 전체 폭(1920×1080, 여백 없음), 상단에 제목 띠 <span class="num">80px</span>만 남겨 어느 항목인지 보이게 한다.</p>
     </div>
     <div>
       <div class="detail-sec">
@@ -835,8 +966,16 @@ footer{border-top:1px solid var(--line); margin-top:40px; padding-block:24px 48p
         </ul>
       </div>
       <div class="detail-sec">
-        <p class="sub">영상 중 발표자 멘트 (요약)</p>
-        <ul><li>“지금 보시는 건 실제로 돌아가는 화면입니다. 항공사진에 AI가 지붕과 구조물을 나누고, 패널을 깔고, 그 kW가 바로 발전 수익과 시민 모집액으로 바뀝니다. 11개 건물을 합치면 약 3MW, 32억 원 규모입니다.”</li></ul>
+        <p class="sub">영상 앞 — 재생 직전 한 문장 (S8에서 넘어오며)</p>
+        <ul><li>“지금까지 말씀드린 숫자가 실제로 어떻게 나오는지, 60초만 보시겠습니다.”<br><span style="color:var(--ink-3)">앞 장에서 정확도까지 말한 직후라, 심사위원의 의심이 가장 큰 지점에서 증거를 붙인다.</span></li></ul>
+      </div>
+      <div class="detail-sec">
+        <p class="sub">영상 중 — 발표자가 덧붙일 말</p>
+        <ul><li>“항공사진에 AI가 지붕과 구조물을 나누고, 패널을 깔고, 그 kW가 바로 발전 수익과 시민 모집액으로 바뀝니다.”</li></ul>
+      </div>
+      <div class="detail-sec">
+        <p class="sub">영상 뒤 — 끝나자마자 못 박을 한 문장 (S10으로 넘기며)</p>
+        <ul><li>“11개 건물을 합치면 <strong>약 3MW, 설치비 32억 원</strong>입니다. 이 돈을 어떻게 마련하느냐가 다음 이야기입니다.”<br><span style="color:var(--ink-3)">영상의 마지막 숫자(32.5억 원)를 그대로 받아 S10 자금 구조로 넘어간다 — 전환에 새 문장을 끼우지 않는다.</span></li></ul>
       </div>
       <div class="detail-sec">
         <p class="sub">강조</p>
@@ -1002,7 +1141,13 @@ footer{border-top:1px solid var(--line); margin-top:40px; padding-block:24px 48p
 <section class="block" id="verify">
   <h2>논리·배점 검증</h2>
   <div class="inner check">
-    <div class="q"><h4>배점 4항목이 모두 덮이는가</h4><p>① S2~S4(1분 45초), ② S5~S9(3분 10초, 시연 60초 포함), ③ S10~S11(1분 15초), ④ S12(30초). ②에 시간이 가장 많이 가는 건 시연이 배점 문구에 직접 들어 있기 때문이다. ④는 한 장이지만 25점이므로 확장 근거를 수치와 같은 비중으로 배치했다.</p></div>
+    <div class="q"><h4>배점 4항목이 모두 덮이는가</h4><p>① S2~S4(1분 45초), ② S5~S9(3분 10초, 시연 60초 포함), ③ S10~S11(1분 15초), ④ S12(30초). ②에 시간이 가장 많이 가는 건 시연이 배점 문구에 직접 들어 있기 때문이다. ④는 한 장이지만 25점이므로 확장 근거를 수치와 같은 비중으로 배치했다. 일반적인 해커톤 기준(창의성·차별성 등)보다 <strong>이 배점표를 우선</strong>했다.</p></div>
+    <div class="q"><h4>발표 초반 30초가 관심을 끄는가</h4><p>S2를 “3.06%, 전국 꼴찌” 한 숫자로 열고 곧바로 “기업 유치 걸림돌”로 받는다. 배경 설명이나 팀 소개를 앞에 두지 않는다 — 7분에서 도입이 길면 뒤가 무너진다.</p></div>
+    <div class="q"><h4>해결 방식이 이해하기 쉬운가</h4><p>S6 한 장이 전체 모델을 설명하고, 화살표 위에 넘어가는 단위(㎡ → kW → kWh → 원)를 적어 둔다. 심사위원이 S6만 봐도 서비스가 무엇을 하는지 알 수 있어야 하며, S7~S8은 그 블록의 확대다.</p></div>
+    <div class="q"><h4>시연이 핵심 기능을 증명하는가</h4><p>S9의 60초가 분할 → 배치 → kW → 수익 → 모집액을 끊지 않고 한 번에 보여 준다. 배점 ②에 “시연을 통한 실제 구현 수준”이 명시돼 있어 가장 긴 단일 구간을 배정했다. <span class="need">다만 영상은 아직 제작 전이고, SPC 합계 화면도 미완이라 0:42~0:54 구간이 비어 있다 — 최우선 과제.</span></p></div>
+    <div class="q"><h4>기술적 구현 수준이 드러나는가</h4><p>S7의 변수(모듈 규격·경사 15°·구조물 여유)와 S8의 검증 수치(IoU 0.46, 오차 25%)가 함께 있어야 “돌려 봤다”가 아니라 “측정했다”로 읽힌다. 모델명(LR-ASPP)은 각주로 내려 시간을 아낀다.</p></div>
+    <div class="q"><h4>차별성·경쟁력이 명확한가</h4><p>독립 슬라이드는 없지만 S5(기존 공식은 상수)와 S8(25% 가정 49% vs AI 25%)이 비교 구조를 이룬다. Q&A에서 “기존 방식과 뭐가 다르냐”가 나오면 프로젝트 분석의 3행 비교표를 백업 슬라이드로 띄운다.</p></div>
+    <div class="q"><h4>중복되거나 불필요한 장이 있는가</h4><p>설치비 단가(109만 원/kW)는 S3·S9·S11·S12에 반복되지만 쓰임이 다르다(필요성·계산·규모·효과). 타 지자체 선례는 S4에서 빼고 S10의 서울 1호 하나만 남겼다. 더 줄여야 하면 S6을 S7에 흡수한다.</p></div>
     <div class="q"><h4>7분 안에 끝나는가</h4><p>설계상 6분 40초. 초과 위험이 보이면 S6(파이프라인)을 S7에 흡수해 11장으로 줄인다. 7분이 넘으면 사회자가 끊으므로 <strong>리허설에서 6분 30초를 목표</strong>로 잡고, 넘치면 S3의 무산 사례를 3건에서 1건으로 줄인다.</p></div>
     <div class="q"><h4>슬라이드 간 연결이 자연스러운가</h4><p>S2 숫자 → S3 원인과 남은 벽 → S4 입지와 공백 → S5 왜 AI → S6~S8 방법과 결과 → S9 시연 → S10~S11 구조와 사업화 → S12 확장. 각 장의 마지막 문장이 다음 장 제목이 되도록 썼다.</p></div>
     <div class="q"><h4>근거 없이 주장하는 내용이 있는가</h4><p>모든 수치에 출처 문서를 매핑했다. 근거가 약한 둘은 제외했다 — ① “대전시 관계자: 주민 동의가 매우 낮다” 인용(원문 미확인, 무산 사례로 대체), ② 주민참여 REC 가중치 논리(2027 RPS 폐지로 무효).</p></div>
