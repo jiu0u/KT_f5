@@ -62,12 +62,17 @@ def features(lat, lon, r_m, size=100):
 
 
 def building(lat, lon, r_m=50):
-    # 데모 좌표가 건물 밖에 찍힌 경우가 있어 주변 r_m 안에서 건축면적이 가장 큰 건물
-    # ponytail: 옆에 더 큰 건물이 있으면 그걸 잡음. 정확히 하려면 건물명/PNU로 조회.
+    # 좌표가 들어 있는 건물을 우선 선택, 없으면 경계가 가장 가까운 건물
+    # (예전: 반경 안 건축면적 최대 → 옆의 큰 건물(의회 등)을 잡는 문제)
     fs = features(lat, lon, r_m)
     if not fs:
         return None
-    f = max(fs, key=lambda f: float(f["properties"]["archarea"] or 0))
+    pt = np.array(world_px(lat, lon))
+    def score(f):  # 양수 = 건물 안, 음수 = 경계까지 거리(px)
+        ring = f["geometry"]["coordinates"][0][0]
+        poly = (np.array([world_px(la, lo) for lo, la in ring]) - pt).astype(np.float32)
+        return cv2.pointPolygonTest(poly, (0.0, 0.0), True)
+    f = max(fs, key=score)
     return f["properties"], f["geometry"]["coordinates"]
 
 
