@@ -24,11 +24,34 @@ BLDGS = [
     ("중구청", 36.32557, 127.42149, 2600), ("서구청", 36.35548, 127.38379, 2900),
     ("동구청", 36.31181, 127.45481, 3000),
 ]
+# 청사 MVP 추가분(2026-11-09, 브이월드 장소검색 좌표). 데모 가정 지붕면적은 없음(0)
+# 충북도청: 여러 동 중 가장 큰 1989년 7층 동만. 충남도청: 브이월드 건축면적 속성이 0이라 폴리곤 면적으로 고름
+BLDGS_CHEONGSA = [
+    ("대전광역시교육청", 36.3524, 127.38365, 0), ("충청북도청", 36.63617, 127.49117, 0),
+    ("충청남도청", 36.65863, 126.67258, 0), ("천안시청", 36.8149, 127.11398, 0),
+]
 Z = 19
 N = 2 ** Z
 # 건물 경계가 자동 정렬 범위(8m)보다 크게 어긋난 건물: 항공사진 보고 손으로 맞춘 이동량 (남+, 동+ m)
 # 시립박물관: 대장 경계가 실제 쐐기형 건물보다 북쪽 32m. 지붕 대부분이 옥상정원이라 AI 지붕으로 정렬이 안 됨
 FP_FIX = {"대전시립박물관": (31.75, -4.25)}
+# 브이월드 경계가 의회·주차장·옆 땅까지 묶어 잡는 6곳(팀원 육안 검증 ①번): 팀원이 라벨링 도구(브이월드 사진 위)로
+# 그린 실제 지붕 윤곽으로 바꿈. 좌표는 label/<이름>.png 픽셀이라 사진과 바로 맞음 → 자동 정렬·여유폭 안 씀.
+# (geojson.io로 그린 윤곽은 해외 위성지도 기준이라 브이월드 사진과 10~25m 어긋나서 못 씀, 2026-11-09)
+FP_LABEL = os.path.join(os.path.dirname(__file__), "..", "docs", "boundary_fix_labels.json")
+FP_LABEL_USE = {"대전광역시청", "대전시립미술관", "유성구청", "서구청", "동구청", "중구청"}
+
+
+def fp_from_label(name, shape):
+    if name not in FP_LABEL_USE or not os.path.exists(FP_LABEL):
+        return None
+    lab = json.load(open(FP_LABEL, encoding="utf-8")).get(name)
+    if not lab or (lab["height"], lab["width"]) != shape:  # 사진 범위가 바뀌면 픽셀 좌표가 안 맞음
+        return None
+    fp = np.zeros(shape, np.uint8)
+    for g in lab["polygons"]:  # 지붕(1) + 그 위 구조물(2) 전체가 건물 윤곽
+        cv2.fillPoly(fp, [np.round(np.array(g["points"])).astype(np.int32)], 1)
+    return fp
 MARGIN_M = 3  # 고층 건물은 지붕이 경계에서 밀려 보여서(기울어짐) 경계를 조금 넓혀서 셈. 크게 잡으면 광장·도로까지 지붕으로 셈
 # ponytail: 기울어짐을 margin으로 때움. 정확히 하려면 높이·촬영각으로 경계를 옮기거나 수직정사영상 사용.
 
@@ -67,8 +90,14 @@ def building(lat, lon, r_m=50):
     fs = features(lat, lon, r_m)
     if not fs:
         return None
-    f = max(fs, key=lambda f: float(f["properties"]["archarea"] or 0))
+    f = max(fs, key=lambda f: float(f["properties"]["archarea"] or 0) or poly_deg2(f["geometry"]["coordinates"]))
     return f["properties"], f["geometry"]["coordinates"]
+
+
+def poly_deg2(mp):
+    # 건축면적 속성이 0인 지역(충남 내포 등)에서 크기 비교용. 단위는 도² (같은 동네끼리 비교만)
+    r = np.array(mp[0][0])
+    return abs(np.dot(r[:, 0], np.roll(r[:, 1], 1)) - np.dot(r[:, 1], np.roll(r[:, 0], 1))) / 2 * 1e-9
 
 
 def bld_height(p):
@@ -206,11 +235,12 @@ def layout(pred, px_m=0.25, pitch_m=None, blocked=None):
 
 def main():
     ckpt, out = sys.argv[1], sys.argv[2]
+    bldgs = BLDGS_CHEONGSA if sys.argv[3:] == ["cheongsa"] else BLDGS  # cheongsa: 청사 4곳만 (출력 폴더는 따로)
     cache = os.path.join(out, "tiles"); os.makedirs(cache, exist_ok=True)
     model = lraspp_mobilenet_v3_large(num_classes=3)
     model.load_state_dict(torch.load(ckpt, weights_only=True)); model.eval()
     rows = []
-    for name, lat, lon, demo_roof in BLDGS:
+    for name, lat, lon, demo_roof in bldgs:
         b = building(lat, lon)
         if not b:
             print(name, "건물 경계 없음"); continue
@@ -235,14 +265,19 @@ def main():
         with torch.no_grad():
             pred = model(to_t(x))["out"].argmax(1)[0, :H, :W].numpy().astype(np.uint8)
         # 건물 경계(지상 기준·대장 오차)와 사진 속 지붕이 수 m 어긋나서, AI 지붕에 가장 잘 겹치게 평행이동
-        if name in FP_FIX:
+        hand = fp_from_label(name, fp.shape)
+        if hand is not None:
+            fp, dy, dx = hand, 0, 0
+            fit = float(((fp > 0) & (pred > 0)).sum() / max(((fp > 0) | (pred > 0)).sum(), 1))
+            print(name, "손 보정 윤곽 사용")
+        elif name in FP_FIX:
             dy, dx = (round(v / 0.25) for v in FP_FIX[name])
             s, r = shift(fp, dy, dx) > 0, pred > 0
             fit = float((s & r).sum() / max((s | r).sum(), 1))
         else:
             (dy, dx), fit = align(fp, pred > 0)
         fp = shift(fp, dy, dx)
-        k = int(MARGIN_M / 0.25)
+        k = 0 if hand is not None else int(MARGIN_M / 0.25)  # 손 윤곽은 사진 속 지붕 그대로라 여유폭 없음
         zone = cv2.dilate(fp, cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (2 * k + 1,) * 2))
         pred[zone == 0] = 0
 
@@ -259,7 +294,7 @@ def main():
         hm = np.roll(np.roll(hm, round(dy / g), 0), round(dx / g), 1)
         # 지붕면 높이: AI 지붕이 경계 밖으로 조금 나간 칸이 땅(0m)으로 잡혀 자기 건물에 가려지는 것 방지
         surf = cv2.dilate(hm, np.ones((2 * MARGIN_M + 1,) * 2, np.uint8))
-        loss = shade_loss(hm, surf)[M:M + H // g, M:M + W // g]
+        loss = shade_loss(hm, surf, lat=lat)[M:M + H // g, M:M + W // g]
         loss = cv2.resize(loss.astype(np.float32), (W, H), interpolation=cv2.INTER_NEAREST)
         shaded = (loss > SHADE_MAX) & (pred > 0)
 
