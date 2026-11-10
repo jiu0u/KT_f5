@@ -21,17 +21,39 @@ IGN = 255
 PX_M2 = 0.25 ** 2
 
 
-def load(base, out):
-    cache = os.path.join(out, "cache.npz")
+def pick(base, mode, n_ctrl=None):
+    """Training 메타데이터로 고를 이미지: dj=대전(시군구코드 30), ctrl=대전 외 무작위 같은 수"""
+    meta = {}
+    for f in glob.glob(f"{base}/02.라벨링데이터/TL_TL_02*적지분석*.zip"):
+        z = zipfile.ZipFile(f)
+        for n in z.namelist():
+            if n.endswith(".json"):
+                i = json.loads(z.read(n).decode("utf-8-sig"))
+                meta[i["image_info"]["file_nm"].replace("_META", "")] = (i["image_info"]["trget_ar_code"], i["ref_data"]["bld_adr"])
+    dj = sorted(k for k, (c, a) in meta.items() if c.startswith("30") and not any(l in a for l in LEAK))
+    if mode == "dj":
+        return set(dj)
+    rest = sorted(k for k, (c, _) in meta.items() if not c.startswith("30"))
+    return set(np.random.default_rng(0).choice(rest, len(dj), replace=False))
+
+
+# 대전 평가 11곳과 같은 지번인 학습 이미지는 뺌 (정답 누수 방지). 한밭도서관 1장 해당
+LEAK = ["중구 문화동 145-3번지"]
+
+
+def load(base, out, lab="VL_VL_01", keep=None, tag=""):
+    cache = os.path.join(out, f"cache{tag}.npz")
     if os.path.exists(cache):
         d = np.load(cache)
         return d["x"], d["y"], d["names"]
     xs, ys, names = [], [], []
     for kind in ["Roof", "Top"]:
-        zi = zipfile.ZipFile(glob.glob(f"{base}/01.원천데이터/*{kind}.zip")[0])
-        zl = zipfile.ZipFile(glob.glob(f"{base}/02.라벨링데이터/VL_VL_01*{kind}.zip")[0])
+        zi = zipfile.ZipFile(glob.glob(f"{base}/01.원천데이터/*적지분석*{kind}.zip")[0])
+        zl = zipfile.ZipFile(glob.glob(f"{base}/02.라벨링데이터/{lab}*적지분석*{kind}.zip")[0])
         for n in sorted(zl.namelist()):
             stem = n.strip("/").rsplit(".", 1)[0]
+            if keep is not None and stem not in keep:
+                continue
             objs = json.loads(zl.read(n).decode("utf-8-sig"))["Learning Data Info"]["objects"]
             img = np.array(Image.open(io.BytesIO(zi.read("/" + stem + ".tif"))).convert("RGB"))
             y = np.zeros(img.shape[:2], np.uint8)
@@ -115,6 +137,10 @@ def main():
 
     x, y, names = load(base, out)
     tr, va = split(names)
+    if len(sys.argv) > 5:  # <Training 폴더> dj|ctrl : 학습 쪽에만 Training 이미지 추가 (검증 588장은 그대로)
+        x2, y2, n2 = load(sys.argv[4], out, "TL_TL_01", pick(sys.argv[4], sys.argv[5]), sys.argv[5])
+        x, y, names = np.concatenate([x, x2]), np.concatenate([y, y2]), np.concatenate([names, n2])
+        tr, va = np.concatenate([tr, np.ones(len(n2), bool)]), np.concatenate([va, np.zeros(len(n2), bool)])
     print(f"images train {tr.sum()} / val {va.sum()}", flush=True)
 
     model = lraspp_mobilenet_v3_large(weights_backbone="IMAGENET1K_V1", num_classes=3)

@@ -1,0 +1,8 @@
+﻿건물,왜 확인하나,결과 이미지,카카오맵(스카이뷰로 전환),로드뷰,AI 설치용량(kW),① 빨간 경계가 그 건물 본관 지붕인가 (O/X/일부),② 파란색이 실제 빈 지붕과 맞나 (O/X/일부),③ 노란색이 놓친 구조물(실외기·옥탑·물탱크),④ 이미 태양광 설치됨 (O/X),⑤ 지붕이 경사지붕·유리·녹화 (O/X),⑥ 기존 태양광 위치(어느 동·지붕의 몇 % 정도),메모
+대전광역시교육청,새로 분석(Claude 항공사진 판독만 함),대전광역시교육청.png,"https://map.kakao.com/link/map/대전광역시교육청,36.3524,127.38365","https://map.kakao.com/link/roadview/36.3524,127.38365",114,X,X,O,X,X,,지붕표시에 별관은 안되어 있음
+충청북도청,새로 분석. 여러 동 중 7층 동 하나만 잡음,충청북도청.png,"https://map.kakao.com/link/map/충청북도청,36.63617,127.49117","https://map.kakao.com/link/roadview/36.63617,127.49117",50,,,,,,,충청북도청이 아니라 충청북도청 문화홀사진임
+충청남도청,새로 분석. 옥상녹화·기존 패널 뺀 보정값,충청남도청.png,"https://map.kakao.com/link/map/충청남도청,36.65863,126.67258","https://map.kakao.com/link/roadview/36.65863,126.67258",320,,,,,,,
+천안시청,새로 분석,천안시청.png,"https://map.kakao.com/link/map/천안시청,36.8149,127.11398","https://map.kakao.com/link/roadview/36.8149,127.11398",729,,,,,,,
+중구청,경계 수정 후에도 의회와 구분 확인 필요,중구청.png,"https://map.kakao.com/link/map/중구청,36.32557,127.42149","https://map.kakao.com/link/roadview/36.32557,127.42149",153,O,O,O,X,X,,빨간색 하이라이트는 무엇?
+대전광역시청,기존 태양광 위치 확인용(⑥만),대전광역시청.png,"https://map.kakao.com/link/map/대전광역시청,36.35055,127.38496","https://map.kakao.com/link/roadview/36.35055,127.38496",139,,,,,,,
+서구청,기존 태양광 위치 확인용(⑥만),서구청.png,"https://map.kakao.com/link/map/서구청,36.35548,127.38379","https://map.kakao.com/link/roadview/36.35548,127.38379",82,,,,,,,
