@@ -156,8 +156,8 @@ h2{font-size:14px;margin:0}
 
   <div class="pbody" id="v-sum">
     <div class="budget">
-      <div class="top"><label for="budget">올해 태양광 설치 예산</label><strong class="num" id="budgetOut"></strong></div>
-      <input id="budget" type="range" min="0" max="45" step="0.5" value="5">
+      <div class="top"><label for="budget">기관별 올해 태양광 예산 (가정)</label><strong class="num" id="budgetOut"></strong></div>
+      <input id="budget" type="range" min="0" max="10" step="0.1" value="1">
     </div>
     <div class="stats">
       <div class="stat"><span>예산으로 설치</span><strong class="num" id="sCity"></strong></div>
@@ -205,7 +205,7 @@ h2{font-size:14px;margin:0}
     <div id="guBars"></div>
   </div>
   <div class="legend">
-    <span><i style="background:var(--cell)"></i>시 예산으로 설치</span>
+    <span><i style="background:var(--cell)"></i>기관 예산으로 설치</span>
     <span><i style="background:var(--sun)"></i>시민펀드로 설치</span>
     <span><i style="background:var(--pin-off)"></i>이미 설치됨</span>
     <span><i style="background:#FF9F1C;border-radius:2px"></i>주황 블록 = 태양광 후보 건물</span>
@@ -221,15 +221,15 @@ const GU_GEO={"type":"FeatureCollection","features":[{"type":"Feature","properti
 // c = 시·도(자립도는 대전만 셈), pv = 기존 태양광 있음 → '추가 설치분'으로 표시 (제외 여부 팀 결정 대기)
 // AI = docs/청사_지붕AI_최종표.csv '보정 용량'(지붕 AI가 실제로 깐 패널, 15° 경사)
 const B=[
- {n:"대전광역시청",g:"서구",c:"대전",lat:36.35055,lon:127.38496,roof:5668,shade:.9,demand:.85,grid:.6, pv:true},
- {n:"서구청",g:"서구",c:"대전",lat:36.35548,lon:127.38379,roof:3935,shade:.9,demand:.85,grid:.6, pv:true},
- {n:"중구청",g:"중구",c:"대전",lat:36.32557,lon:127.42149,roof:2949,shade:.9,demand:.85,grid:.6},
- {n:"유성구청",g:"유성구",c:"대전",lat:36.36222,lon:127.35616,roof:1148,shade:.9,demand:.85,grid:.6},
- {n:"대덕구청",g:"대덕구",c:"대전",lat:36.34666,lon:127.41557,roof:1756,shade:.9,demand:.85,grid:.6},
- {n:"대전광역시교육청",g:"서구",c:"대전",lat:36.3524,lon:127.38365,roof:2005,shade:.9,demand:.85,grid:.6},
- {n:"충청북도청",g:"청주시",c:"충북",lat:36.63617,lon:127.49117,roof:1903,shade:.9,demand:.85,grid:.6},
- {n:"충청남도청",g:"홍성군",c:"충남",lat:36.65863,lon:126.67258,roof:13194,shade:.9,demand:.85,grid:.6, pv:true},
- {n:"천안시청",g:"천안시",c:"충남",lat:36.8149,lon:127.11398,roof:9772,shade:.9,demand:.85,grid:.6, pv:true}
+ {n:"대전광역시청",g:"서구",c:"대전",lat:36.35055,lon:127.38496,roof:5668,shade:.9,demand:.85,grid:.6,use:13151781, pv:true},
+ {n:"서구청",g:"서구",c:"대전",lat:36.35548,lon:127.38379,roof:3935,shade:.9,demand:.85,grid:.6,use:2690097, pv:true},
+ {n:"중구청",g:"중구",c:"대전",lat:36.32557,lon:127.42149,roof:2949,shade:.9,demand:.85,grid:.6,use:1394392,chk:true},
+ {n:"유성구청",g:"유성구",c:"대전",lat:36.36222,lon:127.35616,roof:1148,shade:.9,demand:.85,grid:.6,use:2662006},
+ {n:"대덕구청",g:"대덕구",c:"대전",lat:36.34666,lon:127.41557,roof:1756,shade:.9,demand:.85,grid:.6,use:1226211},
+ {n:"대전광역시교육청",g:"서구",c:"대전",lat:36.3524,lon:127.38365,roof:2005,shade:.9,demand:.85,grid:.6,use:1214009},
+ {n:"충청북도청",g:"청주시",c:"충북",lat:36.63617,lon:127.49117,roof:1903,shade:.9,demand:.85,grid:.6,use:null,chk:true},
+ {n:"충청남도청",g:"홍성군",c:"충남",lat:36.65863,lon:126.67258,roof:13194,shade:.9,demand:.85,grid:.6,use:10991993, pv:true},
+ {n:"천안시청",g:"천안시",c:"충남",lat:36.8149,lon:127.11398,roof:9772,shade:.9,demand:.85,grid:.6,use:4711000, pv:true}
 ];
 const AI={"대전광역시청":{"kw":139,"panels":245,"note":"저층 지붕에 기존 태양광 있음"},"서구청":{"kw":82,"panels":144},"중구청":{"kw":153,"panels":269,"review":true,"note":"의회와 경계 구분은 현장 확인 필요"},"유성구청":{"kw":36,"panels":63},"대덕구청":{"kw":131,"panels":231,"review":true},"대전광역시교육청":{"kw":114,"panels":201,"note":"건물 옆 정원이 일부 남아 용량이 약간 클 수 있음"},"충청북도청":{"kw":50,"panels":88,"note":"도청 여러 동 중 7층 동 하나만 분석"},"충청남도청":{"kw":320,"panels":563,"note":"옥상녹화·기존 패널을 뺀 값"},"천안시청":{"kw":729,"panels":1283}};
 // 지붕 윤곽: 지붕 AI가 실제로 쓴 건물 경계(9곳 전부. 6곳은 팀원 손 윤곽, 나머지는 브이월드 경계를 사진에 맞춰 옮긴 것)
@@ -249,15 +249,22 @@ B.forEach(b=>{
   b.yieldF=C.fund; b.cityM=b.netM-b.costM*C.fund; // 시민 배당은 확정 이율(채권형, 서울 1호 방식), 남는 수익으로 원금 상환 → 상환 뒤 발전수익은 시 기금
   b.self=b.mwh/C.use*100;
 });
-// ponytail: 가중합 점수, TOPSIS로 바꿀 때 이 부분만 교체
 const mx=k=>Math.max(...B.map(b=>b[k])), mn=k=>Math.min(...B.map(b=>b[k]));
+// 우선순위 (2026-11-10 개편): 9곳 사이에서 실제 데이터로 갈리는 것만 씀. 회수기간(모두 같음)·계통 여유(데이터 없음)는 뺌
+//  점수 = 연 발전량 40% + 설치 용이성 40% + 자가소비 여유 20%
+//  설치 용이성 = 1 − 기존 태양광 0.5 − 구조검토(1988년 이전) 0.3 − 경계 현장확인 필요 0.2
+//  자가소비 여유: 연 발전량 ÷ 연 전기사용량(건축HUB 최근 12개월)이 5% 이하면 1, 30% 이상이면 0 — 낮을수록 주말·야간에도 남는 전기 없이 건물이 다 씀
+// ponytail: 자가소비는 월 사용량 근사. 전력 예측 팀의 시간대별 데이터가 오면 교체. 사용량 자료 없는 건물(충북도청)은 0.5
+const ease=b=>1-.5*!!b.pv-.3*!!(AI[b.n]&&AI[b.n].review)-.2*!!b.chk;
+const fitSC=b=>b.use?Math.max(0,Math.min(1,(.30-b.mwh*1000/b.use)/.25)):.5;
 B.forEach(b=>{
-  const nm=(b.mwh-mn("mwh"))/(mx("mwh")-mn("mwh")), rp=mx("payback")-mn("payback"), np=rp>.05?(mx("payback")-b.payback)/rp:1;
-  b.score=b.done?-1:Math.round(100*(.4*nm+.3*np+.15*b.demand+.15*b.grid));
+  const nm=(b.mwh-mn("mwh"))/((mx("mwh")-mn("mwh"))||1);
+  b.share=b.use?b.mwh*1000/b.use:null; b.parts=[nm,ease(b),fitSC(b)];
+  b.score=b.done?-1:Math.round(100*(.4*nm+.4*b.parts[1]+.2*b.parts[2]));
 });
 const ranked=[...B].sort((a,b)=>b.score-a.score);
 ranked.forEach((b,i)=>{b.rank=b.done?null:i+1; b.got=[.72,.45,.31,.18,.6,.09,.52,.27][i%8];}); // got = 시민펀드 모집률(예시)
-let sel=null, budget=5;
+let sel=null, budget=1; // 기관별 예산 기본 1억(가정)
 
 // 지도: 3D 장난감 도시 + 대전 땅따먹기(구별 시민 참여율만큼 햇빛색). 참여율은 예시값
 // 지도 데이터: OpenFreeMap 벡터타일(건물 높이 포함) — 인터넷이 없으면 미리 찍어 둔 사진으로 대체
@@ -313,11 +320,11 @@ function makeMap(){
 try{ map=makeMap(); }catch(e){ fallback(); } // maplibre를 못 불러왔거나 WebGL이 없을 때
 
 const color=s=>s==="city"?"#1d3a55":s==="fund"?"#e39b16":"#8a9aa8";
-const label=s=>s==="city"?"시 예산":s==="fund"?"시민펀드":"기설치";
+const label=s=>s==="city"?"기관 예산":s==="fund"?"시민펀드":"기설치";
 
 function plan(){
-  let left=budget*10000;
-  ranked.forEach(b=>{ if(b.done){b.src="done";return;} if(b.costM<=left){b.src="city";left-=b.costM;} else b.src="fund"; });
+  // 기관별 예산: 9곳은 주인(대전시·각 구·교육청·충북도·충남도·천안시)이 달라 예산을 나눠 쓰지 않음 → 기관마다 같은 금액이 있다고 가정
+  ranked.forEach(b=>{ if(b.done){b.src="done";return;} b.src=b.costM<=budget*10000?"city":"fund"; });
 }
 
 function select(b,fly,tab="det"){
@@ -333,7 +340,7 @@ function render(){
   document.getElementById("budgetOut").textContent=fmt(budget,1)+"억 원";
   document.getElementById("headline").innerHTML=`공공청사 옥상 ${todo.length}곳 설치 계획`;
   document.getElementById("split").innerHTML=`
-    <div class="k city"><span>시 예산</span><strong class="num">${city.length}<small>곳</small></strong><em class="num">${won(city.reduce((s,b)=>s+b.costM,0))}</em></div>
+    <div class="k city"><span>기관 예산</span><strong class="num">${city.length}<small>곳</small></strong><em class="num">${won(city.reduce((s,b)=>s+b.costM,0))}</em></div>
     <div class="k fund"><span>시민펀드 필요</span><strong class="num">${fund.length}<small>곳</small></strong><em class="num">${won(fund.reduce((s,b)=>s+b.costM,0))}</em></div>`;
   document.getElementById("sCity").textContent=`${city.length}곳 · ${fmt(city.reduce((s,b)=>s+b.kw,0))}kW`;
   document.getElementById("sKw").textContent=fmt(kw)+" kW";
@@ -371,6 +378,7 @@ function render(){
    :b.done?`<h2>${b.n}</h2><p class="why">이미 ${b.done}kW가 설치되어 있어 후보에서 뺐습니다. (2025년 옛 관광공사 사옥 설비를 이전 설치)</p>`
    :`<div style="display:flex;justify-content:space-between;align-items:center;gap:8px"><h2 style="font-size:17px">${b.rank}위 ${b.n}</h2><span class="pill ${b.src}">${label(b.src)}</span></div>
     <div><div class="bar"><i style="width:${b.score}%"></i></div><div class="why num" style="margin-top:4px">우선순위 점수 ${b.score}점</div></div>
+    ${b.parts?`<p class="why">점수 근거 — 발전량 ${fmt(b.parts[0]*40)}/40 · 설치 용이성 ${fmt(b.parts[1]*40)}/40${[b.pv?"기존 태양광":"",AI[b.n]&&AI[b.n].review?"1988년 이전 구조검토":"",b.chk?"경계 현장확인":""].filter(Boolean).map(x=>" −"+x).join("")} · 자가소비 여유 ${fmt(b.parts[2]*20)}/20 (${b.share!=null?`연 사용량 대비 발전 ${fmt(b.share*100,1)}%`:"사용량 자료 없음"})</p>`:""}
     <dl>
       <div><dt>설치 가능 용량</dt><dd>${fmt(b.kw)} kW</dd></div>
       <div><dt>연 발전량</dt><dd>${fmt(b.mwh)} MWh</dd></div>
@@ -446,7 +454,7 @@ function roofBar(b){
   document.getElementById("roofOut").onclick=()=>exitRoof(true);
 }
 function tap(b){
-  if(b.src!=="fund"||sel!==b){ select(b,true); return; }   // 처음 누르면 건물 상세 (시 예산·기설치 건물은 옥상 땅따먹기 없음)
+  if(b.src!=="fund"||sel!==b){ select(b,true); return; }   // 처음 누르면 건물 상세 (기관 예산·기설치 건물은 옥상 땅따먹기 없음)
   roofB=b; render();                                        // 같은 건물을 한 번 더 → 옥상으로 확대
   map.flyTo({center:[b.lon,b.lat],zoom:ROOF[b.n]?18.3:18,pitch:35,bearing:0,duration:1600});
 }
