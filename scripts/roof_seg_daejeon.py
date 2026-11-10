@@ -84,12 +84,19 @@ def features(lat, lon, r_m, size=100):
     return r["result"]["featureCollection"]["features"] if r["status"] == "OK" else []
 
 
-def building(lat, lon, r_m=50):
+def building(lat, lon, r_m=50, contain=False):
     # 데모 좌표가 건물 밖에 찍힌 경우가 있어 주변 r_m 안에서 건축면적이 가장 큰 건물
     # ponytail: 옆에 더 큰 건물이 있으면 그걸 잡음. 정확히 하려면 건물명/PNU로 조회.
+    # contain=True(목록 파일 모드): 좌표가 들어 있는 건물 우선 — 행정복지센터처럼 작은 건물이 옆 아파트에 밀리지 않게.
+    # 기존 청사들은 손 보정 윤곽이 사진 범위(=고른 건물)에 묶여 있어 그대로 둠
     fs = features(lat, lon, r_m)
     if not fs:
         return None
+    if contain:
+        pt = np.array(world_px(lat, lon))
+        inside = [f for f in fs if cv2.pointPolygonTest(
+            (np.array([world_px(la, lo) for lo, la in f["geometry"]["coordinates"][0][0]]) - pt).astype(np.float32), (0.0, 0.0), False) >= 0]
+        fs = inside or fs
     f = max(fs, key=lambda f: float(f["properties"]["archarea"] or 0) or poly_deg2(f["geometry"]["coordinates"]))
     return f["properties"], f["geometry"]["coordinates"]
 
@@ -235,13 +242,18 @@ def layout(pred, px_m=0.25, pitch_m=None, blocked=None):
 
 def main():
     ckpt, out = sys.argv[1], sys.argv[2]
-    bldgs = BLDGS_CHEONGSA if sys.argv[3:] == ["cheongsa"] else BLDGS  # cheongsa: 청사 4곳만 (출력 폴더는 따로)
+    arg = sys.argv[3] if len(sys.argv) > 3 else ""
+    if arg.endswith(".csv"):  # 목록 파일(name,lat,lon): 확장성 추정용 (예: data/processed/daejeon_dong_centers.csv)
+        import csv
+        bldgs = [(r["name"], float(r["lat"]), float(r["lon"]), 0) for r in csv.DictReader(open(arg, encoding="utf-8-sig"))]
+    else:
+        bldgs = BLDGS_CHEONGSA if arg == "cheongsa" else BLDGS  # cheongsa: 청사 4곳만 (출력 폴더는 따로)
     cache = os.path.join(out, "tiles"); os.makedirs(cache, exist_ok=True)
     model = lraspp_mobilenet_v3_large(num_classes=3)
     model.load_state_dict(torch.load(ckpt, weights_only=True)); model.eval()
     rows = []
     for name, lat, lon, demo_roof in bldgs:
-        b = building(lat, lon)
+        b = building(lat, lon, contain=arg.endswith(".csv"))
         if not b:
             print(name, "건물 경계 없음"); continue
         props, mp = b

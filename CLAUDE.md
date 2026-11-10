@@ -13,7 +13,7 @@ AI는 두 갈래로 나눠 맡음:
 - **전력 사용량 예측 AI** (건물별 과거 월 전기사용량 → 미래 사용량 → 자가소비율·펀드 수익) — 다른 팀원 담당. 데이터 수집은 `scripts/build_daejeon_bldg_power.py`(건축HUB 에너지 API) → `data/processed/daejeon_public_bldg_power.csv`
 
 1. **지붕 분할 AI** (`scripts/roof_seg_train.py`): AI Hub 71348 「태양광 발전 현황 및 적지 분석 데이터」 적지분석 25cm로 LR-ASPP(MobileNetV3) 학습. 클래스: 배경 / 설치 가능 지붕 / 구조물.
-2. **대전 적용** (`scripts/roof_seg_daejeon.py`): 브이월드 항공사진(z19)·건물경계(LT_C_BLDGINFO) → AI 예측 → 경계 자동 정렬 → 연간 그림자(주변 건물 높이) → 패널 배치 규칙 → 건물별 kW. 청사 MVP 추가 4곳(교육청·충북도청·충남도청·천안시청)은 마지막 인자 `cheongsa`로 따로 돌림 → `data/raw/aihub_solar/cheongsa/`. 청사 9곳 최종표는 `docs/청사_지붕AI_최종표.csv`. 새 4곳은 AI가 정원·옥상녹화·기존 패널을 설치 가능으로 세서 `cheongsa/veg_fix.py`로 보정(초록 화소·어두운 화소·충북 옥상정원 사각형 제외) → '보정 용량' 열. 4곳 육안 판독은 Claude가 함(팀원 카카오맵 검증 아님).
+2. **대전 적용** (`scripts/roof_seg_daejeon.py`): 브이월드 항공사진(z19)·건물경계(LT_C_BLDGINFO) → AI 예측 → 경계 자동 정렬 → 연간 그림자(주변 건물 높이) → 패널 배치 규칙 → 건물별 kW. 청사 MVP 추가 4곳(교육청·충북도청·충남도청·천안시청)은 마지막 인자 `cheongsa`로 따로 돌림 → `data/raw/aihub_solar/cheongsa/`. 청사 9곳 최종표는 `docs/청사_지붕AI_최종표.csv`. 새 4곳은 AI가 정원·옥상녹화·기존 패널을 설치 가능으로 세서 `cheongsa/veg_fix.py`로 보정(초록 화소·어두운 화소·충북 옥상정원 사각형 제외) → '보정 용량' 열. 4곳 육안 판독은 Claude가 함(팀원 카카오맵 검증 아님). 충북도청은 도청 6개 동을 돌려 봤으나(`data/raw/aihub_solar/chungbuk/`) 7층 동만 유지 — 2층 동은 사진상 공사 중, 긴 청색 지붕 동은 1937년 본관(등록문화재) 가능성, 2곳은 경계 어긋남. 전기사용량은 문화동 89 지번(도청 전체 계량, 연 4.8GWh)에만 있음. 목록 파일 모드: 마지막 인자에 name,lat,lon CSV(좌표가 든 건물 우선 선택)
 3. **수익·펀드 계산** (`docs/solar_demo.html`, `docs/solar_map.html`): 발전량 × 판매단가 − 운영비, 시민펀드 배당·원금 상환.
 4. **정답 라벨 평가** (`scripts/roof_label_tool.html` + `scripts/roof_label_eval.py`): 대전 건물을 직접 칠해서 AI vs 25% 가정 비교.
 
