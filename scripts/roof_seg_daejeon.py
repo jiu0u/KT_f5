@@ -5,7 +5,7 @@
 
 python -I scripts/roof_seg_daejeon.py <roof_seg.pt> <출력 폴더>
 """
-import io, json, math, os, sys, urllib.parse, urllib.request
+import io, json, math, os, re, sys, urllib.parse, urllib.request
 
 import cv2
 import numpy as np
@@ -99,6 +99,69 @@ def building(lat, lon, r_m=50, contain=False):
         fs = inside or fs
     f = max(fs, key=lambda f: float(f["properties"]["archarea"] or 0) or poly_deg2(f["geometry"]["coordinates"]))
     return f["properties"], f["geometry"]["coordinates"]
+
+
+def campus(lat, lon, r_m=200, name=""):
+    """학교처럼 한 부지에 여러 동: 좌표 근처 '학'(학교용지) 필지 하나 안에 중심이 든 건물 전부를 묶음.
+    ponytail: 필지 하나만 씀. 학교가 필지 여러 개로 쪼개져 있으면 일부 동이 빠짐(옆 중학교가 붙어 있어 필지를 합치진 않음)."""
+    dy, dx = r_m / 111320, r_m / (111320 * math.cos(math.radians(lat)))
+    q = dict(service="data", request="GetFeature", data="LP_PA_CBND_BUBUN", key=key(), domain="http://localhost",
+             geomFilter=f"BOX({lon - dx},{lat - dy},{lon + dx},{lat + dy})", format="json", size="1000", crs="EPSG:4326")
+    r = json.loads(get("https://api.vworld.kr/req/data?" + urllib.parse.urlencode(q)))["response"]
+    pall = r["result"]["featureCollection"]["features"] if r["status"] == "OK" else []
+    ps = [f for f in pall if f["properties"]["jibun"].endswith("학")]
+    if not ps:
+        return None
+    pt = np.array(world_px(lat, lon)).astype(np.float32)
+    # 필지가 여러 조각(MultiPolygon)인 경우가 있어 조각마다 바깥 고리를 다 봄 (대흥초 본관이 첫 조각 밖이라 빠졌었음)
+    rings = lambda p: [np.array([world_px(la, lo) for lo, la in poly[0]]).astype(np.float32) for poly in p["geometry"]["coordinates"]]
+    dist = lambda p, q: max(cv2.pointPolygonTest(r, tuple(map(float, q)), True) for r in rings(p))  # 안이면 +, 밖이면 −(px)
+    allb = features(lat, lon, r_m, size=1000)
+    cen = [np.array([world_px(la, lo) for lo, la in f["geometry"]["coordinates"][0][0]]).mean(0) for f in allb]
+    def frac(p, f):  # 건물 면적 중 필지 안 비율 (z19 px를 1/4로 줄인 격자, 약 1m)
+        b = [(np.array([world_px(la, lo) for lo, la in poly[0]]) / 4) for poly in f["geometry"]["coordinates"]]
+        o = np.vstack(b).min(0) - 2
+        sh = tuple((np.vstack(b).max(0) - o + 3).astype(int)[::-1])
+        mb, mp = np.zeros(sh, np.uint8), np.zeros(sh, np.uint8)
+        cv2.fillPoly(mb, [np.round(q - o).astype(np.int32) for q in b], 1)
+        cv2.fillPoly(mp, [np.round(r / 4 - o).astype(np.int32) for r in rings(p)], 1)
+        return (mb & mp).sum() / max(mb.sum(), 1)
+    # 중심점이 필지 안이거나, 면적 절반 이상이 필지 안인 건물 (대흥초 본관: 필지 경계가 건물을 가로질러 중심점이 밖)
+    inside = lambda p: [f for f, c in zip(allb, cen) if dist(p, c) >= 0 or (dist(p, c) > -400 and frac(p, f) >= .5)]
+    short = re.sub(r"^(대전광역시..구|대전)", "", name).replace("초등학교", "초") if name else ""  # "내동"만 쓰면 내동 아파트까지 걸려서 "내동초"로
+    other = lambda n: bool(n) and short not in n and bool(re.search("학교|중학|고등", n))
+    # 좌표가 든 필지 → 가까운 순. 단 건물 이름에 학교 이름이 든 필지가 있으면 그걸 우선
+    # (주소 좌표가 옆 학교 필지에 찍혀 가오초→대전맹학교, 유평초→태평중을 잡은 적 있음). 이름 맞는 필지는 지목 상관없이(가오초 본관은 '학' 아님)
+    ps.sort(key=lambda p: -dist(p, pt)); pall.sort(key=lambda p: -dist(p, pt))
+    has = lambda p: short and any(short in (f["properties"]["bld_nm"] or "") for f in inside(p))
+    # 이름 맞는 '학' 필지는 전부 합침(산성초 419+416-1). '학' 필지에 없을 때만 지목 상관없이 가장 가까운 1필지(가오초)
+    # (지목 안 가리고 다 합치면 내동초가 동네 큰 필지까지 264동을 잡음)
+    chosen = [p for p in ps if has(p)] or next(([p] for p in pall if has(p)), [ps[0]])
+    # ponytail: 붙은 '학' 필지까지 합치면 내동초가 265동을 잡는 등 동네 전체가 딸려 와서 안 함 → 이름 없는 옆 필지 체육관은 빠질 수 있음
+    par = chosen[0]
+    fs = list({id(f): f for p in chosen for f in inside(p)}.values())
+    # 한 필지를 여러 학교가 같이 씀(가오초+대전맹학교+혜광학교): 이름에 다른 학교가 적힌 건물은 뺌
+    fs = [f for f in fs if not (short and other(f["properties"]["bld_nm"]))] or fs
+    if not fs:
+        return None
+    big = max(fs, key=lambda f: float(f["properties"]["archarea"] or 0) or poly_deg2(f["geometry"]["coordinates"]))
+    props = dict(big["properties"], n_bldg=len(fs), parcel=par["properties"]["addr"] + (f" 외 {len(chosen) - 1}필지" if len(chosen) > 1 else ""), pnu=[p["properties"]["pnu"] for p in chosen],
+                 useapr_day=min((f["properties"]["useapr_day"] for f in fs if f["properties"]["useapr_day"]), default=""))
+    return props, [poly for f in fs for poly in f["geometry"]["coordinates"]]
+
+
+def outline_ll(fp, x0, y0, scale, eps_px=4):
+    """계산에 쓴 경계(fp, 25cm 격자)를 데모 지도용 [[lat, lon], ...] 고리 목록으로. 약 1m 오차로 단순화"""
+    cnts, _ = cv2.findContours(fp.astype(np.uint8), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+    out = []
+    for c in cnts:
+        if cv2.contourArea(c) * PX_M2 < 20:
+            continue
+        c = cv2.approxPolyDP(c, eps_px, True)[:, 0] / scale + (x0, y0)  # z19 world px
+        lon = c[:, 0] / (N * 256) * 360 - 180
+        lat = np.degrees(np.arctan(np.sinh(math.pi * (1 - 2 * c[:, 1] / (N * 256)))))
+        out.append([[round(float(a), 6), round(float(o), 6)] for a, o in zip(lat, lon)])
+    return out
 
 
 def poly_deg2(mp):
@@ -253,7 +316,7 @@ def main():
     model.load_state_dict(torch.load(ckpt, weights_only=True)); model.eval()
     rows = []
     for name, lat, lon, demo_roof in bldgs:
-        b = building(lat, lon, contain=arg.endswith(".csv"))
+        b = campus(lat, lon, name=name) if "campus" in sys.argv[4:] else building(lat, lon, contain=arg.endswith(".csv"))
         if not b:
             print(name, "건물 경계 없음"); continue
         props, mp = b
@@ -324,7 +387,8 @@ def main():
                          module_m2=round(mod_m2), module_ratio=round(mod_m2 / fpa, 3),
                          kw_ai=round(mod_m2 * KW_M2), kw_rule25=round(fpa * .25 * KW_M2),
                          use_year=yr or None, struct_review=(int(yr) < STRUCT_REVIEW_YEAR) if yr else None,  # 연도 모르면 None
-                         height_m=props["height"], floors=props["grnd_flr"], bld_nm=props["bld_nm"]))
+                         height_m=props["height"], floors=props["grnd_flr"], bld_nm=props["bld_nm"],
+                         n_bldg=props.get("n_bldg", 1), parcel=props.get("parcel"), outline=outline_ll(fp, x0, y0, scale)))
         print(f"{name}: 경계 이동 ({dx * .25:+.1f}, {dy * .25:+.1f})m 겹침 {fit:.2f}{' ⚠경계 확인' if fit < .5 or max(abs(dx), abs(dy)) * .25 >= 7.5 else ''} | 경계 {fpa:,.0f}㎡ | 빈지붕 {ai:,.0f} | 패널 {len(rects)}장 = 모듈 {mod_m2:,.0f}㎡ "
               f"({mod_m2 / fpa:.0%}) | {mod_m2 * KW_M2:,.0f}kW vs 25%가정 {fpa * .25 * KW_M2:,.0f}kW "
               f"| 그림자 {shaded.sum() * PX_M2:,.0f}㎡, 패널 {n_noshade - len(rects)}장 감소", flush=True)
