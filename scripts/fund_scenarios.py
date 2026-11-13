@@ -72,5 +72,11 @@ if __name__ == "__main__":
             row.append(round(plan_B(cost=cost)["dscr1"], 2))
         globals()["PRICE"] = 147
         print(cost, row)
+    print("민감도: 실측 발전량(대전시 66곳 중앙값 1,208kWh/kW, 20년평균 1,272 대비 95%) 반영 시 DSCR 1년차")
+    Y1 = round(1333 * 1208 / 1272)  # 1,266 — 1,333 가정을 실측 비율만큼 비례 축소
+    for cost in (109, 130, 160):
+        print(cost, round(plan_B(cost=cost)["dscr1"], 2))
+    Y1 = 1333
+
     # 자체 확인: 연금 공식
     assert abs(annuity(100, .045) - 7.688) < .01
