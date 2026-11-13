@@ -5,7 +5,7 @@
 대전시립미술관,,대전시립미술관.png,"https://map.kakao.com/link/map/대전시립미술관,36.36671,127.38574","https://map.kakao.com/link/roadview/36.36671,127.38574",1628,141,"X, 옆에 땅을 잡음",O,X,O,X,
 한밭도서관,한밭도서관,한밭도서관.png,"https://map.kakao.com/link/map/한밭도서관,36.30965,127.40935","https://map.kakao.com/link/roadview/36.30965,127.40935",2029,175,O,O,X,X,X,
 대전시립박물관,대전시립박물관,대전시립박물관.png,"https://map.kakao.com/link/map/대전시립박물관,36.33683,127.33539","https://map.kakao.com/link/roadview/36.33683,127.33539",2688,213,O,O,X,O,X,
-유성구청,,유성구청.png,"https://map.kakao.com/link/map/유성구청,36.36222,127.35616","https://map.kakao.com/link/roadview/36.36222,127.35616",518,36,"X, 주차장과 길 포함",O,X,X,X,
+유성구청,,유성구청.png,"https://map.kakao.com/link/map/유성구청,36.36222,127.35616","https://map.kakao.com/link/roadview/36.36222,127.35616",518,36,"X, 주차장과 길 포함",O,X,"X→O(정정)",X,2026-11-13 유성구 정보공개청구 답변으로 본관 40kW(2014)+증축동 55kW(2021) 기존 설치 확인 — 당시 육안검증에서는 놓침
 대덕구청,,대덕구청.png,"https://map.kakao.com/link/map/대덕구청,36.34666,127.41557","https://map.kakao.com/link/roadview/36.34666,127.41557",1248,131,O,O,X,X,X,
 중구청,,중구청.png,"https://map.kakao.com/link/map/중구청,36.32557,127.42149","https://map.kakao.com/link/roadview/36.32557,127.42149",1956,167,"X, 담긴 했지만 완벽하진 않음",O,X,X,X,
 서구청,청사동,서구청.png,"https://map.kakao.com/link/map/서구청,36.35548,127.38379","https://map.kakao.com/link/roadview/36.35548,127.38379",1646,125,"X, 대전광역시 서구의회 건물 포함",O,X,O,"O, 옥상정원 있는 부분 존재",
