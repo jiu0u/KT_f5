@@ -4,3 +4,5 @@ __pycache__/
 .env
 # 지붕 AI 모델·결과 (브이월드 영상 포함, 용량·이용약관 때문에 제외)
 data/raw/aihub_solar/
+# 정보공개청구 답변 원본 (공개는 받았지만 저장소엔 안 올림, 2026-11-14)
+data/raw/daejeon_public_buildings/
