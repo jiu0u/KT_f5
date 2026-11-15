@@ -757,5 +757,7 @@ function renderCls(){
 document.getElementById("tarGov").oninput=e=>{const v=parseFloat(e.target.value); CP.tarGov=v>0?v:null; renderCls();};
 const _render=render; render=function(){_render(); renderCls();}; renderCls();
 </script>
+<!-- 깃허브 바로 열기(htmlpreview)가 가끔 스크립트를 실행하지 않음 → 0.3초 뒤에도 그대로면 여기서 실행 -->
+<img hidden alt="" src="data:," onerror="setTimeout(function(){[].slice.call(document.scripts).filter(function(s){return s.type==='text/htmlpreview'}).forEach(function(s){var n=document.createElement('script');n.text=s.text;s.parentNode.replaceChild(n,s)})},300)">
 </body>
 </html>
