@@ -303,7 +303,7 @@ footer{border-top:1px solid var(--line); margin-top:40px; padding-block:24px 48p
           <tr><td>학습</td><td>AI Hub 71348 적지분석 25cm 항공·드론 영상 / LR-ASPP(MobileNetV3), 3클래스</td><td>지붕·구조물 분할 모델</td></tr>
           <tr><td>적용</td><td>브이월드 항공사진 z19 + 건물경계 LT_C_BLDGINFO, 경계 자동 정렬 ≤8m</td><td>건물별 설치 가능 지붕 면적</td></tr>
           <tr><td>배치</td><td>동지 9~15시 그림자, 구조물 여유 북3·동서2·남0.5m, 모듈 2278×1134mm·효율 22%·경사 15°</td><td>패널 수 → <strong>kW</strong></td></tr>
-          <tr><td>수익</td><td>PVGIS 1,333kWh/kWp(발전량) · 대전 실측 1,183kWh/kW(자금 계산 기본), 열화 0.5%/년, 판매 147.7원/kWh, 설치비 109만 원/kW, 운영비 1.5%/년</td><td>발전수익 → 연 원리금·DSCR</td></tr>
+          <tr><td>수익</td><td>PVGIS 1,333kWh/kWp(발전량) · 대전 실측 1,200kWh/kW(자금 계산 기본), 열화 0.5%/년, 판매 146.92원/kWh, 설치비 120만 원/kW, 운영비 1.5%/년(옥상 사용료 포함) — 금리·단가·설치비는 전문가 입력값</td><td>발전수익 → 연 원리금·DSCR</td></tr>
         </tbody>
       </table>
     </div>
@@ -327,7 +327,7 @@ footer{border-top:1px solid var(--line); margin-top:40px; padding-block:24px 48p
         <thead><tr><th>구현 완료</th><th>작업 중 · 예정</th></tr></thead>
         <tbody>
           <tr>
-            <td>지붕 분할 모델 학습·추론 / 청사 9곳·초등학교 149곳 적용 → 후보 103곳 20.8MW / 정답 라벨 대비 검증(IoU 0.47, 오차 25%) / 실측 발전량 검증(중구·동구 6곳) / 데모의 수익·SPC 자금 계산·시민 투자 장면·기관별 예산 / 월 전기사용량 754건 수집</td>
+            <td>지붕 분할 모델 학습·추론 / 청사 9곳·초등학교 149곳 적용 → 후보 102곳 20.6MW / 정답 라벨 대비 검증(IoU 0.47, 오차 25%) / 실측 발전량 검증(중구·동구 6곳) / 데모의 수익·SPC 자금 계산·시민 투자 장면·기관별 예산 / 월 전기사용량 754건 수집</td>
             <td><strong>시연영상</strong> / 두 번째 AI 역할 확정 / 교육청 청사 경계 / 대전시·서구·유성구·대덕구 정보공개 반영 / 학교 경계 이상 25곳</td>
           </tr>
         </tbody>
@@ -336,7 +336,7 @@ footer{border-top:1px solid var(--line); margin-top:40px; padding-block:24px 48p
     </div>
 
     <div class="grid-2" style="margin-top:22px">
-      <dl class="field"><dt>기대효과</dt><dd>후보 103곳(청사 3·초등학교 99·한밭도서관) <span class="num">20.8MW</span>·설치비 <span class="num">약 226억 원</span>·연 <span class="num">26.4GWh</span> 규모. 시민은 P2P 연계대출로 연 약 <span class="num">6.8%</span>, 15년 분할 상환. 빚을 다 갚은 뒤 발전수익은 출자자와 시 기금으로. 자립도 맥락은 과장하지 않는다 — <span class="num">+1%p</span>에 약 <span class="num">83MW</span>가 필요하다.</dd></dl>
+      <dl class="field"><dt>기대효과</dt><dd>후보 102곳(청사 3·초등학교 99) <span class="num">20.6MW</span>·설치비 <span class="num">약 247억 원</span>·연 <span class="num">26.2GWh</span> 규모. 시민은 P2P 연계대출로 연 <span class="num">7.0%</span>(기본값), 15년 분할 상환. 빚을 다 갚은 뒤 발전수익은 출자자와 시 기금으로. 자립도 맥락은 과장하지 않는다 — <span class="num">+1%p</span>에 약 <span class="num">83MW</span>가 필요하다.</dd></dl>
       <dl class="field"><dt>핵심 경쟁력</dt><dd>① 쓰는 데이터가 전부 전국 공통(AI Hub·브이월드·건축물대장) → 다른 시·도도 좌표만 바꿔 같은 방법을 쓸 수 있다 ② 적지분석과 재원 조달이 같은 숫자로 이어진다 ③ 정확도 한계까지 공개한 검증을 들고 있다.</dd></dl>
     </div>
   </div>
@@ -376,9 +376,9 @@ footer{border-top:1px solid var(--line); margin-top:40px; padding-block:24px 48p
           <tr><td class="n">S4</td><td>벽 둘</td><td>갈등 없는 입지 + 비어 있는 두 칸</td></tr>
           <tr><td class="n">S5</td><td>“얼마나”라는 공백</td><td>기존 방식으론 못 채운다는 근거</td></tr>
           <tr><td class="n">S6</td><td>AI가 필요한 이유</td><td>배치 규칙으로 뽑은 kW</td></tr>
-          <tr><td class="n">S7</td><td>kW</td><td>후보 103곳 합계 20.8MW와 정확도</td></tr>
+          <tr><td class="n">S7</td><td>kW</td><td>후보 102곳 합계 20.6MW와 정확도</td></tr>
           <tr><td class="n">S8</td><td>숫자에 대한 의심</td><td>“진짜 돈다”는 확인</td></tr>
-          <tr><td class="n">S9</td><td>설치비 약 226억 원</td><td>그 돈을 대는 구조</td></tr>
+          <tr><td class="n">S9</td><td>설치비 약 247억 원</td><td>그 돈을 대는 구조</td></tr>
           <tr><td class="n">S10</td><td>구조</td><td>단계별 실행 계획</td></tr>
           <tr><td class="n">S11</td><td>실행 계획</td><td>타 지역 확장과 마무리</td></tr>
         </tbody>
@@ -497,7 +497,7 @@ footer{border-top:1px solid var(--line); margin-top:40px; padding-block:24px 48p
           <tr><td>헤드라인</td><td class="num">40pt / Bold</td><td>결론형 제목, 2행 이내</td></tr>
           <tr><td>서브헤드</td><td class="num">24pt / Medium</td><td>블록 제목</td></tr>
           <tr><td>본문</td><td class="num">18pt / Regular</td><td>설명문. 한 블록 3줄 이내</td></tr>
-          <tr><td>킬러 넘버</td><td class="num">72~96pt / Mono</td><td>3.06% · 20년 · 20.8MW 같은 한 장의 주인공</td></tr>
+          <tr><td>킬러 넘버</td><td class="num">72~96pt / Mono</td><td>3.06% · 20년 · 20.6MW 같은 한 장의 주인공</td></tr>
           <tr><td>캡션·출처</td><td class="num">12pt</td><td>하단 고정 위치, 전 슬라이드 동일</td></tr>
           <tr><td>여백</td><td class="num">좌우 120px · 상 100px · 하 80px</td><td>12컬럼 · 거터 32px</td></tr>
         </tbody>
@@ -524,7 +524,7 @@ footer{border-top:1px solid var(--line); margin-top:40px; padding-block:24px 48p
       <p class="sub">③ 장을 완성할 때마다 돌리는 점검표</p>
       <ul>
         <li>결론형 제목(핵심 메시지)이 섹션 라벨·설명문보다 <strong>확실히 크게</strong> 보이는가</li>
-        <li>장마다 외워 갈 숫자가 하나 있는가 — 3.06% · 20년 · 0.47 · 20.8MW · DSCR 2.04</li>
+        <li>장마다 외워 갈 숫자가 하나 있는가 — 3.06% · 20년 · 0.47 · 20.6MW · DSCR 1.83</li>
         <li>그래프 막대 길이가 실제 값과 비례하는가 (경북 216%처럼 축을 깨는 값은 축약 표시)</li>
         <li>원인 → 결과 순서로 배치했는가 (좌→우, 위→아래)</li>
         <li>그래프가 꼭 필요하지 않으면 선으로 칸만 나누고 수치를 적었는가</li>
@@ -655,7 +655,7 @@ footer{border-top:1px solid var(--line); margin-top:40px; padding-block:24px 48p
         </div>
         <div style="display:grid; grid-template-columns:1fr 1fr; gap:6px; background:none; border:0; padding:0">
           <div class="warn"><span class="t">좌 · 무산 사례</span>2019 평촌산단 LNG 건설계획 중단 · 도안지구·연축동 수소연료전지 무산 · 대전열병합 증설 반대 서명 4천여 명</div>
-          <div class="data"><span class="t">우 · 예산 나눗셈</span>45.2억 원 ÷ 109만 원/kW = 연 4.1MW → 자립도 +0.05%p/년
+          <div class="data"><span class="t">우 · 예산 나눗셈</span>45.2억 원 ÷ 120만 원/kW = 연 3.8MW → 자립도 +0.05%p/년
             <div class="bars">
               <div class="bar"><span>필요 ~90MW</span><i class="s" style="width:70%"></i></div>
               <div class="bar"><span>연 4.1MW</span><i class="on" style="width:4%"></i><span>→ 20년+</span></div>
@@ -676,7 +676,7 @@ footer{border-top:1px solid var(--line); margin-top:40px; padding-block:24px 48p
           <li><strong>대전광역시 에너지 조례 제29조</strong>(2026.4.10 시행): 공유재산을 수의계약으로 사용허가·대부 가능. 상위법은 재생에너지법 제26조(임대료 50% 범위 경감) <span class="need">중구·동구 정보공개 답변: 민간·협동조합 임대 설치 사례 없음</span></li>
           <li>2019 평촌산단 LNG 발전소 건설계획 중단, 유성 도안지구·대덕구 연축동 수소연료전지 무산</li>
           <li>대전열병합 LNG 증설(113→495MW): 반대 서명 <span class="num">4천여 명</span>, 시민단체 <span class="num">80여 곳</span></li>
-          <li>2026년 대전 재생에너지 예산 <strong class="num">45.2억 원</strong> ÷ 설치비 <span class="num">109만 원/kW</span>(에너지경제연구원 2024, 건물형) = 연 <span class="num">4.1MW</span> → 잠재량 약 90MW를 채우는 데 <strong class="num">20년 이상</strong></li>
+          <li>2026년 대전 재생에너지 예산 <strong class="num">45.2억 원</strong> ÷ 설치비 <span class="num">120만 원/kW</span>(100kW 약 1.1~1.4억 원의 아래쪽) = 연 <span class="num">3.8MW</span> → 잠재량 약 90MW를 채우는 데 <strong class="num">20년 이상</strong></li>
         </ul>
       </div>
       <div class="detail-sec">
@@ -853,7 +853,7 @@ footer{border-top:1px solid var(--line); margin-top:40px; padding-block:24px 48p
 
 <!-- ══════════ S7 (구 S8) ══════════ -->
 <section class="card" id="s7">
-  <div class="card__bar"><span class="card__no">07</span><span class="badge c">② AI 적합성</span><span class="card__title">후보 103곳 20.8MW, 오차는 44%에서 25%로 줄였고 한계도 밝힌다</span><span class="sec">40초</span></div>
+  <div class="card__bar"><span class="card__no">07</span><span class="badge c">② AI 적합성</span><span class="card__title">후보 102곳 20.6MW, 오차는 44%에서 25%로 줄였고 한계도 밝힌다</span><span class="sec">40초</span></div>
   <div class="card__msg"><span class="tag">핵심 메시지</span><p>AI는 25% 가정보다 건물별 오차를 <strong>44% → 25%</strong>로 줄였다. 동시에 지붕 IoU 0.47은 사람 간 합의 0.72에 못 미친다. 두 사실을 같이 말한다.</p></div>
   <div class="card__body">
     <div>
@@ -862,7 +862,7 @@ footer{border-top:1px solid var(--line); margin-top:40px; padding-block:24px 48p
         <div><span class="t">헤드라인</span>청사·초등학교 적용 결과 · 대전 11곳 정답 라벨 검증</div>
         <div style="display:grid; grid-template-columns:1.15fr 1fr; gap:6px; background:none; border:0; padding:0">
           <div class="data"><span class="t">좌 · 건물별 결과 (선으로 칸 나눔)</span>
-            청사 3곳 447kW: 교육청 163 · 중구청 153 · 대덕구청 131 / 한밭도서관 177kW<br>초등학교 149곳 → 기존 태양광 50곳 제외 → <strong>99곳 20,129kW</strong>(학교당 중앙값 191kW)<br>기존 태양광 청사 5곳·학교 50곳은 후보에서 뺌<br>→ <strong>합계 20.8MW</strong>
+            청사 3곳 447kW: 교육청 163 · 중구청 153 · 대덕구청 131<br>초등학교 149곳 → 기존 태양광 50곳 제외 → <strong>99곳 20,129kW</strong>(학교당 중앙값 191kW)<br>기존 태양광 청사 5곳·학교 50곳은 후보에서 뺌<br>→ <strong>합계 20.6MW</strong>
           </div>
           <div><span class="t">우 · 정확도 비교 (차트 2개로 분리)</span>
             <div class="bars">
@@ -885,7 +885,7 @@ footer{border-top:1px solid var(--line); margin-top:40px; padding-block:24px 48p
       <div class="detail-sec">
         <p class="sub">데이터·근거</p>
         <ul>
-          <li>후보 합계 <strong class="num">20,753kW</strong> ≒ <span class="num">20.8MW</span> (청사 3곳 447kW + 초등학교 99곳 20,129kW + 한밭도서관 177kW. 충북도청은 대전 밖이라 뺌). 정확도는 대전 공공건물 11곳 정답 라벨로 평가</li>
+          <li>후보 합계 <strong class="num">20,576kW</strong> ≒ <span class="num">20.6MW</span> (청사 3곳 447kW + 초등학교 99곳 20,129kW. 충북도청은 대전 밖이라 뺌, 한밭도서관 177kW는 사용량 확인 전이라 참고 후보). 정확도는 대전 공공건물 11곳 정답 라벨로 평가</li>
           <li>지붕 IoU 평균 <strong class="num">0.47</strong>(정답 라벨 1명분, 11곳, 손 경계 반영) / 수도권 검증 <span class="num">0.84</span></li>
           <li>건물별 용량 오차 중앙값: AI <strong class="num">25%</strong> vs 25% 가정 <span class="num">44%</span>, 11곳 중 8곳 AI가 더 정확. AI 합계는 정답보다 <span class="num">17%</span> 작음</li>
           <li>사람 간 합의: 라벨러 2명 기준 IoU 평균 <span class="num">0.72</span>(0.45~0.91) — 세 번째 라벨러는 0.37로 품질이 낮아 재라벨링 권장 <span class="need">평가 확대 필요</span></li>
@@ -900,7 +900,7 @@ footer{border-top:1px solid var(--line); margin-top:40px; padding-block:24px 48p
   </div>
   <div class="card__foot">
     <div><strong>시각화</strong> <span class="struct">대조형</span> — 좌 청사 5행 + 학교 요약(합계 강조), 우 비교 막대. 오차(%)와 IoU는 축이 다르므로 <strong>작은 차트 둘로 분리</strong>. 오차 막대엔 ‘낮을수록 좋음’ 화살표.</div>
-    <div><strong>디자인</strong> — 한계 블록은 레드 계열이되 배경을 연하게 해 패배감이 들지 않게. 합계 20.8MW는 가장 큰 숫자로.</div>
+    <div><strong>디자인</strong> — 한계 블록은 레드 계열이되 배경을 연하게 해 패배감이 들지 않게. 합계 20.6MW는 가장 큰 숫자로.</div>
   </div>
 </section>
 
@@ -915,7 +915,7 @@ footer{border-top:1px solid var(--line); margin-top:40px; padding-block:24px 48p
         <div class="data"><span class="t">0:00–0:12 · 항공사진 → AI 분할</span>중구청·초등학교 원본 위에 파랑(설치 가능)·노랑(구조물)이 덮이는 과정</div>
         <div class="data"><span class="t">0:12–0:25 · 패널 배치</span>줄 간격·구조물 여유가 적용되며 패널이 깔리고 kW 숫자가 올라감 (중구청 153kW)</div>
         <div class="hi"><span class="t">0:25–0:42 · 건물 상세</span>발전량 → 수익 → 설치비 → SPC 자금(출자·PF·시민) → DSCR까지 한 화면에서 이어짐</div>
-        <div class="ok"><span class="t">0:42–0:54 · 시민 투자</span>103곳 20.8MW · 약 226억 원 → 상품 고르기 → 금액 → 15년 연도별 이자·원금</div>
+        <div class="ok"><span class="t">0:42–0:54 · 시민 투자</span>102곳 20.6MW · 약 247억 원 → 상품 고르기 → 금액 → 15년 연도별 이자·원금</div>
         <div><span class="t">0:54–1:00 · 마무리</span>3D 지도(구별 참여율) 1컷 + 자막 한 줄</div>
       </div>
       <p class="wf-cap"><span class="need">영상은 아직 제작 전이다.</span> 위 컷 구성은 기존 데모 화면으로 찍을 수 있는 <strong>추천 시연 시나리오</strong>이며, 실제 녹화본이 나오면 초 단위를 다시 맞춘다. 삽입 규격: 슬라이드 전체 폭(1920×1080, 여백 없음), 상단에 제목 띠 <span class="num">80px</span>만 남겨 어느 항목인지 보이게 한다.</p>
@@ -941,7 +941,7 @@ footer{border-top:1px solid var(--line); margin-top:40px; padding-block:24px 48p
       </div>
       <div class="detail-sec">
         <p class="sub">영상 뒤 — 끝나자마자 못 박을 한 문장 (S9로 넘기며)</p>
-        <ul><li>“청사 3곳, 초등학교 99곳, 한밭도서관을 합치면 <strong>약 20MW, 설치비 약 226억 원</strong>입니다. 이 돈을 어떻게 마련하는지 말씀드리겠습니다.”<br><span style="color:var(--ink-3)">영상의 마지막 숫자(226억 원)를 그대로 받아 S9 자금 구조로 넘어간다 — 전환에 새 문장을 끼우지 않는다.</span></li></ul>
+        <ul><li>“청사 3곳과 초등학교 99곳을 합치면 <strong>약 20MW, 설치비 약 247억 원</strong>입니다. 이 돈을 어떻게 마련하는지 말씀드리겠습니다.”<br><span style="color:var(--ink-3)">영상의 마지막 숫자(247억 원)를 그대로 받아 S9 자금 구조로 넘어간다 — 전환에 새 문장을 끼우지 않는다.</span></li></ul>
       </div>
       <div class="detail-sec">
         <p class="sub">강조</p>
@@ -962,7 +962,7 @@ footer{border-top:1px solid var(--line); margin-top:40px; padding-block:24px 48p
   <div class="card__body">
     <div>
       <p class="sub">전환 멘트 (S8→S9, 멘토 피드백 — 시민펀드가 자립도로 이어지는 주체 설명)</p>
-      <p class="wf-cap">"시민이 낸 돈을 SPC가 모아 패널을 짓고, 그 패널이 낸 발전량이 매년 쌓여 대전 전력자립도 숫자로 들어갑니다." — 돈(시민→SPC)과 발전(SPC→자립도 +0.27%p, S11)이 같은 주체(SPC)를 거쳐 하나로 이어짐을 여기서 못 박는다.</p>
+      <p class="wf-cap">"시민이 낸 돈을 SPC가 모아 패널을 짓고, 그 패널이 낸 발전량이 매년 쌓여 대전 전력자립도 숫자로 들어갑니다." — 돈(시민→SPC)과 발전(SPC→자립도 +0.26%p, S11)이 같은 주체(SPC)를 거쳐 하나로 이어짐을 여기서 못 박는다.</p>
       <p class="sub">레이아웃 와이어프레임 (16:9)</p>
       <div class="wf" style="grid-template-rows:auto 1.25fr auto; grid-template-columns:1fr">
         <div><span class="t">헤드라인</span>시민이 낸 돈이 발전 수익으로 돌아오는 구조</div>
@@ -970,7 +970,7 @@ footer{border-top:1px solid var(--line); margin-top:40px; padding-block:24px 48p
           <div class="ctr"><span class="t">시민 15% · 은행 65%</span>P2P 연계대출(15년)<br>PF 대출(18년)</div>
           <div class="ctr hi"><span class="t">SPC (가칭 대전햇빛발전)</span>시·대전도시공사 출자 20%<br><strong>설치·운영 주체</strong></div>
           <div class="ctr data"><span class="t">공공건물 옥상</span>사용허가·대부<br>에너지 조례 제29조</div>
-          <div class="ctr data"><span class="t">전력 판매</span>147.7원/kWh<br>계약시장 20년 고정가격</div>
+          <div class="ctr data"><span class="t">전력 판매</span>146.92원/kWh<br>계약시장 20년 고정가격</div>
           <div class="ctr ok"><span class="t">돈 배분 7단계</span>운영비 → PF → DSRA → 시민<br>→ 적립 2종 → 공공 환원</div>
         </div>
         <div><span class="t">하단 근거 띠</span>재생에너지법 제26조(수의계약 임대·임대료 경감) · 대전 에너지 조례 제25조(시민참여형 지원계획 수립 의무)·제29조 · 선례: 서울시 태양광 시민펀드 1호 4.18%, 3년 상환 완료</div>
@@ -985,13 +985,13 @@ footer{border-top:1px solid var(--line); margin-top:40px; padding-block:24px 48p
       <div class="detail-sec">
         <p class="sub">데이터·근거</p>
         <ul>
-          <li>구조(팀원 「대전햇빛발전 SPC 펀드 구조」): 출자 <span class="num">20%</span>(대전시·대전도시공사, 최후순위) · 은행 PF <span class="num">65%</span>(18년 분할, 연 4.5%, 선순위) · 시민 <span class="num">15%</span>(P2P 연계대출, 15년 원리금 균등, 연 약 6.8%, 후순위)</li>
-          <li>판매형 100곳(학교 99·한밭도서관) 설치비 <span class="num">221.3억 원</span> = 출자 44.3 + PF 143.9 + 시민 <span class="num">33.2억</span>. 1인 연 500만 원 한도라 시민 최소 약 <span class="num">665명</span></li>
+          <li>구조(팀원 「대전햇빛발전 SPC 펀드 구조」): 출자 <span class="num">20%</span>(대전시·대전도시공사, 최후순위) · 은행 PF <span class="num">65%</span>(18년 분할, 연 5.0%, 선순위) · 시민 <span class="num">15%</span>(P2P 연계대출, 15년 원리금 균등, 연 7.0%, 후순위). 비율은 고정이 아니라 은행이 DSCR 1.2를 맞추는 만큼만 빌려줌</li>
+          <li>판매형 학교 99곳 설치비 <span class="num">241.5억 원</span> = 출자 48.3 + PF 157.0 + 시민 <span class="num">36.2억</span>. 1인 연 500만 원 한도라 시민 최소 약 <span class="num">725명</span></li>
           <li>왜 P2P인가: 15년 분할상환이 실무 표준이고(군산 새만금·태백 가덕산 선례), 증권형 크라우드펀딩은 3~5년 일시상환이 일반적이며 한 회사당 연 30억 원 한도가 있다</li>
-          <li>돈 배분 7단계: ① 운영비·옥상 사용료 → ② 은행 PF 원리금 → ③ DSRA(PF 6개월분, 약 5.9억까지 채운 뒤 유지) → ④ 시민 원리금 → ⑤ 유지보수 적립(인버터 교체) → ⑥ 철거·원상복구 적립 → ⑦ 공공 환원(출자자 배당·대전시 기금)</li>
-          <li>상환 타임라인: 1~15년차 PF + 시민 함께 상환(연 약 15.4억) → 16~18년차 PF만 → 19~20년차 빚 0원, 전부 공공 환원</li>
-          <li>DSCR(번 돈 ÷ 갚을 돈): 기본(대전 실측 73곳 중앙값 1,183kWh/kW) 1년차 <span class="num">2.04배</span>·최저 1.89배 / 참고(AI 1,333) 2.34배 / 보수(실측 하위 25% 964 + 설치비 160만 원/kW) 1년차 <span class="num">1.03배</span>·최저 0.95배 → 은행 기준 1.2배 미달이라 출자 확대·DSRA 확대로 대응</li>
-          <li>판매가: 재생에너지법 개정(2026.9.15 공포)으로 신규 설비는 REC 미발급 → REC 수익 제외, 2026년 1차 고정가격계약 입찰 상한가 <span class="num">147.686원/kWh</span></li>
+          <li>돈 배분 7단계: ① 운영비·옥상 사용료 → ② 은행 PF 원리금 → ③ DSRA(PF 6개월분, 약 6.7억까지 채운 뒤 유지) → ④ 시민 원리금 → ⑤ 유지보수 적립(인버터 교체) → ⑥ 철거·원상복구 적립 → ⑦ 공공 환원(출자자 배당·대전시 기금)</li>
+          <li>상환 타임라인: 1~15년차 PF + 시민 함께 상환(연 약 17.4억 = PF 13.4 + 시민 4.0) → 16~18년차 PF만 → 19~20년차 빚 0원, 전부 공공 환원</li>
+          <li>DSCR(번 돈 ÷ 갚을 돈), 금리·단가·설치비는 전문가 입력값(기본값은 공개 자료): 기본(실측 68곳 중앙값 1,200kWh · 120만 원 · PF 5% · 시민 7%) 1년차 <span class="num">1.83배</span>·최저 1.69배 / 보수(993kWh · 140만 · 6% · 9%) 1.13배·최저 1.04배 → 출자 35%·PF 50%로 바꾸면 최저 1.27배(출자 약 99억) / 스트레스(993 · 160만 · 7.12% · 11%) <span class="num">0.89배</span> → 착공 보류·구조 재설계 / 팀 원안(AI 1,333 · 109만 · 4.5% · 6.8%) 2.36배</li>
+          <li>판매가: 재생에너지법 개정(2026.9.15 공포)으로 신규 설비는 REC 미발급 → REC 수익 제외, 2026년 1차 고정가격계약 낙찰 평균 <span class="num">146.92원/kWh</span>(입찰 상한 147.686원)</li>
           <li>청사 3유형: 예산 안이면 기관 예산 자가소비, 넘으면 SPC가 설치하고 청사가 전기를 사는 <strong>온사이트 PPA</strong>(PPA 가격은 판매 기준가 이상·청사 요금 이하)</li>
           <li>비용: P2P 플랫폼 수수료 대출 원금의 1.5~3%(SPC 부담), 옥상 사용료 100kW당 연 약 30만 원(공유재산 운영기준 옥상지수)</li>
           <li>선례: 서울시 태양광 시민펀드 1호(2015) — 82.5억 원, 연 4.18%, 1,044명, 원금 상환 후 잔여 수익 약 15억 원을 기후변화기금에 전입 · 군산 새만금 육상태양광 · 태백 가덕산 풍력 · 신안 햇빛연금</li>
@@ -1005,7 +1005,7 @@ footer{border-top:1px solid var(--line); margin-top:40px; padding-block:24px 48p
       </div>
       <div class="detail-sec">
         <p class="sub">강조 수치</p>
-        <div class="chips"><span class="chip">출자 20 · PF 65 · 시민 15</span><span class="chip s">DSCR 2.04배</span><span class="chip s">조례 제25·29조</span></div>
+        <div class="chips"><span class="chip">출자 20 · PF 65 · 시민 15</span><span class="chip s">DSCR 1.83배</span><span class="chip s">조례 제25·29조</span></div>
       </div>
     </div>
   </div>
@@ -1025,8 +1025,8 @@ footer{border-top:1px solid var(--line); margin-top:40px; padding-block:24px 48p
       <div class="wf" style="grid-template-rows:auto 1fr auto; grid-template-columns:1fr">
         <div><span class="t">헤드라인</span>단계별 사업화 계획</div>
         <div style="display:grid; grid-template-columns:0.8fr 1fr 1.2fr; gap:8px; align-items:center; background:none; border:0; padding:0">
-          <div class="data ctr"><span class="t">1단계 · 시범</span>청사 3곳 447kW · 약 4.9억 원<br>기관 예산으로 설치 · 자가소비(전기요금 연 약 0.9억 절감)<br>조건: 기관별 예산 편성 → <strong>실측 발전량으로 AI 모델 보정</strong></div>
-          <div class="hi ctr"><span class="t">2단계 · 확대</span>초등학교 99곳 + 한밭도서관 20.3MW · 약 221억 원<br>출자 20% + 은행 PF 65% + 시민 15%(33.2억, P2P) · 전량 판매<br>조건: 교육청 협약(전기사용량·설치 데이터 확보)·구조검토</div>
+          <div class="data ctr"><span class="t">1단계 · 시범</span>청사 3곳 447kW · 약 5.4억 원<br>기관 예산으로 설치 · 자가소비(전기요금 연 약 0.9억 절감)<br>조건: 기관별 예산 편성 → <strong>실측 발전량으로 AI 모델 보정</strong></div>
+          <div class="hi ctr"><span class="t">2단계 · 확대</span>초등학교 99곳 20.1MW · 약 241억 원<br>출자 20% + 은행 PF 65% + 시민 15%(36.2억, P2P) · 전량 판매<br>조건: 교육청 협약(전기사용량·설치 데이터 확보)·구조검토</div>
           <div class="ok ctr"><span class="t">3단계 · 연계</span>공공주차장 의무화 물량<br>(시 계획 51개소 약 13MW, 재원 미정)<br>조건: 시 계획 반영</div>
         </div>
         <div><span class="t">하단 · 운영 주체</span>SPC 운영(발전·정산) · 시 사용허가 · 플랫폼 모집 · AI는 후보 선정과 연 1회 재평가에 사용</div>
@@ -1049,7 +1049,7 @@ footer{border-top:1px solid var(--line); margin-top:40px; padding-block:24px 48p
       <div class="detail-sec">
         <p class="sub">데이터·근거</p>
         <ul>
-          <li><strong>재원 규칙</strong>: 전력 사용량에 비해 발전량이 작은 곳(연 발전 ÷ 연 사용 ≤ 30%)은 기관 예산으로 설치해 팔지 않고 자가소비, 예산을 넘는 청사는 온사이트 PPA, 나머지는 SPC가 설치해 전량 판매. 청사 3곳은 14~17%라 전부 예산·자가소비(설치비 약 4.9억, 전기요금 연 약 0.9억 절감 — 일반용 평균 165원/kWh 가정), 학교 99곳·한밭도서관은 판매형(약 221억: 출자 44.3 + PF 143.9 + 시민 33.2억, DSCR 1년차 2.04배 — 대전 실측 발전량 기준). 주말·휴일 잉여는 전력 예측 AI의 시간대별 분석으로 보완 → <strong>두 번째 AI의 역할</strong></li>
+          <li><strong>재원 규칙</strong>: 전력 사용량에 비해 발전량이 작은 곳(연 발전 ÷ 연 사용 ≤ 30%)은 기관 예산으로 설치해 팔지 않고 자가소비, 예산을 넘는 청사는 온사이트 PPA, 나머지는 SPC가 설치해 전량 판매. 청사 3곳은 14~17%라 전부 예산·자가소비(설치비 약 5.4억, 전기요금 연 약 0.9억 절감 — 일반용 평균 165원/kWh 가정), 학교 99곳은 판매형(약 241억: 출자 48.3 + PF 157.0 + 시민 36.2억, DSCR 1년차 1.83배 — 공개 자료 기본값). 주말·휴일 잉여는 전력 예측 AI의 시간대별 분석으로 보완 → <strong>두 번째 AI의 역할</strong></li>
           <li>3단계 근거: 공공주차장은 2025.11.28부터 설치 의무(주차구획 1,000㎡ 이상 → 100kW 이상)인데, 대전시 정보공개 답변엔 <span class="num">51개소·약 13MW</span> 설치 계획만 있고 재원은 미정 — 의무는 생겼는데 재원이 없는 영역</li>
           <li>운영: SPC가 발전·정산, 시는 공유재산 사용허가, 시민 모집은 P2P(온라인투자연계금융) 플랫폼, AI는 후보 선정과 재평가에 반복 사용</li>
           <li>설치 전 구조기술사 검토를 비용 항목에 포함(지붕 하중은 AI가 판정하지 않음)</li>
@@ -1058,7 +1058,7 @@ footer{border-top:1px solid var(--line); margin-top:40px; padding-block:24px 48p
       </div>
       <div class="detail-sec">
         <p class="sub">강조 수치</p>
-        <div class="chips"><span class="chip">226억 원 · 103곳</span><span class="chip s">주차장 51개소 13MW</span></div>
+        <div class="chips"><span class="chip">247억 원 · 102곳</span><span class="chip s">주차장 51개소 13MW</span></div>
       </div>
     </div>
   </div>
@@ -1079,9 +1079,9 @@ footer{border-top:1px solid var(--line); margin-top:40px; padding-block:24px 48p
         <div><span class="t">헤드라인</span>지역 효과 · 확장 가능성</div>
         <div style="display:grid; grid-template-columns:1fr 1fr; gap:6px; background:none; border:0; padding:0">
           <div class="hi"><span class="t">좌 · 지역 효과 (수치 3개)</span>
-            <strong style="font-family:var(--font-mono)">20.8MW</strong> 청사·초등학교·도서관 103곳 설치 가능 용량<br>
-            <strong style="font-family:var(--font-mono)">226억 원</strong> 설치비(기관 예산 + SPC)<br>
-            <strong style="font-family:var(--font-mono)">2.04배</strong> DSCR(대전 실측 발전량 기준) · 시민 15% P2P 15년 분할
+            <strong style="font-family:var(--font-mono)">20.6MW</strong> 청사·초등학교 102곳 설치 가능 용량<br>
+            <strong style="font-family:var(--font-mono)">247억 원</strong> 설치비(기관 예산 + SPC)<br>
+            <strong style="font-family:var(--font-mono)">1.83배</strong> DSCR(공개 자료 기본값) · 시민 15% P2P 15년 분할
           </div>
           <div class="ok"><span class="t">우 · 확장 가능성 (나열형 3칸)</span>
             <strong>지역 확장</strong> — AI Hub·브이월드·건축물대장은 전국 공통<br>
@@ -1101,15 +1101,15 @@ footer{border-top:1px solid var(--line); margin-top:40px; padding-block:24px 48p
       <div class="detail-sec">
         <p class="sub">데이터·근거</p>
         <ul>
-          <li>지역 효과: 후보 103곳 <strong class="num">20.8MW</strong>, 연 <span class="num">26.4GWh</span>, 설치비 <span class="num">약 226억 원</span>, 시민 P2P 연 약 <span class="num">6.8%</span>(15년 분할), 빚을 다 갚은 뒤 발전수익은 공공 환원</li>
+          <li>지역 효과: 후보 102곳 <strong class="num">20.6MW</strong>, 연 <span class="num">26.2GWh</span>, 설치비 <span class="num">약 247억 원</span>, 시민 P2P 연 <span class="num">7.0%</span>(15년 분할), 빚을 다 갚은 뒤 발전수익은 공공 환원</li>
           <li><strong>지역 확장 근거</strong>: 학습 데이터(AI Hub 71348)는 수도권·충청권 항공·드론 영상(대전 사진 없이 학습하고 대전에 적용, 대전 사진을 넣어도 정확도 같음)이고, 적용에 쓰는 브이월드 항공사진·건물경계·건축물대장 API는 <strong>전국 공통 서비스</strong> → 다른 시·도도 좌표만 바꿔 같은 파이프라인을 쓸 수 있다</li>
           <li><strong>대상 확장 근거</strong>: 공공주차장은 2025.11.28 설치 의무화, 대전시 계획은 51개소·약 13MW뿐이고 재원은 미정 — 같은 적지분석이 바로 필요한 영역</li>
-          <li>규모 감각(솔직하게): 자립도 <span class="num">+1%p</span>에 약 <span class="num">83MW</span>가 필요하다. 후보 103곳(연 26.3GWh)은 자립도 <span class="num">+0.27%p</span> 수준 → 메시지는 “자립도 해결”이 아니라 <strong>“공공부문 우선 실행 도구”</strong></li>
+          <li>규모 감각(솔직하게): 자립도 <span class="num">+1%p</span>에 약 <span class="num">83MW</span>가 필요하다. 후보 102곳(연 26.2GWh)은 자립도 <span class="num">+0.26%p</span> 수준 → 메시지는 “자립도 해결”이 아니라 <strong>“공공부문 우선 실행 도구”</strong></li>
         </ul>
       </div>
       <div class="detail-sec">
         <p class="sub">강조 수치</p>
-        <div class="chips"><span class="chip">20.8MW</span><span class="chip">226억 원</span><span class="chip s">전국 공통 데이터</span></div>
+        <div class="chips"><span class="chip">20.6MW</span><span class="chip">247억 원</span><span class="chip s">전국 공통 데이터</span></div>
       </div>
     </div>
   </div>
@@ -1129,7 +1129,7 @@ footer{border-top:1px solid var(--line); margin-top:40px; padding-block:24px 48p
     <div class="q"><h4>시연이 핵심 기능을 증명하는가</h4><p>S8의 60초가 분할 → 배치 → kW → 수익 → 모집액을 끊지 않고 한 번에 보여 준다. 배점 ②에 “시연을 통한 실제 구현 수준”이 명시돼 있어 가장 긴 단일 구간을 배정했다. <span class="need">다만 영상은 아직 제작 전이다(데모 화면은 시민 투자 장면까지 완성) — 최우선 과제.</span></p></div>
     <div class="q"><h4>기술적 구현 수준이 드러나는가</h4><p>S6의 변수(모듈 규격·경사 15°·구조물 여유)와 S7의 검증 수치(IoU 0.47, 오차 25%)가 함께 있어야 “돌려 봤다”가 아니라 “측정했다”로 읽힌다. 모델명(LR-ASPP)은 각주로 내려 시간을 아낀다.</p></div>
     <div class="q"><h4>차별성·경쟁력이 명확한가</h4><p>독립 슬라이드는 없지만 S5(기존 공식은 상수)와 S7(25% 가정 44% vs AI 25%)이 비교 구조를 이룬다. Q&A에서 “기존 방식과 뭐가 다르냐”가 나오면 프로젝트 분석의 3행 비교표를 백업 슬라이드로 띄운다.</p></div>
-    <div class="q"><h4>중복되거나 불필요한 장이 있는가</h4><p>설치비 단가(109만 원/kW)는 S3·S8·S10·S11에 반복되지만 쓰임이 다르다(필요성·계산·규모·효과). 타 지자체 선례는 S4에서 빼고 S9의 서울 1호 하나만 남겼다. 더 줄여야 하면 S9의 선례 목록(서울 1호 외 군산·태백·신안)을 서울 1호 하나로 좁힌다.</p></div>
+    <div class="q"><h4>중복되거나 불필요한 장이 있는가</h4><p>설치비 단가(120만 원/kW)는 S3·S8·S10·S11에 반복되지만 쓰임이 다르다(필요성·계산·규모·효과). 타 지자체 선례는 S4에서 빼고 S9의 서울 1호 하나만 남겼다. 더 줄여야 하면 S9의 선례 목록(서울 1호 외 군산·태백·신안)을 서울 1호 하나로 좁힌다.</p></div>
     <div class="q"><h4>7분 안에 끝나는가</h4><p>설계상 6분 35초(S6·S7 병합으로 11장). 7분이 넘으면 사회자가 끊으므로 <strong>리허설에서 6분 25초를 목표</strong>로 잡고, 넘치면 S3의 무산 사례를 3건에서 1건으로 줄인다.</p></div>
     <div class="q"><h4>슬라이드 간 연결이 자연스러운가</h4><p>S2 숫자 → S3 원인과 남은 벽 → S4 입지와 공백 → S5 왜 AI → S6~S7 방법과 결과 → S8 시연 → S9~S10 구조와 사업화 → S11 확장. 각 장의 마지막 문장이 다음 장 제목이 되도록 썼다.</p></div>
     <div class="q"><h4>근거 없이 주장하는 내용이 있는가</h4><p>모든 수치에 출처 문서를 매핑했다. 근거가 약한 둘은 제외했다 — ① “대전시 관계자: 주민 동의가 매우 낮다” 인용(원문 미확인, 무산 사례로 대체), ② 주민참여 REC 가중치 논리(2027 RPS 폐지로 무효).</p></div>
@@ -1148,7 +1148,7 @@ footer{border-top:1px solid var(--line); margin-top:40px; padding-block:24px 48p
       <li><strong>발표자 1인·서포트 1인 지정</strong> — 운영 조건상 필수. 리허설은 두 사람이 같이. <span class="need">미정</span></li>
       <li><strong>팀명·팀원</strong> — S1 표지. <span class="need">미확인</span></li>
       <li><strong>정보공개청구 답변</strong>(2026-11-01 신청) — 중구·동구·대전시 본청·유성구 도착(S3·S4·S7 반영: 작은 공공건물은 이미 설치, 민간 임대 사례 없음, 실측 발전량, 유성구청 기존 설치 확인으로 청사 후보 4곳 정정). <span class="need">서구·대덕구 대기</span></li>
-      <li><strong>시민 자금 방식</strong> — 팀원 「대전햇빛발전 SPC 펀드 구조」에 맞춰 P2P 연계대출(15년 원리금 균등, 약 6.8%)로 바꿈(2026-11-14). 신규 설비 REC 미발급(재생에너지법 개정 2026.9.15 공포)이라 REC 수익은 제외. <span class="need">시민 금리 6.8%의 근거(P2P 실무 7~11%), 실측 73곳 1,183과 검증표 66곳 1,208 통일 필요</span></li>
+      <li><strong>시민 자금 방식</strong> — 팀원 「대전햇빛발전 SPC 펀드 구조」에 맞춰 P2P 연계대출(15년 원리금 균등)로 바꿈(2026-11-14). 금리·단가·설치비는 전문가 입력값으로 두고 공개 자료 기본값(PF 5.0%·시민 7.0%·146.92원·120만 원/kW)을 씀(2026-11-15). 신규 설비 REC 미발급(재생에너지법 개정 2026.9.15 공포)이라 REC 수익은 제외. <span class="need">실측 68곳 1,200(팀원)과 검증표 66곳 1,208 계산 방법 통일, 한밭도서관 실제 사용량 확인</span></li>
       <li><strong>두 번째 AI(전력 사용량 예측) 역할</strong> — 사용량으로 예산 자가소비 / 온사이트 PPA / 판매형을 나눔. 시간대별 예측으로 주말·휴일 잉여 보완 예정. S6 반영 대상</li>
       <li><strong>시범 대상</strong> — 청사 후보 5곳으로 정함. 일정 <span class="need">미정</span></li>
       <li><strong>지붕 AI 라벨 확대</strong> — 신뢰 가능한 정답 라벨이 1명분. 사람 간 IoU 비교가 넓어지면 S7의 0.47 해석이 단단해진다. <span class="need">진행 중</span></li>

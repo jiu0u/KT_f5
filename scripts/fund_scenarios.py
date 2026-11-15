@@ -58,27 +58,36 @@ def plan_B(cost=109, r1=.055, r_pf=.045, r_cit=.065, eq=.2, pf=.65, cit=.15):
                 dscr1=dscr[0], dscr_min=min(dscr), irr=irr(eq_cf), ds=ds2)
 
 
-def plan_SPC(kw=20129 + 177, y1=1183, cost=109, price=147.686, r_cit=.068):
-    """현재 기준(2026-11-14, 팀원 「대전햇빛발전 SPC 펀드 구조」): SPC 판매형 = 학교 99곳 + 한밭도서관.
-    출자 20% · 은행 PF 65%(18년 4.5%) · 시민 15%(P2P 연계대출 15년 원리금 균등, 수수료 가산 없음).
-    발전량 시나리오: 기본 1,183(대전 실측 73곳 중앙값) · 참고 1,333(AI) · 보수 964 + 설치비 160. 데모 fin()과 같은 계산."""
+def plan_SPC(kw=20129, y1=1200, cost=120, price=146.92, r_pf=.05, r_cit=.07, eq=.2, rent=0):
+    """현재 기준(팀원 「대전햇빛발전 SPC 펀드 구조」 2026-11-15판): SPC 판매형 = 학교 99곳(한밭도서관은 참고 후보라 뺌).
+    출자 20% · 은행 PF 65%(18년) · 시민 15%(P2P 연계대출 15년 원리금 균등, 수수료 가산 없음). 옥상 사용료는 운영비 1.5%에 포함(rent 0).
+    전문가 입력값 시나리오는 SCN. 데모 fin()과 같은 계산."""
     capex = kw * cost / 1e4
-    pf, cit = capex * .65, capex * .15
-    pfA, citA = annuity(pf, .045, 18), annuity(cit, r_cit, 15)
+    cit = capex * .15
+    pf = capex - capex * eq - cit
+    pfA, citA = annuity(pf, r_pf, 18), annuity(cit, r_cit, 15)
     dscr = []
     for y in range(1, 19):
-        cf = kw * y1 * (1 - DEG) ** (y - 1) * price / 1e8 - kw * cost * OM / 1e4 - kw * RENT / 1e4
+        cf = kw * y1 * (1 - DEG) ** (y - 1) * price / 1e8 - kw * cost * OM / 1e4 - kw * rent / 1e4
         dscr.append(cf / (pfA + (citA if y <= 15 else 0)))
-    return dict(capex=capex, equity=capex * .2, pf=pf, citizen=cit, pfA=pfA, citA=citA,
+    return dict(capex=capex, equity=capex * eq, pf=pf, citizen=cit, pfA=pfA, citA=citA,
                 people=cit * 1e4 / 500, dscr1=dscr[0], dscr_min=min(dscr))
 
 
+SCN = {"기본": dict(y1=1200, cost=120, r_pf=.05, r_cit=.07),
+       "보수": dict(y1=993, cost=140, r_pf=.06, r_cit=.09),
+       "스트레스": dict(y1=993, cost=160, r_pf=.0712, r_cit=.11),
+       "팀 원안": dict(y1=1333, cost=109, r_pf=.045, r_cit=.068)}
+
+
 if __name__ == "__main__":
-    for name, kw_y, c in (("기본", 1183, 109), ("참고", 1333, 109), ("보수", 964, 160)):
-        s = plan_SPC(y1=kw_y, cost=c)
-        print("SPC", name, {k: round(v, 2) for k, v in s.items()})
-    # 팀원 문서 7장 값과 맞는지 (학교 99곳만: 기본 약 2.0, 참고 약 2.3, 보수 1.03)
-    assert abs(plan_SPC(kw=20129)["dscr1"] - 2.04) < .01 and abs(plan_SPC(kw=20129, y1=964, cost=160)["dscr1"] - 1.03) < .01
+    for name, a in SCN.items():
+        print("SPC", name, {k: round(v, 2) for k, v in plan_SPC(**a).items()})
+    print("SPC 보수 + 출자 35%·PF 50%", round(plan_SPC(eq=.35, **SCN["보수"])["dscr_min"], 2))
+    # 팀원 문서 8장 값과 맞는지 (기본 1.83/1.69, 보수 1.13/1.04, 출자 35%면 1.27, 스트레스 0.89/0.81, 원안 2.36)
+    for name, d1, dm in (("기본", 1.83, 1.69), ("보수", 1.13, 1.04), ("스트레스", 0.89, 0.81), ("팀 원안", 2.36, 2.19)):
+        r = plan_SPC(**SCN[name]); assert abs(r["dscr1"] - d1) < .01 and abs(r["dscr_min"] - dm) < .01, name
+    assert abs(plan_SPC(eq=.35, **SCN["보수"])["dscr_min"] - 1.27) < .01
     print("--- 아래는 예전 비교안(A·B, 증권형 크라우드펀딩 기준) ---")
     a = plan_A(); print("A", {k: round(v, 2) if isinstance(v, float) else v for k, v in a.items()})
     for r in (.045, .06, .07):

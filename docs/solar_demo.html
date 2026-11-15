@@ -83,6 +83,10 @@ svg{width:100%;height:auto;display:block}
 .kpis div{display:grid;font-size:13px;color:var(--muted)}
 .kpis b{font:500 clamp(20px,2.6vw,26px) var(--f-num);color:var(--ink);line-height:1.25}
 .calc{display:grid;gap:12px}
+.ex{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px;border:1px solid var(--line);border-radius:8px;padding:8px 12px 12px;margin:0}
+.ex legend{font-size:12px;color:var(--muted);padding:0 4px}
+.ex label{display:grid;gap:3px;font-size:12px;color:var(--muted)}
+.ex input{font:inherit;font-size:14px;padding:5px 7px;border:1px solid var(--line);border-radius:6px;background:var(--surface);color:var(--ink);width:100%;box-sizing:border-box}
 .calc .top{display:flex;justify-content:space-between;align-items:baseline;gap:12px}
 .calc label{font-weight:500}
 .calc input{width:100%;accent-color:var(--sun)}
@@ -197,23 +201,26 @@ svg{width:100%;height:auto;display:block}
         <strong class="num" id="equityOut">20%</strong>
       </div>
       <div class="budget">
-        <label for="rate">시민 P2P 연계대출 금리 (연)</label>
-        <input id="rate" type="range" min="5" max="11" step="0.1" value="6.8">
-        <strong class="num" id="rateOut">6.8%</strong>
-      </div>
-      <div class="budget">
-        <span>발전량 시나리오</span>
-        <div class="seg" role="group" aria-label="발전량 시나리오">
-          <button type="button" data-scn="base" aria-pressed="true">기본 (실측)</button>
-          <button type="button" data-scn="ref" aria-pressed="false">참고 (AI)</button>
-          <button type="button" data-scn="low" aria-pressed="false">보수</button>
+        <span>시나리오</span>
+        <div class="seg" role="group" aria-label="자금 시나리오">
+          <button type="button" data-scn="base" aria-pressed="true">기본</button>
+          <button type="button" data-scn="cons" aria-pressed="false">보수</button>
+          <button type="button" data-scn="stress" aria-pressed="false">스트레스</button>
+          <button type="button" data-scn="orig" aria-pressed="false">팀 원안</button>
         </div>
         <span class="why" id="scnOut"></span>
       </div>
+      <fieldset class="ex"><legend>전문가 입력값 (시나리오를 고르면 채워지고, 직접 바꿀 수 있음)</legend>
+        <label>kW당 연 발전량 (kWh)<input type="number" data-ex="y" step="1"></label>
+        <label>판매 단가 (원/kWh)<input type="number" data-ex="price" step="0.01"></label>
+        <label>설치비 (만 원/kW)<input type="number" data-ex="cost" step="1"></label>
+        <label>은행 PF 금리 (%)<input type="number" data-ex="pfR" step="0.01"></label>
+        <label>시민 P2P 금리 (%)<input type="number" data-ex="ctR" step="0.1"></label>
+      </fieldset>
       <div class="stats">
         <div class="stat"><span>SPC 설치비 합계</span><strong class="num" id="pTotal">-</strong></div>
         <div class="stat"><span>출자 (시·공사)</span><strong class="num" id="pEquity">-</strong></div>
-        <div class="stat"><span>은행 PF (18년, 4.5%)</span><strong class="num" id="pPF">-</strong></div>
+        <div class="stat"><span>은행 PF (18년)</span><strong class="num" id="pPF">-</strong></div>
         <div class="stat"><span>시민 P2P (15년 분할)</span><strong class="num" id="pBond">-</strong></div>
         <div class="stat"><span>연 원리금 (PF + 시민)</span><strong class="num" id="pDebt">-</strong></div>
         <div class="stat"><span>DSCR 1년차 · 최저</span><strong class="num" id="pDscr">-</strong></div>
@@ -227,14 +234,14 @@ svg{width:100%;height:auto;display:block}
   </section>
 
   <div class="note">
-    <p><strong>계산 가정 (데모용).</strong> 대상은 공공청사 8곳(대전 6 · 충남 2, 그중 기존 태양광 없는 대전 3곳이 후보)과 한밭도서관, 대전 초등학교 99곳(149곳 중 기존 태양광 없는 곳 — 팀원 카카오맵 12곳 + 항공사진 판독, 학교 부지 안 건물 전부, 경계 확인 필요 25곳 표시. 전기사용량 자료가 없어 자가소비 여유는 중간값 0.5). 설치 용량은 지붕 AI 결과(docs/청사_지붕AI_최종표.csv의 보정 용량), 지붕면적은 AI가 쓴 건물 경계 면적입니다. 자가소비 수요·계통 여유는 가정값입니다. 지붕 그림은 AI가 계산에 쓴 건물 경계입니다.</p>
+    <p><strong>계산 가정 (데모용).</strong> 대상은 공공청사 8곳(대전 6 · 충남 2, 그중 기존 태양광 없는 대전 3곳이 후보)과 대전 초등학교 99곳(한밭도서관은 사용량 확인 전이라 참고 후보로 빼 둠)(149곳 중 기존 태양광 없는 곳 — 팀원 카카오맵 12곳 + 항공사진 판독, 학교 부지 안 건물 전부, 경계 확인 필요 25곳 표시. 전기사용량 자료가 없어 자가소비 여유는 중간값 0.5). 설치 용량은 지붕 AI 결과(docs/청사_지붕AI_최종표.csv의 보정 용량), 지붕면적은 AI가 쓴 건물 경계 면적입니다. 자가소비 수요·계통 여유는 가정값입니다. 지붕 그림은 AI가 계산에 쓴 건물 경계입니다.</p>
     <p><strong>AI 지붕분석(기본).</strong> 설비용량 = 항공사진 AI가 찾은 빈 지붕에 패널을 실제로 배치한 장수 × 0.57kW (2278×1134mm, 효율 22%) — 가장자리 0.5m 이격, 구조물 주변 북3·동서2·남0.5m, 연간 그림자 20% 넘는 곳 제외, 15° 경사·동지 9~15시 그림자 기준 줄 간격 · 발전량 = 용량 × 1,333kWh/kWp (PVGIS, 대전, 15° 경사) × 0.954 (연 0.5% 열화, 20년 평균) · 학습 데이터 AI Hub 「태양광 발전 현황 및 적지 분석 데이터」, 항공사진 브이월드 · 대전 정답 검증 전</p>
     <p><strong>25% 가정(비교용).</strong> 설비용량 = 지붕면적 × 모듈면적 25% × 0.22kW/㎡ (모듈면적 25%는 경기기후플랫폼 옥상형 기준, 효율 22%는 TOPCon 상업용 모듈) · 발전량 = 용량 × 1,189kWh/kWp (PVGIS, 대전) × 0.954 (연 0.5% 열화, 20년 평균) × 음영계수</p>
-    <p>설치비 109만 원/kW (에너지경제연구원 2024, 건물형) · 판매단가 147.7원/kWh (2026 1차 고정가격계약 입찰 상한가 147.686원, 신규 설비 REC 미발급이라 REC 수익 제외) · 운영비 설치비의 1.5%/년 (보험·수선·인버터 교체 포함, 전기저널)</p>
+    <p>전문가 입력값(기본): 설치비 120만 원/kW (100kW 약 1.1~1.4억 원, 해줌 2026 가이드의 아래쪽) · 판매단가 146.92원/kWh (2026 1차 고정가격계약 낙찰 평균, 신규 설비 REC 미발급이라 REC 수익 제외) · 은행 PF 5.0% (하나 솔라론 4.722~7.122%의 아래쪽) · 시민 P2P 7.0% (실무 7~11%의 아래쪽) · kW당 1,200kWh (대전시 실측 68곳 중앙값) · 운영비 설치비의 1.5%/년 (보험·점검·옥상 사용료 포함)</p>
     <p>자립도 기여 = 연 발전량 ÷ 대전 전력소비량 9,922GWh (2023) · 배출계수 0.4594 tCO₂/MWh · 우선순위 점수 = (가중치는 화면에서 조정, 기본) 연 발전량 40% + 설치 용이성 40%(기존 태양광·1988년 이전 구조검토·경계 현장확인 감점) + 자가소비 여유 20%(연 발전량 ÷ 연 전기사용량, 건축HUB 최근 12개월.) · 예산은 기관별(건물 주인마다 같은 금액 가정)</p>
-    <p>시민 수(최소) = 시민 몫 ÷ 일반 투자자 1인 한도 연 500만 원 · 옥상 사용료 100kW당 연 약 30만 원(공유재산 운영기준 옥상지수) · P2P 플랫폼 수수료(대출 원금의 1.5~3%)는 이 계산에 넣지 않음 · 금리는 화면에서 5~11% 조정(P2P 실무 7~11%)</p>
-    <p><strong>재원 규칙.</strong> 연 발전량이 건물 연 전기사용량의 30% 이하라 건물이 다 쓸 수 있는 곳(청사 3곳: 14~17%)은 기관 예산으로 설치해 팔지 않고 자가소비 — 전기요금 절감액 = 발전량 × 165원/kWh(일반용 평균 단가 가정, 한전 요금표 확인 필요). 예산이 모자란 청사는 SPC가 설치하고 청사가 전기를 사는 온사이트 PPA(PPA 가격은 147.7~165원 사이에서 정함, 이 데모는 보수적으로 147.7원으로 계산). 사용량 자료가 없는 학교와 발전이 사용보다 많은 한밭도서관은 SPC가 설치해 전량 판매. 연간 합계로만 판단하므로 주말·휴일 잉여는 전력 예측 AI의 시간대별 예측으로 보완할 예정.</p>
-    <p><strong>SPC 자금 구조 (팀원 「대전햇빛발전 SPC 펀드 구조」 기준).</strong> 출자 20%(대전시·대전도시공사, 화면에서 조정) · 은행 PF 65%(18년, 연 4.5%, 선순위) · 시민 15%(P2P 연계대출, 15년 원리금 균등, 연 약 6.8%, 후순위). 은행 몫은 100% − 출자 − 시민 15%. DSCR = (판매 − 운영비 − 옥상 사용료) ÷ (PF + 시민 원리금), 1년차와 상환 기간 중 최저를 같이 표시. 발전량 시나리오: 기본 1,183kWh/kW(대전 실측 73곳 중앙값) · 참고 1,333(AI·PVGIS 15°) · 보수 964 + 설치비 160만 원/kW. 1년차 뒤 연 0.5% 열화.</p>
+    <p>시민 수(최소) = 시민 몫 ÷ 일반 투자자 1인 한도 연 500만 원 · P2P 플랫폼 수수료(대출 원금의 1.5~3%)는 이 계산에 넣지 않음</p>
+    <p><strong>재원 규칙.</strong> 연 발전량이 건물 연 전기사용량의 30% 이하라 건물이 다 쓸 수 있는 곳(청사 3곳: 14~17%)은 기관 예산으로 설치해 팔지 않고 자가소비 — 전기요금 절감액 = 발전량 × 165원/kWh(일반용 평균 단가 가정, 한전 요금표 확인 필요). 예산이 모자란 청사는 SPC가 설치하고 청사가 전기를 사는 온사이트 PPA(PPA 가격은 판매 단가~165원 사이에서 정함, 이 데모는 보수적으로 판매 단가로 계산). 사용량 자료가 없는 학교는 SPC가 설치해 전량 판매. 연간 합계로만 판단하므로 주말·휴일 잉여는 전력 예측 AI의 시간대별 예측으로 보완할 예정.</p>
+    <p><strong>SPC 자금 구조 (팀원 「대전햇빛발전 SPC 펀드 구조」 기준).</strong> 출자 20%(대전시·대전도시공사, 화면에서 조정) · 은행 PF 65%(18년, 선순위) · 시민 15%(P2P 연계대출, 15년 원리금 균등, 후순위). 은행 몫은 100% − 출자 − 시민 15%. DSCR = (판매 − 운영비) ÷ (PF + 시민 원리금), 1년차와 1~18년차 최저를 같이 표시. 은행 기준 1.2에 못 미치면 출자를 몇 %로 늘려야 맞는지 함께 보여 줌. 시나리오 — 기본 1,200kWh·120만 원·PF 5%·P2P 7% / 보수 993·140만·6%·9% / 스트레스 993·160만·7.12%·11% / 팀 원안 1,333·109만·4.5%·6.8%. 1년차 뒤 연 0.5% 열화.</p>
   </div>
 </div>
 
@@ -257,24 +264,28 @@ const B=[
  {n:"대덕구청",g:"대덕구",c:"대전",lat:36.34666,lon:127.41557,roof:1756,shade:.9,demand:.85,grid:.6,use:1226211},
  {n:"대전광역시교육청",g:"서구",c:"대전",lat:36.3524,lon:127.38365,roof:2489,shade:.9,demand:.85,grid:.6,use:1214009},
  // 충청북도청은 대전 펀드 대상 지역이 아니라 뺌 (팀원 SPC 문서, 2026-11-14). 지붕 AI 결과는 docs/청사_지붕AI_최종표.csv에 남아 있음
- // 한밭도서관: 문화시설 판매형 (팀원 SPC 문서). 지붕 AI 177kW는 구조물 과다 인식으로 작게 나온 값(정답 라벨 약 3배). 사용량은 팀원 전력 자료 — 월평도서관 자료인지 확인 필요
- {n:"한밭도서관",t:"도서관",o:"대전광역시",g:"중구",c:"대전",lat:36.30965,lon:127.40935,roof:3600,shade:.9,demand:.85,grid:.6,use:145658},
+ // 한밭도서관(지붕 AI 177kW)은 팀원 SPC 문서에서 "참고 후보" — 건축HUB 사용량(연 14.6만kWh)이 대표 도서관치고 작고 2022.7 이후 자료뿐이라 실제 사용량 확인 전까지 계산에서 뺌. 아래 줄은 확인되면 되살림. 지붕 AI 177kW는 구조물 과다 인식으로 작게 나온 값(정답 라벨 약 3배). 사용량은 팀원 전력 자료 — 월평도서관 자료인지 확인 필요
+ // {n:"한밭도서관",t:"도서관",o:"대전광역시",g:"중구",c:"대전",lat:36.30965,lon:127.40935,roof:3600,shade:.9,demand:.85,grid:.6,use:145658},
  {n:"충청남도청",g:"홍성군",c:"충남",lat:36.65863,lon:126.67258,roof:13194,shade:.9,demand:.85,grid:.6,use:10991993, pv:true},
  {n:"천안시청",g:"천안시",c:"충남",lat:36.8149,lon:127.11398,roof:9772,shade:.9,demand:.85,grid:.6,use:4711000, pv:true}
 ];
 // 지붕 윤곽: 지붕 AI가 실제로 쓴 건물 경계(9곳 전부. 6곳은 팀원 손 윤곽, 나머지는 브이월드 경계를 사진에 맞춰 옮긴 것)
 const ROOF={"대전광역시청":[[36.350668,127.384218],[36.350277,127.384218],[36.350277,127.384692],[36.350327,127.384695],[36.350327,127.384996],[36.350277,127.384996],[36.350268,127.385579],[36.350289,127.385579],[36.350293,127.38559],[36.350394,127.385593],[36.350396,127.38576],[36.350659,127.385769],[36.35067,127.384946],[36.350605,127.38494],[36.350605,127.384843],[36.350673,127.384837]],"서구청":[[36.355604,127.383262],[36.355357,127.383251],[36.35535,127.384391],[36.355658,127.38438],[36.355678,127.384065],[36.355732,127.384062],[36.355739,127.383393],[36.355602,127.383398]],"중구청":[[36.325959,127.42148],[36.325906,127.421344],[36.325917,127.421313],[36.325463,127.420666],[36.325447,127.420686],[36.325423,127.420652],[36.325335,127.420742],[36.325355,127.420772],[36.325283,127.420848],[36.325313,127.4209],[36.325389,127.420836],[36.325769,127.421363],[36.325665,127.421422],[36.325553,127.421115],[36.32542,127.421193],[36.325526,127.421497],[36.32545,127.421544],[36.325456,127.421572],[36.325364,127.421631],[36.32542,127.421779]],"유성구청":[[36.362377,127.356429],[36.362312,127.356278],[36.362341,127.356258],[36.362278,127.356113],[36.362245,127.356122],[36.36218,127.355977],[36.362117,127.356019],[36.362114,127.35601],[36.362121,127.356005],[36.362096,127.355949],[36.362074,127.355862],[36.361955,127.355935],[36.362009,127.356069],[36.362029,127.356063],[36.362229,127.356532]],"대덕구청":[[36.3471,127.415749],[36.346936,127.415545],[36.346887,127.415609],[36.34681,127.415501],[36.346822,127.41549],[36.346624,127.415247],[36.346602,127.415267],[36.346575,127.41523],[36.346453,127.415375],[36.346925,127.415969]],"대전광역시교육청":[[[36.352632,127.384382],[36.352632,127.384139],[36.352576,127.384136],[36.352585,127.383604],[36.352531,127.383584],[36.352367,127.383584],[36.352346,127.383604],[36.352349,127.384122],[36.35236,127.384134],[36.352158,127.384134],[36.352158,127.384382]]],"충청북도청":[[36.636382,127.490905],[36.636074,127.490935],[36.636054,127.490944],[36.636112,127.491873],[36.636271,127.491859],[36.636227,127.491154],[36.636393,127.491134]],"충청남도청":[[36.659088,126.673978],[36.659571,126.67339],[36.659829,126.672489],[36.659567,126.672511],[36.658484,126.671783],[36.658442,126.671761],[36.658415,126.671767],[36.658397,126.671795],[36.658394,126.671837],[36.658417,126.671851],[36.658442,126.671839],[36.659003,126.672237],[36.658852,126.672752],[36.658572,126.673085],[36.658484,126.67294],[36.65843,126.672727],[36.658394,126.672732],[36.658392,126.672844],[36.658406,126.672931],[36.658437,126.673015],[36.658927,126.673718],[36.659032,126.673903]],"천안시청":[[36.814233,127.112714],[36.814157,127.113096],[36.814747,127.113283],[36.814792,127.11311],[36.815035,127.113182],[36.815041,127.113191],[36.815008,127.113368],[36.815291,127.113452],[36.815257,127.113612],[36.815046,127.11355],[36.814922,127.114156],[36.814585,127.114055],[36.814525,127.114355],[36.814725,127.114403],[36.814722,127.114431],[36.814949,127.114501],[36.814963,127.114445],[36.815084,127.114481],[36.815057,127.11461],[36.814916,127.114571],[36.814839,127.114997],[36.814846,127.115006],[36.815055,127.11507],[36.815217,127.114282],[36.815239,127.114276],[36.815331,127.113816],[36.815306,127.1138],[36.815448,127.11309]]};
-const C={ratio:.25,kwm2:.22,yld:1189,deg:.954,cost:109,price:147.7,om:.015,fund:.068,use:9922e3,co2:.4594,rent:.3,cap:500};
-// price: 2026 1차 고정가격계약 입찰 상한가 147.686원 · rent: 옥상 사용료 만 원/kW·년(공유재산 운영기준 옥상지수, 100kW 연 약 30만 원) · cap: 일반 투자자 1인 한도 연 500만 원
-// 자금 구조 = 팀원 「대전햇빛발전 SPC 펀드 구조」(2026-11-14 기준으로 맞춤): 출자 20% · 은행 PF 65%(18년 4.5%, 선순위) · 시민 15%(P2P 연계대출, 15년 원리금 균등, 약 6.8%, 후순위)
-const FIN={pfR:.045,pfN:18,ctN:15,ct:.15};
-// 발전량 시나리오(같은 문서 7장): 기본 = 대전 실측 설비 73곳 중앙값, 참고 = AI 옥상 분석(PVGIS 15°), 보수 = 실측 하위 25% + 설치비 160만 원/kW
-const SCN={base:{y:1183,cost:109,t:"대전 실측 73곳 중앙값 1,183kWh/kW"},ref:{y:1333,cost:109,t:"AI 지붕 분석 1,333kWh/kW"},low:{y:964,cost:160,t:"실측 하위 25% 964kWh/kW + 설치비 160만 원/kW"}};
+const C={ratio:.25,kwm2:.22,yld:1189,deg:.954,cost:120,price:146.92,om:.015,fund:.07,use:9922e3,co2:.4594,rent:0,cap:500};
+// price·cost·fund는 전문가 입력값(아래 SCN, 화면에서 바뀜) · rent: 옥상 사용료는 운영비 1.5%에 포함(팀원 문서 7장)이라 0 · cap: 일반 투자자 1인 한도 연 500만 원
+// 자금 구조 = 팀원 「대전햇빛발전 SPC 펀드 구조」(2026-11-15판): 출자 20% · 은행 PF 65%(18년, 선순위) · 시민 15%(P2P 연계대출, 15년 원리금 균등, 후순위). 은행은 DSCR 1.2를 맞추는 만큼만 빌려줌
+const FIN={pfR:.05,pfN:18,ctN:15,ct:.15,y:1200,min:1.2};
+// 시나리오(같은 문서 7·8장). 서비스에서는 전문가가 입력, 데모는 공개 자료 기본값
+//  기본: 대전 실측 68곳 중앙값 1,200kWh/kW · 2026 1차 고정가격계약 낙찰 평균 146.92원 · 설치비 120만 원/kW(100kW 1.1~1.4억 하단) · PF 5.0%(은행 4.722~7.122% 하단) · P2P 7.0%(실무 7~11% 하단)
+//  보수: 실측 하위 25% 993 · 140만 원 · PF 6% · P2P 9% / 스트레스: 993 · 160만 원 · PF 7.12% · P2P 11% / 팀 원안: AI 1,333 · 109만 원 · 4.5% · 6.8%
+const SCN={base:{y:1200,price:146.92,cost:120,pfR:.05,ctR:.07,t:"공개 자료 기본값"},cons:{y:993,price:146.92,cost:140,pfR:.06,ctR:.09,t:"발전량 하위 25% · 설치비·금리 중간"},stress:{y:993,price:146.92,cost:160,pfR:.0712,ctR:.11,t:"발전량 하위 25% · 설치비·금리 최고"},orig:{y:1333,price:146.92,cost:109,pfR:.045,ctR:.068,t:"AI 발전량 · 예전 가정 (참고용)"}};
+function setScn(k){ const v=SCN[k]; scn=k; FIN.y=v.y; C.price=v.price; C.cost=v.cost; FIN.pfR=v.pfR; C.fund=v.ctR; }
 let scn="base";
+const scnName=()=>({base:"기본",cons:"보수",stress:"스트레스",orig:"팀 원안"})[scn]||"직접 입력";
 const ann=(P,r,n)=>P>0?P*r/(1-Math.pow(1+r,-n)):0; // 원리금 균등 연 상환액
-// SPC 한 묶음(kW 합계)의 20년 현금흐름. 1년차는 열화 없음, 이후 연 0.5% 열화. CFADS = 판매 − 운영비 − 옥상 사용료
-function fin(kw){
-  const s=SCN[scn], cost=kw*s.cost, eq=cost*equity, ct=cost*FIN.ct, pf=Math.max(0,cost-eq-ct);
+// SPC 한 묶음(kW 합계)의 20년 현금흐름. 1년차는 열화 없음, 이후 연 0.5% 열화. CFADS = 판매 − 운영비(옥상 사용료 포함)
+function fin(kw,eqR=equity){
+  const s={y:FIN.y,cost:C.cost,t:SCN[scn]?SCN[scn].t:"직접 입력"}, cost=kw*s.cost, eq=cost*eqR, ct=cost*FIN.ct, pf=Math.max(0,cost-eq-ct);
   const pfA=ann(pf,FIN.pfR,FIN.pfN), ctA=ann(ct,C.fund,FIN.ctN), debt=y=>(y<=FIN.pfN?pfA:0)+(y<=FIN.ctN?ctA:0);
   const cf=[...Array(20)].map((_,i)=>kw*s.y*Math.pow(.995,i)*C.price/1e4-cost*C.om-kw*C.rent);
   const d=cf.map((c,i)=>debt(i+1)?c/debt(i+1):Infinity);
@@ -430,7 +441,7 @@ function plan(){
   // 재원 규칙(팀원 SPC 문서 3유형): 연 발전 ÷ 연 사용 ≤ 30%라 건물이 다 쓸 수 있는 곳은
   //  - 예산 안이면 기관 예산 자가소비형(city)
   //  - 예산을 넘으면 SPC가 설치하고 청사가 전기를 사는 온사이트 PPA(ppa, 청사 요금 165원 > 판매 기준 147.7원일 때 성립)
-  // 그 밖(사용량 자료 없는 학교, 발전이 사용보다 많은 한밭도서관)은 SPC 판매형(fund, 계약시장 147.7원).
+  // 그 밖(사용량 자료 없는 학교)은 SPC 판매형(fund, 계약시장).
   // ponytail: 연간 합계 비율로만 판단. 주말·휴일 잉여는 전력 예측 AI(시간대별)로 바꿀 자리
   const left={};
   ranked.forEach(b=>{ if(b.done){b.src="done";return;}
@@ -447,7 +458,9 @@ function render(){
   const todo=ranked.filter(b=>!b.done), city=todo.filter(b=>b.src==="city"), fund=todo.filter(b=>b.src==="fund"||b.src==="ppa");
   const kw=todo.reduce((s,b)=>s+b.kw,0), mwh=todo.reduce((s,b)=>s+b.mwh,0), gapM=fund.reduce((s,b)=>s+b.costM,0);
   fund.forEach(b=>{ b.f=fin(b.kw); });
-  const F=fin(fund.reduce((s,b)=>s+b.kw,0)), x2=v=>fmt(v,2)+"배";
+  const fkw=fund.reduce((s,b)=>s+b.kw,0), F=fin(fkw), x2=v=>fmt(v,2)+"배";
+  let need=null; for(let e=Math.round(equity*20)/20;e<=.851;e+=.05){ if(fin(fkw,e).dscrMin>=FIN.min){need=e;break;} }
+  document.querySelectorAll("[data-ex]").forEach(x=>{const k=x.dataset.ex, v=k==="y"?FIN.y:k==="price"?C.price:k==="cost"?C.cost:k==="pfR"?FIN.pfR*100:C.fund*100; if(document.activeElement!==x) x.value=+v.toFixed(3);});
   document.getElementById("equityOut").textContent=fmt(equity*100)+"%";
   document.getElementById("scnOut").textContent=F.s.t;
   document.getElementById("pTotal").textContent=fund.length?won(F.cost):"-";
@@ -457,14 +470,14 @@ function render(){
   document.getElementById("pDebt").textContent=fund.length?`${won(F.pfA+F.ctA)}/년`:"-";
   document.getElementById("pDscr").textContent=fund.length?`${x2(F.dscr1)} · ${x2(F.dscrMin)}`:"-";
   document.getElementById("pCityFund").textContent=fund.length?won(F.left):"-";
-  document.getElementById("pRoundNote").textContent=fund.length?`돈 배분 순서: ① 운영비·옥상 사용료 → ② 은행 PF 원리금(선순위, 연 ${won(F.pfA)}) → ③ DSRA(PF 6개월분까지 채운 뒤 유지) → ④ 시민 원리금(후순위, 연 ${won(F.ctA)}) → ⑤ 유지보수 적립 → ⑥ 철거·원상복구 적립 → ⑦ 공공 환원(출자자 배당·대전시 기금). 시민은 15년차, 은행은 18년차에 다 갚고 19~20년차는 빚 없이 전부 공공 환원입니다. DSCR(번 돈 ÷ 갚을 돈)은 은행 기준 1.2배 이상이 필요합니다${F.dscrMin<1.2?` — 이 시나리오에서는 최저 ${x2(F.dscrMin)}로 기준에 못 미쳐 출자를 늘리거나 DSRA를 키워야 합니다`:""}. 시민은 1인 연 500만 원 한도라 최소 ${fmt(Math.ceil(F.ct/C.cap))}명이 필요합니다.`:"";
+  document.getElementById("pRoundNote").textContent=fund.length?`돈 배분 순서: ① 운영비·옥상 사용료 → ② 은행 PF 원리금(선순위, 연 ${won(F.pfA)}) → ③ DSRA(PF 6개월분까지 채운 뒤 유지) → ④ 시민 원리금(후순위, 연 ${won(F.ctA)}) → ⑤ 유지보수 적립 → ⑥ 철거·원상복구 적립 → ⑦ 공공 환원(출자자 배당·대전시 기금). 시민은 15년차, 은행은 18년차에 다 갚고 19~20년차는 빚 없이 전부 공공 환원입니다. DSCR(번 돈 ÷ 갚을 돈)은 은행 기준 1.2배 이상이 필요합니다${F.dscrMin>=FIN.min?` — 이 조건에서는 최저 ${x2(F.dscrMin)}로 기준을 넘습니다`:need!=null?` — 이 조건에서는 최저 ${x2(F.dscrMin)}로 모자라서, 출자를 ${fmt(need*100)}%(약 ${won(F.cost*need)})로 늘리고 은행 PF를 ${fmt((1-need-FIN.ct)*100)}%로 줄이면 최저 ${x2(fin(fkw,need).dscrMin)}로 맞춥니다${need>=.5?" (출자 부담이 너무 커서 착공 보류·구조 재설계를 먼저 검토)":""}`:` — 출자를 85%까지 늘려도 기준에 못 미쳐 착공 보류 또는 구조 재설계가 필요합니다`}. 시민은 1인 연 500만 원 한도라 최소 ${fmt(Math.ceil(F.ct/C.cap))}명이 필요합니다.`:"";
   document.getElementById("budgetOut").textContent=fmt(budget,1)+"억 원";
-  document.getElementById("headline").textContent=`공공건물 ${todo.length}곳 옥상에 설치하면 (청사 ${todo.filter(b=>b.t==="청사").length} · 초등학교 ${todo.filter(b=>b.t==="학교").length} · 도서관 ${todo.filter(b=>b.t==="도서관").length})`;
+  document.getElementById("headline").textContent=`공공건물 ${todo.length}곳 옥상에 설치하면 (청사 ${todo.filter(b=>b.t==="청사").length} · 초등학교 ${todo.filter(b=>b.t==="학교").length})`;
   document.getElementById("kpis").innerHTML=`
     <div><b>연 ${fmt(mwh/1000,1)}GWh</b>전기 생산</div>
     <div><b>CO₂ ${fmt(mwh*C.co2)}톤</b>매년 감축</div>
     <div><b>${fund.length?`시민 최소 ${fmt(Math.ceil(F.ct/C.cap/10)*10)}명`:"시민 참여 0원"}</b>${fund.length?"P2P 연계대출 참여":"예산으로 전부 설치"}</div>
-    <div><b>DSCR ${fund.length?x2(F.dscr1):"-"}</b>1년차 (${scn==="base"?"실측 기준":scn==="ref"?"AI 기준":"보수"})</div>`;
+    <div><b>DSCR ${fund.length?x2(F.dscr1):"-"}</b>1년차 (${scnName()})</div>`;
   document.getElementById("sCity").textContent=`${city.length}곳 · ${fmt(city.reduce((s,b)=>s+b.kw,0))}kW`;
   document.getElementById("sKw").textContent=fmt(kw)+" kW";
   document.getElementById("sMwh").textContent=fmt(mwh)+" MWh";
@@ -582,10 +595,10 @@ function journey(fund){
     h+=`<p style="margin:0">투자 완료 — <b>${won(amt)}</b>으로 ${b.n} 옥상 패널 약 ${fmt(myKw/pKw,1)}장 몫을 빌려주었습니다 (예시).</p>
     <h3 style="margin:4px 0 0;font-size:15px">첫해 돈의 흐름: 옥상 발전 → 내 통장</h3>
     <div class="flow">
-      <div><span>① 옥상 발전</span><b>${fmt(f.mwh)}MWh</b><span>연간, ${fmt(b.kw)}kW · ${scn==="base"?"실측 기준":scn==="ref"?"AI 기준":"보수"}</span></div>
+      <div><span>① 옥상 발전</span><b>${fmt(f.mwh)}MWh</b><span>연간, ${fmt(b.kw)}kW · ${scnName()} ${fmt(FIN.y)}kWh/kW</span></div>
       <div><span>② 전기 판매 수익</span><b>${won(gross)}</b><span>× ${C.price}원/kWh</span></div>
       <div><span>③ 운영비·옥상 사용료 뺀 돈</span><b>${won(f.cf[0])}</b><span>보험·수선 연 ${C.om*100}%</span></div>
-      <div><span>④ 은행 PF 원리금 먼저</span><b>${won(f.pfA)}</b><span>선순위, 18년 4.5%</span></div>
+      <div><span>④ 은행 PF 원리금 먼저</span><b>${won(f.pfA)}</b><span>선순위, 18년 ${fmt(FIN.pfR*100,2)}%</span></div>
       <div><span>⑤ 시민 원리금</span><b>${won(f.ctA)}</b><span>후순위, 15년 ${fmt(C.fund*100,1)}%</span></div>
       <div class="me"><span>⑥ 내 몫 (${fmt(share*100,2)}%)</span><b>${fmt((y1.i+y1.p)*1e4)}원</b><span>이자 ${fmt(y1.i*1e4)} + 원금 ${fmt(y1.p*1e4)}</span></div>
     </div>
@@ -635,8 +648,10 @@ tabs.city.onclick=()=>show("city"); tabs.citizen.onclick=()=>show("citizen");
 document.getElementById("toFund").onclick=()=>show("citizen");
 document.getElementById("budget").oninput=e=>{budget=+e.target.value;render();};
 document.getElementById("equity").oninput=e=>{equity=+e.target.value/100;render();};
-document.getElementById("rate").oninput=e=>{C.fund=+e.target.value/100;document.getElementById("rateOut").textContent=fmt(C.fund*100,1)+"%";render();};
-document.querySelectorAll("[data-scn]").forEach(x=>x.onclick=()=>{scn=x.dataset.scn; document.querySelectorAll("[data-scn]").forEach(y=>y.setAttribute("aria-pressed",y===x)); render();});
+document.querySelectorAll("[data-ex]").forEach(x=>x.onchange=()=>{const k=x.dataset.ex, v=+x.value; if(!(v>0)) return;
+  if(k==="y")FIN.y=v; else if(k==="price")C.price=v; else if(k==="cost")C.cost=v; else if(k==="pfR")FIN.pfR=v/100; else C.fund=v/100;
+  scn="custom"; document.querySelectorAll("[data-scn]").forEach(y=>y.setAttribute("aria-pressed",false)); calc(); render();});
+document.querySelectorAll("[data-scn]").forEach(x=>x.onclick=()=>{setScn(x.dataset.scn); document.querySelectorAll("[data-scn]").forEach(y=>y.setAttribute("aria-pressed",y===x)); calc(); render();});
 const mb={mAI:true,m25:false};
 for(const [id,v] of Object.entries(mb)) document.getElementById(id).onclick=()=>{
   useAI=v; for(const k in mb) document.getElementById(k).setAttribute("aria-pressed",mb[k]===v); calc(); render();
