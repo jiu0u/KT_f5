@@ -531,7 +531,7 @@ function render(){
   const gr=document.getElementById("goRoof"); if(gr) gr.onclick=()=>map&&tap(b);
   const tc=document.getElementById("toCard"); if(tc) tc.onclick=()=>showTab("fund");
 
-  document.getElementById("roundNote").textContent=fund.length?`SPC(가칭 대전햇빛발전)가 ${fund.length}곳을 설치합니다. 출자 20%(대전시·대전도시공사) · 은행 PF 65%(18년 4.5%, 먼저 받음) · 시민 15%(P2P 연계대출 15년 원리금 균등, 은행 다음에 받음). 돈 배분: 운영비·옥상 사용료 → PF → DSRA → 시민 → 유지보수 적립 → 철거·원상복구 적립 → 공공 환원. 시민은 1인 연 500만 원 한도라 최소 ${fmt(Math.ceil(F.ct/C.cap))}명.`:"";
+  document.getElementById("roundNote").textContent=fund.length?`SPC(가칭 대전햇빛발전)가 ${fund.length}곳을 설치합니다. 출자 20%(대전시·대전도시공사) · 은행 PF 65%(18년 ${fmt(FIN.pfR*100,2)}%, 먼저 받음) · 시민 15%(P2P 연계대출 15년 원리금 균등, 은행 다음에 받음). 돈 배분: 운영비·옥상 사용료 → PF → DSRA → 시민 → 유지보수 적립 → 철거·원상복구 적립 → 공공 환원. 시민은 1인 연 500만 원 한도라 최소 ${fmt(Math.ceil(F.ct/C.cap))}명.`:"";
   document.getElementById("yearPlan").innerHTML=fund.length?`<table class="yp"><tbody><tr><td>설치비</td><td>${won(F.cost)}</td></tr><tr><td>출자 20%</td><td>${won(F.eq)}</td></tr><tr><td>은행 PF 65%</td><td>${won(F.pf)} · 연 ${won(F.pfA)}</td></tr><tr><td>시민 15%</td><td>${won(F.ct)} · 연 ${won(F.ctA)}</td></tr><tr><td>DSCR 1년차 · 최저</td><td>${x2(F.dscr1)} · ${x2(F.dscrMin)}</td></tr></tbody></table>`:"";
   const shown=fund.slice(0,12);
   document.getElementById("cards").innerHTML=fund.length?shown.map((b,i)=>{
