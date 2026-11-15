@@ -461,7 +461,10 @@ function makeMap(){
   const slow=setTimeout(()=>{if(!m.loaded())fallback();},10000); // 10초 안에 지도가 안 뜨면 사진으로
   return m;
 }
-try{ map=makeMap(); }catch(e){ fallback(); } // maplibre를 못 불러왔거나 WebGL이 없을 때
+function startMap(){ try{ map=makeMap(); }catch(e){ fallback(); } } // maplibre를 못 불러왔거나 WebGL이 없을 때
+// 깃허브 바로 열기(htmlpreview)는 <head>의 maplibre 스크립트를 실행하지 못함 → 없으면 여기서 다시 불러옴
+if(window.maplibregl) startMap();
+else{ const sc=document.createElement("script"); sc.src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"; sc.onload=()=>{startMap(); render();}; sc.onerror=fallback; document.head.appendChild(sc); }
 
 const color=s=>s==="city"?"#1d3a55":s==="fund"?"#e39b16":s==="ppa"?"#2f7d4f":"#8a9aa8";
 const label=s=>s==="city"?"예산·자가소비":s==="fund"?"SPC·판매":s==="ppa"?"SPC·온사이트 PPA":"기설치";
