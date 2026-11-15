@@ -1,0 +1,493 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>대전 공공건물 지붕 태양광 — 발표 슬라이드</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<style>
+/* 발표 슬라이드 공통 — 설계도 디자인 시스템(1920×1080, 다크 네이비, 강조 앰버 1색) */
+:root{--bg:#0E1620;--ink:#E8EDF2;--ink2:#A7B5C4;--amber:#E9A64A;--blue:#79B0D8;--warn:#E0786B;--line:#24313F;--card:#141F2B}
+*{box-sizing:border-box;margin:0}
+html,body{background:var(--bg)}
+body{font-family:"Noto Sans KR",sans-serif;color:var(--ink)}
+.slide{position:relative;width:1920px;height:1080px;padding:100px 120px 80px;display:flex;flex-direction:column;gap:28px}
+.mono{font-family:"IBM Plex Mono","Noto Sans KR",monospace;font-variant-numeric:tabular-nums}
+.hl{color:var(--amber)}
+.part{position:absolute;top:44px;right:120px;font-size:20px;color:var(--ink2);border:1px solid var(--line);border-radius:999px;padding:6px 16px}
+h1{font-size:54px;font-weight:700;line-height:1.25;letter-spacing:-.01em;max-width:1500px}
+.sub{font-size:26px;color:var(--ink2);margin-top:-12px}
+.grid2{display:grid;grid-template-columns:560px 1fr;gap:72px;align-items:center;flex:1;margin-top:-20px}
+.killer .big{font-size:200px;font-weight:600;line-height:1}
+.killer .big small{font-size:96px}
+.killer .calc{font-size:26px;color:var(--ink2);margin-top:18px}
+.killer .lab{font-size:24px;color:var(--ink2);margin-top:8px}
+.bars{display:grid;gap:26px}
+.bars .row{display:grid;grid-template-columns:90px 1fr 150px;align-items:center;gap:24px;font-size:30px}
+.bars .nm{color:var(--ink2)}
+.bars .track{position:relative;height:42px;background:#1A2633;border-radius:4px;overflow:visible}
+.bars .track i{display:block;height:100%;background:#4A5B6D;border-radius:4px}
+.bars .row.me .track i{background:var(--amber)}
+.bars .row.me .nm{color:var(--ink);font-weight:700}
+.bars b{font-size:32px;text-align:right}
+.bars .cut{position:absolute;left:70%;top:-6px;font-size:40px;font-style:normal;color:var(--bg);font-weight:700;background:none}
+.bars .axis{font-size:18px;color:var(--ink2);margin-top:4px}
+.band{border-left:6px solid var(--amber);background:var(--card);padding:22px 28px;font-size:28px;line-height:1.45}
+.src{position:absolute;left:120px;right:120px;bottom:36px;font-size:16px;color:#7E8D9C}
+/* S8 */
+.s8{display:grid;grid-template-columns:1fr 1fr;gap:56px;flex:1}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:36px 40px;display:flex;flex-direction:column;justify-content:center;gap:26px}
+.panel h2{font-size:26px;font-weight:500;color:var(--ink2)}
+.total{display:flex;align-items:baseline;gap:20px}
+.total .n{font-size:120px;font-weight:600;line-height:1;color:var(--amber)}
+.total .u{font-size:44px;color:var(--amber)}
+.total .t{font-size:26px;color:var(--ink2)}
+.split{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.split>div{border-top:1px solid var(--line);padding-top:16px}
+.split .k{font-size:22px;color:var(--ink2)}
+.split .v{font-size:52px;font-weight:600;margin-top:4px}
+.split .d{font-size:21px;color:var(--ink2);margin-top:10px;line-height:1.5}
+.cmp{display:grid;gap:14px}
+.cmp .row{display:grid;grid-template-columns:200px 1fr 110px;align-items:center;gap:18px;font-size:26px}
+.cmp .row span{color:var(--ink2)}
+.cmp .track{height:40px;background:#1A2633;border-radius:4px}
+.cmp .track i{display:block;height:100%;border-radius:4px;background:#4A5B6D}
+.cmp .row.ai .track i{background:var(--amber)}
+.cmp .row.ai span{color:var(--ink);font-weight:700}
+.cmp .row.blue .track i{background:var(--blue)}
+.cmp b{font-size:30px;text-align:right}
+.note{font-size:19px;color:var(--ink2);line-height:1.5}
+.limits{background:rgba(224,120,107,.10);border:1px solid rgba(224,120,107,.45);border-radius:12px;padding:20px 28px;display:grid;grid-template-columns:auto 1fr 1fr 1fr;gap:28px;align-items:start;font-size:21px;line-height:1.45}
+.limits strong{color:var(--warn);font-size:22px;white-space:nowrap}
+.limits div b{color:var(--ink)}
+
+/* ── 공통 부품 (S1·S3~S11) ── */
+.muted{color:var(--ink2)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:26px 30px}
+.card h3{font-size:24px;font-weight:700;margin-bottom:10px}
+.card p,.card li{font-size:22px;line-height:1.5;color:var(--ink2)}
+.card ul{padding-left:22px;display:grid;gap:6px}
+.tag{display:inline-block;font-size:18px;font-weight:700;padding:4px 12px;border-radius:999px;border:1px solid var(--line);color:var(--ink2);margin-bottom:12px}
+.tag.ok{color:#7FC49A;border-color:#2E5A40}
+.tag.warn{color:var(--warn);border-color:rgba(224,120,107,.5)}
+.tag.amber{color:var(--amber);border-color:rgba(233,166,74,.5)}
+.dim{opacity:.55}
+.row4{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.row3{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:40px}
+.big{font-family:"IBM Plex Mono","Noto Sans KR",monospace;font-weight:600;color:var(--amber);line-height:1}
+.empty{border:2px dashed #46596C;border-radius:12px;padding:26px 30px;background:none}
+.empty h3{color:var(--amber)}
+.band2{border-left:6px solid var(--amber);background:var(--card);padding:18px 26px;font-size:26px;line-height:1.45}
+.flow{display:flex;align-items:stretch;gap:0}
+.flow .st{flex:1;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:18px 20px}
+.flow .st b{display:block;font-size:24px;margin-bottom:6px}
+.flow .st span{font-size:19px;color:var(--ink2);line-height:1.45}
+.flow .ar{width:64px;display:flex;flex-direction:column;align-items:center;justify-content:center;color:var(--amber);font-size:30px;font-weight:700}
+.flow .ar small{font-size:15px;color:var(--ink2);font-weight:500;white-space:nowrap}
+.img{border-radius:10px;overflow:hidden;border:1px solid var(--line);background:#0A1018}
+.img img{display:block;width:100%;height:100%;object-fit:cover}
+.cap{font-size:17px;color:var(--ink2);margin-top:8px}
+.lg{display:flex;gap:18px;font-size:18px;color:var(--ink2)}
+.lg i{display:inline-block;width:14px;height:14px;border-radius:3px;margin-right:6px;vertical-align:-1px}
+.stage{display:flex;flex-direction:column;justify-content:flex-end;gap:10px;border-radius:12px;padding:24px 26px;border:1px solid var(--line)}
+.stage .k{font-size:20px;font-weight:700;color:var(--ink2)}
+.stage .v{font-size:30px;font-weight:700;line-height:1.3}
+.stage .d{font-size:20px;color:var(--ink2);line-height:1.5}
+.stage .c{font-size:19px;border-top:1px solid var(--line);padding-top:10px;color:var(--ink)}
+
+html{scroll-snap-type:y mandatory;background:#05090E}
+body{margin:0;background:#05090E}
+.pg{height:100vh;display:flex;align-items:center;justify-content:center;scroll-snap-align:center;overflow:hidden}
+.fit{width:1920px;height:1080px;flex:none;transform-origin:center;background:var(--bg)}
+.nav{position:fixed;right:16px;bottom:14px;font:13px "Noto Sans KR",sans-serif;color:#A7B5C4;background:rgba(14,22,32,.85);border:1px solid #24313F;border-radius:999px;padding:6px 12px;z-index:9}
+@media print{html{scroll-snap-type:none}.pg{height:auto;page-break-after:always}.fit{transform:none!important}.nav{display:none}@page{size:1920px 1080px;margin:0}}
+#s01 .cover{justify-content:center;gap:0;padding:120px 160px}
+#s01 .cover .kicker{font-size:26px;color:var(--amber);font-weight:700;letter-spacing:.04em}
+#s01 .cover h1{font-size:92px;font-weight:900;line-height:1.18;margin-top:28px;max-width:none}
+#s01 .cover .sub{font-size:34px;margin-top:36px;color:var(--ink2)}
+#s01 .cover .rule{width:180px;height:6px;background:var(--amber);margin-top:56px}
+#s01 .cover .meta{display:flex;gap:48px;margin-top:40px;font-size:26px;color:var(--ink2)}
+#s01 .cover .meta b{color:var(--ink);font-weight:700}
+#s03 .row4 .card{padding:22px 26px}
+#s03 .row4 .card h3{font-size:26px}
+#s03 .bottom{display:grid;grid-template-columns:1fr 1.1fr;gap:40px;flex:1}
+#s03 .bottom>.card:first-child{display:flex;flex-direction:column;justify-content:center}
+#s03 .bottom li{font-size:26px}
+#s03 .calc2{display:flex;flex-direction:column;gap:18px;justify-content:center}
+#s03 .eq{font-size:40px;font-weight:600}
+#s03 .need{display:grid;grid-template-columns:150px 1fr 120px;gap:18px;align-items:center;font-size:24px}
+#s03 .need .tr{height:38px;background:#1A2633;border-radius:4px}
+#s03 .need .tr i{display:block;height:100%;border-radius:4px;background:#4A5B6D}
+#s03 .need.me .tr i{background:var(--amber)}
+#s04 .body4{display:grid;grid-template-columns:1.05fr 1fr;gap:48px;flex:1}
+#s04 .why{display:grid;gap:16px;align-content:center}
+#s04 .why .r{display:grid;grid-template-columns:230px 1fr;gap:20px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:18px 24px;font-size:24px}
+#s04 .why .r span:first-child{color:var(--ink2)}
+#s04 .why .r.me{border-color:rgba(233,166,74,.6)}
+#s04 .why .r.me span:last-child{color:var(--amber);font-weight:700}
+#s04 .gaps{display:grid;gap:24px;align-content:center}
+#s04 .empty p{font-size:24px;line-height:1.5;color:var(--ink2)}
+#s04 .empty h3{font-size:30px;margin-bottom:8px}
+#s04 .lbl{font-size:22px;color:var(--ink2);font-weight:700}
+#s05 .b5{display:grid;grid-template-columns:.8fr 1.2fr;gap:44px;flex:1}
+#s05 .fx{display:flex;flex-direction:column;justify-content:center;gap:22px}
+#s05 .fx .term{display:flex;align-items:center;gap:16px;font-size:30px}
+#s05 .fx .term b{font-family:"IBM Plex Mono",monospace;font-size:44px;color:var(--amber);min-width:120px}
+#s05 .fx .op{font-size:34px;color:var(--ink2);padding-left:10px}
+#s05 .pics{display:grid;grid-template-columns:1fr 1fr;gap:18px;align-content:center}
+#s05 .pics .img{height:560px}
+#s06 .slide{gap:22px}
+#s06 .top .st.on{border-color:var(--amber);background:rgba(233,166,74,.08)}
+#s06 .b6{display:grid;grid-template-columns:1.25fr 1fr;gap:36px;flex:1;min-height:0}
+#s06 .left6{display:flex;flex-direction:column;gap:18px}
+#s06 .vars{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid var(--line);border-radius:10px;overflow:hidden}
+#s06 .vars div{padding:12px 18px;font-size:19px;color:var(--ink2);border-bottom:1px solid var(--line)}
+#s06 .vars div:nth-child(odd){border-right:1px solid var(--line)}
+#s06 .vars b{color:var(--ink);font-weight:600}
+#s06 .pic6{display:flex;flex-direction:column}
+#s06 .pic6 .img{flex:1;min-height:0}
+#s08 .slide{padding:0;gap:0}
+#s08 .bar8{height:80px;display:flex;align-items:center;justify-content:space-between;padding:0 48px;border-bottom:1px solid var(--line)}
+#s08 .bar8 b{font-size:30px}
+#s08 .bar8 span{font-size:20px;color:var(--ink2)}
+#s08 .video{flex:1;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:40px;background:repeating-linear-gradient(135deg,#101A25 0 24px,#0E1620 24px 48px)}
+#s08 .video .ph{font-size:34px;color:var(--ink2)}
+#s08 .cuts{display:grid;grid-template-columns:12fr 13fr 17fr 12fr 6fr;width:1680px;gap:6px}
+#s08 .cuts div{background:var(--card);border:1px solid var(--line);border-top:4px solid var(--amber);padding:14px 16px;font-size:19px;line-height:1.45;color:var(--ink2)}
+#s08 .cuts b{display:block;font-family:"IBM Plex Mono",monospace;color:var(--amber);font-size:18px;margin-bottom:4px}
+#s09 .slide{gap:24px}
+#s09 .mapx{display:grid;grid-template-columns:1fr 70px 1.35fr 70px 1fr 70px 1fr;align-items:center}
+#s09 .box{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:20px 22px;font-size:20px;line-height:1.5;color:var(--ink2)}
+#s09 .box b{display:block;font-size:24px;color:var(--ink);margin-bottom:6px}
+#s09 .box.spc{border:2px solid var(--amber);background:rgba(233,166,74,.08);padding:28px}
+#s09 .box.spc b{font-size:30px;color:var(--amber)}
+#s09 .arr{text-align:center;color:var(--amber);font-size:40px;font-weight:700}
+#s09 .money{display:grid;grid-template-columns:20fr 65fr 15fr;height:64px;border-radius:8px;overflow:hidden;font-size:21px;font-weight:700}
+#s09 .money div{display:flex;align-items:center;justify-content:center;gap:10px}
+#s09 .money .eq{background:#3B4B5C}
+#s09 .money .pf{background:#2C5577}
+#s09 .money .ct{background:var(--amber);color:#1b1404}
+#s09 .money small{font-weight:500;font-size:18px;opacity:.85}
+#s09 .b9{display:grid;grid-template-columns:1.3fr 1fr;gap:32px}
+#s09 .wf{display:flex;flex-wrap:wrap;gap:8px;align-items:center;font-size:19px}
+#s09 .wf span{background:#1A2633;border-radius:6px;padding:7px 12px}
+#s09 .wf span.h{background:rgba(233,166,74,.18);color:var(--amber);font-weight:700}
+#s09 .wf em{font-style:normal;color:var(--ink2)}
+#s09 .ds{display:grid;grid-template-columns:auto 1fr;gap:6px 18px;font-size:21px;align-items:baseline}
+#s09 .ds .big{font-size:56px}
+#s10 .stages{display:grid;grid-template-columns:1fr 1.15fr 1.3fr;gap:24px;align-items:end;flex:1}
+#s10 .s1{height:72%;background:#151F2A}
+#s10 .s2{height:86%;background:#1A2836}
+#s10 .s3{height:100%;background:rgba(233,166,74,.10);border-color:rgba(233,166,74,.5)}
+#s10 .s3 .k{color:var(--amber)}
+#s11 .b11{display:grid;grid-template-columns:1fr 1.15fr;gap:48px;flex:1}
+#s11 .nums{display:grid;gap:18px;align-content:center}
+#s11 .num{display:grid;grid-template-columns:300px 1fr;align-items:baseline;border-bottom:1px solid var(--line);padding-bottom:16px}
+#s11 .num .big{font-size:84px}
+#s11 .num .big small{font-size:38px}
+#s11 .num span{font-size:23px;color:var(--ink2);line-height:1.45}
+#s11 .ext{display:grid;gap:18px;align-content:center}
+#s11 .ext .card h3{color:var(--amber)}
+#s11 .close{font-size:36px;font-weight:700;text-align:center;padding:10px 0}
+</style></head><body>
+<section class="pg" id="s01"><div class="fit"><div class="slide cover">
+  <div class="kicker">DSC 공유대학 × KT · AI 활용 지역문제 해결</div>
+  <h1>대전 공공건물 지붕 태양광<br><span class="hl">적지분석 AI</span> + 시민펀드</h1>
+  <p class="sub">항공사진으로 실제 설치 가능 면적을 재고, 시민이 참여하는 SPC로 재원을 모읍니다</p>
+  <div class="rule"></div>
+  <div class="meta"><span><b>팀명</b> (추가 예정)</span><span><b>팀원</b> (추가 예정)</span></div>
+</div></div></section>
+<section class="pg" id="s02"><div class="fit"><div class="slide">
+  <div class="part">① 주제 적절성</div>
+  <h1>대전 전력자립도 <span class="hl">3.06%</span>, 17개 시·도 중 최하위</h1>
+  <p class="sub">대전은 쓰는 전기의 97%를 다른 지역에서 받아 씁니다.</p>
+
+  <div class="grid2">
+    <div class="killer">
+      <div class="big mono hl">3.06<small>%</small></div>
+      <div class="calc mono">발전 304GWh ÷ 소비 9,922GWh</div>
+      <div class="lab">2023년 대전 전력자립도</div>
+    </div>
+    <div class="bars">
+      <div class="row"><span class="nm">경북</span><div class="track"><i style="width:100%"></i><em class="cut">//</em></div><b class="mono">216%</b></div>
+      <div class="row"><span class="nm">서울</span><div class="track"><i style="width:22%"></i></div><b class="mono">10.4%</b></div>
+      <div class="row"><span class="nm">광주</span><div class="track"><i style="width:19.6%"></i></div><b class="mono">9.3%</b></div>
+      <div class="row me"><span class="nm">대전</span><div class="track"><i style="width:6.4%"></i></div><b class="mono hl">3.06%</b></div>
+      <p class="axis">막대 길이: 대전·광주·서울은 같은 축(전체 = 47.5%). 경북은 축을 넘어 잘라서 표시</p>
+    </div>
+  </div>
+
+  <div class="band">2026년 7월 보도: “전력자급도 꼴찌가 기업 유치 걸림돌”</div>
+
+  <div class="src">출처: 에너지경제연구원 지역에너지통계연보(2023, 발전량 ÷ 소비량). 한전통계 기준으로는 2.96%로 발표되기도 함</div>
+</div></div></section>
+<section class="pg" id="s03"><div class="fit"><div class="slide">
+  <div class="part">① 주제 적절성</div>
+  <h1>부지·행정은 풀렸고, 남은 문제는 <span class="hl">주민 반대와 예산</span>입니다</h1>
+
+  <div class="row4">
+    <div class="card dim"><span class="tag ok">해소</span><h3>① 부지</h3><p>이미 있는 건물 옥상을 씁니다</p></div>
+    <div class="card dim"><span class="tag ok">해소</span><h3>② 행정</h3><p>대전 에너지 조례 제29조로 수의계약 사용허가 가능</p></div>
+    <div class="card"><span class="tag warn">남음</span><h3>③ 주민 반대</h3><p>대형 발전시설이 주민 반대로 반복 무산</p></div>
+    <div class="card"><span class="tag warn">남음</span><h3>④ 예산</h3><p>2026년 재생에너지 예산 연 45.2억 원</p></div>
+  </div>
+
+  <div class="bottom">
+    <div class="card">
+      <h3>주민 반대로 무산된 사례</h3>
+      <ul>
+        <li>2019 평촌산단 LNG 발전소 건설계획 중단</li>
+        <li>도안지구·연축동 수소연료전지 발전소 무산</li>
+        <li>대전열병합 증설 반대 서명 4천여 명</li>
+      </ul>
+    </div>
+    <div class="card calc2">
+      <h3>예산으로 설치할 수 있는 양</h3>
+      <div class="eq mono">45.2억 ÷ 120만 원/kW = <span class="hl">연 3.8MW</span></div>
+      <div class="need"><span class="muted">옥상 잠재량</span><div class="tr"><i style="width:100%"></i></div><b class="mono">약 90MW</b></div>
+      <div class="need me"><span>예산 1년치</span><div class="tr"><i style="width:4.2%"></i></div><b class="mono hl">3.8MW</b></div>
+      <p class="muted" style="font-size:24px">예산만으로는 <b style="color:var(--ink)">20년 이상</b> 걸리고, 자립도는 1년에 0.05%p 오릅니다</p>
+    </div>
+  </div>
+
+  <div class="src">출처: 대전시 2026 재생에너지 예산 · 설치비 100kW 약 1.1~1.4억 원(해줌 2026 가이드)의 아래쪽 120만 원/kW · 무산 사례 언론 보도</div>
+</div></div></section>
+<section class="pg" id="s04"><div class="fit"><div class="slide">
+  <div class="part">① 주제 적절성</div>
+  <h1>공공 옥상은 비어 있지만, <span class="hl">건물별 설치 가능 용량</span> 자료가 없습니다</h1>
+
+  <div class="body4">
+    <div class="why">
+      <div class="lbl">왜 공공건물 옥상인가</div>
+      <div class="r"><span>LNG·연료전지</span><span>주민 반대로 무산</span></div>
+      <div class="r"><span>지상 태양광</span><span>이격거리 조례 전국 129곳</span></div>
+      <div class="r me"><span>공공건물 옥상</span><span>확인된 민원 1건</span></div>
+      <div class="r"><span>설치 의무</span><span>신축 1,000㎡ 이상만 신재생 36%(2026), 기존 건물은 의무 없음</span></div>
+    </div>
+    <div class="gaps">
+      <div class="lbl">없는 자료 두 가지</div>
+      <div class="empty"><h3>① 얼마나 깔 수 있나</h3><p>건물별 설치 가능 용량 데이터가 없습니다</p></div>
+      <div class="empty"><h3>② 누가 돈을 내나</h3><p>예산만으로는 20년이 걸리고, 대전에는 시민이 참여한 선례가 없습니다</p></div>
+    </div>
+  </div>
+
+  <div class="band">①은 지붕 AI로, ②는 시민이 참여하는 SPC로 채웁니다</div>
+  <div class="src">출처: 신재생에너지법 공공기관 설치 의무 비율 · 지자체 이격거리 조례 현황 · 대전 언론 보도</div>
+</div></div></section>
+<section class="pg" id="s05"><div class="fit"><div class="slide">
+  <div class="part">② AI 적합성</div>
+  <h1>지금까지의 잠재량은 <span class="hl">지붕 면적에 고정 비율</span>을 곱한 값입니다</h1>
+
+  <div class="b5">
+    <div class="card fx">
+      <h3 class="muted" style="font-size:22px">경기기후플랫폼 옥상 잠재량 공식</h3>
+      <div class="term"><b>일사량</b></div>
+      <div class="op">× 모듈 효율 <b class="hl mono">20%</b></div>
+      <div class="op">× 부지 대비 모듈 면적 <b class="hl mono">25%</b></div>
+      <p style="font-size:22px;border-top:1px solid var(--line);padding-top:16px">수원 검증: 지붕 격자값 5.83~6.41MWh, 표준편차 <b style="color:var(--ink)">1.5%</b>로 지붕마다 거의 같습니다</p>
+    </div>
+    <div>
+      <div class="pics">
+        <div><div class="img"><img src="img/junggu_orig.png" alt="중구청 항공사진"></div><div class="cap">대전 중구청 항공사진 (브이월드)</div></div>
+        <div><div class="img"><img src="img/junggu_seg.png" alt="AI 지붕 분할"></div><div class="cap">AI 분할: 옥탑·실외기·물탱크를 따로 찾습니다</div></div>
+      </div>
+      <div class="lg" style="margin-top:12px"><span><i style="background:#79B0D8"></i>설치 가능 지붕</span><span><i style="background:#E8C547"></i>구조물</span><span><i style="background:#E0605A"></i>건물 경계</span></div>
+    </div>
+  </div>
+
+  <div class="band">구조물과 그늘은 항공사진을 직접 분석해야 셀 수 있습니다</div>
+  <div class="src">출처: 경기기후플랫폼 신재생 잠재량 산정 방식 · 항공사진 브이월드(z19) · AI 결과는 팀 지붕 분할 모델</div>
+</div></div></section>
+<section class="pg" id="s06"><div class="fit"><div class="slide">
+  <div class="part">② AI 적합성</div>
+  <h1>항공사진에서 <span class="hl">패널 수, kW, 설치비</span>까지 계산합니다</h1>
+
+  <div class="flow top">
+    <div class="st"><b>① 학습</b><span>AI Hub 71348 적지분석</span></div>
+    <div class="ar">→<small>모델</small></div>
+    <div class="st on"><b>② 대전 적용</b><span>경계·그림자·배치 → kW</span></div>
+    <div class="ar">→<small>kWh/년</small></div>
+    <div class="st"><b>③ 전력 사용량</b><span>예산 자가소비 / 판매 구분</span></div>
+    <div class="ar">→<small>원</small></div>
+    <div class="st"><b>④ 수익·자금</b><span>SPC 원리금·DSCR</span></div>
+  </div>
+
+  <div class="b6">
+    <div class="left6">
+      <div style="font-size:21px;color:var(--amber);font-weight:700">② 대전 적용 단계</div>
+      <div class="flow">
+        <div class="st"><b>1 분할</b><span>지붕 / 구조물 / 배경</span></div>
+        <div class="ar">→</div>
+        <div class="st"><b>2 정합</b><span>건물 경계 자동 정렬 (≤8m)</span></div>
+        <div class="ar">→</div>
+        <div class="st"><b>3 그림자</b><span>주변 건물 높이, 동지 9~15시</span></div>
+        <div class="ar">→</div>
+        <div class="st"><b>4 배치</b><span>패널 수 → kW</span></div>
+      </div>
+      <div class="vars">
+        <div>모듈 <b>2278×1134mm · 효율 22%</b></div>
+        <div>경사 <b>15°</b> · 열화 <b>연 0.5%</b></div>
+        <div>가장자리 이격 <b>0.5m</b></div>
+        <div>구조물 여유 <b>북 3 · 동서 2 · 남 0.5m</b></div>
+        <div>줄 간격 <b>동지 9~15시 그림자 기준</b></div>
+        <div>발전량 <b>1,333kWh/kWp</b> (PVGIS 대전)</div>
+      </div>
+    </div>
+    <div class="pic6">
+      <div class="img"><img src="img/junggu_panel.png" alt="중구청 패널 배치 결과"></div>
+      <div class="cap">중구청 패널 배치: 269장, <b style="color:var(--amber)">153kW</b> (빨간 부분은 그림자로 뺀 곳)</div>
+    </div>
+  </div>
+
+  <div class="src">학습: AI Hub 「태양광 발전 현황 및 적지 분석 데이터」 · 적용: 브이월드 항공사진·건물경계 · 이격 기준 국토부 2015 지침 · 발전량 PVGIS</div>
+</div></div></section>
+<section class="pg" id="s07"><div class="fit"><div class="slide">
+  <div class="part">② AI 구현</div>
+  <h1>후보 102곳 <span class="hl">20.6MW</span>, 용량 오차는 44%에서 25%로 줄였습니다</h1>
+
+  <div class="s8">
+    <div class="panel">
+      <h2>청사·초등학교에 적용한 결과 (기존 태양광 건물 제외)</h2>
+      <div class="total"><span class="n mono">20.6</span><span class="u mono">MW</span><span class="t">설치 가능 · 연 26GWh</span></div>
+      <div class="split">
+        <div><div class="k">공공청사 3곳</div><div class="v mono">447<small style="font-size:26px">kW</small></div>
+          <div class="d">교육청 163 · 중구청 153<br>대덕구청 131 (충북도청은 대전 밖)</div></div>
+        <div><div class="k">초등학교 99곳</div><div class="v mono">20,129<small style="font-size:26px">kW</small></div>
+          <div class="d">149곳 분석 → 기존 태양광 50곳 제외<br>학교당 중앙값 191kW</div></div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <h2>정답과 비교한 정확도 (대전 공공건물 11곳, 팀원이 직접 칠한 지붕)</h2>
+      <div class="cmp">
+        <div class="note">건물별 설치 용량 오차 (낮을수록 정확)</div>
+        <div class="row"><span>지붕 25% 가정</span><div class="track"><i style="width:88%"></i></div><b class="mono">44%</b></div>
+        <div class="row ai"><span>지붕 AI</span><div class="track"><i style="width:50%"></i></div><b class="mono hl">25%</b></div>
+        <div class="note" style="margin-top:6px">11곳 중 8곳에서 AI가 정답에 더 가까움</div>
+      </div>
+      <div class="cmp" style="margin-top:22px">
+        <div class="note">지붕 일치도 IoU (높을수록 같음)</div>
+        <div class="row blue"><span>AI vs 정답</span><div class="track"><i style="width:47%"></i></div><b class="mono">0.47</b></div>
+        <div class="row blue"><span>사람 vs 사람</span><div class="track"><i style="width:72%"></i></div><b class="mono">0.72</b></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="limits">
+    <strong>알려진 한계</strong>
+    <div><b>① 보수적:</b> AI 합계가 정답보다 17% 작게 나옴</div>
+    <div><b>② 학교 25곳:</b> 체육관이 옆 필지라 빠져 실제보다 작음</div>
+    <div><b>③ 기존 태양광:</b> 학교 137곳은 항공사진 판독 (팀원 확인 12곳과 9/9 일치)</div>
+  </div>
+
+  <div class="src">학습: AI Hub 「태양광 발전 현황 및 적지 분석 데이터」 수도권 2,336장(대전 0장) · 적용: 브이월드 항공사진·건물경계 · 25% 가정 = 지붕 면적 × 25% × 0.22kW/㎡</div>
+</div></div></section>
+<section class="pg" id="s08"><div class="fit"><div class="slide">
+  <div class="bar8"><b>시연: 항공사진부터 시민 투자까지</b><span>② AI 구현 · 60초</span></div>
+  <div class="video">
+    <div class="ph">▶ 시연영상 자리 (1920×1080, 녹화 후 교체)</div>
+    <div class="cuts">
+      <div><b>0:00–0:12</b>항공사진 위에 AI가 설치 가능 지붕·구조물을 칠함</div>
+      <div><b>0:12–0:25</b>패널이 깔리며 kW가 올라감 (중구청 153kW)</div>
+      <div><b>0:25–0:42</b>발전량 → 수익 → 설치비 → SPC 자금 → DSCR</div>
+      <div><b>0:42–0:54</b>102곳 20.6MW → 상품 고르기 → 15년 이자·원금</div>
+      <div><b>0:54–1:00</b>3D 지도 한 컷</div>
+    </div>
+  </div>
+</div></div></section>
+<section class="pg" id="s09"><div class="fit"><div class="slide">
+  <div class="part">③ 실현가능성</div>
+  <h1>출자 SPC가 <span class="hl">은행 PF와 시민 P2P 대출</span>로 설치비를 모읍니다</h1>
+
+  <div class="mapx">
+    <div class="box"><b>시민 · 은행</b>P2P 연계대출 15년<br>PF 대출 18년</div>
+    <div class="arr">→</div>
+    <div class="box spc"><b>SPC (가칭 대전햇빛발전)</b>대전시·대전도시공사 출자 20%<br>설치·운영 주체</div>
+    <div class="arr">→</div>
+    <div class="box"><b>학교 옥상 99곳</b>교육청 협약·사용허가<br>에너지 조례 제29조</div>
+    <div class="arr">→</div>
+    <div class="box"><b>전력 판매</b>146.92원/kWh<br>계약시장 20년 고정가격</div>
+  </div>
+
+  <div>
+    <div class="money"><div class="eq">출자 20% <small>48.3억 · 최후순위</small></div><div class="pf">은행 PF 65% <small>157.0억 · 18년 5.0% · 선순위</small></div><div class="ct">시민 15% <small>36.2억</small></div></div>
+    <div class="cap">학교 99곳 설치비 241.5억 원 · 시민은 P2P 15년 원리금 균등(연 7.0%), 1인 연 500만 원 한도라 최소 약 725명 · 비율은 은행이 DSCR 1.2를 맞추는 만큼 조정</div>
+  </div>
+
+  <div class="b9">
+    <div class="card">
+      <h3>돈을 갚는 순서 (7단계)</h3>
+      <div class="wf"><span>① 운영비</span><em>→</em><span class="h">② 은행 PF</span><em>→</em><span>③ DSRA 6.7억</span><em>→</em><span class="h">④ 시민</span><em>→</em><span>⑤ 유지보수 적립</span><em>→</em><span>⑥ 원상복구 적립</span><em>→</em><span>⑦ 공공 환원</span></div>
+      <p style="margin-top:14px;font-size:20px">1~15년차에는 은행과 시민 몫을 함께 갚고(연 17.4억), 16~18년차에는 은행 몫만 갚습니다. 19~20년차 수익은 모두 공공에 돌아갑니다.</p>
+    </div>
+    <div class="card ds">
+      <span class="big">1.83</span><span>배 · DSCR 1년차 (기본값, 가장 낮은 해 1.69)<br><span class="muted" style="font-size:18px">번 돈 ÷ 갚을 돈 · 은행 기준 1.2</span></span>
+      <span class="mono hl" style="font-size:24px">보수</span><span class="muted" style="font-size:19px">1.13배 → 출자 35%·PF 50%로 바꾸면 1.27배</span>
+    </div>
+  </div>
+
+  <div class="src">근거: 재생에너지법 제26조(공유재산 수의계약 임대·임대료 경감) · 대전 에너지 조례 제25조(시민참여형 지원계획 수립 의무)·제29조 · 선례: 서울시 태양광 시민펀드 1호(연 4.18%, 3년 상환 완료) · 금리·단가·설치비는 공개 자료 기본값(하나 솔라론 4.722~7.122%, P2P 실무 7~11%, 2026 1차 낙찰 평균)</div>
+</div></div></section>
+<section class="pg" id="s10"><div class="fit"><div class="slide">
+  <div class="part">③ 실현가능성</div>
+  <h1>청사 3곳으로 시작해 <span class="hl">초등학교 99곳</span>, 공영주차장으로 넓힙니다</h1>
+
+  <div class="stages">
+    <div class="stage s1">
+      <div class="k">1단계 · 시범</div>
+      <div class="v">청사 3곳 447kW<br><span class="mono hl">약 5.4억 원</span></div>
+      <div class="d">교육청·중구청·대덕구청<br>기관 예산으로 설치, 전기는 건물이 다 씀<br>(전기요금 연 약 0.9억 절감)</div>
+      <div class="c">조건: 기관별 예산 편성 → 실측 발전량으로 AI 보정</div>
+    </div>
+    <div class="stage s2">
+      <div class="k">2단계 · 확대</div>
+      <div class="v">초등학교 99곳 20.1MW<br><span class="mono hl">약 241억 원</span></div>
+      <div class="d">SPC: 출자 20% + 은행 PF 65% + 시민 15%(36.2억, P2P)<br>전기는 전량 판매</div>
+      <div class="c">조건: 대전시–교육청 협약(사용허가·전기 사용량 자료)·구조검토</div>
+    </div>
+    <div class="stage s3">
+      <div class="k">3단계 · 연계</div>
+      <div class="v">공영주차장<br><span class="mono hl">51개소 약 13MW</span></div>
+      <div class="d">대전시가 이미 세운 설치 계획<br>재원이 정해지지 않아 같은 SPC 구조를 씁니다</div>
+      <div class="c">조건: 시 계획에 반영</div>
+    </div>
+  </div>
+
+  <div class="band" style="font-size:24px">운영: SPC가 발전·정산을, 시가 사용허가를, P2P 플랫폼이 시민 모집을 맡습니다. 지붕 AI는 해마다 후보를 다시 고릅니다.</div>
+  <div class="src">출처: 대전시 정보공개(2026-11-13) 공영주차장 태양광 설치예정 현황 51개소 12,992.6kW · 청사 전기요금 일반용 평균 165원/kWh(가정)</div>
+</div></div></section>
+<section class="pg" id="s11"><div class="fit"><div class="slide">
+  <div class="part">④ 파급효과</div>
+  <h1>전국 공통 데이터라 <span class="hl">다른 시·도에도 그대로</span> 쓸 수 있습니다</h1>
+
+  <div class="b11">
+    <div class="nums">
+      <div class="num"><b class="big">20.6<small>MW</small></b><span>청사·초등학교 102곳 설치 가능 용량<br>연 26.2GWh · 자립도 +0.26%p</span></div>
+      <div class="num"><b class="big">247<small>억</small></b><span>설치비 (기관 예산 5.4억 + SPC 241.5억)</span></div>
+      <div class="num"><b class="big">1.83<small>배</small></b><span>DSCR 1년차 (공개 자료 기본값)<br>시민 15% P2P 15년 분할</span></div>
+    </div>
+    <div class="ext">
+      <div class="card"><h3>지역 확장</h3><p>AI Hub·브이월드·건축물대장은 전국 자료라서 다른 시·도도 같은 방식으로 계산합니다</p></div>
+      <div class="card"><h3>대상 확장</h3><p>공영주차장(대전 51개소 13MW 계획) · 중·고등학교 지붕</p></div>
+      <div class="card"><h3>기능 확장</h3><p>해마다 다시 돌려 기존 설치·새 건물을 반영하고 설치 순서를 갱신</p></div>
+    </div>
+  </div>
+
+  <div class="close">“비어 있는 공공 옥상부터 <span class="hl">정확히 재고</span>, 시민과 함께 설치하겠습니다.”</div>
+  <div class="src">자립도 = 연 발전량 ÷ 대전 전력소비량 9,922GWh(2023) · 자립도 +1%p에는 약 83MW가 필요합니다. 이 사업만으로 자립도 문제를 풀 수는 없고, 공공부문이 먼저 설치하는 데 쓰는 방법입니다</div>
+</div></div></section>
+<div class="nav" id="nav">← → 키로 넘기기 · F 전체화면</div>
+<script>
+const P=[...document.querySelectorAll(".pg")], nav=document.getElementById("nav");
+const fit=()=>{const k=Math.min(innerWidth/1920,innerHeight/1080);document.querySelectorAll(".fit").forEach(f=>f.style.transform=`scale(${k})`);};
+addEventListener("resize",fit); fit();
+const cur=()=>{let b=0,d=1e9;P.forEach((p,i)=>{const t=Math.abs(p.getBoundingClientRect().top);if(t<d){d=t;b=i;}});return b;};
+const go=i=>P[Math.max(0,Math.min(P.length-1,i))].scrollIntoView({behavior:"smooth"});
+addEventListener("keydown",e=>{
+  if(["ArrowRight","ArrowDown","PageDown"," "].includes(e.key)){e.preventDefault();go(cur()+1);}
+  else if(["ArrowLeft","ArrowUp","PageUp"].includes(e.key)){e.preventDefault();go(cur()-1);}
+  else if(e.key==="f"||e.key==="F"){document.fullscreenElement?document.exitFullscreen():document.documentElement.requestFullscreen();}
+  else if(e.key==="Home")go(0); else if(e.key==="End")go(P.length-1);
+});
+addEventListener("scroll",()=>{nav.textContent=`${cur()+1} / ${P.length} · ← → 넘기기 · F 전체화면`;},{passive:true});
+</script>
+</body></html>

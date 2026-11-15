@@ -1,6 +1,8 @@
 # 발표 슬라이드 (1920×1080 HTML)
 
-아래 링크를 누르면 브라우저에서 바로 열려요.
+**11장 한 번에 보기:** [deck.html 열기](https://htmlpreview.github.io/?https://github.com/jiu0u/KT_f5/blob/main/docs/slides/deck.html) — ← → 키(또는 스크롤)로 넘기고 F로 전체화면. 발표할 때도 이 파일 하나면 돼요.
+
+아래는 한 장씩 여는 링크예요.
 
 | 장 | 내용 | GitHub Pages | 미리보기 (Pages 켜기 전) |
 |---|---|---|---|
@@ -20,3 +22,4 @@
 - **미리보기 링크**는 htmlpreview.github.io(외부 서비스)를 거쳐서 지금 바로 열려요.
 - 항공사진(`img/`)은 깃에 올리지 않아서 S5·S6 사진 자리는 비어 보여요. 사진은 단톡방 PNG로 보세요.
 - 고칠 때: 장마다 담당을 나누고, 시작 전 `git pull`, 끝나면 바로 커밋·푸시. 공통 디자인 `slide.css`는 한 사람만 고쳐요. 숫자는 루트 `CLAUDE.md` 기준.
+- `deck.html`은 `s01~s11.html`을 합친 결과물이에요. 장을 고친 뒤에는 `python -X utf8 docs/slides/build_deck.py`로 다시 만들어서 같이 커밋하세요(deck.html을 직접 고치지 않기).
