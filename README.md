@@ -11,7 +11,8 @@ DSC 공유대학×KT AI 활용 지역문제 해결 공모전 프로토타입. �
 |---|---|---|
 | 건물 순위·수익·시민펀드 계산 | `docs/solar_demo.html` | [열기](https://htmlpreview.github.io/?https://github.com/jiu0u/KT_f5/blob/main/docs/solar_demo.html) |
 | 3D 지도 + 구별 시민 참여 (인터넷 필요) | `docs/solar_map.html` | [열기](https://htmlpreview.github.io/?https://github.com/jiu0u/KT_f5/blob/main/docs/solar_map.html) |
-| 발표자료 설계도 — 12장 구성 | `docs/ppt_blueprint.html` | [열기](https://htmlpreview.github.io/?https://github.com/jiu0u/KT_f5/blob/main/docs/ppt_blueprint.html) |
+| 발표자료 설계도 — 11장 구성 | `docs/ppt_blueprint.html` | [열기](https://htmlpreview.github.io/?https://github.com/jiu0u/KT_f5/blob/main/docs/ppt_blueprint.html) |
+| 발표 슬라이드 시안 11장 (1장부터 차례로) | `docs/slides/s01~s11.html` | [열기](https://htmlpreview.github.io/?https://github.com/jiu0u/KT_f5/blob/main/docs/slides/s01.html) · [장별 목록](docs/slides/README.md) |
 
 '바로 열기'는 외부 렌더링 서비스(htmlpreview)를 거치므로 몇 초 걸린다. 안 열리면 저장소를 받아 `index.html`로 연다.
 
