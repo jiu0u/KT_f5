@@ -146,6 +146,14 @@ h2{font-size:14px;margin:0}
 .kv4 b{display:block;font-size:15px;color:var(--ink)}
 details.more summary{cursor:pointer;font-size:12.5px;color:var(--muted)}
 .ctl input{width:80px}
+.segs{display:flex;flex-wrap:wrap;gap:6px}
+.segb{font:inherit;font-size:12.5px;border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:6px;padding:4px 10px;cursor:pointer}
+.segb.on{background:var(--ink);color:var(--surface);border-color:var(--ink)}
+.wl{display:grid;grid-template-columns:90px 1fr 30px;gap:8px;align-items:center;font-size:12.5px}
+.wl input{accent-color:var(--sun)}
+.exg{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.exg label{display:grid;gap:2px;font-size:11.5px;color:var(--muted)}
+.exg input{font:inherit;font-size:14px;width:100%;padding:4px 6px;border:1px solid var(--line);border-radius:6px;background:var(--surface);color:var(--ink)}
 </style>
 </head>
 <body>
@@ -181,6 +189,12 @@ details.more summary{cursor:pointer;font-size:12.5px;color:var(--muted)}
       <button class="btn" type="button" id="toFund">시민 참여 상품 보기</button>
     </div>
     <h2>설치 우선순위</h2>
+    <details class="more"><summary>순위 계산 방식 바꾸기 (AI 지붕분석 vs 25% 가정, 가중치)</summary>
+      <div class="segs" style="margin:8px 0"><button type="button" class="segb on" data-ai="1">AI 지붕분석</button><button type="button" class="segb" data-ai="0">25% 가정</button></div>
+      <label class="wl">연 발전량 <input type="range" min="0" max="100" step="5" value="40" data-w="0"><b class="num">40</b></label>
+      <label class="wl">설치 용이성 <input type="range" min="0" max="100" step="5" value="40" data-w="1"><b class="num">40</b></label>
+      <label class="wl">자가소비 여유 <input type="range" min="0" max="100" step="5" value="20" data-w="2"><b class="num">20</b></label>
+    </details>
     <div class="list" id="list"></div>
     <div class="note">
       <p>대상은 공공청사 8곳(대전 6 · 충남 2, 그중 기존 태양광 없는 대전 3곳이 후보)과 대전 초등학교 99곳(한밭도서관은 사용량 확인 전이라 참고 후보로 빼 둠)(149곳 중 기존 태양광 없는 곳 — 팀원 카카오맵 12곳 + 항공사진 판독, 학교 부지 안 건물 전부, 경계 확인 필요 25곳 표시. 전기사용량 자료가 없어 자가소비 여유는 중간값 0.5. 학교 지붕 칸은 지붕면적만 한 사각형). 설치 용량은 지붕 AI 결과(docs/청사_지붕AI_최종표.csv 보정 용량), 자가소비 수요·계통 여유는 가정값입니다. 대전 밖 2곳은 목록에서 누르면 그 위치로 이동합니다.</p>
@@ -200,6 +214,19 @@ details.more summary{cursor:pointer;font-size:12.5px;color:var(--muted)}
   </div>
 
   <div class="pbody" id="v-fund" hidden>
+    <details class="more calc2" open><summary><b>자금 시나리오 · 전문가 입력값</b></summary>
+      <div class="segs"><button type="button" class="segb on" data-scn="base">기본</button><button type="button" class="segb" data-scn="cons">보수</button><button type="button" class="segb" data-scn="stress">스트레스</button><button type="button" class="segb" data-scn="orig">팀 원안</button></div>
+      <p class="why" id="scnOut" style="margin:0"></p>
+      <div class="exg">
+        <label>kW당 연 발전량 (kWh)<input type="number" data-ex="y" step="1"></label>
+        <label>판매 단가 (원/kWh)<input type="number" data-ex="price" step="0.01"></label>
+        <label>설치비 (만 원/kW)<input type="number" data-ex="cost" step="1"></label>
+        <label>은행 PF 금리 (%)<input type="number" data-ex="pfR" step="0.01"></label>
+      </div>
+      <div class="top"><label for="equity">SPC 출자 비율 (대전시·대전도시공사)</label><strong class="num" id="equityOut">20%</strong></div>
+      <input id="equity" type="range" min="0" max="60" step="5" value="20">
+      <p class="why" id="needOut" style="margin:0"></p>
+    </details>
     <p class="pickhint">지도에서 주황 건물을 <b>두 번</b> 누르면 옥상으로 확대되어 내 패널 자리를 고를 수 있습니다.</p>
     <div class="calc2">
       <div class="top"><label for="invest">내가 넣을 금액</label><strong class="num" id="investV"></strong></div>
@@ -383,9 +410,11 @@ const SCH_ROOF={"대전새일초등학교":[[[36.43142,127.41864],[36.43128,127.
 B.push(...SCH); Object.assign(AI,SCH_AI); Object.assign(ROOF,SCH_ROOF); B.forEach(b=>{b.t=b.t||"청사"; b.o=b.o||b.n;});
 const rings=p=>Array.isArray(p[0][0])?p:[p]; // ROOF 값: 고리 하나 또는 여러 개
 const YLD_AI=1333; // PVGIS 대전 15° 경사 (AI 배치가 15° 거치대 기준)
+let useAI=true, W=[40,40,20], ranked=[]; // 순위 탭에서 바꿈: AI 지붕분석 vs 25% 가정, 가중치
+function calc(){
 B.forEach(b=>{
-  b.kw=AI[b.n].kw; b.done=!!b.pv; // 기존 태양광 있는 건물은 후보에서 뺌 (2026-11-10 팀 결정)
-  b.mwh=b.kw*YLD_AI*C.deg/1000; // deg: 연 0.5% 열화(NREL 중앙값)의 20년 평균. 그림자는 AI 배치에서 이미 뺌
+  b.kw25=b.roof*C.ratio*C.kwm2; b.kw=useAI?AI[b.n].kw:b.kw25; b.done=!!b.pv; // 기존 태양광 있는 건물은 후보에서 뺌 (2026-11-10 팀 결정)
+  b.mwh=useAI?b.kw*YLD_AI*C.deg/1000:b.kw*C.yld*C.deg*b.shade/1000; // 25% 가정은 PVGIS 수평 1,189 × 음영계수 // deg: 연 0.5% 열화(NREL 중앙값)의 20년 평균. 그림자는 AI 배치에서 이미 뺌
   b.costM=b.kw*C.cost;
   b.revM=b.mwh*1000*C.price/1e4;
   b.netM=b.revM-b.costM*C.om-b.kw*C.rent; // 운영비 + 옥상 사용료
@@ -404,10 +433,12 @@ const fitSC=b=>b.use?Math.max(0,Math.min(1,(.30-b.mwh*1000/b.use)/.25)):.5;
 B.forEach(b=>{
   const nm=(b.mwh-mn("mwh"))/((mx("mwh")-mn("mwh"))||1);
   b.share=b.use?b.mwh*1000/b.use:null; b.parts=[nm,ease(b),fitSC(b)];
-  b.score=b.done?-1:Math.round(100*(.4*nm+.4*b.parts[1]+.2*b.parts[2]));
+  const ws=W[0]+W[1]+W[2]||1; b.score=b.done?-1:Math.round(100*(W[0]*nm+W[1]*b.parts[1]+W[2]*b.parts[2])/ws);
 });
-const ranked=[...B].sort((a,b)=>b.score-a.score);
+ranked=[...B].sort((a,b)=>b.score-a.score);
 ranked.forEach((b,i)=>{b.rank=b.done?null:i+1; b.got=[.72,.45,.31,.18,.6,.09,.52,.27][i%8];}); // got = 시민펀드 모집률(예시)
+}
+calc();
 let sel=null, budget=3.15; // 청사 공동 예산 3.15억(가정) — 중구청 1.84억만 들어가고 대덕구청·교육청은 PPA (전력 예측 팀 분류기와 같은 결과)
 
 // 지도: 3D 장난감 도시 + 대전 땅따먹기(구별 시민 참여율만큼 햇빛색). 참여율은 예시값
@@ -556,8 +587,8 @@ function render(){
   const gr=document.getElementById("goRoof"); if(gr) gr.onclick=()=>map&&tap(b);
   const tc=document.getElementById("toCard"); if(tc) tc.onclick=()=>showTab("fund");
 
-  document.getElementById("roundNote").textContent=fund.length?`SPC(가칭 대전햇빛발전)가 ${fund.length}곳을 설치합니다. 출자 20%(대전시·대전도시공사) · 은행 PF 65%(18년 ${fmt(FIN.pfR*100,2)}%, 먼저 받음) · 시민 15%(P2P 연계대출 15년 원리금 균등, 은행 다음에 받음). 돈 배분: 운영비·옥상 사용료 → PF → DSRA → 시민 → 유지보수 적립 → 철거·원상복구 적립 → 공공 환원. 시민은 1인 연 500만 원 한도라 최소 ${fmt(Math.ceil(F.ct/C.cap))}명.`:"";
-  document.getElementById("yearPlan").innerHTML=fund.length?`<table class="yp"><tbody><tr><td>설치비</td><td>${won(F.cost)}</td></tr><tr><td>출자 20%</td><td>${won(F.eq)}</td></tr><tr><td>은행 PF 65%</td><td>${won(F.pf)} · 연 ${won(F.pfA)}</td></tr><tr><td>시민 15%</td><td>${won(F.ct)} · 연 ${won(F.ctA)}</td></tr><tr><td>DSCR 1년차 · 최저</td><td>${x2(F.dscr1)} · ${x2(F.dscrMin)}</td></tr></tbody></table>`:"";
+  document.getElementById("roundNote").textContent=fund.length?`SPC(가칭 대전햇빛발전)가 ${fund.length}곳을 설치합니다. 출자 ${fmt(FIN.eq*100)}%(대전시·대전도시공사) · 은행 PF ${fmt((1-FIN.eq-FIN.ct)*100)}%(18년 ${fmt(FIN.pfR*100,2)}%, 먼저 받음) · 시민 15%(P2P 연계대출 15년 원리금 균등, 은행 다음에 받음). 돈 배분: 운영비·옥상 사용료 → PF → DSRA → 시민 → 유지보수 적립 → 철거·원상복구 적립 → 공공 환원. 시민은 1인 연 500만 원 한도라 최소 ${fmt(Math.ceil(F.ct/C.cap))}명.`:"";
+  document.getElementById("yearPlan").innerHTML=fund.length?`<table class="yp"><tbody><tr><td>설치비</td><td>${won(F.cost)}</td></tr><tr><td>출자 ${fmt(FIN.eq*100)}%</td><td>${won(F.eq)}</td></tr><tr><td>은행 PF ${fmt((1-FIN.eq-FIN.ct)*100)}%</td><td>${won(F.pf)} · 연 ${won(F.pfA)}</td></tr><tr><td>시민 15%</td><td>${won(F.ct)} · 연 ${won(F.ctA)}</td></tr><tr><td>DSCR 1년차 · 최저</td><td>${x2(F.dscr1)} · ${x2(F.dscrMin)}</td></tr></tbody></table>`:"";
   const shown=fund.slice(0,12);
   document.getElementById("cards").innerHTML=fund.length?shown.map((b,i)=>{
     const got=b.got;
@@ -756,6 +787,32 @@ function renderCls(){
 }
 document.getElementById("tarGov").oninput=e=>{const v=parseFloat(e.target.value); CP.tarGov=v>0?v:null; renderCls();};
 const _render=render; render=function(){_render(); renderCls();}; renderCls();
+</script>
+<script>
+// 웹 데모(solar_demo.html)에서 옮긴 것: 자금 시나리오·전문가 입력값·출자 비율, AI vs 25% 가정, 가중치 (2026-11-15 병합)
+const SCN={base:{y:1200,price:146.92,cost:120,pfR:.05,ctR:.07,t:"공개 자료 기본값"},cons:{y:993,price:146.92,cost:140,pfR:.06,ctR:.09,t:"발전량 하위 25% · 설치비·금리 중간"},stress:{y:993,price:146.92,cost:160,pfR:.0712,ctR:.11,t:"발전량 하위 25% · 설치비·금리 최고"},orig:{y:1333,price:146.92,cost:109,pfR:.045,ctR:.068,t:"AI 발전량 · 예전 가정 (참고용)"}};
+let scn="base";
+function setScn(k){const v=SCN[k]; scn=k; FIN.y=v.y; C.price=v.price; C.cost=v.cost; FIN.pfR=v.pfR; C.fund=v.ctR;}
+const recalc=()=>{calc(); B.forEach(b=>{b.f=fin(b.kw);}); render();};
+function syncEx(){
+  document.querySelectorAll("[data-ex]").forEach(x=>{const k=x.dataset.ex, v=k==="y"?FIN.y:k==="price"?C.price:k==="cost"?C.cost:FIN.pfR*100; if(document.activeElement!==x) x.value=+v.toFixed(3);});
+  document.querySelectorAll("[data-scn]").forEach(y=>y.classList.toggle("on",y.dataset.scn===scn));
+  document.getElementById("scnOut").textContent=scn==="custom"?"직접 입력한 값":SCN[scn].t;
+  document.getElementById("rate").value=C.fund*100; document.getElementById("rateOut").textContent=fmt(C.fund*100,1)+"%";
+  document.getElementById("equityOut").textContent=fmt(FIN.eq*100)+"%";
+  const kw=ranked.filter(b=>!b.done&&spc(b.src)).reduce((t,b)=>t+b.kw,0), F=fin(kw), e0=FIN.eq; let need=null;
+  for(let e=Math.round(e0*20)/20;e<=.851;e+=.05){FIN.eq=e; if(fin(kw).dscrMin>=1.2){need=e;break;}} FIN.eq=e0;
+  document.getElementById("needOut").textContent=!kw?"":F.dscrMin>=1.2?`최저 DSCR ${fmt(F.dscrMin,2)}배 — 은행 기준 1.2배를 넘습니다`
+    :need!=null?`최저 DSCR ${fmt(F.dscrMin,2)}배로 모자랍니다 → 출자를 ${fmt(need*100)}%(약 ${won(F.cost*need)})로 늘리면 1.2배 이상`:`출자를 85%까지 늘려도 1.2배 미달 → 착공 보류`;
+}
+const _r2=render; render=function(){_r2(); syncEx();};
+document.querySelectorAll("[data-scn]").forEach(x=>x.onclick=()=>{setScn(x.dataset.scn); recalc();});
+document.querySelectorAll("[data-ex]").forEach(x=>x.onchange=()=>{const k=x.dataset.ex, v=+x.value; if(!(v>0)) return;
+  if(k==="y")FIN.y=v; else if(k==="price")C.price=v; else if(k==="cost")C.cost=v; else FIN.pfR=v/100; scn="custom"; recalc();});
+document.getElementById("equity").oninput=e=>{FIN.eq=+e.target.value/100; recalc();};
+document.querySelectorAll("[data-ai]").forEach(x=>x.onclick=()=>{useAI=x.dataset.ai==="1"; document.querySelectorAll("[data-ai]").forEach(y=>y.classList.toggle("on",y===x)); recalc();});
+document.querySelectorAll("[data-w]").forEach(x=>x.oninput=()=>{W[+x.dataset.w]=+x.value; x.nextElementSibling.textContent=x.value; recalc();});
+syncEx();
 </script>
 <!-- 깃허브 바로 열기(htmlpreview)가 가끔 스크립트를 실행하지 않음 → 0.3초 뒤에도 그대로면 여기서 실행 -->
 <img hidden alt="" src="data:," onerror="setTimeout(function(){[].slice.call(document.scripts).filter(function(s){return s.type==='text/htmlpreview'}).forEach(function(s){var n=document.createElement('script');n.text=s.text;s.parentNode.replaceChild(n,s)})},300)">
