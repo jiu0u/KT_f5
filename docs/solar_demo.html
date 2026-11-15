@@ -118,6 +118,16 @@ svg{width:100%;height:auto;display:block}
 .sched th{font-family:var(--f-body);font-weight:500;color:var(--muted)}.sched td:first-child,.sched th:first-child{text-align:left}
 .tbl{max-height:260px;overflow:auto}
 .wts{display:grid;gap:4px;margin:6px 0 10px;font-size:13px}.wts label{display:grid;grid-template-columns:96px 1fr 32px;gap:8px;align-items:center}.wts input{accent-color:var(--sun)}
+.cls{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:12px}
+.cls .panel{display:grid;gap:8px;align-content:start}
+.cls h3{margin:0;font-size:15px;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.cls ol{margin:0;padding-left:18px;font-size:13px;display:grid;gap:2px}
+.kv4{display:grid;grid-template-columns:1fr 1fr;gap:6px 12px;font-size:12px;color:var(--muted)}
+.kv4 b{display:block;font-size:16px;color:var(--ink)}
+.pill.hold{background:var(--warn);color:var(--surface)}
+details.more summary{cursor:pointer;font-size:13px;color:var(--muted)}
+.ctl{display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center;font-size:13px}
+.ctl input{width:90px}
 </style>
 
 <div class="wrap">
@@ -129,14 +139,15 @@ svg{width:100%;height:auto;display:block}
 
   <div class="tabs" role="tablist">
     <button role="tab" id="tab-city" aria-selected="true" aria-controls="view-city">시청 담당자</button>
+    <button role="tab" id="tab-cls" aria-selected="false" aria-controls="view-cls">설치 방식 판단 (전력 AI)</button>
     <button role="tab" id="tab-citizen" aria-selected="false" aria-controls="view-citizen">시민 투자자</button>
   </div>
 
   <section id="view-city" role="tabpanel" aria-labelledby="tab-city" style="display:grid;gap:16px">
     <div class="strip">
       <div class="budget">
-        <label for="budget">기관별 올해 태양광 예산 (가정, 자가소비 청사에 씀)</label>
-        <input id="budget" type="range" min="0" max="10" step="0.1" value="2">
+        <label for="budget">청사 공동 태양광 예산 (가정: 대전시 소형햇빛발전소 지원 3.15억 수준)</label>
+        <input id="budget" type="range" min="0" max="10" step="0.05" value="3.15">
         <strong class="num" id="budgetOut">5.0억 원</strong>
       </div>
       <div class="stats">
@@ -181,16 +192,28 @@ svg{width:100%;height:auto;display:block}
               <button type="button" id="m25" aria-pressed="false">25% 가정</button>
             </div>
           </div>
-          <div class="wts" id="wts">
-            <span class="why">가중치 직접 정하기 (지표는 0~100점, 비율은 사용자가 결정)</span>
+          <details class="wts more" id="wts"><summary>가중치 직접 정하기 (지표는 0~100점, 비율은 사용자가 결정)</summary>
             <label>연 발전량 <input type="range" min="0" max="100" step="5" value="40" data-w="0"> <b class="num">40</b></label>
             <label>설치 용이성 <input type="range" min="0" max="100" step="5" value="40" data-w="1"> <b class="num">40</b></label>
             <label>자가소비 여유 <input type="range" min="0" max="100" step="5" value="20" data-w="2"> <b class="num">20</b></label>
-          </div>
+          </details>
           <div class="list" id="list"></div>
         </div>
       </div>
     </div>
+  </section>
+
+  <section id="view-cls" role="tabpanel" aria-labelledby="tab-cls" hidden style="display:grid;gap:16px">
+    <div class="strip">
+      <p style="margin:0">월별 전기 사용량이 있는 5곳으로 <strong>어떤 돈으로 설치할지</strong>를 3단계로 판단합니다. ① 건물이 발전량을 다 쓰는가(자가소비율 80% 이상) → ② 전기요금이 판매가보다 5원 넘게 비싼가 → ③ 예산 안에 드는가</p>
+      <div class="ctl">
+        <label>청사 전기요금 (원/kWh) <input type="number" id="tarGov" step="0.1" placeholder="미확인"></label>
+        <span class="why" id="clsIn"></span>
+      </div>
+      <div class="stats" id="clsSum"></div>
+    </div>
+    <div class="cls" id="clsCards"></div>
+    <p class="why">전력 예측 팀 분류 코드(solar_classifier.py)를 이 페이지에서 바로 돌아가게 옮긴 것입니다. 이 5곳은 분류 과정을 보여 주는 예시이고, 전체 규모(102곳 · 20.6MW · 약 247억)는 시청 담당자 탭 기준입니다.</p>
   </section>
 
   <section id="view-citizen" role="tabpanel" aria-labelledby="tab-citizen" hidden style="display:grid;gap:16px">
@@ -233,16 +256,16 @@ svg{width:100%;height:auto;display:block}
     <div class="strip" id="journey" aria-live="polite"></div>
   </section>
 
-  <div class="note">
+  <details class="note more"><summary>계산 가정과 출처 보기</summary>
     <p><strong>계산 가정 (데모용).</strong> 대상은 공공청사 8곳(대전 6 · 충남 2, 그중 기존 태양광 없는 대전 3곳이 후보)과 대전 초등학교 99곳(한밭도서관은 사용량 확인 전이라 참고 후보로 빼 둠)(149곳 중 기존 태양광 없는 곳 — 팀원 카카오맵 12곳 + 항공사진 판독, 학교 부지 안 건물 전부, 경계 확인 필요 25곳 표시. 전기사용량 자료가 없어 자가소비 여유는 중간값 0.5). 설치 용량은 지붕 AI 결과(docs/청사_지붕AI_최종표.csv의 보정 용량), 지붕면적은 AI가 쓴 건물 경계 면적입니다. 자가소비 수요·계통 여유는 가정값입니다. 지붕 그림은 AI가 계산에 쓴 건물 경계입니다.</p>
     <p><strong>AI 지붕분석(기본).</strong> 설비용량 = 항공사진 AI가 찾은 빈 지붕에 패널을 실제로 배치한 장수 × 0.57kW (2278×1134mm, 효율 22%) — 가장자리 0.5m 이격, 구조물 주변 북3·동서2·남0.5m, 연간 그림자 20% 넘는 곳 제외, 15° 경사·동지 9~15시 그림자 기준 줄 간격 · 발전량 = 용량 × 1,333kWh/kWp (PVGIS, 대전, 15° 경사) × 0.954 (연 0.5% 열화, 20년 평균) · 학습 데이터 AI Hub 「태양광 발전 현황 및 적지 분석 데이터」, 항공사진 브이월드 · 대전 정답 검증 전</p>
     <p><strong>25% 가정(비교용).</strong> 설비용량 = 지붕면적 × 모듈면적 25% × 0.22kW/㎡ (모듈면적 25%는 경기기후플랫폼 옥상형 기준, 효율 22%는 TOPCon 상업용 모듈) · 발전량 = 용량 × 1,189kWh/kWp (PVGIS, 대전) × 0.954 (연 0.5% 열화, 20년 평균) × 음영계수</p>
     <p>전문가 입력값(기본): 설치비 120만 원/kW (100kW 약 1.1~1.4억 원, 해줌 2026 가이드의 아래쪽) · 판매단가 146.92원/kWh (2026 1차 고정가격계약 낙찰 평균, 신규 설비 REC 미발급이라 REC 수익 제외) · 은행 PF 5.0% (하나 솔라론 4.722~7.122%의 아래쪽) · 시민 P2P 7.0% (실무 7~11%의 아래쪽) · kW당 1,200kWh (대전시 실측 68곳 중앙값) · 운영비 설치비의 1.5%/년 (보험·점검·옥상 사용료 포함)</p>
     <p>자립도 기여 = 연 발전량 ÷ 대전 전력소비량 9,922GWh (2023) · 배출계수 0.4594 tCO₂/MWh · 우선순위 점수 = (가중치는 화면에서 조정, 기본) 연 발전량 40% + 설치 용이성 40%(기존 태양광·1988년 이전 구조검토·경계 현장확인 감점) + 자가소비 여유 20%(연 발전량 ÷ 연 전기사용량, 건축HUB 최근 12개월.) · 예산은 기관별(건물 주인마다 같은 금액 가정)</p>
     <p>시민 수(최소) = 시민 몫 ÷ 일반 투자자 1인 한도 연 500만 원 · P2P 플랫폼 수수료(대출 원금의 1.5~3%)는 이 계산에 넣지 않음</p>
-    <p><strong>재원 규칙.</strong> 연 발전량이 건물 연 전기사용량의 30% 이하라 건물이 다 쓸 수 있는 곳(청사 3곳: 14~17%)은 기관 예산으로 설치해 팔지 않고 자가소비 — 전기요금 절감액 = 발전량 × 165원/kWh(일반용 평균 단가 가정, 한전 요금표 확인 필요). 예산이 모자란 청사는 SPC가 설치하고 청사가 전기를 사는 온사이트 PPA(PPA 가격은 판매 단가~165원 사이에서 정함, 이 데모는 보수적으로 판매 단가로 계산). 사용량 자료가 없는 학교는 SPC가 설치해 전량 판매. 연간 합계로만 판단하므로 주말·휴일 잉여는 전력 예측 AI의 시간대별 예측으로 보완할 예정.</p>
+    <p><strong>재원 규칙 (전력 예측 팀 3단계 분류와 같음).</strong> ① 연 발전량이 연 전기사용량의 30% 이하라 건물이 다 쓸 수 있고(청사 3곳: 14~17%, 팀 분류기의 월별 자가소비율로는 100%) ② 청사 전기요금이 판매가보다 5원 이상 높으며 ③ 공동 예산(기본 3.15억) 안에 드는 곳은 기관 예산으로 설치해 팔지 않고 자가소비. 예산은 사용량 자료가 믿을 만한 곳(그린버튼 실측: 중구청·대덕구청)부터 배정 — 전기요금 절감액 = 발전량 × 165원/kWh(일반용 평균 단가 가정, 한전 요금표 확인 필요). 예산이 모자란 청사는 SPC가 설치하고 청사가 전기를 사는 온사이트 PPA(PPA 가격은 판매 단가~165원 사이에서 정함, 이 데모는 보수적으로 판매 단가로 계산). 사용량 자료가 없는 학교는 SPC가 설치해 전량 판매. 연간 합계로만 판단하므로 주말·휴일 잉여는 전력 예측 AI의 시간대별 예측으로 보완할 예정.</p>
     <p><strong>SPC 자금 구조 (팀원 「대전햇빛발전 SPC 펀드 구조」 기준).</strong> 출자 20%(대전시·대전도시공사, 화면에서 조정) · 은행 PF 65%(18년, 선순위) · 시민 15%(P2P 연계대출, 15년 원리금 균등, 후순위). 은행 몫은 100% − 출자 − 시민 15%. DSCR = (판매 − 운영비) ÷ (PF + 시민 원리금), 1년차와 1~18년차 최저를 같이 표시. 은행 기준 1.2에 못 미치면 출자를 몇 %로 늘려야 맞는지 함께 보여 줌. 시나리오 — 기본 1,200kWh·120만 원·PF 5%·P2P 7% / 보수 993·140만·6%·9% / 스트레스 993·160만·7.12%·11% / 팀 원안 1,333·109만·4.5%·6.8%. 1년차 뒤 연 0.5% 열화.</p>
-  </div>
+  </details>
 </div>
 
 <script>
@@ -435,19 +458,19 @@ B.forEach(b=>{
 ranked=[...B].sort((a,b)=>b.score-a.score);
 }
 calc();
-let sel=ranked[0], budget=2, zoomIn=true, equity=.2;
+let sel=ranked[0], budget=3.15, zoomIn=true, equity=.2;
 
+const REL={"중구청":1,"대덕구청":1,"대전광역시교육청":.7}; // 사용량 자료 신뢰도(전력 예측 팀 분류기): 그린버튼 실측 1 > 건축HUB 0.7
 function plan(){
-  // 재원 규칙(팀원 SPC 문서 3유형): 연 발전 ÷ 연 사용 ≤ 30%라 건물이 다 쓸 수 있는 곳은
-  //  - 예산 안이면 기관 예산 자가소비형(city)
-  //  - 예산을 넘으면 SPC가 설치하고 청사가 전기를 사는 온사이트 PPA(ppa, 청사 요금 165원 > 판매 기준 147.7원일 때 성립)
-  // 그 밖(사용량 자료 없는 학교)은 SPC 판매형(fund, 계약시장).
-  // ponytail: 연간 합계 비율로만 판단. 주말·휴일 잉여는 전력 예측 AI(시간대별)로 바꿀 자리
-  const left={};
-  ranked.forEach(b=>{ if(b.done){b.src="done";return;}
-    if(left[b.o]===undefined) left[b.o]=budget*10000;
-    const self=b.use&&b.mwh*1000/b.use<=SELF_MAX;
-    if(self&&b.costM<=left[b.o]){b.src="city"; left[b.o]-=b.costM;} else b.src=self&&TARIFF>C.price?"ppa":"fund"; });
+  // 전력 예측 팀 3단계 분류(solar_classifier.py)에 맞춤:
+  //  ① 건물이 다 쓰는가: 연 발전 ÷ 연 사용 ≤ 30% (팀 분류기는 월별 자가소비율 ≥ 80%, 청사 3곳은 둘 다 통과)
+  //  ② 직접 쓰는 게 이득인가: 청사 전기요금 ≥ 판매가 + 5원
+  //  ③ 공동 예산 안인가: 자료 신뢰도 높은 곳 → 발전량 큰 곳 순서로 배정, 넘치면 SPC 온사이트 PPA
+  // 그 밖(사용량 자료 없는 학교, 교육용 요금 ≈ 판매가)은 SPC 판매형
+  let left=budget*10000;
+  [...ranked].sort((a,b)=>(REL[b.n]||0)-(REL[a.n]||0)||b.mwh-a.mwh).forEach(b=>{ if(b.done){b.src="done";return;}
+    const self=b.use&&b.mwh*1000/b.use<=SELF_MAX, gain=TARIFF>=C.price+5;
+    if(self&&gain&&b.costM<=left){b.src="city"; left-=b.costM;} else b.src=self&&gain?"ppa":"fund"; });
 }
 const color=s=>s==="city"?"var(--cell)":s==="fund"?"var(--sun)":s==="ppa"?"var(--ok)":"var(--pin-off)";
 const label=s=>s==="city"?"예산·자가소비":s==="fund"?"SPC·판매":s==="ppa"?"SPC·온사이트 PPA":"기설치";
@@ -471,7 +494,7 @@ function render(){
   document.getElementById("pDscr").textContent=fund.length?`${x2(F.dscr1)} · ${x2(F.dscrMin)}`:"-";
   document.getElementById("pCityFund").textContent=fund.length?won(F.left):"-";
   document.getElementById("pRoundNote").textContent=fund.length?`돈 배분 순서: ① 운영비·옥상 사용료 → ② 은행 PF 원리금(선순위, 연 ${won(F.pfA)}) → ③ DSRA(PF 6개월분까지 채운 뒤 유지) → ④ 시민 원리금(후순위, 연 ${won(F.ctA)}) → ⑤ 유지보수 적립 → ⑥ 철거·원상복구 적립 → ⑦ 공공 환원(출자자 배당·대전시 기금). 시민은 15년차, 은행은 18년차에 다 갚고 19~20년차는 빚 없이 전부 공공 환원입니다. DSCR(번 돈 ÷ 갚을 돈)은 은행 기준 1.2배 이상이 필요합니다${F.dscrMin>=FIN.min?` — 이 조건에서는 최저 ${x2(F.dscrMin)}로 기준을 넘습니다`:need!=null?` — 이 조건에서는 최저 ${x2(F.dscrMin)}로 모자라서, 출자를 ${fmt(need*100)}%(약 ${won(F.cost*need)})로 늘리고 은행 PF를 ${fmt((1-need-FIN.ct)*100)}%로 줄이면 최저 ${x2(fin(fkw,need).dscrMin)}로 맞춥니다${need>=.5?" (출자 부담이 너무 커서 착공 보류·구조 재설계를 먼저 검토)":""}`:` — 출자를 85%까지 늘려도 기준에 못 미쳐 착공 보류 또는 구조 재설계가 필요합니다`}. 시민은 1인 연 500만 원 한도라 최소 ${fmt(Math.ceil(F.ct/C.cap))}명이 필요합니다.`:"";
-  document.getElementById("budgetOut").textContent=fmt(budget,1)+"억 원";
+  document.getElementById("budgetOut").textContent=fmt(budget,2)+"억 원";
   document.getElementById("headline").textContent=`공공건물 ${todo.length}곳 옥상에 설치하면 (청사 ${todo.filter(b=>b.t==="청사").length} · 초등학교 ${todo.filter(b=>b.t==="학교").length})`;
   document.getElementById("kpis").innerHTML=`
     <div><b>연 ${fmt(mwh/1000,1)}GWh</b>전기 생산</div>
@@ -640,11 +663,11 @@ function roofSvg(b){
     <p class="why">지붕 AI가 계산에 쓴 건물 경계에 연 발전량 색을 칠했습니다. 가로 ${fmt(w)}m × 세로 ${fmt(h)}m.</p></div></div>`;
 }
 
-const tabs={city:document.getElementById("tab-city"),citizen:document.getElementById("tab-citizen")};
+const tabs={city:document.getElementById("tab-city"),cls:document.getElementById("tab-cls"),citizen:document.getElementById("tab-citizen")};
 function show(k){
   for(const [key,t] of Object.entries(tabs)){const on=key===k;t.setAttribute("aria-selected",on);document.getElementById("view-"+key).hidden=!on;}
 }
-tabs.city.onclick=()=>show("city"); tabs.citizen.onclick=()=>show("citizen");
+tabs.city.onclick=()=>show("city"); tabs.cls.onclick=()=>show("cls"); tabs.citizen.onclick=()=>show("citizen");
 document.getElementById("toFund").onclick=()=>show("citizen");
 document.getElementById("budget").oninput=e=>{budget=+e.target.value;render();};
 document.getElementById("equity").oninput=e=>{equity=+e.target.value/100;render();};
@@ -662,4 +685,110 @@ for(const [id,v] of Object.entries(zb)) document.getElementById(id).onclick=()=>
   zoomIn=v; for(const k in zb) document.getElementById(k).setAttribute("aria-pressed",zb[k]===v); render();
 };
 render();
+</script>
+<script>
+// 전력 예측 팀 분류기(solar_classifier.py, 2026-11-15판)를 그대로 옮김. 판매가·설치비·금리·kW당 발전량은 시민 투자자 탭 전문가 입력값을, 예산은 시청 담당자 탭 슬라이더를 같이 씀
+const KEP=[6425012,5518581,5413056,4864579,3384928,3893792,4574959,4155526,4884192,3832798,3822494,5589620]; // 한전 대전 동구 교육용 2025 월별 → 학교 월별 모양
+const EDU=[124822,118825,115721,62497,88876,105063,121363,118551,93235,85833,72835,106388]; // 건축HUB 2025-07~2026-06
+const CB=[
+{n:"대전 중구청",f:"청사",kw:153,a:.537,rel:1,src:"그린버튼 실측 11개월 + 1개월 보정",pv:"기존 태양광 없음 (중구 정보공개로 확인)",
+ u:[174900,142900,142300,108500,115200,130500,156200,157700,136000,123600,127494,156900],
+ g:[13862,15897,21313,21236,22414,19508,15866,16585,15897,16754,12791,12500]},
+{n:"대전 대덕구청",f:"청사",kw:131,a:.546,rel:1,src:"그린버튼 실측 11개월 + 1개월 보정",pv:"본관 없음 · 별관에 20kW 따로 있음",
+ u:[160000,124600,113600,88000,87700,109100,139600,142200,111200,90900,105573,136400],
+ g:[11869,13611,18248,18183,19192,16702,13585,14200,13611,14344,10952,10703]},
+{n:"대전광역시교육청",f:"청사",kw:163,a:.61,rel:.7,src:"건축HUB (그린버튼과 6% 차이)",pv:"없음 (항공사진 판독, 정보공개 답변 대기)",
+ u:EDU.slice(6).concat(EDU.slice(0,6)),
+ g:[14767,16936,22706,22624,23880,20782,16903,17670,16936,17848,13626,13317]},
+{n:"가오초등학교",f:"학교",kw:222,area:11453.3,rel:.4,src:"연면적 11,453.3㎡ × 26~38kWh/㎡ 추정",pv:"없음 (팀원 카카오맵 확인)",
+ g:[20100,23100,30900,30800,32500,28300,23000,24100,23100,24300,18600,18100]},
+{n:"판암초등학교",f:"학교",kw:112,area:12305.8,rel:.4,src:"연면적 12,305.8㎡ × 26~38kWh/㎡ 추정",pv:"항공사진상 기존 태양광 있음 → 분류 예시로만 씀 (102곳 합계에 없음)",
+ g:[10100,11600,15600,15500,16400,14200,11600,12100,11600,12200,9300,9100]}];
+const CP={thr:.8,margin:5,tarSch:146.6,tarGov:null,spread:.05,aDef:{청사:[.4,.5,.6],학교:[.3,.45,.6]},eui:[26,32,38],deg:.005,years:20,cap:5e6,ef:.4594,
+  cases:[1,.898,.743], // AI 계산값 · 실측 중앙값 보정 · 보수(실측 하위 25%)
+  W:{"예산 자가소비형":{pay:.35,sav:.25,co2:.2,rel:.1,rob:.1},"외부자금 자가소비형(PPA)":{dscr:.35,rev:.2,co2:.2,rel:.1,rob:.15},"외부자금 판매형":{dscr:.35,rev:.25,co2:.2,rel:.05,rob:.15}}};
+const sum=a=>a.reduce((x,y)=>x+y,0), pct=v=>Math.round(v*100)+"%";
+function clsRows(k,lvl){
+  const sale=C.price, cost=C.cost*1e4;
+  const rows=CB.map(b=>{
+    const gen=b.g.map(v=>v*k), G=sum(gen);
+    const U=b.u||KEP.map(v=>v/sum(KEP)*b.area*CP.eui[lvl]);
+    const al=b.a!=null?[b.a-CP.spread,b.a,b.a+CP.spread]:CP.aDef[b.f];
+    const used=al.map(a=>gen.reduce((s,g,i)=>s+Math.min(g,a*U[i]),0)), rates=used.map(u=>u/G);
+    const tar=b.f==="학교"?CP.tarSch:CP.tarGov, cheap=tar!=null&&tar<=sale+CP.margin;
+    const r={b,gen,U,G,rates,tar,why:[]}, hi=rates.every(x=>x>=CP.thr), lo=rates.every(x=>x<CP.thr);
+    if(lo){r.type="외부자금 판매형"; r.why.push(`1단계: 자가소비율 ${pct(rates[1])} < 80% (남는 전기가 많음)`);}
+    else{
+      r.why.push(hi?`1단계: 자가소비율 ${pct(rates[1])} ≥ 80%`:`1단계: 낮 시간 사용 비율 가정에 따라 ${pct(rates[0])}~${pct(rates[2])}, 80% 기준에 걸침`);
+      if(cheap){r.type="외부자금 판매형"; r.why.push(`2단계: 전기요금 ${tar.toFixed(1)}원 ≈ 판매가 ${sale.toFixed(1)}원 → 직접 써도 이득 없음`);}
+      else if(!hi) r.type="판단 보류";
+      else{r.type="예산 후보"; r.why.push(tar==null?"2단계: 청사 전기요금 미확인 (확인되면 판매가 + 5원보다 비싼지 봄)":`2단계: 전기요금 ${tar.toFixed(1)}원 > 판매가 ${sale.toFixed(1)}원 + 5원`);}
+    }
+    r.capex=b.kw*cost; r.sav=used[1]*(tar??sale)+(G-used[1])*sale; r.pay=r.capex/r.sav;
+    return r;});
+  let spent=0;
+  rows.filter(r=>r.type==="예산 후보").sort((a,b)=>a.pay-b.pay).forEach(r=>{
+    if(spent+r.capex<=budget*1e8){spent+=r.capex; r.type="예산 자가소비형"; r.why.push(`3단계: 예산 안 (누적 ${(spent/1e8).toFixed(2)}억 / ${budget.toFixed(2)}억)`);}
+    else{r.type="외부자금 자가소비형(PPA)"; r.why.push("3단계: 예산 초과 → SPC가 설치하고 건물이 전기를 사서 씀 (PPA)");}});
+  return {rows,spent};
+}
+function sched(capex,G1,price){
+  const ann=(P,r,n)=>P*r/(1-(1+r)**-n), dp=ann(capex*(1-equity-FIN.ct),FIN.pfR,FIN.pfN), dc=ann(capex*FIN.ct,C.fund,FIN.ctN);
+  let y1=null,mn=Infinity;
+  for(let t=1;t<=CP.years;t++){const cf=G1*(1-CP.deg)**(t-1)*price-capex*C.om, ds=(t<=FIN.pfN?dp:0)+(t<=FIN.ctN?dc:0); if(ds){const d=cf/ds; if(y1===null)y1=d; mn=Math.min(mn,d);}}
+  return {dp,dc,y1,mn};
+}
+const norm=(v,hb=true)=>{const lo=Math.min(...v),hi=Math.max(...v); return v.map(x=>v.length<2||hi===lo?1:hb?(x-lo)/(hi-lo):(hi-x)/(hi-lo));};
+function classify(){
+  const k=FIN.y/1337, {rows,spent}=clsRows(k,1), base=Object.fromEntries(rows.map(r=>[r.b.n,r.type])), rob={};
+  rows.forEach(r=>rob[r.b.n]=[true,true]);
+  CP.cases.forEach(c=>clsRows(c,1).rows.forEach(r=>{if(r.type!==base[r.b.n]) rob[r.b.n][0]=false;}));
+  [0,2].forEach(l=>clsRows(k,l).rows.forEach(r=>{if(r.type!==base[r.b.n]) rob[r.b.n][1]=false;}));
+  rows.forEach(r=>{
+    r.price=r.type==="외부자금 자가소비형(PPA)"&&r.tar!=null?(C.price+r.tar)/2:C.price;
+    r.f=sched(r.capex,r.G,r.price); r.rev=r.G*r.price; r.co2=r.G/1000*CP.ef; r.robs=rob[r.b.n]; r.rob=(r.robs[0]+r.robs[1])/2;
+  });
+  for(const [t,w] of Object.entries(CP.W)){
+    const g=rows.filter(r=>r.type===t); if(!g.length) continue;
+    const P={pay:norm(g.map(r=>r.pay),false),sav:norm(g.map(r=>r.sav)),dscr:norm(g.map(r=>r.f.mn)),rev:norm(g.map(r=>r.rev)),co2:norm(g.map(r=>r.co2)),rel:g.map(r=>r.b.rel),rob:g.map(r=>r.rob)};
+    g.forEach((r,i)=>r.score=Object.entries(w).reduce((s,[kk,wt])=>s+wt*P[kk][i],0));
+    [...g].sort((a,b)=>b.score-a.score).forEach((r,i)=>r.rank=i+1);
+  }
+  const spc=rows.filter(r=>r.type.startsWith("외부자금")), capex=sum(spc.map(r=>r.capex)), G=sum(spc.map(r=>r.G));
+  const pf=spc.length?sched(capex,G,sum(spc.map(r=>r.rev))/G):null;
+  return {rows,spent,spc,capex,pf};
+}
+const TY={"예산 자가소비형":["city","예산 자가소비"],"외부자금 자가소비형(PPA)":["ppa","SPC · 온사이트 PPA"],"외부자금 판매형":["fund","SPC · 전량 판매"],"판단 보류":["hold","판단 보류"]};
+const ORD=Object.keys(TY);
+function bars(r){
+  const mx=Math.max(...r.U,...r.gen), h=v=>v/mx*54;
+  return `<svg viewBox="0 0 240 60" role="img" aria-label="월별 사용량과 발전량">${r.U.map((u,i)=>`<rect x="${i*20+1}" y="${58-h(u)}" width="8" height="${h(u)}" fill="var(--pin-off)"/><rect x="${i*20+10}" y="${58-h(r.gen[i])}" width="8" height="${h(r.gen[i])}" fill="var(--sun)"/>`).join("")}</svg>
+  <span class="why">월별 · 회색 사용량, 노랑 발전량 (1~12월)</span>`;
+}
+function renderCls(){
+  const O=classify(), eok=v=>fmt(v/1e8,2)+"억";
+  document.getElementById("clsIn").textContent=`판매가 ${fmt(C.price,2)}원 · 설치비 ${fmt(C.cost)}만 원/kW · kW당 ${fmt(FIN.y)}kWh · 예산 ${fmt(budget,2)}억 (다른 탭 입력값과 같이 바뀜)`;
+  document.getElementById("clsSum").innerHTML=`
+    <div class="stat"><span>예산 사용</span><strong class="num">${eok(O.spent)} / ${fmt(budget,2)}억</strong></div>
+    <div class="stat"><span>SPC 묶음 (${O.spc.length}곳)</span><strong class="num">${O.spc.length?eok(O.capex):"-"}</strong></div>
+    <div class="stat"><span>SPC DSCR 1년차 · 최저</span><strong class="num">${O.pf?fmt(O.pf.y1,2)+" · "+fmt(O.pf.mn,2):"-"}</strong></div>
+    <div class="stat"><span>시민 최소 인원</span><strong class="num">${O.pf?fmt(Math.ceil(O.capex*FIN.ct/CP.cap))+"명":"-"}</strong></div>`;
+  const rows=[...O.rows].sort((a,b)=>ORD.indexOf(a.type)-ORD.indexOf(b.type)||(a.rank||9)-(b.rank||9));
+  document.getElementById("clsCards").innerHTML=rows.map(r=>{
+    const [c,l]=TY[r.type], spc=r.type.startsWith("외부자금");
+    return `<div class="panel">
+      <h3>${r.b.n} <span class="pill ${c}">${l}${r.rank?" "+r.rank+"위":""}</span></h3>
+      <ol>${r.why.map(w=>`<li>${w}</li>`).join("")}</ol>
+      <div class="kv4">
+        <div>설치 용량<b class="num">${fmt(r.b.kw)}kW · ${eok(r.capex)}</b></div>
+        <div>발전량 ÷ 사용량<b class="num">${fmt(r.G/sum(r.U)*100)}%</b></div>
+        <div>${spc?"최저 DSCR":"회수 기간"}<b class="num">${spc?fmt(r.f.mn,2)+"배":fmt(r.pay,1)+"년"}</b></div>
+        <div>탄소 감축<b class="num">연 ${fmt(r.co2)}t</b></div>
+      </div>
+      ${bars(r)}
+      <details class="more"><summary>자료 근거</summary><p class="why">사용량: ${r.b.src} · 기존 설비: ${r.b.pv} · 결론 안정성: 발전량 3사례 ${r.robs[0]?"같음":"바뀜"}, 사용량 범위 ${r.robs[1]?"같음":"바뀜"}</p></details>
+    </div>`;}).join("");
+}
+document.getElementById("tarGov").oninput=e=>{const v=parseFloat(e.target.value); CP.tarGov=v>0?v:null; renderCls();};
+const _render=render; render=function(){_render(); renderCls();}; renderCls();
 </script>
