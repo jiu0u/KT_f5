@@ -143,6 +143,7 @@ body{margin:0;background:#05090E}
 #s04 .pics .cap b{color:var(--ink)}
 #s04 .vars{display:flex;gap:28px;flex-wrap:wrap;font-size:19px;color:var(--ink2)}
 #s04 .vars b{color:var(--ink);font-weight:600}
+#s04 .flow .st span{word-break:keep-all}
 #s05 .slide{gap:24px}
 #s05 .b5{display:grid;grid-template-columns:1fr 1fr;gap:40px;flex:1}
 #s05 .b5>.card{display:flex;flex-direction:column;justify-content:center}
@@ -296,41 +297,41 @@ body{margin:0;background:#05090E}
 </div></div></section>
 <section class="pg" id="s04"><div class="fit"><div class="slide">
   <div class="part">② 지붕 AI</div>
-  <h1>지붕 AI가 항공사진에서 <span class="hl">패널을 직접 세어</span> kW를 냅니다</h1>
+  <h1>지붕 AI가 항공사진에서 <span class="hl">패널을 몇 장 깔지</span> 세어 kW를 구합니다</h1>
 
   <div class="pics">
     <div><div class="img"><img src="img/junggu_orig.png" alt="중구청 항공사진"></div><div class="cap"><b>1 항공사진</b> 대전 중구청 (브이월드)</div></div>
     <div><div class="img"><img src="img/junggu_seg.png" alt="AI 지붕 분할"></div><div class="cap"><b>2 AI 분할</b> 파랑 = 설치 가능, 노랑 = 옥탑·실외기·물탱크</div></div>
-    <div><div class="img"><img src="img/junggu_panel.png" alt="패널 배치"></div><div class="cap"><b>3 그림자 빼고 패널 배치</b> 269장 = <span class="hl" style="font-weight:700">153kW</span></div></div>
+    <div><div class="img"><img src="img/junggu_panel.png" alt="패널 배치"></div><div class="cap"><b>3 그림자 빼고 패널 배치</b> 270장 = <span class="hl" style="font-weight:700">153kW</span></div></div>
   </div>
 
   <div class="flow">
     <div class="st"><b>학습</b><span>AI Hub 71348 적지분석 (수도권 2,336장)</span></div>
     <div class="ar">→</div>
-    <div class="st"><b>경계 맞추기</b><span>건물 경계를 사진에 자동 정렬 (8m 이내)</span></div>
+    <div class="st"><b>경계 맞추기</b><span>건물 경계를 사진에 자동 정렬, 어긋난 곳은 손으로 다시 그림</span></div>
     <div class="ar">→</div>
-    <div class="st"><b>그림자</b><span>주변 건물 높이로 동지 9~15시 그림자 계산</span></div>
+    <div class="st"><b>그림자</b><span>주변 건물 그림자(1년)를 빼고, 동지 9~15시 기준으로 줄 간격</span></div>
     <div class="ar">→</div>
     <div class="st"><b>배치</b><span>이격·구조물 여유를 두고 패널 수 → kW</span></div>
   </div>
-  <div class="vars"><span>모듈 <b>2278×1134mm · 효율 22% · 15°</b></span><span>가장자리 이격 <b>0.5m</b></span><span>구조물 여유 <b>북 3 · 동서 2 · 남 0.5m</b></span><span>발전량 <b>1,333kWh/kWp</b> (PVGIS 대전)</span></div>
+  <div class="vars"><span>모듈 <b>2278×1134mm · 효율 22% · 15°</b></span><span>가장자리 이격 <b>0.5m</b></span><span>구조물 여유 <b>북 3 · 동서 2 · 남 0.5m</b></span><span>발전량 <b>kW당 1,200kWh</b> (대전 실측 중앙값)</span></div>
 
-  <div class="src">대전 사진 966장을 더 넣어 다시 학습해도 정확도가 그대로여서, 수도권에서 배운 모델을 대전에 그대로 씁니다 · 이격 기준 국토부 2015 지침</div>
+  <div class="src">대전 사진 966장을 더 넣어 학습해도 다른 지역 사진 966장을 넣었을 때보다 나아지지 않아, 수도권에서 학습한 모델을 대전에 그대로 씁니다 · 이격 기준 국토부 2015 지침</div>
 </div></div></section>
 <section class="pg" id="s05"><div class="fit"><div class="slide">
   <div class="part">② 지붕 AI</div>
-  <h1>후보 102곳 <span class="hl">20.6MW</span>, 이 kW가 그대로 설치비가 됩니다</h1>
+  <h1>후보 102곳 <span class="hl">20.6MW</span>, kW를 알면 설치비가 나옵니다</h1>
 
   <div class="b5">
     <div class="card">
-      <div class="total"><span class="n mono">20.6</span><span class="u mono">MW</span><span class="t">기존 태양광 없는 곳 · 연 26.2GWh</span></div>
+      <div class="total"><span class="n mono">20.6</span><span class="u mono">MW</span><span class="t">기존 태양광 없는 곳 · 연 24.7GWh</span></div>
       <div class="split">
         <div><div class="k">청사 3곳</div><div class="v mono">447<small style="font-size:22px">kW</small></div><div class="d">교육청 163 · 중구청 153 · 대덕구청 131</div></div>
-        <div><div class="k">초등학교 99곳</div><div class="v mono">20,129<small style="font-size:22px">kW</small></div><div class="d">149곳 중 기존 태양광 50곳 제외 · 학교당 191kW</div></div>
+        <div><div class="k">초등학교 99곳</div><div class="v mono">20,129<small style="font-size:22px">kW</small></div><div class="d">149곳 중 기존 태양광 50곳 제외<br>학교 중앙값 191kW</div></div>
       </div>
     </div>
     <div class="card">
-      <div class="note">건물별 설치 용량 오차 (대전 11곳, 팀원이 직접 칠한 정답과 비교)</div>
+      <div class="note">건물별 설치 용량 오차 (대전 청사·문화시설 11곳, 팀원이 직접 칠한 정답과 비교)</div>
       <div class="cmp" style="margin-top:10px">
         <div class="row"><span>지붕 25% 가정</span><div class="track"><i style="width:88%"></i></div><b class="mono">44%</b></div>
         <div class="row ai"><span>지붕 AI</span><div class="track"><i style="width:50%"></i></div><b class="mono hl">25%</b></div>
@@ -345,9 +346,9 @@ body{margin:0;background:#05090E}
 
   <div class="money">
     <div class="eq mono">20,576kW × 120만 원/kW = <span class="hl">약 247억 원</span></div>
-    <p>AI가 잰 kW에 설치비 단가를 곱하면 필요한 돈이 나옵니다.<br>이 돈을 누가 낼지는 건물의 전기 사용량으로 정합니다 (다음 장)</p>
+    <p>kW에 단가를 곱하면 필요한 돈이 나옵니다.<br>누가 낼지는 전기 사용량을 보고 정합니다 (다음 장)</p>
   </div>
-  <div class="limits"><b>한계</b> AI 합계가 정답보다 17% 작게 나옴 · 학교 25곳은 체육관이 옆 필지라 빠져 실제보다 작음 · 기존 태양광은 항공사진 판독(팀원 확인 12곳과 9/9 일치)</div>
+  <div class="limits"><b>한계</b> AI는 정답보다 17% 적게 잡음(보수적) · 정확도는 청사·문화시설 11곳 기준이고 학교는 정답 라벨 없음 · 학교 25곳은 체육관이 옆 필지라 빠져 실제보다 작음<br>기존 태양광은 항공사진 판독(팀원 확인 12곳 중 확실한 9곳 모두 일치) · 발전량은 대전 실측 중앙값 kW당 1,200kWh (PVGIS 계산 1,272보다 보수적)</div>
 </div></div></section>
 <section class="pg" id="s06"><div class="fit"><div class="slide">
   <div class="part">③ 재원</div>
@@ -417,8 +418,8 @@ body{margin:0;background:#05090E}
     <div class="stage s1">
       <div class="k">1단계 · 시범</div>
       <div class="v">청사 3곳 447kW<br><span class="mono hl">약 5.4억 원</span></div>
-      <div class="d">기관 예산, 전기는 건물이 다 씀 (전기요금 연 약 0.9억 절감)</div>
-      <div class="c">조건: 기관 예산 편성, 실측 발전량으로 AI 보정</div>
+      <div class="d">중구청은 기관 예산, 대덕구청·교육청은 SPC가 설치하고 전기를 삼(PPA). 전기는 건물이 다 씀</div>
+      <div class="c">조건: 기관 예산 편성, 청사 전기요금 확인</div>
     </div>
     <div class="stage s2">
       <div class="k">2단계 · 확대</div>
@@ -435,14 +436,14 @@ body{margin:0;background:#05090E}
   </div>
 
   <div class="b8">
-    <div class="card fx"><div class="big mono">26.2<small style="font-size:22px">GWh</small></div><p>연 발전량 · CO₂ 연 약 1.2만 톤 감축 · 자립도 +0.26%p</p></div>
+    <div class="card fx"><div class="big mono">24.7<small style="font-size:22px">GWh</small></div><p>연 발전량 · CO₂ 연 약 1.1만 톤 감축 · 자립도 +0.25%p</p></div>
     <div class="card"><h3>다른 시·도</h3><p>AI Hub·브이월드·건축물대장은 전국 자료라 같은 방식으로 계산</p></div>
     <div class="card"><h3>다른 건물</h3><p>공영주차장, 중·고등학교 지붕</p></div>
     <div class="card"><h3>해마다 다시</h3><p>지붕 AI를 다시 돌려 기존 설치·새 건물을 반영하고 설치 순서를 갱신</p></div>
   </div>
 
   <div class="close">“비어 있는 공공 옥상부터 <span class="hl">정확히 재고</span>, 시민과 함께 설치하겠습니다.”</div>
-  <div class="src">출처: 대전시 정보공개(2026-11-13) 공영주차장 태양광 설치예정 51개소 12,992.6kW · 배출계수 0.4594tCO₂/MWh · 자립도 = 연 발전량 ÷ 대전 소비 9,922GWh · 자립도 +1%p에는 약 83MW 필요</div>
+  <div class="src">출처: 대전시 정보공개(2026-11-13) 공영주차장 태양광 설치예정 51개소 12,992.6kW · 배출계수 0.4594tCO₂/MWh · 연 발전량 = 20,576kW × 대전 실측 중앙값 1,200kWh/kW · 자립도 = 연 발전량 ÷ 대전 소비 9,922GWh · 자립도 +1%p에는 약 83MW 필요</div>
 </div></div></section>
 <div class="nav" id="nav">← → 키로 넘기기 · F 전체화면</div>
 <script>
