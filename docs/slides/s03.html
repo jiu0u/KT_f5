@@ -1,51 +1,49 @@
 <!doctype html>
 <html lang="ko"><head><meta charset="utf-8">
-<title>S3 남은 장벽</title>
+<title>S3 공공 옥상과 없는 자료</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=IBM+Plex+Mono:wght@500;600&display=swap">
 <link rel="stylesheet" href="slide.css">
 <style>
-.row4 .card{padding:22px 26px}
-.row4 .card h3{font-size:26px}
-.bottom{display:grid;grid-template-columns:1fr 1.1fr;gap:40px;flex:1}
-.bottom>.card:first-child{display:flex;flex-direction:column;justify-content:center}
-.bottom li{font-size:26px}
-.calc2{display:flex;flex-direction:column;gap:18px;justify-content:center}
-.eq{font-size:40px;font-weight:600}
-.need{display:grid;grid-template-columns:150px 1fr 120px;gap:18px;align-items:center;font-size:24px}
-.need .tr{height:38px;background:#1A2633;border-radius:4px}
-.need .tr i{display:block;height:100%;border-radius:4px;background:#4A5B6D}
-.need.me .tr i{background:var(--amber)}
+.b3{display:grid;grid-template-columns:1fr 1.05fr;gap:48px;flex:1}
+.why{display:grid;gap:14px;align-content:center}
+.why .r{display:grid;grid-template-columns:210px 1fr;gap:20px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:18px 24px;font-size:24px}
+.why .r span:first-child{color:var(--ink2)}
+.why .r.me{border-color:rgba(233,166,74,.6)}
+.why .r.me span:last-child{color:var(--amber);font-weight:700}
+.gaps{display:grid;gap:22px;align-content:center}
+.empty h3{font-size:32px;margin-bottom:10px}
+.empty p{font-size:23px;line-height:1.5;color:var(--ink2)}
+.empty .ans{display:inline-block;margin-top:12px;font-size:21px;font-weight:700;color:var(--ink);background:rgba(233,166,74,.15);border-radius:6px;padding:5px 12px}
+.lbl{font-size:22px;color:var(--ink2);font-weight:700}
 </style>
 </head><body>
 <div class="slide">
-  <div class="part">① 주제 적절성</div>
-  <h1>부지·행정은 풀렸고, 남은 문제는 <span class="hl">주민 반대와 예산</span>입니다</h1>
+  <div class="part">① 문제</div>
+  <h1>공공건물 옥상은 비어 있지만, <span class="hl">두 가지</span>를 모릅니다</h1>
 
-  <div class="row4">
-    <div class="card dim"><span class="tag ok">해소</span><h3>① 부지</h3><p>이미 있는 건물 옥상을 씁니다</p></div>
-    <div class="card dim"><span class="tag ok">해소</span><h3>② 행정</h3><p>대전 에너지 조례 제29조로 수의계약 사용허가 가능</p></div>
-    <div class="card"><span class="tag warn">남음</span><h3>③ 주민 반대</h3><p>대형 발전시설이 주민 반대로 반복 무산</p></div>
-    <div class="card"><span class="tag warn">남음</span><h3>④ 예산</h3><p>2026년 재생에너지 예산 연 45.2억 원</p></div>
-  </div>
-
-  <div class="bottom">
-    <div class="card">
-      <h3>주민 반대로 무산된 사례</h3>
-      <ul>
-        <li>2019 평촌산단 LNG 발전소 건설계획 중단</li>
-        <li>도안지구·연축동 수소연료전지 발전소 무산</li>
-        <li>대전열병합 증설 반대 서명 4천여 명</li>
-      </ul>
+  <div class="b3">
+    <div class="why">
+      <div class="lbl">왜 공공건물 옥상인가</div>
+      <div class="r"><span>LNG·연료전지</span><span>주민 반대로 무산</span></div>
+      <div class="r"><span>지상 태양광</span><span>이격거리 조례 전국 129곳</span></div>
+      <div class="r me"><span>공공건물 옥상</span><span>새 땅이 필요 없고 반대가 적음</span></div>
+      <div class="r"><span>설치 의무</span><span>신축 1,000㎡ 이상만 해당, 기존 건물은 의무 없음</span></div>
     </div>
-    <div class="card calc2">
-      <h3>예산으로 설치할 수 있는 양</h3>
-      <div class="eq mono">45.2억 ÷ 120만 원/kW = <span class="hl">연 3.8MW</span></div>
-      <div class="need"><span class="muted">옥상 잠재량</span><div class="tr"><i style="width:100%"></i></div><b class="mono">약 90MW</b></div>
-      <div class="need me"><span>예산 1년치</span><div class="tr"><i style="width:4.2%"></i></div><b class="mono hl">3.8MW</b></div>
-      <p class="muted" style="font-size:24px">예산만으로는 <b style="color:var(--ink)">20년 이상</b> 걸리고, 자립도는 1년에 0.05%p 오릅니다</p>
+    <div class="gaps">
+      <div class="lbl">모르는 것 두 가지</div>
+      <div class="empty">
+        <h3>① 건물마다 몇 kW를 깔 수 있나</h3>
+        <p>지금 있는 잠재량은 지붕 면적 × 일사량 × 20% × 25% 고정 공식이라 옥탑·실외기·그늘이 빠져 있습니다</p>
+        <span class="ans">→ 지붕 AI (4·5장)</span>
+      </div>
+      <div class="empty">
+        <h3>② 설치비는 누가 내나</h3>
+        <p>예산만으로는 20년이 걸리고, 대전에는 시민이 참여한 선례가 없습니다</p>
+        <span class="ans">→ 재원 결정과 시민 참여 SPC (6·7장)</span>
+      </div>
     </div>
   </div>
 
-  <div class="src">출처: 대전시 2026 재생에너지 예산 · 설치비 100kW 약 1.1~1.4억 원(해줌 2026 가이드)의 아래쪽 120만 원/kW · 무산 사례 언론 보도</div>
+  <div class="src">출처: 신재생에너지법 공공기관 설치 의무 · 지자체 이격거리 조례 현황 · 경기기후플랫폼 옥상 잠재량 산정 방식</div>
 </div>
 </body></html>

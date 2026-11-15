@@ -1,40 +1,68 @@
 <!doctype html>
 <html lang="ko"><head><meta charset="utf-8">
-<title>S5 기존 잠재량의 한계</title>
+<title>S5 결과에서 설치비까지</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=IBM+Plex+Mono:wght@500;600&display=swap">
 <link rel="stylesheet" href="slide.css">
 <style>
-.b5{display:grid;grid-template-columns:.8fr 1.2fr;gap:44px;flex:1}
-.fx{display:flex;flex-direction:column;justify-content:center;gap:22px}
-.fx .term{display:flex;align-items:center;gap:16px;font-size:30px}
-.fx .term b{font-family:"IBM Plex Mono",monospace;font-size:44px;color:var(--amber);min-width:120px}
-.fx .op{font-size:34px;color:var(--ink2);padding-left:10px}
-.pics{display:grid;grid-template-columns:1fr 1fr;gap:18px;align-content:center}
-.pics .img{height:560px}
+.slide{gap:24px}
+.b5{display:grid;grid-template-columns:1fr 1fr;gap:40px;flex:1}
+.b5>.card{display:flex;flex-direction:column;justify-content:center}
+.total{display:flex;align-items:baseline;gap:18px}
+.total .n{font-size:108px;font-weight:600;line-height:1;color:var(--amber)}
+.total .u{font-size:42px;color:var(--amber)}
+.total .t{font-size:24px;color:var(--ink2)}
+.split{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:18px}
+.split>div{border-top:1px solid var(--line);padding-top:12px}
+.split .k{font-size:21px;color:var(--ink2)}
+.split .v{font-size:44px;font-weight:600}
+.split .d{font-size:19px;color:var(--ink2);line-height:1.45;margin-top:4px}
+.cmp{display:grid;gap:12px}
+.cmp .row{display:grid;grid-template-columns:170px 1fr 90px;align-items:center;gap:16px;font-size:24px}
+.cmp .row span{color:var(--ink2)}
+.cmp .track{height:34px;background:#1A2633;border-radius:4px}
+.cmp .track i{display:block;height:100%;border-radius:4px;background:#4A5B6D}
+.cmp .row.ai .track i{background:var(--amber)}
+.cmp .row.ai span{color:var(--ink);font-weight:700}
+.cmp .row.blue .track i{background:var(--blue)}
+.cmp b{font-size:28px;text-align:right}
+.note{font-size:18px;color:var(--ink2)}
+.money{display:grid;grid-template-columns:auto 1fr;gap:36px;align-items:center;background:rgba(233,166,74,.08);border:2px solid rgba(233,166,74,.55);border-radius:14px;padding:24px 34px}
+.money .eq{font-size:44px;font-weight:600}
+.money p{font-size:22px;color:var(--ink2);line-height:1.5}
+.limits{display:block;background:rgba(224,120,107,.10);border:1px solid rgba(224,120,107,.45);border-radius:10px;padding:12px 22px;font-size:19px;color:var(--ink2)}
+.limits b{color:var(--warn)}
 </style>
 </head><body>
 <div class="slide">
-  <div class="part">② AI 적합성</div>
-  <h1>지금까지의 잠재량은 <span class="hl">지붕 면적에 고정 비율</span>을 곱한 값입니다</h1>
+  <div class="part">② 지붕 AI</div>
+  <h1>후보 102곳 <span class="hl">20.6MW</span>, 이 kW가 그대로 설치비가 됩니다</h1>
 
   <div class="b5">
-    <div class="card fx">
-      <h3 class="muted" style="font-size:22px">경기기후플랫폼 옥상 잠재량 공식</h3>
-      <div class="term"><b>일사량</b></div>
-      <div class="op">× 모듈 효율 <b class="hl mono">20%</b></div>
-      <div class="op">× 부지 대비 모듈 면적 <b class="hl mono">25%</b></div>
-      <p style="font-size:22px;border-top:1px solid var(--line);padding-top:16px">수원 검증: 지붕 격자값 5.83~6.41MWh, 표준편차 <b style="color:var(--ink)">1.5%</b>로 지붕마다 거의 같습니다</p>
-    </div>
-    <div>
-      <div class="pics">
-        <div><div class="img"><img src="img/junggu_orig.png" alt="중구청 항공사진"></div><div class="cap">대전 중구청 항공사진 (브이월드)</div></div>
-        <div><div class="img"><img src="img/junggu_seg.png" alt="AI 지붕 분할"></div><div class="cap">AI 분할: 옥탑·실외기·물탱크를 따로 찾습니다</div></div>
+    <div class="card">
+      <div class="total"><span class="n mono">20.6</span><span class="u mono">MW</span><span class="t">기존 태양광 없는 곳 · 연 26.2GWh</span></div>
+      <div class="split">
+        <div><div class="k">청사 3곳</div><div class="v mono">447<small style="font-size:22px">kW</small></div><div class="d">교육청 163 · 중구청 153 · 대덕구청 131</div></div>
+        <div><div class="k">초등학교 99곳</div><div class="v mono">20,129<small style="font-size:22px">kW</small></div><div class="d">149곳 중 기존 태양광 50곳 제외 · 학교당 191kW</div></div>
       </div>
-      <div class="lg" style="margin-top:12px"><span><i style="background:#79B0D8"></i>설치 가능 지붕</span><span><i style="background:#E8C547"></i>구조물</span><span><i style="background:#E0605A"></i>건물 경계</span></div>
+    </div>
+    <div class="card">
+      <div class="note">건물별 설치 용량 오차 (대전 11곳, 팀원이 직접 칠한 정답과 비교)</div>
+      <div class="cmp" style="margin-top:10px">
+        <div class="row"><span>지붕 25% 가정</span><div class="track"><i style="width:88%"></i></div><b class="mono">44%</b></div>
+        <div class="row ai"><span>지붕 AI</span><div class="track"><i style="width:50%"></i></div><b class="mono hl">25%</b></div>
+      </div>
+      <div class="note" style="margin:14px 0 8px">지붕 일치도 IoU · 11곳 중 8곳에서 AI가 정답에 더 가까움</div>
+      <div class="cmp">
+        <div class="row blue"><span>AI vs 정답</span><div class="track"><i style="width:47%"></i></div><b class="mono">0.47</b></div>
+        <div class="row blue"><span>사람 vs 사람</span><div class="track"><i style="width:72%"></i></div><b class="mono">0.72</b></div>
+      </div>
     </div>
   </div>
 
-  <div class="band">구조물과 그늘은 항공사진을 직접 분석해야 셀 수 있습니다</div>
-  <div class="src">출처: 경기기후플랫폼 신재생 잠재량 산정 방식 · 항공사진 브이월드(z19) · AI 결과는 팀 지붕 분할 모델</div>
+  <div class="money">
+    <div class="eq mono">20,576kW × 120만 원/kW = <span class="hl">약 247억 원</span></div>
+    <p>AI가 잰 kW에 설치비 단가를 곱하면 필요한 돈이 나옵니다.<br>이 돈을 누가 낼지는 건물의 전기 사용량으로 정합니다 (다음 장)</p>
+  </div>
+  <div class="limits"><b>한계</b> AI 합계가 정답보다 17% 작게 나옴 · 학교 25곳은 체육관이 옆 필지라 빠져 실제보다 작음 · 기존 태양광은 항공사진 판독(팀원 확인 12곳과 9/9 일치)</div>
 </div>
 </body></html>

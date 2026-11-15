@@ -1,48 +1,56 @@
 <!doctype html>
 <html lang="ko"><head><meta charset="utf-8">
-<title>S8 결과와 정확도</title>
+<title>S7 시민 투자와 시연</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=IBM+Plex+Mono:wght@500;600&display=swap">
 <link rel="stylesheet" href="slide.css">
+<style>
+.b7{display:grid;grid-template-columns:1.25fr 1fr;gap:40px;flex:1;min-height:0}
+.vid{display:flex;flex-direction:column;gap:12px;min-height:0}
+.vid .scr{flex:1;border:1px solid var(--line);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:28px;color:var(--ink2);background:repeating-linear-gradient(135deg,#101A25 0 22px,#0E1620 22px 44px)}
+.cuts{display:grid;grid-template-columns:repeat(5,1fr);gap:6px}
+.cuts div{background:var(--card);border-top:3px solid var(--amber);padding:9px 11px;font-size:16px;line-height:1.4;color:var(--ink2)}
+.cuts b{display:block;font-family:"IBM Plex Mono",monospace;color:var(--amber);font-size:15px}
+.me{display:flex;flex-direction:column;gap:16px;justify-content:center}
+.me .in{font-size:26px;color:var(--ink2)}
+.me .in b{font-family:"IBM Plex Mono",monospace;color:var(--ink);font-size:40px}
+.me .out{display:flex;align-items:baseline;gap:12px}
+.me .out .big{font-size:96px}
+.me .out span{font-size:26px}
+.kv{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.kv div{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 16px}
+.kv span{display:block;font-size:17px;color:var(--ink2)}
+.kv strong{font-size:26px}
+.warn2{font-size:18px;color:var(--ink2);border-left:4px solid var(--warn);padding-left:12px;line-height:1.5}
+</style>
 </head><body>
 <div class="slide">
-  <div class="part">② AI 구현</div>
-  <h1>후보 102곳 <span class="hl">20.6MW</span>, 용량 오차는 44%에서 25%로 줄였습니다</h1>
+  <div class="part">③ 재원</div>
+  <h1>100만 원을 넣으면 <span class="hl">15년간 해마다 약 11만 원</span>을 받습니다</h1>
 
-  <div class="s8">
-    <div class="panel">
-      <h2>청사·초등학교에 적용한 결과 (기존 태양광 건물 제외)</h2>
-      <div class="total"><span class="n mono">20.6</span><span class="u mono">MW</span><span class="t">설치 가능 · 연 26GWh</span></div>
-      <div class="split">
-        <div><div class="k">공공청사 3곳</div><div class="v mono">447<small style="font-size:26px">kW</small></div>
-          <div class="d">교육청 163 · 중구청 153<br>대덕구청 131 (충북도청은 대전 밖)</div></div>
-        <div><div class="k">초등학교 99곳</div><div class="v mono">20,129<small style="font-size:26px">kW</small></div>
-          <div class="d">149곳 분석 → 기존 태양광 50곳 제외<br>학교당 중앙값 191kW</div></div>
+  <div class="b7">
+    <div class="vid">
+      <div class="scr">▶ 시연영상 (60초, 녹화 후 교체)</div>
+      <div class="cuts">
+        <div><b>0:00</b>항공사진에 AI 분할</div>
+        <div><b>0:12</b>패널 배치, 중구청 153kW</div>
+        <div><b>0:25</b>발전량 → 설치비 → SPC 자금</div>
+        <div><b>0:42</b>학교 상품 고르기 → 금액 → 15년 상환표</div>
+        <div><b>0:54</b>3D 지도</div>
       </div>
     </div>
-
-    <div class="panel">
-      <h2>정답과 비교한 정확도 (대전 공공건물 11곳, 팀원이 직접 칠한 지붕)</h2>
-      <div class="cmp">
-        <div class="note">건물별 설치 용량 오차 (낮을수록 정확)</div>
-        <div class="row"><span>지붕 25% 가정</span><div class="track"><i style="width:88%"></i></div><b class="mono">44%</b></div>
-        <div class="row ai"><span>지붕 AI</span><div class="track"><i style="width:50%"></i></div><b class="mono hl">25%</b></div>
-        <div class="note" style="margin-top:6px">11곳 중 8곳에서 AI가 정답에 더 가까움</div>
+    <div class="me">
+      <div class="in">내가 넣는 돈 <b>100만 원</b> <span style="font-size:20px">(P2P 연계대출, 연 7.0%)</span></div>
+      <div class="out"><span class="big">11.0</span><span>만 원 × 15년<br><span class="muted" style="font-size:20px">원금+이자를 해마다 같은 금액으로</span></span></div>
+      <div class="kv">
+        <div><span>15년 합계</span><strong class="mono">약 165만 원</strong></div>
+        <div><span>그중 이자</span><strong class="mono hl">약 65만 원</strong></div>
+        <div><span>내 몫 패널</span><strong class="mono">약 1.5장</strong></div>
+        <div><span>내 몫 전기</span><strong class="mono">연 약 1,000kWh</strong></div>
       </div>
-      <div class="cmp" style="margin-top:22px">
-        <div class="note">지붕 일치도 IoU (높을수록 같음)</div>
-        <div class="row blue"><span>AI vs 정답</span><div class="track"><i style="width:47%"></i></div><b class="mono">0.47</b></div>
-        <div class="row blue"><span>사람 vs 사람</span><div class="track"><i style="width:72%"></i></div><b class="mono">0.72</b></div>
-      </div>
+      <p class="warn2">1인 연 500만 원 한도라 시민 최소 약 725명이 참여합니다. 은행 다음 순서로 받고, SPC 신용위험이 있어 원금이 보장되지는 않습니다.</p>
     </div>
   </div>
 
-  <div class="limits">
-    <strong>알려진 한계</strong>
-    <div><b>① 보수적:</b> AI 합계가 정답보다 17% 작게 나옴</div>
-    <div><b>② 학교 25곳:</b> 체육관이 옆 필지라 빠져 실제보다 작음</div>
-    <div><b>③ 기존 태양광:</b> 학교 137곳은 항공사진 판독 (팀원 확인 12곳과 9/9 일치)</div>
-  </div>
-
-  <div class="src">학습: AI Hub 「태양광 발전 현황 및 적지 분석 데이터」 수도권 2,336장(대전 0장) · 적용: 브이월드 항공사진·건물경계 · 25% 가정 = 지붕 면적 × 25% × 0.22kW/㎡</div>
+  <div class="src">100만 원 × 연 7.0%, 15년 원리금 균등 = 연 10.98만 원 · 설치비 120만 원/kW, 패널 1장 0.57kW, kW당 연 1,200kWh 기준 · 웹 데모 시민 투자 화면과 같은 계산</div>
 </div>
 </body></html>

@@ -1,31 +1,61 @@
 <!doctype html>
 <html lang="ko"><head><meta charset="utf-8">
-<title>S2 전력자립도</title>
+<title>S2 문제</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=IBM+Plex+Mono:wght@500;600&display=swap">
 <link rel="stylesheet" href="slide.css">
+<style>
+.b2{display:grid;grid-template-columns:520px 1fr;gap:56px;flex:1}
+.kl{display:flex;flex-direction:column;justify-content:center;gap:28px}
+.kl .big{font-size:180px}
+.kl .big small{font-size:84px}
+.kl .calc{font-size:24px;color:var(--ink2)}
+.mini{display:grid;gap:12px}
+.mini .r{display:grid;grid-template-columns:70px 1fr 100px;gap:14px;align-items:center;font-size:22px}
+.mini .tr{height:26px;background:#1A2633;border-radius:4px}
+.mini .tr i{display:block;height:100%;background:#4A5B6D;border-radius:4px}
+.mini .me .tr i{background:var(--amber)}
+.mini .me span{color:var(--ink);font-weight:700}
+.mini span{color:var(--ink2)}
+.right2{display:grid;grid-template-rows:1fr 1fr;gap:24px}
+.right2 .card{display:flex;flex-direction:column;justify-content:center}
+.right2 li{font-size:24px}
+.right2 .tag{align-self:flex-start}
+.eq{font-size:36px;font-weight:600;margin:4px 0 10px}
+</style>
 </head><body>
 <div class="slide">
-  <div class="part">① 주제 적절성</div>
-  <h1>대전 전력자립도 <span class="hl">3.06%</span>, 17개 시·도 중 최하위</h1>
-  <p class="sub">대전은 쓰는 전기의 97%를 다른 지역에서 받아 씁니다.</p>
+  <div class="part">① 문제</div>
+  <h1>대전 전력자립도 <span class="hl">3.06%</span>, 17개 시·도 중 최하위입니다</h1>
 
-  <div class="grid2">
-    <div class="killer">
-      <div class="big mono hl">3.06<small>%</small></div>
-      <div class="calc mono">발전 304GWh ÷ 소비 9,922GWh</div>
-      <div class="lab">2023년 대전 전력자립도</div>
+  <div class="b2">
+    <div class="kl">
+      <div><div class="big">3.06<small>%</small></div><div class="calc mono">발전 304GWh ÷ 소비 9,922GWh (2023)</div></div>
+      <div class="mini">
+        <div class="r"><span>서울</span><div class="tr"><i style="width:22%"></i></div><b class="mono">10.4%</b></div>
+        <div class="r"><span>광주</span><div class="tr"><i style="width:19.6%"></i></div><b class="mono">9.3%</b></div>
+        <div class="r me"><span>대전</span><div class="tr"><i style="width:6.4%"></i></div><b class="mono hl">3.06%</b></div>
+      </div>
+      <p class="muted" style="font-size:21px">2026년 7월 보도: “전력자급도 꼴찌가 기업 유치 걸림돌”</p>
     </div>
-    <div class="bars">
-      <div class="row"><span class="nm">경북</span><div class="track"><i style="width:100%"></i><em class="cut">//</em></div><b class="mono">216%</b></div>
-      <div class="row"><span class="nm">서울</span><div class="track"><i style="width:22%"></i></div><b class="mono">10.4%</b></div>
-      <div class="row"><span class="nm">광주</span><div class="track"><i style="width:19.6%"></i></div><b class="mono">9.3%</b></div>
-      <div class="row me"><span class="nm">대전</span><div class="track"><i style="width:6.4%"></i></div><b class="mono hl">3.06%</b></div>
-      <p class="axis">막대 길이: 대전·광주·서울은 같은 축(전체 = 47.5%). 경북은 축을 넘어 잘라서 표시</p>
+    <div class="right2">
+      <div class="card">
+        <span class="tag warn">막힌 길 ①</span>
+        <h3>큰 발전소는 주민 반대로 무산됐습니다</h3>
+        <ul>
+          <li>2019 평촌산단 LNG 발전소 건설계획 중단</li>
+          <li>도안지구·연축동 수소연료전지 발전소 무산</li>
+          <li>대전열병합 증설 반대 서명 4천여 명</li>
+        </ul>
+      </div>
+      <div class="card">
+        <span class="tag warn">막힌 길 ②</span>
+        <h3>예산만으로는 20년이 넘게 걸립니다</h3>
+        <div class="eq mono">45.2억 ÷ 120만 원/kW = <span class="hl">연 3.8MW</span></div>
+        <p>옥상 잠재량 약 90MW를 채우려면 20년 이상, 자립도는 1년에 0.05%p씩 오릅니다</p>
+      </div>
     </div>
   </div>
 
-  <div class="band">2026년 7월 보도: “전력자급도 꼴찌가 기업 유치 걸림돌”</div>
-
-  <div class="src">출처: 에너지경제연구원 지역에너지통계연보(2023, 발전량 ÷ 소비량). 한전통계 기준으로는 2.96%로 발표되기도 함</div>
+  <div class="src">출처: 에너지경제연구원 지역에너지통계연보(2023) · 대전시 2026 재생에너지 예산 · 설치비 100kW 약 1.1~1.4억 원(해줌 2026 가이드)의 아래쪽 · 무산 사례 언론 보도</div>
 </div>
 </body></html>

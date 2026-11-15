@@ -1,41 +1,40 @@
 <!doctype html>
 <html lang="ko"><head><meta charset="utf-8">
-<title>S4 비어 있는 자료</title>
+<title>S4 지붕 AI</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=IBM+Plex+Mono:wght@500;600&display=swap">
 <link rel="stylesheet" href="slide.css">
 <style>
-.body4{display:grid;grid-template-columns:1.05fr 1fr;gap:48px;flex:1}
-.why{display:grid;gap:16px;align-content:center}
-.why .r{display:grid;grid-template-columns:230px 1fr;gap:20px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:18px 24px;font-size:24px}
-.why .r span:first-child{color:var(--ink2)}
-.why .r.me{border-color:rgba(233,166,74,.6)}
-.why .r.me span:last-child{color:var(--amber);font-weight:700}
-.gaps{display:grid;gap:24px;align-content:center}
-.empty p{font-size:24px;line-height:1.5;color:var(--ink2)}
-.empty h3{font-size:30px;margin-bottom:8px}
-.lbl{font-size:22px;color:var(--ink2);font-weight:700}
+.slide{gap:24px}
+.pics{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;flex:1;min-height:0}
+.pics>div{display:flex;flex-direction:column;min-height:0}
+.pics .img{flex:1;min-height:0}
+.pics .cap{font-size:20px}
+.pics .cap b{color:var(--ink)}
+.vars{display:flex;gap:28px;flex-wrap:wrap;font-size:19px;color:var(--ink2)}
+.vars b{color:var(--ink);font-weight:600}
 </style>
 </head><body>
 <div class="slide">
-  <div class="part">① 주제 적절성</div>
-  <h1>공공 옥상은 비어 있지만, <span class="hl">건물별 설치 가능 용량</span> 자료가 없습니다</h1>
+  <div class="part">② 지붕 AI</div>
+  <h1>지붕 AI가 항공사진에서 <span class="hl">패널을 직접 세어</span> kW를 냅니다</h1>
 
-  <div class="body4">
-    <div class="why">
-      <div class="lbl">왜 공공건물 옥상인가</div>
-      <div class="r"><span>LNG·연료전지</span><span>주민 반대로 무산</span></div>
-      <div class="r"><span>지상 태양광</span><span>이격거리 조례 전국 129곳</span></div>
-      <div class="r me"><span>공공건물 옥상</span><span>확인된 민원 1건</span></div>
-      <div class="r"><span>설치 의무</span><span>신축 1,000㎡ 이상만 신재생 36%(2026), 기존 건물은 의무 없음</span></div>
-    </div>
-    <div class="gaps">
-      <div class="lbl">없는 자료 두 가지</div>
-      <div class="empty"><h3>① 얼마나 깔 수 있나</h3><p>건물별 설치 가능 용량 데이터가 없습니다</p></div>
-      <div class="empty"><h3>② 누가 돈을 내나</h3><p>예산만으로는 20년이 걸리고, 대전에는 시민이 참여한 선례가 없습니다</p></div>
-    </div>
+  <div class="pics">
+    <div><div class="img"><img src="img/junggu_orig.png" alt="중구청 항공사진"></div><div class="cap"><b>1 항공사진</b> 대전 중구청 (브이월드)</div></div>
+    <div><div class="img"><img src="img/junggu_seg.png" alt="AI 지붕 분할"></div><div class="cap"><b>2 AI 분할</b> 파랑 = 설치 가능, 노랑 = 옥탑·실외기·물탱크</div></div>
+    <div><div class="img"><img src="img/junggu_panel.png" alt="패널 배치"></div><div class="cap"><b>3 그림자 빼고 패널 배치</b> 269장 = <span class="hl" style="font-weight:700">153kW</span></div></div>
   </div>
 
-  <div class="band">①은 지붕 AI로, ②는 시민이 참여하는 SPC로 채웁니다</div>
-  <div class="src">출처: 신재생에너지법 공공기관 설치 의무 비율 · 지자체 이격거리 조례 현황 · 대전 언론 보도</div>
+  <div class="flow">
+    <div class="st"><b>학습</b><span>AI Hub 71348 적지분석 (수도권 2,336장)</span></div>
+    <div class="ar">→</div>
+    <div class="st"><b>경계 맞추기</b><span>건물 경계를 사진에 자동 정렬 (8m 이내)</span></div>
+    <div class="ar">→</div>
+    <div class="st"><b>그림자</b><span>주변 건물 높이로 동지 9~15시 그림자 계산</span></div>
+    <div class="ar">→</div>
+    <div class="st"><b>배치</b><span>이격·구조물 여유를 두고 패널 수 → kW</span></div>
+  </div>
+  <div class="vars"><span>모듈 <b>2278×1134mm · 효율 22% · 15°</b></span><span>가장자리 이격 <b>0.5m</b></span><span>구조물 여유 <b>북 3 · 동서 2 · 남 0.5m</b></span><span>발전량 <b>1,333kWh/kWp</b> (PVGIS 대전)</span></div>
+
+  <div class="src">대전 사진 966장을 더 넣어 다시 학습해도 정확도가 그대로여서, 수도권에서 배운 모델을 대전에 그대로 씁니다 · 이격 기준 국토부 2015 지침</div>
 </div>
 </body></html>

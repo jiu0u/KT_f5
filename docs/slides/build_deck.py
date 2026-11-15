@@ -1,10 +1,10 @@
 # python -X utf8 docs/slides/build_deck.py → docs/slides/deck.html
-# s01~s11.html(고치는 원본)을 한 파일로 합침. 장마다 <style>은 #sNN 안으로 범위를 좁혀 서로 안 섞이게 함.
+# s01~s08.html(고치는 원본)을 한 파일로 합침. 장마다 <style>은 #sNN 안으로 범위를 좁혀 서로 안 섞이게 함.
 # slide.css는 안에 넣어서 deck.html 하나만 열어도 디자인이 보임. 항공사진(img/)은 링크 그대로(깃에는 없음).
 import os, re
 
 D = os.path.dirname(os.path.abspath(__file__))
-S = [f"s{i:02d}" for i in range(1, 12)]
+S = [f"s{i:02d}" for i in range(1, 9)]
 
 
 def scope(css, sid):

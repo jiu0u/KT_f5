@@ -1,62 +1,57 @@
 <!doctype html>
 <html lang="ko"><head><meta charset="utf-8">
-<title>S6 파이프라인</title>
+<title>S6 재원 결정과 SPC</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=IBM+Plex+Mono:wght@500;600&display=swap">
 <link rel="stylesheet" href="slide.css">
 <style>
 .slide{gap:22px}
-.top .st.on{border-color:var(--amber);background:rgba(233,166,74,.08)}
-.b6{display:grid;grid-template-columns:1.25fr 1fr;gap:36px;flex:1;min-height:0}
-.left6{display:flex;flex-direction:column;gap:18px}
-.vars{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid var(--line);border-radius:10px;overflow:hidden}
-.vars div{padding:12px 18px;font-size:19px;color:var(--ink2);border-bottom:1px solid var(--line)}
-.vars div:nth-child(odd){border-right:1px solid var(--line)}
-.vars b{color:var(--ink);font-weight:600}
-.pic6{display:flex;flex-direction:column}
-.pic6 .img{flex:1;min-height:0}
+.t3{display:grid;grid-template-columns:1.25fr .9fr 1fr 1.05fr;border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.t3>div{padding:14px 20px;font-size:21px;border-bottom:1px solid var(--line);display:block;align-content:center;line-height:1.45}
+.t3 .h{background:#1A2633;color:var(--ink2);font-size:18px;font-weight:700}
+.t3 .last{border-bottom:0}
+.t3 b{font-weight:700}
+.t3 .hi{background:rgba(233,166,74,.08)}
+.t3 .g{color:var(--ink2);font-size:19px}
+.money{display:grid;grid-template-columns:20fr 65fr 15fr;height:62px;border-radius:8px;overflow:hidden;font-size:21px;font-weight:700}
+.money div{display:flex;align-items:center;justify-content:center;gap:10px}
+.money .eq{background:#3B4B5C}.money .pf{background:#2C5577}.money .ct{background:var(--amber);color:#1b1404}
+.money small{font-weight:500;font-size:17px;opacity:.85}
+.b6{display:grid;grid-template-columns:1.35fr 1fr;gap:28px}
+.wf{display:flex;flex-wrap:wrap;gap:8px;align-items:center;font-size:19px}
+.wf span{background:#1A2633;border-radius:6px;padding:6px 11px}
+.wf span.h{background:rgba(233,166,74,.18);color:var(--amber);font-weight:700}
+.wf em{font-style:normal;color:var(--ink2)}
+.ds .big{font-size:64px}
 </style>
 </head><body>
 <div class="slide">
-  <div class="part">② AI 적합성</div>
-  <h1>항공사진에서 <span class="hl">패널 수, kW, 설치비</span>까지 계산합니다</h1>
+  <div class="part">③ 재원</div>
+  <h1>전기 사용량으로 <span class="hl">재원을 정하고</span>, 학교는 SPC가 설치합니다</h1>
 
-  <div class="flow top">
-    <div class="st"><b>① 학습</b><span>AI Hub 71348 적지분석</span></div>
-    <div class="ar">→<small>모델</small></div>
-    <div class="st on"><b>② 대전 적용</b><span>경계·그림자·배치 → kW</span></div>
-    <div class="ar">→<small>kWh/년</small></div>
-    <div class="st"><b>③ 전력 사용량</b><span>예산 자가소비 / 판매 구분</span></div>
-    <div class="ar">→<small>원</small></div>
-    <div class="st"><b>④ 수익·자금</b><span>SPC 원리금·DSCR</span></div>
+  <div class="t3">
+    <div class="h">건물 상태 (전력 사용량 AI가 판단)</div><div class="h">설치 방식</div><div class="h">돈을 내는 곳</div><div class="h">대상</div>
+    <div>발전량이 사용량의 30% 이하, 예산 안</div><div><b>예산 자가소비</b></div><div>기관 예산 (전기를 건물이 다 씀)</div><div>청사 3곳 447kW · <span class="hl mono">5.4억</span><br><span class="g">발전이 사용량의 14~17%</span></div>
+    <div>같은 조건, 예산 초과</div><div><b>온사이트 PPA</b></div><div>SPC가 설치, 청사가 전기를 삼</div><div class="g">예산이 모자란 청사 (조건부)</div>
+    <div class="hi last">사용량보다 발전이 많거나 자료 없음</div><div class="hi last"><b>전량 판매</b></div><div class="hi last">SPC가 설치, 20년 고정가격 146.92원</div><div class="hi last">초등학교 99곳 20,129kW · <span class="hl mono">241.5억</span></div>
+  </div>
+
+  <div>
+    <div class="money"><div class="eq">출자 20% <small>48.3억 · 대전시·도시공사</small></div><div class="pf">은행 PF 65% <small>157.0억 · 18년 5.0% · 먼저 받음</small></div><div class="ct">시민 15% <small>36.2억</small></div></div>
+    <div class="cap">SPC(가칭 대전햇빛발전) 자금 · 시민 몫은 P2P 연계대출 15년 원리금 균등(연 7.0%), 은행 다음 순서 · 비율은 은행이 DSCR 1.2를 맞추는 만큼 조정</div>
   </div>
 
   <div class="b6">
-    <div class="left6">
-      <div style="font-size:21px;color:var(--amber);font-weight:700">② 대전 적용 단계</div>
-      <div class="flow">
-        <div class="st"><b>1 분할</b><span>지붕 / 구조물 / 배경</span></div>
-        <div class="ar">→</div>
-        <div class="st"><b>2 정합</b><span>건물 경계 자동 정렬 (≤8m)</span></div>
-        <div class="ar">→</div>
-        <div class="st"><b>3 그림자</b><span>주변 건물 높이, 동지 9~15시</span></div>
-        <div class="ar">→</div>
-        <div class="st"><b>4 배치</b><span>패널 수 → kW</span></div>
-      </div>
-      <div class="vars">
-        <div>모듈 <b>2278×1134mm · 효율 22%</b></div>
-        <div>경사 <b>15°</b> · 열화 <b>연 0.5%</b></div>
-        <div>가장자리 이격 <b>0.5m</b></div>
-        <div>구조물 여유 <b>북 3 · 동서 2 · 남 0.5m</b></div>
-        <div>줄 간격 <b>동지 9~15시 그림자 기준</b></div>
-        <div>발전량 <b>1,333kWh/kWp</b> (PVGIS 대전)</div>
-      </div>
+    <div class="card">
+      <h3>전기를 판 돈으로 갚는 순서</h3>
+      <div class="wf"><span>운영비</span><em>→</em><span class="h">은행 PF</span><em>→</em><span>DSRA 6.7억</span><em>→</em><span class="h">시민</span><em>→</em><span>유지보수·원상복구 적립</span><em>→</em><span>공공 환원</span></div>
+      <p style="margin-top:12px;font-size:20px">1~15년차 은행·시민 함께 연 17.4억, 16~18년차 은행만, 19~20년차 수익은 모두 공공으로</p>
     </div>
-    <div class="pic6">
-      <div class="img"><img src="img/junggu_panel.png" alt="중구청 패널 배치 결과"></div>
-      <div class="cap">중구청 패널 배치: 269장, <b style="color:var(--amber)">153kW</b> (빨간 부분은 그림자로 뺀 곳)</div>
+    <div class="card ds">
+      <div style="display:flex;align-items:baseline;gap:14px"><span class="big">1.83</span><span style="font-size:22px">배 DSCR 1년차<br><span class="muted" style="font-size:18px">번 돈 ÷ 갚을 돈 · 은행 기준 1.2</span></span></div>
+      <p style="font-size:19px;margin-top:8px">발전량이 적고 금리가 오르는 보수 시나리오 1.13배 → 출자를 35%로 늘리면 1.27배</p>
     </div>
   </div>
 
-  <div class="src">학습: AI Hub 「태양광 발전 현황 및 적지 분석 데이터」 · 적용: 브이월드 항공사진·건물경계 · 이격 기준 국토부 2015 지침 · 발전량 PVGIS</div>
+  <div class="src">근거: 재생에너지법 개정(2026.9.15 공포, 신규 설비 REC 미발급 → REC 수익 제외) · 2026 1차 고정가격계약 낙찰 평균 · 하나 솔라론 4.722~7.122% · P2P 실무 7~11% · 대전시 실측 68곳 중앙값 1,200kWh/kW · 재생에너지법 제26조, 대전 에너지 조례 제25·29조</div>
 </div>
 </body></html>
