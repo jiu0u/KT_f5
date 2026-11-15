@@ -12,7 +12,7 @@ DSC 공유대학×KT AI 활용 지역문제 해결 공모전 프로토타입. �
 | 내용 | 파일 | 바로 열기 |
 |---|---|---|
 | 건물 순위·설치 방식 판단(전력 AI)·시민펀드 계산 | `docs/solar_demo.html` | [열기](https://htmlpreview.github.io/?https://github.com/jiu0u/KT_f5/blob/main/docs/solar_demo.html) |
-| 3D 지도 + 구별 시민 참여 (인터넷 필요) | `docs/solar_map.html` | [열기](https://htmlpreview.github.io/?https://github.com/jiu0u/KT_f5/blob/main/docs/solar_map.html) |
+| 3D 지도 + 구별 시민 참여 + 설치 방식 판단(전력 AI) (인터넷 필요) | `docs/solar_map.html` | [열기](https://htmlpreview.github.io/?https://github.com/jiu0u/KT_f5/blob/main/docs/solar_map.html) |
 | 팀 확인사항 정리 (11/15, 분류 기준 통일) | `docs/팀_확인사항_정리_1115.md` | [열기](docs/팀_확인사항_정리_1115.md) |
 | 발표자료 설계도 — 11장 구성 | `docs/ppt_blueprint.html` | [열기](https://htmlpreview.github.io/?https://github.com/jiu0u/KT_f5/blob/main/docs/ppt_blueprint.html) |
 | 발표 슬라이드 시안 8장 (한 파일, ← → 키로 넘김) | `docs/slides/deck.html` | [열기](https://htmlpreview.github.io/?https://github.com/jiu0u/KT_f5/blob/main/docs/slides/deck.html) · [장별 목록](docs/slides/README.md) |

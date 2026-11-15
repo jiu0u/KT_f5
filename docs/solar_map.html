@@ -137,6 +137,15 @@ h2{font-size:14px;margin:0}
   .legend{display:none}
 }
 .yp{width:100%;border-collapse:collapse;font-size:12px;margin-top:6px}.yp th,.yp td{padding:3px 6px;border-bottom:1px solid var(--line);text-align:right}.yp th:first-child,.yp td:first-child,.yp td:nth-child(2),.yp th:nth-child(2){text-align:left}
+.pill.ppa{background:var(--ok);color:#fff}
+.pill.hold{background:#b4541c;color:#fff}
+.clsc{border:1px solid var(--line);border-radius:10px;padding:12px;display:grid;gap:8px}
+.clsc h3{margin:0;font-size:15px;display:flex;gap:6px;align-items:center;flex-wrap:wrap}
+.clsc ol{margin:0;padding-left:18px;font-size:12.5px;display:grid;gap:2px}
+.kv4{display:grid;grid-template-columns:1fr 1fr;gap:6px 10px;font-size:11.5px;color:var(--muted)}
+.kv4 b{display:block;font-size:15px;color:var(--ink)}
+details.more summary{cursor:pointer;font-size:12.5px;color:var(--muted)}
+.ctl input{width:80px}
 </style>
 </head>
 <body>
@@ -152,6 +161,7 @@ h2{font-size:14px;margin:0}
   <div class="tabs" role="tablist">
     <button role="tab" id="t-sum" aria-selected="true">우선순위</button>
     <button role="tab" id="t-det" aria-selected="false">건물 상세</button>
+    <button role="tab" id="t-cls" aria-selected="false">설치 방식</button>
     <button role="tab" id="t-fund" aria-selected="false">시민 참여</button>
   </div>
 
@@ -179,6 +189,15 @@ h2{font-size:14px;margin:0}
   </div>
 
   <div class="pbody detail" id="v-det" hidden></div>
+
+  <div class="pbody" id="v-cls" hidden>
+    <p class="why" style="margin:0">전력 AI가 월별 사용량으로 <b>어떤 돈으로 설치할지</b> 3단계로 판단합니다. ① 다 쓰는가(자가소비율 80%↑) → ② 요금이 판매가보다 5원 넘게 비싼가 → ③ 예산 안인가</p>
+    <label class="ctl why">청사 전기요금 (원/kWh) <input type="number" id="tarGov" step="0.1" placeholder="미확인"></label>
+    <p class="why" id="clsIn" style="margin:0"></p>
+    <div class="stats" id="clsSum"></div>
+    <div id="clsCards" style="display:grid;gap:10px"></div>
+    <p class="why" style="margin:0">전력 예측 팀 분류 코드(solar_classifier.py)를 옮긴 것. 5곳은 분류 예시이고, 전체 규모(102곳 · 20.6MW · 약 247억)는 우선순위 탭 기준</p>
+  </div>
 
   <div class="pbody" id="v-fund" hidden>
     <p class="pickhint">지도에서 주황 건물을 <b>두 번</b> 누르면 옥상으로 확대되어 내 패널 자리를 고를 수 있습니다.</p>
@@ -614,7 +633,7 @@ function voteRender(){
   document.querySelectorAll("[data-vote]").forEach(x=>x.onclick=()=>{const n=x.dataset.vote; if(voted)VOTES[voted]--; if(voted===n){voted=null;}else{voted=n;VOTES[n]++;} voteRender();});
 }
 
-const TABS={sum:"t-sum",det:"t-det",fund:"t-fund"};
+const TABS={sum:"t-sum",det:"t-det",cls:"t-cls",fund:"t-fund"};
 function showTab(k){
   for(const [key,id] of Object.entries(TABS)){
     document.getElementById(id).setAttribute("aria-selected",key===k);
@@ -627,6 +646,113 @@ document.getElementById("budget").oninput=e=>{budget=+e.target.value;render();};
 document.getElementById("invest").oninput=render;
 document.getElementById("rate").oninput=e=>{C.fund=+e.target.value/100;document.getElementById("rateOut").textContent=fmt(C.fund*100,1)+"%";B.forEach(b=>{b.f=fin(b.kw);});render();};
 render();
+</script>
+<script>
+// 전력 예측 팀 분류기(solar_classifier.py, 2026-11-15판)를 그대로 옮김. 예산은 우선순위 탭 슬라이더, 시민 금리는 시민 참여 탭 슬라이더를 같이 씀
+const KEP=[6425012,5518581,5413056,4864579,3384928,3893792,4574959,4155526,4884192,3832798,3822494,5589620]; // 한전 대전 동구 교육용 2025 월별 → 학교 월별 모양
+const EDU=[124822,118825,115721,62497,88876,105063,121363,118551,93235,85833,72835,106388]; // 건축HUB 2025-07~2026-06
+const CB=[
+{n:"대전 중구청",m:"중구청",f:"청사",kw:153,a:.537,rel:1,src:"그린버튼 실측 11개월 + 1개월 보정",pv:"기존 태양광 없음 (중구 정보공개로 확인)",
+ u:[174900,142900,142300,108500,115200,130500,156200,157700,136000,123600,127494,156900],
+ g:[13862,15897,21313,21236,22414,19508,15866,16585,15897,16754,12791,12500]},
+{n:"대전 대덕구청",m:"대덕구청",f:"청사",kw:131,a:.546,rel:1,src:"그린버튼 실측 11개월 + 1개월 보정",pv:"본관 없음 · 별관에 20kW 따로 있음",
+ u:[160000,124600,113600,88000,87700,109100,139600,142200,111200,90900,105573,136400],
+ g:[11869,13611,18248,18183,19192,16702,13585,14200,13611,14344,10952,10703]},
+{n:"대전광역시교육청",m:"대전광역시교육청",f:"청사",kw:163,a:.61,rel:.7,src:"건축HUB (그린버튼과 6% 차이)",pv:"없음 (항공사진 판독, 정보공개 답변 대기)",
+ u:EDU.slice(6).concat(EDU.slice(0,6)),
+ g:[14767,16936,22706,22624,23880,20782,16903,17670,16936,17848,13626,13317]},
+{n:"가오초등학교",m:"대전가오초등학교",f:"학교",kw:222,area:11453.3,rel:.4,src:"연면적 11,453.3㎡ × 26~38kWh/㎡ 추정",pv:"없음 (팀원 카카오맵 확인)",
+ g:[20100,23100,30900,30800,32500,28300,23000,24100,23100,24300,18600,18100]},
+{n:"판암초등학교",f:"학교",kw:112,area:12305.8,rel:.4,src:"연면적 12,305.8㎡ × 26~38kWh/㎡ 추정",pv:"항공사진상 기존 태양광 있음 → 분류 예시로만 씀 (102곳 합계에 없음)",
+ g:[10100,11600,15600,15500,16400,14200,11600,12100,11600,12200,9300,9100]}];
+const CP={thr:.8,margin:5,tarSch:146.6,tarGov:null,spread:.05,aDef:{청사:[.4,.5,.6],학교:[.3,.45,.6]},eui:[26,32,38],deg:.005,years:20,cap:5e6,ef:.4594,
+  cases:[1,.898,.743], // AI 계산값 · 실측 중앙값 보정 · 보수(실측 하위 25%)
+  W:{"예산 자가소비형":{pay:.35,sav:.25,co2:.2,rel:.1,rob:.1},"외부자금 자가소비형(PPA)":{dscr:.35,rev:.2,co2:.2,rel:.1,rob:.15},"외부자금 판매형":{dscr:.35,rev:.25,co2:.2,rel:.05,rob:.15}}};
+const sum=a=>a.reduce((x,y)=>x+y,0), pct=v=>Math.round(v*100)+"%";
+function clsRows(k,lvl){
+  const sale=C.price, cost=C.cost*1e4;
+  const rows=CB.map(b=>{
+    const gen=b.g.map(v=>v*k), G=sum(gen);
+    const U=b.u||KEP.map(v=>v/sum(KEP)*b.area*CP.eui[lvl]);
+    const al=b.a!=null?[b.a-CP.spread,b.a,b.a+CP.spread]:CP.aDef[b.f];
+    const used=al.map(a=>gen.reduce((s,g,i)=>s+Math.min(g,a*U[i]),0)), rates=used.map(u=>u/G);
+    const tar=b.f==="학교"?CP.tarSch:CP.tarGov, cheap=tar!=null&&tar<=sale+CP.margin;
+    const r={b,gen,U,G,rates,tar,why:[]}, hi=rates.every(x=>x>=CP.thr), lo=rates.every(x=>x<CP.thr);
+    if(lo){r.type="외부자금 판매형"; r.why.push(`1단계: 자가소비율 ${pct(rates[1])} < 80% (남는 전기가 많음)`);}
+    else{
+      r.why.push(hi?`1단계: 자가소비율 ${pct(rates[1])} ≥ 80%`:`1단계: 낮 시간 사용 비율 가정에 따라 ${pct(rates[0])}~${pct(rates[2])}, 80% 기준에 걸침`);
+      if(cheap){r.type="외부자금 판매형"; r.why.push(`2단계: 전기요금 ${tar.toFixed(1)}원 ≈ 판매가 ${sale.toFixed(1)}원 → 직접 써도 이득 없음`);}
+      else if(!hi) r.type="판단 보류";
+      else{r.type="예산 후보"; r.why.push(tar==null?"2단계: 청사 전기요금 미확인 (확인되면 판매가 + 5원보다 비싼지 봄)":`2단계: 전기요금 ${tar.toFixed(1)}원 > 판매가 ${sale.toFixed(1)}원 + 5원`);}
+    }
+    r.capex=b.kw*cost; r.sav=used[1]*(tar??sale)+(G-used[1])*sale; r.pay=r.capex/r.sav;
+    return r;});
+  let spent=0;
+  rows.filter(r=>r.type==="예산 후보").sort((a,b)=>a.pay-b.pay).forEach(r=>{
+    if(spent+r.capex<=budget*1e8){spent+=r.capex; r.type="예산 자가소비형"; r.why.push(`3단계: 예산 안 (누적 ${(spent/1e8).toFixed(2)}억 / ${budget.toFixed(2)}억)`);}
+    else{r.type="외부자금 자가소비형(PPA)"; r.why.push("3단계: 예산 초과 → SPC가 설치하고 건물이 전기를 사서 씀 (PPA)");}});
+  return {rows,spent};
+}
+function sched(capex,G1,price){
+  const ann=(P,r,n)=>P*r/(1-(1+r)**-n), dp=ann(capex*(1-FIN.eq-FIN.ct),FIN.pfR,FIN.pfN), dc=ann(capex*FIN.ct,C.fund,FIN.ctN);
+  let y1=null,mn=Infinity;
+  for(let t=1;t<=CP.years;t++){const cf=G1*(1-CP.deg)**(t-1)*price-capex*C.om, ds=(t<=FIN.pfN?dp:0)+(t<=FIN.ctN?dc:0); if(ds){const d=cf/ds; if(y1===null)y1=d; mn=Math.min(mn,d);}}
+  return {dp,dc,y1,mn};
+}
+const norm=(v,hb=true)=>{const lo=Math.min(...v),hi=Math.max(...v); return v.map(x=>v.length<2||hi===lo?1:hb?(x-lo)/(hi-lo):(hi-x)/(hi-lo));};
+function classify(){
+  const k=FIN.y/1337, {rows,spent}=clsRows(k,1), base=Object.fromEntries(rows.map(r=>[r.b.n,r.type])), rob={};
+  rows.forEach(r=>rob[r.b.n]=[true,true]);
+  CP.cases.forEach(c=>clsRows(c,1).rows.forEach(r=>{if(r.type!==base[r.b.n]) rob[r.b.n][0]=false;}));
+  [0,2].forEach(l=>clsRows(k,l).rows.forEach(r=>{if(r.type!==base[r.b.n]) rob[r.b.n][1]=false;}));
+  rows.forEach(r=>{
+    r.price=r.type==="외부자금 자가소비형(PPA)"&&r.tar!=null?(C.price+r.tar)/2:C.price;
+    r.f=sched(r.capex,r.G,r.price); r.rev=r.G*r.price; r.co2=r.G/1000*CP.ef; r.robs=rob[r.b.n]; r.rob=(r.robs[0]+r.robs[1])/2;
+  });
+  for(const [t,w] of Object.entries(CP.W)){
+    const g=rows.filter(r=>r.type===t); if(!g.length) continue;
+    const P={pay:norm(g.map(r=>r.pay),false),sav:norm(g.map(r=>r.sav)),dscr:norm(g.map(r=>r.f.mn)),rev:norm(g.map(r=>r.rev)),co2:norm(g.map(r=>r.co2)),rel:g.map(r=>r.b.rel),rob:g.map(r=>r.rob)};
+    g.forEach((r,i)=>r.score=Object.entries(w).reduce((s,[kk,wt])=>s+wt*P[kk][i],0));
+    [...g].sort((a,b)=>b.score-a.score).forEach((r,i)=>r.rank=i+1);
+  }
+  const spc=rows.filter(r=>r.type.startsWith("외부자금")), capex=sum(spc.map(r=>r.capex)), G=sum(spc.map(r=>r.G));
+  const pf=spc.length?sched(capex,G,sum(spc.map(r=>r.rev))/G):null;
+  return {rows,spent,spc,capex,pf};
+}
+const TY={"예산 자가소비형":["city","예산 자가소비"],"외부자금 자가소비형(PPA)":["ppa","SPC · 온사이트 PPA"],"외부자금 판매형":["fund","SPC · 전량 판매"],"판단 보류":["hold","판단 보류"]};
+const ORD=Object.keys(TY);
+function bars(r){
+  const mx=Math.max(...r.U,...r.gen), h=v=>v/mx*54;
+  return `<svg viewBox="0 0 240 60" role="img" aria-label="월별 사용량과 발전량">${r.U.map((u,i)=>`<rect x="${i*20+1}" y="${58-h(u)}" width="8" height="${h(u)}" fill="var(--pin-off)"/><rect x="${i*20+10}" y="${58-h(r.gen[i])}" width="8" height="${h(r.gen[i])}" fill="var(--sun)"/>`).join("")}</svg>
+  <span class="why">월별 · 회색 사용량, 노랑 발전량 (1~12월)</span>`;
+}
+function renderCls(){
+  const O=classify(), eok=v=>fmt(v/1e8,2)+"억";
+  document.getElementById("clsIn").textContent=`판매가 ${fmt(C.price,2)}원 · 설치비 ${fmt(C.cost)}만 원/kW · kW당 ${fmt(FIN.y)}kWh · 예산 ${fmt(budget,2)}억 (예산·시민 금리는 다른 탭과 같이 바뀜)`;
+  document.getElementById("clsSum").innerHTML=`
+    <div class="stat"><span>예산 사용</span><strong class="num">${eok(O.spent)} / ${fmt(budget,2)}억</strong></div>
+    <div class="stat"><span>SPC 묶음 (${O.spc.length}곳)</span><strong class="num">${O.spc.length?eok(O.capex):"-"}</strong></div>
+    <div class="stat"><span>SPC DSCR 1년차 · 최저</span><strong class="num">${O.pf?fmt(O.pf.y1,2)+" · "+fmt(O.pf.mn,2):"-"}</strong></div>
+    <div class="stat"><span>시민 최소 인원</span><strong class="num">${O.pf?fmt(Math.ceil(O.capex*FIN.ct/CP.cap))+"명":"-"}</strong></div>`;
+  const rows=[...O.rows].sort((a,b)=>ORD.indexOf(a.type)-ORD.indexOf(b.type)||(a.rank||9)-(b.rank||9));
+  document.getElementById("clsCards").innerHTML=rows.map(r=>{
+    const [c,l]=TY[r.type], spc=r.type.startsWith("외부자금");
+    return `<div class="clsc">
+      <h3>${r.b.n} <span class="pill ${c}">${l}${r.rank?" "+r.rank+"위":""}</span>${r.b.m?`<button type="button" class="btn" data-fly="${r.b.m}" style="margin-left:auto;padding:2px 10px;font-size:12px">지도에서 보기</button>`:""}</h3>
+      <ol>${r.why.map(w=>`<li>${w}</li>`).join("")}</ol>
+      <div class="kv4">
+        <div>설치 용량<b class="num">${fmt(r.b.kw)}kW · ${eok(r.capex)}</b></div>
+        <div>발전량 ÷ 사용량<b class="num">${fmt(r.G/sum(r.U)*100)}%</b></div>
+        <div>${spc?"최저 DSCR":"회수 기간"}<b class="num">${spc?fmt(r.f.mn,2)+"배":fmt(r.pay,1)+"년"}</b></div>
+        <div>탄소 감축<b class="num">연 ${fmt(r.co2)}t</b></div>
+      </div>
+      ${bars(r)}
+      <details class="more"><summary>자료 근거</summary><p class="why">사용량: ${r.b.src} · 기존 설비: ${r.b.pv} · 결론 안정성: 발전량 3사례 ${r.robs[0]?"같음":"바뀜"}, 사용량 범위 ${r.robs[1]?"같음":"바뀜"}</p></details>
+    </div>`;}).join("");
+  document.querySelectorAll("[data-fly]").forEach(x=>x.onclick=()=>{const b=B.find(y=>y.n===x.dataset.fly); if(b) select(b,true,"cls");});
+}
+document.getElementById("tarGov").oninput=e=>{const v=parseFloat(e.target.value); CP.tarGov=v>0?v:null; renderCls();};
+const _render=render; render=function(){_render(); renderCls();}; renderCls();
 </script>
 </body>
 </html>
