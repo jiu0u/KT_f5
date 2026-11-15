@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8">
+<title>S3 남은 장벽</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<link rel="stylesheet" href="slide.css">
+<style>
+.row4 .card{padding:22px 26px}
+.row4 .card h3{font-size:26px}
+.bottom{display:grid;grid-template-columns:1fr 1.1fr;gap:40px;flex:1}
+.bottom>.card:first-child{display:flex;flex-direction:column;justify-content:center}
+.bottom li{font-size:26px}
+.calc2{display:flex;flex-direction:column;gap:18px;justify-content:center}
+.eq{font-size:40px;font-weight:600}
+.need{display:grid;grid-template-columns:150px 1fr 120px;gap:18px;align-items:center;font-size:24px}
+.need .tr{height:38px;background:#1A2633;border-radius:4px}
+.need .tr i{display:block;height:100%;border-radius:4px;background:#4A5B6D}
+.need.me .tr i{background:var(--amber)}
+</style>
+</head><body>
+<div class="slide">
+  <div class="part">① 주제 적절성</div>
+  <h1>부지·행정은 풀렸고, 남은 문제는 <span class="hl">주민 반대와 예산</span>입니다</h1>
+
+  <div class="row4">
+    <div class="card dim"><span class="tag ok">해소</span><h3>① 부지</h3><p>이미 있는 건물 옥상을 씁니다</p></div>
+    <div class="card dim"><span class="tag ok">해소</span><h3>② 행정</h3><p>대전 에너지 조례 제29조로 수의계약 사용허가 가능</p></div>
+    <div class="card"><span class="tag warn">남음</span><h3>③ 주민 반대</h3><p>대형 발전시설이 주민 반대로 반복 무산</p></div>
+    <div class="card"><span class="tag warn">남음</span><h3>④ 예산</h3><p>2026년 재생에너지 예산 연 45.2억 원</p></div>
+  </div>
+
+  <div class="bottom">
+    <div class="card">
+      <h3>주민 반대로 무산된 사례</h3>
+      <ul>
+        <li>2019 평촌산단 LNG 발전소 건설계획 중단</li>
+        <li>도안지구·연축동 수소연료전지 발전소 무산</li>
+        <li>대전열병합 증설 반대 서명 4천여 명</li>
+      </ul>
+    </div>
+    <div class="card calc2">
+      <h3>예산으로 설치할 수 있는 양</h3>
+      <div class="eq mono">45.2억 ÷ 120만 원/kW = <span class="hl">연 3.8MW</span></div>
+      <div class="need"><span class="muted">옥상 잠재량</span><div class="tr"><i style="width:100%"></i></div><b class="mono">약 90MW</b></div>
+      <div class="need me"><span>예산 1년치</span><div class="tr"><i style="width:4.2%"></i></div><b class="mono hl">3.8MW</b></div>
+      <p class="muted" style="font-size:24px">예산만으로는 <b style="color:var(--ink)">20년 이상</b> 걸리고, 자립도는 1년에 0.05%p 오릅니다</p>
+    </div>
+  </div>
+
+  <div class="src">출처: 대전시 2026 재생에너지 예산 · 설치비 100kW 약 1.1~1.4억 원(해줌 2026 가이드)의 아래쪽 120만 원/kW · 무산 사례 언론 보도</div>
+</div>
+</body></html>

@@ -1,0 +1,89 @@
+/* 발표 슬라이드 공통 — 설계도 디자인 시스템(1920×1080, 다크 네이비, 강조 앰버 1색) */
+:root{--bg:#0E1620;--ink:#E8EDF2;--ink2:#A7B5C4;--amber:#E9A64A;--blue:#79B0D8;--warn:#E0786B;--line:#24313F;--card:#141F2B}
+*{box-sizing:border-box;margin:0}
+html,body{background:var(--bg)}
+body{width:1920px;height:1080px;overflow:hidden;font-family:"Noto Sans KR",sans-serif;color:var(--ink)}
+.slide{position:relative;width:1920px;height:1080px;padding:100px 120px 80px;display:flex;flex-direction:column;gap:28px}
+.mono{font-family:"IBM Plex Mono","Noto Sans KR",monospace;font-variant-numeric:tabular-nums}
+.hl{color:var(--amber)}
+.part{position:absolute;top:44px;right:120px;font-size:20px;color:var(--ink2);border:1px solid var(--line);border-radius:999px;padding:6px 16px}
+h1{font-size:54px;font-weight:700;line-height:1.25;letter-spacing:-.01em;max-width:1500px}
+.sub{font-size:26px;color:var(--ink2);margin-top:-12px}
+.grid2{display:grid;grid-template-columns:560px 1fr;gap:72px;align-items:center;flex:1;margin-top:-20px}
+.killer .big{font-size:200px;font-weight:600;line-height:1}
+.killer .big small{font-size:96px}
+.killer .calc{font-size:26px;color:var(--ink2);margin-top:18px}
+.killer .lab{font-size:24px;color:var(--ink2);margin-top:8px}
+.bars{display:grid;gap:26px}
+.bars .row{display:grid;grid-template-columns:90px 1fr 150px;align-items:center;gap:24px;font-size:30px}
+.bars .nm{color:var(--ink2)}
+.bars .track{position:relative;height:42px;background:#1A2633;border-radius:4px;overflow:visible}
+.bars .track i{display:block;height:100%;background:#4A5B6D;border-radius:4px}
+.bars .row.me .track i{background:var(--amber)}
+.bars .row.me .nm{color:var(--ink);font-weight:700}
+.bars b{font-size:32px;text-align:right}
+.bars .cut{position:absolute;left:70%;top:-6px;font-size:40px;font-style:normal;color:var(--bg);font-weight:700;background:none}
+.bars .axis{font-size:18px;color:var(--ink2);margin-top:4px}
+.band{border-left:6px solid var(--amber);background:var(--card);padding:22px 28px;font-size:28px;line-height:1.45}
+.src{position:absolute;left:120px;right:120px;bottom:36px;font-size:16px;color:#7E8D9C}
+/* S8 */
+.s8{display:grid;grid-template-columns:1fr 1fr;gap:56px;flex:1}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:36px 40px;display:flex;flex-direction:column;justify-content:center;gap:26px}
+.panel h2{font-size:26px;font-weight:500;color:var(--ink2)}
+.total{display:flex;align-items:baseline;gap:20px}
+.total .n{font-size:120px;font-weight:600;line-height:1;color:var(--amber)}
+.total .u{font-size:44px;color:var(--amber)}
+.total .t{font-size:26px;color:var(--ink2)}
+.split{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.split>div{border-top:1px solid var(--line);padding-top:16px}
+.split .k{font-size:22px;color:var(--ink2)}
+.split .v{font-size:52px;font-weight:600;margin-top:4px}
+.split .d{font-size:21px;color:var(--ink2);margin-top:10px;line-height:1.5}
+.cmp{display:grid;gap:14px}
+.cmp .row{display:grid;grid-template-columns:200px 1fr 110px;align-items:center;gap:18px;font-size:26px}
+.cmp .row span{color:var(--ink2)}
+.cmp .track{height:40px;background:#1A2633;border-radius:4px}
+.cmp .track i{display:block;height:100%;border-radius:4px;background:#4A5B6D}
+.cmp .row.ai .track i{background:var(--amber)}
+.cmp .row.ai span{color:var(--ink);font-weight:700}
+.cmp .row.blue .track i{background:var(--blue)}
+.cmp b{font-size:30px;text-align:right}
+.note{font-size:19px;color:var(--ink2);line-height:1.5}
+.limits{background:rgba(224,120,107,.10);border:1px solid rgba(224,120,107,.45);border-radius:12px;padding:20px 28px;display:grid;grid-template-columns:auto 1fr 1fr 1fr;gap:28px;align-items:start;font-size:21px;line-height:1.45}
+.limits strong{color:var(--warn);font-size:22px;white-space:nowrap}
+.limits div b{color:var(--ink)}
+
+/* ── 공통 부품 (S1·S3~S11) ── */
+.muted{color:var(--ink2)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:26px 30px}
+.card h3{font-size:24px;font-weight:700;margin-bottom:10px}
+.card p,.card li{font-size:22px;line-height:1.5;color:var(--ink2)}
+.card ul{padding-left:22px;display:grid;gap:6px}
+.tag{display:inline-block;font-size:18px;font-weight:700;padding:4px 12px;border-radius:999px;border:1px solid var(--line);color:var(--ink2);margin-bottom:12px}
+.tag.ok{color:#7FC49A;border-color:#2E5A40}
+.tag.warn{color:var(--warn);border-color:rgba(224,120,107,.5)}
+.tag.amber{color:var(--amber);border-color:rgba(233,166,74,.5)}
+.dim{opacity:.55}
+.row4{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.row3{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:40px}
+.big{font-family:"IBM Plex Mono","Noto Sans KR",monospace;font-weight:600;color:var(--amber);line-height:1}
+.empty{border:2px dashed #46596C;border-radius:12px;padding:26px 30px;background:none}
+.empty h3{color:var(--amber)}
+.band2{border-left:6px solid var(--amber);background:var(--card);padding:18px 26px;font-size:26px;line-height:1.45}
+.flow{display:flex;align-items:stretch;gap:0}
+.flow .st{flex:1;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:18px 20px}
+.flow .st b{display:block;font-size:24px;margin-bottom:6px}
+.flow .st span{font-size:19px;color:var(--ink2);line-height:1.45}
+.flow .ar{width:64px;display:flex;flex-direction:column;align-items:center;justify-content:center;color:var(--amber);font-size:30px;font-weight:700}
+.flow .ar small{font-size:15px;color:var(--ink2);font-weight:500;white-space:nowrap}
+.img{border-radius:10px;overflow:hidden;border:1px solid var(--line);background:#0A1018}
+.img img{display:block;width:100%;height:100%;object-fit:cover}
+.cap{font-size:17px;color:var(--ink2);margin-top:8px}
+.lg{display:flex;gap:18px;font-size:18px;color:var(--ink2)}
+.lg i{display:inline-block;width:14px;height:14px;border-radius:3px;margin-right:6px;vertical-align:-1px}
+.stage{display:flex;flex-direction:column;justify-content:flex-end;gap:10px;border-radius:12px;padding:24px 26px;border:1px solid var(--line)}
+.stage .k{font-size:20px;font-weight:700;color:var(--ink2)}
+.stage .v{font-size:30px;font-weight:700;line-height:1.3}
+.stage .d{font-size:20px;color:var(--ink2);line-height:1.5}
+.stage .c{font-size:19px;border-top:1px solid var(--line);padding-top:10px;color:var(--ink)}

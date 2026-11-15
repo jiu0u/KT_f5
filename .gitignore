@@ -6,3 +6,8 @@ __pycache__/
 data/raw/aihub_solar/
 # 정보공개청구 답변 원본 (공개는 받았지만 저장소엔 안 올림, 2026-11-14)
 data/raw/daejeon_public_buildings/
+
+# 발표 슬라이드: HTML·CSS만 올림. 항공사진이 든 그림·캡처·미리보기는 제외 (2026-11-15)
+docs/slides/img/
+docs/slides/*.png
+docs/slides/index.html

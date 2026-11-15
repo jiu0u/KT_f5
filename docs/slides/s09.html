@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8">
+<title>S9 SPC 자금 구조</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<link rel="stylesheet" href="slide.css">
+<style>
+.slide{gap:24px}
+.mapx{display:grid;grid-template-columns:1fr 70px 1.35fr 70px 1fr 70px 1fr;align-items:center}
+.box{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:20px 22px;font-size:20px;line-height:1.5;color:var(--ink2)}
+.box b{display:block;font-size:24px;color:var(--ink);margin-bottom:6px}
+.box.spc{border:2px solid var(--amber);background:rgba(233,166,74,.08);padding:28px}
+.box.spc b{font-size:30px;color:var(--amber)}
+.arr{text-align:center;color:var(--amber);font-size:40px;font-weight:700}
+.money{display:grid;grid-template-columns:20fr 65fr 15fr;height:64px;border-radius:8px;overflow:hidden;font-size:21px;font-weight:700}
+.money div{display:flex;align-items:center;justify-content:center;gap:10px}
+.money .eq{background:#3B4B5C}.money .pf{background:#2C5577}.money .ct{background:var(--amber);color:#1b1404}
+.money small{font-weight:500;font-size:18px;opacity:.85}
+.b9{display:grid;grid-template-columns:1.3fr 1fr;gap:32px}
+.wf{display:flex;flex-wrap:wrap;gap:8px;align-items:center;font-size:19px}
+.wf span{background:#1A2633;border-radius:6px;padding:7px 12px}
+.wf span.h{background:rgba(233,166,74,.18);color:var(--amber);font-weight:700}
+.wf em{font-style:normal;color:var(--ink2)}
+.ds{display:grid;grid-template-columns:auto 1fr;gap:6px 18px;font-size:21px;align-items:baseline}
+.ds .big{font-size:56px}
+</style>
+</head><body>
+<div class="slide">
+  <div class="part">③ 실현가능성</div>
+  <h1>출자 SPC가 <span class="hl">은행 PF와 시민 P2P 대출</span>로 설치비를 모읍니다</h1>
+
+  <div class="mapx">
+    <div class="box"><b>시민 · 은행</b>P2P 연계대출 15년<br>PF 대출 18년</div>
+    <div class="arr">→</div>
+    <div class="box spc"><b>SPC (가칭 대전햇빛발전)</b>대전시·대전도시공사 출자 20%<br>설치·운영 주체</div>
+    <div class="arr">→</div>
+    <div class="box"><b>학교 옥상 99곳</b>교육청 협약·사용허가<br>에너지 조례 제29조</div>
+    <div class="arr">→</div>
+    <div class="box"><b>전력 판매</b>146.92원/kWh<br>계약시장 20년 고정가격</div>
+  </div>
+
+  <div>
+    <div class="money"><div class="eq">출자 20% <small>48.3억 · 최후순위</small></div><div class="pf">은행 PF 65% <small>157.0억 · 18년 5.0% · 선순위</small></div><div class="ct">시민 15% <small>36.2억</small></div></div>
+    <div class="cap">학교 99곳 설치비 241.5억 원 · 시민은 P2P 15년 원리금 균등(연 7.0%), 1인 연 500만 원 한도라 최소 약 725명 · 비율은 은행이 DSCR 1.2를 맞추는 만큼 조정</div>
+  </div>
+
+  <div class="b9">
+    <div class="card">
+      <h3>돈을 갚는 순서 (7단계)</h3>
+      <div class="wf"><span>① 운영비</span><em>→</em><span class="h">② 은행 PF</span><em>→</em><span>③ DSRA 6.7억</span><em>→</em><span class="h">④ 시민</span><em>→</em><span>⑤ 유지보수 적립</span><em>→</em><span>⑥ 원상복구 적립</span><em>→</em><span>⑦ 공공 환원</span></div>
+      <p style="margin-top:14px;font-size:20px">1~15년차에는 은행과 시민 몫을 함께 갚고(연 17.4억), 16~18년차에는 은행 몫만 갚습니다. 19~20년차 수익은 모두 공공에 돌아갑니다.</p>
+    </div>
+    <div class="card ds">
+      <span class="big">1.83</span><span>배 · DSCR 1년차 (기본값, 가장 낮은 해 1.69)<br><span class="muted" style="font-size:18px">번 돈 ÷ 갚을 돈 · 은행 기준 1.2</span></span>
+      <span class="mono hl" style="font-size:24px">보수</span><span class="muted" style="font-size:19px">1.13배 → 출자 35%·PF 50%로 바꾸면 1.27배</span>
+    </div>
+  </div>
+
+  <div class="src">근거: 재생에너지법 제26조(공유재산 수의계약 임대·임대료 경감) · 대전 에너지 조례 제25조(시민참여형 지원계획 수립 의무)·제29조 · 선례: 서울시 태양광 시민펀드 1호(연 4.18%, 3년 상환 완료) · 금리·단가·설치비는 공개 자료 기본값(하나 솔라론 4.722~7.122%, P2P 실무 7~11%, 2026 1차 낙찰 평균)</div>
+</div>
+</body></html>
