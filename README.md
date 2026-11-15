@@ -7,6 +7,8 @@ DSC 공유대학×KT AI 활용 지역문제 해결 공모전 프로토타입. �
 저장소를 받았으면 **[index.html](index.html)을 더블클릭**해서 열면 아래 세 개를 클릭으로 바로 볼 수 있다.
 받지 않았으면 오른쪽 **바로 열기**를 누르면 된다. (GitHub에서 `.html`을 그냥 누르면 소스 코드가 보인다.)
 
+**한 페이지로 모아 보기 (팀 공유용 링크 하나):** https://htmlpreview.github.io/?https://github.com/jiu0u/KT_f5/blob/main/index.html
+
 | 내용 | 파일 | 바로 열기 |
 |---|---|---|
 | 건물 순위·설치 방식 판단(전력 AI)·시민펀드 계산 | `docs/solar_demo.html` | [열기](https://htmlpreview.github.io/?https://github.com/jiu0u/KT_f5/blob/main/docs/solar_demo.html) |
