@@ -4,65 +4,85 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=IBM+Plex+Mono:wght@500;600&display=swap">
 <link rel="stylesheet" href="slide.css">
 <style>
+/* 5장만 밝은 색 (공통 slide.css 색을 이 장 안에서만 바꿈) */
+.slide{--bg:#F6F7F9;--ink:#14202B;--ink2:#566473;--amber:#C9770F;--blue:#3A78AD;--warn:#B4541C;--line:#D8DFE6;--card:#FFFFFF;background:var(--bg);color:var(--ink)}
 .slide{gap:24px}
 .b5{display:grid;grid-template-columns:1fr 1fr;gap:40px;flex:1}
-.b5>.card{display:flex;flex-direction:column;justify-content:center}
+.b5>.card{display:flex;flex-direction:column;justify-content:space-between;padding:44px 32px}
 .total{display:flex;align-items:baseline;gap:18px}
-.total .n{font-size:108px;font-weight:600;line-height:1;color:var(--amber)}
-.total .u{font-size:42px;color:var(--amber)}
-.total .t{font-size:24px;color:var(--ink2)}
-.split{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:18px}
+.total .n{font-size:132px;font-weight:600;line-height:1;color:var(--amber)}
+.total .u{font-size:54px;color:var(--amber)}
+.total .t{white-space:nowrap;font-size:24px;color:var(--ink2)}
+.split{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:30px}
 .split>div{border-top:1px solid var(--line);padding-top:12px}
-.split .k{font-size:21px;color:var(--ink2)}
-.split .v{font-size:44px;font-weight:600}
-.split .d{font-size:19px;color:var(--ink2);line-height:1.45;margin-top:4px}
-.cmp{display:grid;gap:12px}
-.cmp .row{display:grid;grid-template-columns:170px 1fr 90px;align-items:center;gap:16px;font-size:24px}
-.cmp .row span{color:var(--ink2)}
-.cmp .track{height:34px;background:#1A2633;border-radius:4px}
-.cmp .track i{display:block;height:100%;border-radius:4px;background:#4A5B6D}
-.cmp .row.ai .track i{background:var(--amber)}
-.cmp .row.ai span{color:var(--ink);font-weight:700}
-.cmp .row.blue .track i{background:var(--blue)}
-.cmp b{font-size:28px;text-align:right}
-.note{font-size:18px;color:var(--ink2)}
-.money{display:grid;grid-template-columns:auto 1fr;gap:36px;align-items:center;background:rgba(233,166,74,.08);border:2px solid rgba(233,166,74,.55);border-radius:14px;padding:24px 34px}
+.split .k{font-size:25px;color:var(--ink2)}
+.split .v{font-size:58px;font-weight:600}
+.split .d{font-size:20px;word-break:keep-all;color:var(--ink2);line-height:1.45;margin-top:4px}
+.cmp{display:grid;gap:18px}
+.row{display:grid;grid-template-columns:150px 1fr 100px;align-items:center;gap:18px;font-size:28px;border-top:1px solid var(--line);padding-top:20px}
+.fr.hd.one{display:block}
+.fun .row span{color:var(--ink2)}
+.cmp .row span small{display:block;font-size:17px;line-height:1.35;margin-top:2px}
+.fun .track{height:38px;background:#E7ECF1;border-radius:4px}
+.fun .track i{display:block;height:100%;border-radius:4px;background:#A3B0BD}
+.fun .row.ai .track i{background:var(--amber)}
+.fun .row.ai span{color:var(--ink);font-weight:700}
+.fun .row.blue .track i{background:var(--blue)}
+.fun b{font-size:34px;text-align:right}
+.note{font-size:22px;color:var(--ink2)}
+.money{display:grid;grid-template-columns:1fr;justify-items:center;gap:36px;align-items:center;background:rgba(233,166,74,.08);border:2px solid rgba(233,166,74,.55);border-radius:14px;padding:24px 34px}
 .money .eq{font-size:44px;font-weight:600}
+.money .eq small{font-size:26px;font-weight:500;color:var(--ink2)}
 .money p{font-size:22px;color:var(--ink2);line-height:1.5}
 .limits{display:block;background:rgba(224,120,107,.10);border:1px solid rgba(224,120,107,.45);border-radius:10px;padding:12px 22px;font-size:19px;color:var(--ink2)}
 .limits b{color:var(--warn)}
+.fun{display:grid;gap:20px}
+.fr{display:grid;grid-template-columns:120px 90px 1fr 70px 170px;align-items:center;gap:16px;font-size:28px;border-top:1px solid var(--line);padding-top:20px}
+.fr .k{color:var(--ink2)}
+.fr.hd{font-size:17px;color:var(--ink2);border-top:0;padding-top:0;margin-bottom:-6px}
+.fr.hd .r{font-size:17px}
+.fr .a{color:var(--ink2);font-size:30px}
+.fr .m{font-size:20px;color:var(--ink2);word-break:keep-all}
+.fr .r{font-size:28px;text-align:right;white-space:nowrap}
+.fr .n{font-size:28px;text-align:right;white-space:nowrap}
+.fr.hd .n{font-size:17px}
+.fr .r b{color:var(--amber);font-size:34px}
+.how{min-height:58px;display:flex;align-items:center;font-size:19px;color:var(--ink2);line-height:1.5;margin-top:18px;word-break:keep-all}
+.vs{min-height:110px;display:flex;align-items:center;justify-content:space-between;gap:24px;background:rgba(233,166,74,.08);border-radius:10px;padding:16px 20px}
+.vs .big2{font-size:52px;line-height:1;font-weight:600;color:var(--amber);white-space:nowrap}
+.vs .vt{font-size:20px;color:var(--ink2);line-height:1.45;word-break:keep-all}
+.card .ct{font-size:32px;font-weight:700;color:var(--ink);margin:0}
 </style>
 </head><body>
 <div class="slide">
   <div class="part">② 지붕 AI</div>
-  <h1>후보 102곳 <span class="hl">20.6MW</span>, kW를 알면 설치비가 나옵니다</h1>
+  <h1>공공건물 옥상 102곳의 태양광 설치 가능 용량은 <span class="hl">20.6MW</span>,<br>설치비는 약 247억 원입니다</h1>
 
   <div class="b5">
     <div class="card">
-      <div class="total"><span class="n mono">20.6</span><span class="u mono">MW</span><span class="t">기존 태양광 없는 곳 · 연 24.7GWh</span></div>
-      <div class="split">
-        <div><div class="k">청사 3곳</div><div class="v mono">447<small style="font-size:22px">kW</small></div><div class="d">교육청 163 · 중구청 153 · 대덕구청 131</div></div>
-        <div><div class="k">초등학교 99곳</div><div class="v mono">20,129<small style="font-size:22px">kW</small></div><div class="d">149곳 중 기존 태양광 50곳 제외<br>학교 중앙값 191kW</div></div>
+      <h3 class="ct">102곳은 이렇게 골랐습니다</h3>
+      <div class="fun">
+        <div class="fr hd"><span></span><span>조사</span><span>제외</span><span class="n">후보</span><span class="r">설치 가능 용량</span></div>
+        <div class="fr"><span class="k">초등학교</span><span class="a mono">149곳</span><span class="m">이미 설치된 50곳</span><span class="n mono">99곳</span><span class="r mono"><b>20,129kW</b></span></div>
+        <div class="fr"><span class="k">청사</span><span class="a mono">9곳</span><span class="m">이미 설치된 5곳, 대전 밖 1곳</span><span class="n mono">3곳</span><span class="r mono"><b>447kW</b></span></div>
       </div>
+      <div class="how">확인 자료: 시·구청 정보공개 답변, 카카오맵, 항공사진</div>
+      <div class="vs"><span class="vt">20.6MW는 대전시가 지금까지 예산으로 설치한<br>태양광 85곳(6.7MW)의</span><span class="mono big2">약 3배</span></div>
     </div>
     <div class="card">
-      <div class="note">건물별 설치 용량 오차 (대전 청사·문화시설 11곳, 팀원이 직접 칠한 정답과 비교)</div>
-      <div class="cmp" style="margin-top:10px">
-        <div class="row"><span>지붕 25% 가정</span><div class="track"><i style="width:88%"></i></div><b class="mono">44%</b></div>
+      <h3 class="ct">용량은 이렇게 검증했습니다</h3>
+      <div class="fun">
+        <div class="fr hd one"><span>건물별 설치 용량 오차</span></div>
+        <div class="row"><span>기존 방식</span><div class="track"><i style="width:88%"></i></div><b class="mono">44%</b></div>
         <div class="row ai"><span>지붕 AI</span><div class="track"><i style="width:50%"></i></div><b class="mono hl">25%</b></div>
       </div>
-      <div class="note" style="margin:14px 0 8px">지붕 일치도 IoU · 11곳 중 8곳에서 AI가 정답에 더 가까움</div>
-      <div class="cmp">
-        <div class="row blue"><span>AI vs 정답</span><div class="track"><i style="width:47%"></i></div><b class="mono">0.47</b></div>
-        <div class="row blue"><span>사람 vs 사람</span><div class="track"><i style="width:72%"></i></div><b class="mono">0.72</b></div>
-      </div>
+      <div class="how">기존 방식: 지붕 면적의 25%에 깐다고 가정 (타 플랫폼 옥상 잠재량 기준 참고)<br>지붕 AI: 장애물(옥탑·그늘)을 제외한 예상 패널 수 × 패널 1장 0.57kW</div>
+      <div class="vs"><span class="vt">11곳 중 AI가 기존 방식보다 정답에 더 가까운 곳</span><span class="mono big2">8곳</span></div>
     </div>
   </div>
 
   <div class="money">
-    <div class="eq mono">20,576kW × 120만 원/kW = <span class="hl">약 247억 원</span></div>
-    <p>kW에 단가를 곱하면 필요한 돈이 나옵니다.<br>누가 낼지는 전기 사용량을 보고 정합니다 (다음 장)</p>
+    <div class="eq"><small>설치 가능 용량</small> <span class="mono">20,576kW</span> × <small>kW당 설치비</small> <span class="mono">120만 원</span> = <span class="hl mono">약 247억 원</span></div>
   </div>
-  <div class="limits"><b>한계</b> AI는 정답보다 17% 적게 잡음(보수적) · 정확도는 청사·문화시설 11곳 기준이고 학교는 정답 라벨 없음 · 학교 25곳은 체육관이 옆 필지라 빠져 실제보다 작음<br>기존 태양광은 항공사진 판독(팀원 확인 12곳 중 확실한 9곳 모두 일치) · 발전량은 대전 실측 중앙값 kW당 1,200kWh (PVGIS 계산 1,272보다 보수적)</div>
 </div>
 </body></html>

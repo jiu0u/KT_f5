@@ -4,54 +4,111 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=IBM+Plex+Mono:wght@500;600&display=swap">
 <link rel="stylesheet" href="slide.css">
 <style>
-.slide{gap:22px}
-.t3{display:grid;grid-template-columns:1.25fr .9fr 1fr 1.05fr;border:1px solid var(--line);border-radius:12px;overflow:hidden}
-.t3>div{padding:14px 20px;font-size:21px;border-bottom:1px solid var(--line);display:block;align-content:center;line-height:1.45}
-.t3 .h{background:#1A2633;color:var(--ink2);font-size:18px;font-weight:700}
-.t3 .last{border-bottom:0}
-.t3 b{font-weight:700}
-.t3 .hi{background:rgba(233,166,74,.08)}
-.t3 .g{color:var(--ink2);font-size:19px}
-.money{display:grid;grid-template-columns:20fr 65fr 15fr;height:62px;border-radius:8px;overflow:hidden;font-size:21px;font-weight:700}
-.money div{display:flex;align-items:center;justify-content:center;gap:10px}
-.money .eq{background:#3B4B5C}.money .pf{background:#2C5577}.money .ct{background:var(--amber);color:#1b1404}
-.money small{font-weight:500;font-size:17px;opacity:.85}
-.b6{display:grid;grid-template-columns:1.35fr 1fr;gap:28px}
-.wf{display:flex;flex-wrap:wrap;gap:8px;align-items:center;font-size:19px}
-.wf span{background:#1A2633;border-radius:6px;padding:6px 11px}
-.wf span.h{background:rgba(233,166,74,.18);color:var(--amber);font-weight:700}
-.wf em{font-style:normal;color:var(--ink2)}
-.ds .big{font-size:64px}
+/* 6장: 펀드 담당 「대전햇빛발전 SPC 펀드 구조」 초고(presentation/slides/펀드구조.html) 구성 그대로. 4·5장과 같은 밝은 색 */
+.slide{--bg:#F6F7F9;--ink:#14202B;--ink2:#566473;--amber:#C9770F;--blue:#3A78AD;--warn:#B4541C;--line:#D8DFE6;--card:#FFFFFF;background:var(--bg);color:var(--ink);padding:70px 90px 40px;gap:18px}
+h1{font-size:50px}
+.sub{margin-top:-10px;font-size:23px}
+.cols{display:grid;grid-template-columns:1fr 1.3fr 1.15fr;gap:22px;flex:1;min-height:0}
+.col{background:#fff;border:1px solid var(--line);border-radius:14px;padding:20px 22px;display:flex;flex-direction:column;gap:12px;min-height:0}
+.col h2{font-size:24px;font-weight:700;display:flex;align-items:center;gap:10px;margin-bottom:2px}
+.col h2 i{font:600 16px "IBM Plex Mono",monospace;font-style:normal;width:30px;height:30px;border-radius:8px;background:#E9EEF4;color:var(--blue);display:grid;place-items:center}
+.box{border:1px solid var(--line);border-radius:10px;padding:12px 16px;background:#F8FAFC}
+.box b{display:block;font-size:20px}
+.box span{font-size:16px;color:var(--ink2);line-height:1.5}
+/* 1 자금 */
+.who{display:grid;grid-template-columns:1fr auto;align-items:center}
+.who .p{font:700 22px "IBM Plex Mono",monospace}
+.who.eq{background:#E8F4EF;border-color:#B9DCCB}.who.eq b,.who.eq .p{color:#1F7A5A}
+.who.pf{background:#EAF1F8;border-color:#BDD3E8}.who.pf b,.who.pf .p{color:#2C5F8E}
+.who.ct{background:#FDF3E3;border-color:#F0D3A6}.who.ct b,.who.ct .p{color:#A9620A}
+.sbar{display:grid;grid-template-columns:20fr 65fr 15fr;height:12px;border-radius:6px;overflow:hidden;margin-top:4px}
+.sbar i:nth-child(1){background:#1F7A5A}.sbar i:nth-child(2){background:#2C5F8E}.sbar i:nth-child(3){background:#D99A2B}
+.slab{display:grid;grid-template-columns:20fr 65fr 15fr;font-size:15px;color:var(--ink2)}
+.slab span:nth-child(2){text-align:center}.slab span:nth-child(3){text-align:right}
+.lab{font-size:17px;font-weight:700;color:var(--ink2)}
+.scale{background:#17304A;color:#fff;border-radius:12px;padding:14px 18px}
+.scale small{display:block;font-size:15px;opacity:.85}
+.scale .n{font-size:44px;font-weight:700;line-height:1.2}
+.scale .d{font-size:15px;opacity:.9}
+.memo{font-size:15px;color:var(--ink2);line-height:1.55;background:#F3F5F8;border-radius:10px;padding:10px 14px}
+/* 2 수익 */
+.flow2{display:grid;grid-template-columns:1fr 34px 1fr;align-items:center}
+.flow2 em{font-style:normal;color:var(--ink2);font-size:22px;text-align:center}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.wf{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.wf div{display:flex;align-items:center;gap:10px;border:1px solid var(--line);border-radius:8px;padding:8px 12px;font-size:16px;background:#fff}
+.wf div i{font:600 13px "IBM Plex Mono",monospace;font-style:normal;width:22px;height:22px;border-radius:6px;background:#E9EEF4;color:var(--blue);display:grid;place-items:center;flex:none}
+.wf div.w{grid-column:span 2}
+/* 3 상환 */
+.kpi{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.kpi div{border:1px solid var(--line);border-radius:10px;padding:10px 14px}
+.kpi b{display:block;font:600 30px "IBM Plex Mono",monospace;color:var(--ink)}
+.kpi span{font-size:15px;color:var(--ink2)}
+.tl{display:grid;gap:8px}
+.tl div{display:grid;grid-template-columns:100px 1fr;gap:10px;align-items:center;font-size:16px;color:var(--ink2);line-height:1.45}
+.tl div b{background:#E9EEF4;color:#2C5F8E;border-radius:8px;padding:8px 6px;text-align:center;font-size:15px}
+.tl div strong{color:var(--ink)}
+.risk{display:grid;grid-template-columns:auto 1fr;gap:24px;align-items:center;background:#FDF3E3;border:1px solid #F0D3A6;border-radius:12px;padding:12px 22px;font-size:16px;color:var(--ink2)}
+.risk b{font-size:19px;color:#A9620A}
 </style>
 </head><body>
 <div class="slide">
   <div class="part">③ 재원</div>
-  <h1>전기 사용량으로 <span class="hl">재원을 정하고</span>, 학교는 SPC가 설치합니다</h1>
+  <h1>대전햇빛발전 SPC 펀드 구조</h1>
+  <p class="sub">공공건물 태양광을 SPC가 설치·운영하고, 발전수익으로 금융비용을 상환한 뒤 공공에 환원하는 구조</p>
 
-  <div class="t3">
-    <div class="h">판단 (전력 사용량 AI 3단계)</div><div class="h">설치 방식</div><div class="h">돈을 내는 곳</div><div class="h">대상</div>
-    <div>① 건물이 다 씀 ② 요금 &gt; 판매가 ③ 예산 안</div><div><b>예산 자가소비</b></div><div>기관 예산 (전기를 건물이 다 씀)</div><div>중구청 153kW · <span class="hl mono">1.84억</span><br><span class="g">예산 3.15억 가정 · 실측 사용량 있는 곳부터</span></div>
-    <div>①② 통과, 예산 초과</div><div><b>온사이트 PPA</b></div><div>SPC가 설치, 청사가 전기를 삼</div><div>대덕구청 131 · 교육청 163kW · <span class="mono">3.5억</span><br><span class="g">청사 전기요금 확인 후 확정</span></div>
-    <div class="hi last">② 교육용 요금 146.6원 ≈ 판매가</div><div class="hi last"><b>전량 판매</b></div><div class="hi last">SPC가 설치, 20년 고정가격 146.92원</div><div class="hi last">초등학교 99곳 20,129kW · <span class="hl mono">241.5억</span></div>
-  </div>
-
-  <div>
-    <div class="money"><div class="eq">출자 20% <small>48.3억 · 대전시·도시공사</small></div><div class="pf">은행 PF 65% <small>157.0억 · 18년 5.0% · 먼저 받음</small></div><div class="ct">시민 15% <small>36.2억</small></div></div>
-    <div class="cap">SPC(가칭 대전햇빛발전) 자금 · 시민 몫은 P2P 연계대출 15년 원리금 균등(연 7.0%), 은행 다음 순서 · 비율은 은행이 DSCR 1.2를 맞추는 만큼 조정</div>
-  </div>
-
-  <div class="b6">
-    <div class="card">
-      <h3>전기를 판 돈으로 갚는 순서</h3>
-      <div class="wf"><span>운영비</span><em>→</em><span class="h">은행 PF</span><em>→</em><span>DSRA 6.7억</span><em>→</em><span class="h">시민</span><em>→</em><span>유지보수·원상복구 적립</span><em>→</em><span>공공 환원</span></div>
-      <p style="margin-top:12px;font-size:20px">1~15년차 은행·시민 함께 연 17.4억, 16~18년차 은행만, 19~20년차 수익은 모두 공공으로</p>
+  <div class="cols">
+    <div class="col">
+      <h2><i>1</i>자금 조달 구조</h2>
+      <div class="box who eq"><div><b>대전시·대전도시공사</b><span>자본금 출자 · 최후순위</span></div><div class="p">20%</div></div>
+      <div class="box who pf"><div><b>은행 PF 대출</b><span>18년 원리금 균등 · 선순위</span></div><div class="p">65%</div></div>
+      <div class="box who ct"><div><b>대전 시민</b><span>P2P 연계대출 · 15년 원리금 균등</span></div><div class="p">15%</div></div>
+      <div><div class="sbar"><i></i><i></i><i></i></div><div class="slab"><span>출자 48억</span><span>PF 157억</span><span>시민 36억</span></div></div>
+      <div class="lab">기본 사업 규모</div>
+      <div class="scale"><small>후보 99곳 최대 규모 기준</small><div class="n">약 241억 원</div><div class="d">설비용량 최대 20.1MW · 실제 대상 확정 시 축소 가능</div></div>
+      <div class="memo">※ 기본 비율은 가정안. 은행은 DSCR 기준(1.2)을 충족하는 범위에서 PF를 제공하며, 보수 시나리오에서는 PF 50% + 출자 35% 조정이 필요</div>
     </div>
-    <div class="card ds">
-      <div style="display:flex;align-items:baseline;gap:14px"><span class="big">1.83</span><span style="font-size:22px">배 DSCR 1년차<br><span class="muted" style="font-size:18px">번 돈 ÷ 갚을 돈 · 은행 기준 1.2</span></span></div>
-      <p style="font-size:19px;margin-top:8px">발전량이 적고 금리가 오르는 보수 시나리오 1.13배 → 출자를 35%로 늘리면 1.27배</p>
+
+    <div class="col">
+      <h2><i>2</i>사업 수익 및 현금흐름</h2>
+      <div class="flow2">
+        <div class="box"><b>공공건물 옥상</b><span>학교 중심 판매형<br>예산 초과 청사는 조건부 PPA</span></div>
+        <em>→</em>
+        <div class="box"><b>SPC 설치·운영</b><span>태양광 발전 및 설비 유지관리<br>운영비·옥상 사용료 발생</span></div>
+      </div>
+      <div class="two">
+        <div class="box"><b>① 판매형</b><span>계약시장 경쟁입찰 → 한전과 20년 고정가격 계약<br>기준 단가 146.92원/kWh</span></div>
+        <div class="box"><b>② 온사이트 PPA</b><span>청사가 전기를 직접 구매<br>판매 기준가격 ≤ PPA 가격 ≤ 청사 전기요금</span></div>
+      </div>
+      <div class="lab">현금 배분 순서 · Cash Waterfall</div>
+      <div class="wf">
+        <div><i>1</i>운영비·옥상 사용료</div><div><i>2</i>은행 PF 원리금</div>
+        <div><i>3</i>DSRA 적립·유지</div><div><i>4</i>시민 원리금</div>
+        <div><i>5</i>유지보수 적립</div><div><i>6</i>철거·원상복구 적립</div>
+        <div class="w"><i>7</i>출자자 배당 및 대전시 기금 등 공공 환원</div>
+      </div>
+      <div class="memo">신규 설비 REC 수익은 반영하지 않음. 판매형은 발전량에 따라 매출이 변동하며, 판매단가만 계약기간 동안 고정</div>
+    </div>
+
+    <div class="col">
+      <h2><i>3</i>상환 계획 및 사업성</h2>
+      <div class="kpi">
+        <div><b>1.83</b><span>기본안 1년차 DSCR</span></div>
+        <div><b>1.69</b><span>1~15년차 최저 DSCR</span></div>
+        <div><b>18년</b><span>은행 PF 상환기간</span></div>
+        <div><b>15년</b><span>시민 P2P 상환기간</span></div>
+      </div>
+      <div class="lab">20년 상환 타임라인 · 기본 시나리오</div>
+      <div class="tl">
+        <div><b>1~15년차</b><span>은행 PF 연 13.41억 + 시민 연 3.97억 상환<br><strong>연간 합계 약 17.38억 원</strong></span></div>
+        <div><b>16~18년차</b><span>시민 상환 종료 · 은행 PF만 상환<br><strong>DSCR 약 2.18</strong></span></div>
+        <div><b>19~20년차</b><span>차입금 상환 완료<br><strong>연 순수익 약 28.6~28.8억 원 → 출자자·대전시 기금</strong></span></div>
+      </div>
+      <div class="lab">핵심 관리 포인트</div>
+      <div class="memo">발전량·설치비·금리 확정 전 시나리오 검증 필수. 보수안 DSCR 1.04는 기준 미달이며, 스트레스안 0.81은 상환 불가 수준</div>
     </div>
   </div>
 
-  <div class="src">근거: 재생에너지법 개정(2026.9.15 공포, 신규 설비 REC 미발급 → REC 수익 제외) · 2026 1차 고정가격계약 낙찰 평균 · 하나 솔라론 4.722~7.122% · P2P 실무 7~11% · 대전시 실측 68곳 중앙값 1,200kWh/kW · 재생에너지법 제26조, 대전 에너지 조례 제25·29조</div>
+  <div class="risk"><b>주요 위험 및 대응</b><span>계약시장 미낙찰·가격 하락 → 입찰 회차 분산 및 착공 조정 &nbsp;|&nbsp; 발전량 부족 → 보수 시나리오·DSRA 유지 &nbsp;|&nbsp; 설치비·금리 상승 → 착공 전 견적·금리 확정 &nbsp;|&nbsp; 시민 후순위 위험 → 상환순위 명확 고지 및 별도 적립 검토</span></div>
 </div>
 </body></html>

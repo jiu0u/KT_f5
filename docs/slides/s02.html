@@ -4,15 +4,17 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=IBM+Plex+Mono:wght@500;600&display=swap">
 <link rel="stylesheet" href="slide.css">
 <style>
+/* 2장도 4~6장과 같은 밝은 색 (이 장 안에서만) */
+.slide{--bg:#F6F7F9;--ink:#14202B;--ink2:#566473;--amber:#C9770F;--blue:#3A78AD;--warn:#B4541C;--line:#D8DFE6;--card:#FFFFFF;background:var(--bg);color:var(--ink)}
 .b2{display:grid;grid-template-columns:520px 1fr;gap:56px;flex:1}
 .kl{display:flex;flex-direction:column;justify-content:center;gap:28px}
 .kl .big{font-size:180px}
 .kl .big small{font-size:84px}
 .kl .calc{font-size:24px;color:var(--ink2)}
 .mini{display:grid;gap:12px}
-.mini .r{display:grid;grid-template-columns:70px 1fr 100px;gap:14px;align-items:center;font-size:22px}
-.mini .tr{height:26px;background:#1A2633;border-radius:4px}
-.mini .tr i{display:block;height:100%;background:#4A5B6D;border-radius:4px}
+.mini .r{display:grid;grid-template-columns:110px 1fr 110px;gap:14px;align-items:center;font-size:22px}
+.mini .tr{height:26px;background:#E7ECF1;border-radius:4px}
+.mini .tr i{display:block;height:100%;background:#A3B0BD;border-radius:4px}
 .mini .me .tr i{background:var(--amber)}
 .mini .me span{color:var(--ink);font-weight:700}
 .mini span{color:var(--ink2)}
@@ -21,6 +23,18 @@
 .right2 li{font-size:24px}
 .right2 .tag{align-self:flex-start}
 .eq{font-size:36px;font-weight:600;margin:4px 0 10px}
+.eq small{font-size:21px;font-weight:500;color:var(--ink2);font-family:"Noto Sans KR",sans-serif}
+.mini .hd{font-size:18px;color:var(--ink2)}
+.right2 .card{padding:34px 40px}
+.right2 .card h3{font-size:34px;margin:6px 0 16px}
+.right2 li{font-size:27px}
+.right2 .card ul{gap:10px}
+.right2 .card p{font-size:23px;word-break:keep-all}
+.right2 .tag{font-size:20px}
+.eq{font-size:40px;white-space:nowrap}
+.eq small{font-size:24px}
+.mini .r.dots{font-size:24px;line-height:.6;color:var(--ink2)}
+.mini .r.dots span:first-child{padding-left:28px}
 </style>
 </head><body>
 <div class="slide">
@@ -31,15 +45,18 @@
     <div class="kl">
       <div><div class="big">3.06<small>%</small></div><div class="calc mono">발전 304GWh ÷ 소비 9,922GWh (2023)</div></div>
       <div class="mini">
-        <div class="r"><span>서울</span><div class="tr"><i style="width:22%"></i></div><b class="mono">10.4%</b></div>
-        <div class="r"><span>광주</span><div class="tr"><i style="width:19.6%"></i></div><b class="mono">9.3%</b></div>
-        <div class="r me"><span>대전</span><div class="tr"><i style="width:6.4%"></i></div><b class="mono hl">3.06%</b></div>
+        <div class="hd">17개 시·도 순위 (2023)</div>
+        <div class="r"><span>1위 경북</span><div class="tr"><i style="width:100%"></i></div><b class="mono">215.6%</b></div>
+        <div class="r"><span>2위 충남</span><div class="tr"><i style="width:99.1%"></i></div><b class="mono">213.6%</b></div>
+        <div class="r dots"><span>⋮</span><span></span><span></span></div>
+        <div class="r"><span>16위 광주</span><div class="tr"><i style="width:4.3%"></i></div><b class="mono">9.3%</b></div>
+        <div class="r me"><span>17위 대전</span><div class="tr"><i style="width:1.4%"></i></div><b class="mono hl">3.06%</b></div>
       </div>
       <p class="muted" style="font-size:21px">2026년 7월 보도: “전력자급도 꼴찌가 기업 유치 걸림돌”</p>
     </div>
     <div class="right2">
       <div class="card">
-        <span class="tag warn">막힌 길 ①</span>
+        <span class="tag warn">대형 발전소</span>
         <h3>큰 발전소는 주민 반대로 무산됐습니다</h3>
         <ul>
           <li>2019 평촌산단 LNG 발전소 건설계획 중단</li>
@@ -48,14 +65,14 @@
         </ul>
       </div>
       <div class="card">
-        <span class="tag warn">막힌 길 ②</span>
-        <h3>예산만으로는 20년이 넘게 걸립니다</h3>
-        <div class="eq mono">45.2억 ÷ 120만 원/kW = <span class="hl">연 3.8MW</span></div>
-        <p>옥상 잠재량 약 90MW를 채우려면 20년 이상, 자립도는 1년에 0.05%p씩 오릅니다</p>
+        <span class="tag warn">예산</span>
+        <h3>예산만으로는 공공 옥상·주차장을 채우는 데 26년이 걸립니다</h3>
+        <div class="eq"><small>태양광 예산(국비+시비)</small> <span class="mono">45.2억</span> ÷ <small>kW당 설치비</small> <span class="mono">120만 원</span> = <span class="hl mono">연 3.8MW</span></div>
+        <p>공공주차장 약 80MW + 공공건물 102곳 20.6MW = 약 100MW ÷ 연 3.8MW ≈ 26년</p>
       </div>
     </div>
   </div>
 
-  <div class="src">출처: 에너지경제연구원 지역에너지통계연보(2023) · 대전시 2026 재생에너지 예산 · 설치비 100kW 약 1.1~1.4억 원(해줌 2026 가이드)의 아래쪽 · 무산 사례 언론 보도</div>
+  <div class="src">자료: 에너지경제연구원 「2024 지역에너지통계연보」, 대전환경운동연합 주차장 태양광 조사(2026), 대전시 「태양광 분야 예산 편성 내역」(2026), 해줌 「2026 태양광 설치 가이드」, 언론 보도</div>
 </div>
 </body></html>

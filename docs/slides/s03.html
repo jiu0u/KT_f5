@@ -4,46 +4,55 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=IBM+Plex+Mono:wght@500;600&display=swap">
 <link rel="stylesheet" href="slide.css">
 <style>
-.b3{display:grid;grid-template-columns:1fr 1.05fr;gap:48px;flex:1}
-.why{display:grid;gap:14px;align-content:center}
-.why .r{display:grid;grid-template-columns:210px 1fr;gap:20px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:18px 24px;font-size:24px}
+/* 3장도 2·4~6장과 같은 밝은 색 (이 장 안에서만) */
+.slide{--bg:#F6F7F9;--ink:#14202B;--ink2:#566473;--amber:#C9770F;--blue:#3A78AD;--warn:#B4541C;--line:#D8DFE6;--card:#FFFFFF;background:var(--bg);color:var(--ink)}
+.slide .empty{border-color:#C3CDD7;background:#fff}
+.b3{display:grid;grid-template-columns:1fr 1.05fr;gap:40px;flex:1;margin-top:16px;margin-bottom:36px;align-items:stretch}
+.why{display:flex;flex-direction:column;gap:16px}
+.why .r{flex:1}
+.why .r{display:grid;grid-template-columns:210px 1fr;gap:20px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:16px 26px;font-size:25px;word-break:keep-all}
 .why .r span:first-child{color:var(--ink2)}
-.why .r.me{border-color:rgba(233,166,74,.6)}
+.why .r.me{border-color:var(--amber);background:#FDF6EA}
 .why .r.me span:last-child{color:var(--amber);font-weight:700}
-.gaps{display:grid;gap:22px;align-content:center}
+.gaps{display:flex;flex-direction:column;gap:16px}
+.gaps .empty{flex:1;display:flex;flex-direction:column;justify-content:center}
+.gaps .empty .ans{align-self:flex-start}
 .empty h3{font-size:32px;margin-bottom:10px}
-.empty p{font-size:23px;line-height:1.5;color:var(--ink2)}
-.empty .ans{display:inline-block;margin-top:12px;font-size:21px;font-weight:700;color:var(--ink);background:rgba(233,166,74,.15);border-radius:6px;padding:5px 12px}
-.lbl{font-size:22px;color:var(--ink2);font-weight:700}
+.empty p{font-size:24px;line-height:1.5;color:var(--ink2);word-break:keep-all}
+.empty .ans{display:inline-block;margin-top:12px;font-size:21px;font-weight:700;color:var(--ink);background:#FBEBD2;border-radius:6px;padding:5px 12px}
+.lbl{font-size:30px;color:var(--ink);font-weight:700;margin-bottom:4px}
+.slide .empty{padding:28px 34px}
+.why .r small{display:block;font-size:18px;color:var(--ink2);font-weight:400;margin-top:4px;line-height:1.4}
+.why .r span:first-child{font-weight:700;color:var(--ink)}
 </style>
 </head><body>
 <div class="slide">
   <div class="part">① 문제</div>
-  <h1>공공건물 옥상은 비어 있지만, <span class="hl">두 가지</span>를 모릅니다</h1>
+  <h1>공공건물 옥상은 비어 있는데,<br><span class="hl">몇 kW를 깔 수 있는지</span>와 <span class="hl">누가 낼지</span>를 모릅니다</h1>
 
   <div class="b3">
     <div class="why">
       <div class="lbl">왜 공공건물 옥상인가</div>
-      <div class="r"><span>LNG·연료전지</span><span>주민 반대로 무산</span></div>
-      <div class="r"><span>지상 태양광</span><span>이격거리 조례 전국 129곳</span></div>
-      <div class="r me"><span>공공건물 옥상</span><span>새 땅이 필요 없고 반대가 적음</span></div>
-      <div class="r"><span>설치 의무</span><span>신축 1,000㎡ 이상만 해당, 기존 건물은 의무 없음</span></div>
+      <div class="r"><span>대형 발전소</span><span>주민 반대로 무산<small>평촌 LNG(2019 중단), 도안·연축동 수소연료전지 무산</small></span></div>
+      <div class="r"><span>지상 태양광</span><span>땅 찾기가 어려움<small>이격거리 조례 둔 지자체 129곳(92곳은 법 상한 초과) · 대전은 평지 유휴부지 부족</small></span></div>
+      <div class="r me"><span>공공건물 옥상</span><span>새 땅이 필요 없고 반대 사례가 거의 없음<small>대전시 관리 건물 958건(정보공개) + 초등학교 149곳</small></span></div>
+      <div class="r"><span>설치 의무</span><span>신축·증축 공공건물만 해당<small>기존 건물은 의무가 없어 누군가 나서야 설치됨</small></span></div>
     </div>
     <div class="gaps">
-      <div class="lbl">모르는 것 두 가지</div>
+      <div class="lbl">아직 모르는 것</div>
       <div class="empty">
         <h3>① 건물마다 몇 kW를 깔 수 있나</h3>
-        <p>지금 있는 잠재량은 지붕 면적 × 일사량 × 20% × 25% 고정 공식이라 옥탑·실외기·그늘이 빠져 있습니다</p>
-        <span class="ans">→ 지붕 AI (4·5장)</span>
+        <p>기존 계산은 지붕 면적의 25%에 깐다고 가정해서, 옥탑·실외기·그늘이 빠져 있습니다</p>
+        <span class="ans">→ 지붕 AI</span>
       </div>
       <div class="empty">
         <h3>② 설치비는 누가 내나</h3>
-        <p>예산만으로는 20년이 걸리고, 대전에는 시민이 참여한 선례가 없습니다</p>
-        <span class="ans">→ 재원 결정과 시민 참여 SPC (6·7장)</span>
+        <p>예산만으로는 26년이 걸리고, 시·구 공공건물에 시민·협동조합이 설치한 사례가 없습니다 (정보공개 답변)</p>
+        <span class="ans">→ 재원 결정과 시민 참여 SPC</span>
       </div>
     </div>
   </div>
 
-  <div class="src">출처: 신재생에너지법 공공기관 설치 의무 · 지자체 이격거리 조례 현황 · 경기기후플랫폼 옥상 잠재량 산정 방식</div>
+  <div class="src">자료: 신재생에너지법 공공기관 설치 의무, 국회예산정책처 「태양광 이격거리 규제 현황과 쟁점」(2024), 2026 국정감사 자료, 경기기후플랫폼 옥상 잠재량 산정 방식, 대전시·구청 정보공개 답변(2026.11)</div>
 </div>
 </body></html>
