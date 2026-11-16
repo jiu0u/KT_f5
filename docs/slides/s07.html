@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8">
+<title>S6-1 분류</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<style>
+/* slide.css가 없을 때를 위한 기본값 (slide.css가 있으면 아래 link가 덮어씀) — 밝은 배경 */
+:root{--bg:#F6F7F9;--card:#FFFFFF;--ink:#14202B;--ink2:#566473;--line:#D8DFE6;--amber:#C9770F;--blue:#3A78AD}
+html,body{margin:0;background:var(--bg);color:var(--ink);font-family:'Noto Sans KR',sans-serif}
+.slide{width:1920px;height:1080px;box-sizing:border-box;padding:56px 80px 40px;display:flex;flex-direction:column;gap:22px}
+.part{color:var(--amber);font-size:22px;font-weight:700;letter-spacing:.04em}
+h1{margin:0;font-size:46px;font-weight:900;line-height:1.25}
+.hl{color:var(--amber)}
+.mono{font-family:'IBM Plex Mono',monospace}
+.src{margin-top:auto;font-size:15px;color:var(--ink2)}
+</style>
+<link rel="stylesheet" href="slide.css">
+<style>
+/* 밝은 배경 (4·5장 공통) */
+.slide{--bg:#F6F7F9;--ink:#14202B;--ink2:#566473;--amber:#C9770F;--blue:#3A78AD;--warn:#B4541C;--line:#D8DFE6;--card:#FFFFFF;background:var(--bg);color:var(--ink)}
+:root{--c-bud:#C9770F;--c-ppa:#3A78AD;--c-sell:#2A8A6B}
+html,body{background:#F6F7F9}
+.slide{position:relative;padding-top:60px;word-break:keep-all}
+/* 오른쪽 위 번호 표시 (알약 모양) */
+.part{position:absolute;top:34px;right:88px;margin:0;padding:8px 24px;border:1px solid var(--line);border-radius:999px;background:var(--card);color:var(--ink2);font-size:24px;font-weight:600;letter-spacing:0}
+
+.slide{gap:34px}
+h1{font-size:60px}
+.flow{display:grid;grid-template-columns:1fr 84px 1fr 84px 1fr;align-items:stretch;flex:1;min-height:0}
+.stp{border:1px solid var(--line);border-radius:16px;background:var(--card);box-shadow:0 1px 3px rgba(20,32,43,.06);padding:26px 30px 22px;display:flex;flex-direction:column;gap:18px}
+.no{display:flex;align-items:center;gap:14px;font-size:26px;font-weight:800;color:var(--ink2)}
+.no i{font-style:normal;display:grid;place-items:center;width:46px;height:46px;border-radius:50%;background:var(--amber);color:#fff;font-size:27px;font-weight:900}
+.q{font-size:30px;font-weight:900;line-height:1.35}
+.crit{font-size:26px;line-height:1.45;color:var(--ink2)}
+.crit b{color:var(--ink);font-weight:700}
+.out{display:flex;flex-direction:column;gap:10px;margin-top:auto}
+.o{display:flex;align-items:center;gap:14px;font-size:26px;font-weight:800;border-radius:10px;padding:12px 16px;background:#EEF1F5;border:2px solid transparent;color:var(--c)}
+.o i{font-style:normal;font-weight:600;font-size:21px;color:var(--ink2);min-width:118px}
+.o.on{border-color:var(--c);background:rgba(58,120,173,.10)}
+.o.dim{opacity:.5}
+.arr{display:flex;flex-direction:column;align-items:center;justify-content:center;color:var(--ink2);font-size:46px;line-height:1}
+.arr small{font-size:22px;margin-top:8px}
+.eg{background:#F1F4F8;border-left:6px solid var(--amber);border-radius:8px;padding:14px 18px;display:flex;flex-direction:column;gap:4px;font-size:24px;line-height:1.45}
+.eg .who{font-size:18px;font-weight:700;color:var(--amber);letter-spacing:.04em}
+.eg b{font-weight:800}
+.eg .ok{color:var(--c-sell)}.eg .ng{color:var(--warn)}
+.eg small{font-size:20px;color:var(--ink2)}
+.result{display:flex;align-items:center;gap:22px;border:2px solid var(--c-ppa);border-radius:16px;padding:16px 32px;background:rgba(58,120,173,.08)}
+.result .b{font-size:32px;font-weight:800}
+.result .b small{font-size:23px;color:var(--ink2);font-weight:500;margin-left:10px}
+.result .r{font-size:38px;color:var(--ink2)}
+.result .t{font-size:36px;font-weight:900;color:var(--c-ppa)}
+.result .d{margin-left:auto;font-size:24px;color:var(--ink2)}
+</style>
+</head><body>
+
+<div class="slide">
+  <div class="part">④ 분류</div>
+  <h1>건물 하나가 <span class="hl">세 번의 질문</span>을 거쳐 설치 방식이 정해집니다</h1>
+
+  <div class="flow">
+    <div class="stp">
+      <div class="no"><i>1</i>1단계</div>
+      <div class="q">낮에 발생하는 발전량을<br><span class="hl">낮에 전부</span> 소비할&nbsp;수&nbsp;있나?</div>
+      <div class="crit">자가소비율 <b>80% 이상</b></div>
+      <div class="out"><div class="o dim" style="--c:var(--c-sell)"><i>아니면</i>외부자금 판매형</div></div>
+      <div class="eg"><span class="who">예시 · 대덕구청</span><span>발전량 = 사용량의 <b>11%</b></span><span>자가소비율 <b class="ok">100% ✓</b></span></div>
+    </div>
+    <div class="arr">→<small>예</small></div>
+
+    <div class="stp">
+      <div class="no"><i>2</i>2단계</div>
+      <div class="q">전기요금이 <span class="hl">파는 것</span>이 이득인가,<br> <span class="hl">쓰는 것</span>이 이득인가?</div>
+      <div class="crit">전기요금이 판매가보다 <b>5원 이상</b> 비싸면 쓰는 쪽</div>
+      <div class="out"><div class="o dim" style="--c:var(--c-sell)"><i>파는 쪽</i>외부자금 판매형</div></div>
+      <div class="eg"><span class="who">예시 · 대덕구청</span><span>청사 일반용 단가 확인 전</span><span><b class="ok">통과로 처리 ✓</b> <small>(학교는 여기서 판매형)</small></span></div>
+    </div>
+    <div class="arr">→<small>쓰는 쪽</small></div>
+
+    <div class="stp">
+      <div class="no"><i>3</i>3단계</div>
+      <div class="q"><span class="hl">회수 기간이 짧으며</span> <span class="hl">예산&nbsp;한도&nbsp;안</span>인가?</div>
+      <div class="crit">회수 기간이 짧은 건물부터 <b>예산 안까지</b></div>
+      <div class="out">
+        <div class="o dim" style="--c:var(--c-bud)"><i>안이면</i>예산 자가소비형</div>
+        <div class="o on" style="--c:var(--c-ppa)"><i>초과 ✓</i>외부자금 PPA</div>
+      </div>
+      <div class="eg"><span class="who">예시 · 대덕구청 (설치비 1.57억)</span><span>예산 3.15억 중 중구청이 1.84억 사용</span><span>남은 <b>1.31억</b> &lt; 1.57억 <b class="ng">초과</b></span></div>
+    </div>
+  </div>
+
+  <div class="result">
+    <div class="b">대덕구청<small>131 kW</small></div>
+    <div class="r">→</div>
+    <div class="t">외부자금 자가소비형 (온사이트 PPA)</div>
+    <div class="d">SPC가 설치하고, 대덕구청이 그 전기를 사서 씁니다</div>
+  </div>
+
+  <div class="src">근거: 재생에너지법 개정(2026.9.15 공포) — 계약시장 또는 직접 PPA 선택 구조 · 2026 고정가격계약 판매 기준 가격 146.92원 · 대전시 태양광 예산 정보공개 · 예산 3.15억은 데모 시나리오</div>
+</div>
+</body></html>

@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8">
+<title>S6-2 우선순위</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<style>
+/* slide.css가 없을 때를 위한 기본값 (slide.css가 있으면 아래 link가 덮어씀) — 밝은 배경 */
+:root{--bg:#F6F7F9;--card:#FFFFFF;--ink:#14202B;--ink2:#566473;--line:#D8DFE6;--amber:#C9770F;--blue:#3A78AD}
+html,body{margin:0;background:var(--bg);color:var(--ink);font-family:'Noto Sans KR',sans-serif}
+.slide{width:1920px;height:1080px;box-sizing:border-box;padding:56px 80px 40px;display:flex;flex-direction:column;gap:22px}
+.part{color:var(--amber);font-size:22px;font-weight:700;letter-spacing:.04em}
+h1{margin:0;font-size:46px;font-weight:900;line-height:1.25}
+.hl{color:var(--amber)}
+.mono{font-family:'IBM Plex Mono',monospace}
+.src{margin-top:auto;font-size:15px;color:var(--ink2)}
+</style>
+<link rel="stylesheet" href="slide.css">
+<style>
+/* 밝은 배경 (4·5장 공통) */
+.slide{--bg:#F6F7F9;--ink:#14202B;--ink2:#566473;--amber:#C9770F;--blue:#3A78AD;--warn:#B4541C;--line:#D8DFE6;--card:#FFFFFF;background:var(--bg);color:var(--ink)}
+:root{--c-bud:#C9770F;--c-ppa:#3A78AD;--c-sell:#2A8A6B}
+html,body{background:#F6F7F9}
+.slide{position:relative;padding-top:60px;word-break:keep-all}
+/* 오른쪽 위 번호 표시 (알약 모양) */
+.part{position:absolute;top:34px;right:88px;margin:0;padding:8px 24px;border:1px solid var(--line);border-radius:999px;background:var(--card);color:var(--ink2);font-size:24px;font-weight:600;letter-spacing:0}
+
+:root{--k-pay:#F2B14D;--k-save:#F8D98B;--k-dscr:#7DB8E8;--k-rev:#B3D9F5;--k-co2:#6FD0AE;--k-stab:#CBD3DC}
+.slide{gap:44px}
+h1{font-size:54px}
+.how{display:flex;align-items:center;gap:16px;font-size:32px}
+.how span{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:13px 26px}
+.how span b{color:var(--amber)}
+.how em{font-style:normal;color:var(--ink2);font-size:36px}
+.main{display:grid;grid-template-columns:1.12fr 1fr;gap:64px;flex:1;min-height:0}
+.left{display:flex;flex-direction:column;gap:30px;padding:6px 4px 0 0}
+.left h3{margin:0;font-size:30px}
+.left h3 small{font-size:20px;color:var(--ink2);font-weight:500;margin-left:12px}
+.rows{flex:1;display:flex;flex-direction:column;justify-content:space-evenly}
+.wrow{display:grid;grid-template-columns:120px 1fr;align-items:center;gap:24px}
+.wrow .lab{font-size:27px;font-weight:800}
+.wrow .lab.sub{font-size:24px;line-height:1.3;color:var(--ink2);font-weight:700}
+.bar{display:flex;gap:6px;height:76px}
+.seg{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;border-radius:8px;border:1px solid rgba(20,32,43,.16);color:#000;font-weight:800;line-height:1.2;min-width:0;overflow:hidden}
+.seg span{font-size:21px;font-weight:800}
+.pay{background:var(--k-pay)}.save{background:var(--k-save)}.dscr{background:var(--k-dscr)}.rev{background:var(--k-rev)}.co2{background:var(--k-co2)}.stab{background:var(--k-stab)}
+.adj{height:auto;min-height:88px;border:2px dashed #8A97A5;border-radius:8px;padding:10px 20px;display:flex;flex-direction:column;justify-content:center;gap:4px;background:rgba(20,32,43,.025)}
+.adj .t{font-size:24px;font-weight:800}
+.adj .t i{font-style:normal;font-size:18px;font-weight:600;color:var(--amber);margin-left:12px}
+.adj .d{font-size:19px;line-height:1.4;color:var(--ink2)}
+.card{border:1px solid var(--line);border-radius:14px;background:var(--card);box-shadow:0 1px 3px rgba(20,32,43,.06);padding:26px 32px;display:flex;flex-direction:column;gap:24px}
+.card h3{margin:0;font-size:30px}
+.card h3 small{font-size:20px;color:var(--ink2);font-weight:500;margin-left:12px}
+table{width:100%;border-collapse:collapse;font-size:27px;flex:1}
+th{font-size:20px;color:var(--ink2);font-weight:600;text-align:left;padding:4px 6px 10px}
+th.c,td.c{text-align:right}
+td{padding:10px 6px;border-top:1px solid var(--line);vertical-align:middle}
+td.k{font-weight:700;font-size:25px}
+td.k small{color:var(--ink2);font-weight:500;font-size:19px;margin-left:8px}
+.v{font-family:'IBM Plex Mono',monospace;font-weight:600}
+.sc{display:inline-block;min-width:46px;text-align:center;margin-left:8px;border-radius:6px;padding:1px 8px;font:600 21px 'IBM Plex Mono',monospace;background:rgba(42,138,107,.14);color:#1E7A5C}
+.sc.z{background:rgba(20,32,43,.07);color:var(--ink2)}
+tr.tot td{border-top:2px solid var(--ink2);font-weight:900;font-size:34px}
+tr.tot .win{color:var(--amber)}
+.cap{font-size:19px;color:var(--ink2);line-height:1.5}
+.cap b{color:var(--ink)}
+</style>
+</head><body>
+
+<div class="slide">
+  <div class="part">⑤ 우선순위</div>
+  <h1>같은 유형끼리 <span class="hl">목적에 맞는 지표</span>로 순위를 매깁니다</h1>
+
+  <div class="how">
+    <span>지표를 <b>건물끼리 비교해 0~1</b>로 환산</span><em>→</em><span>유형별 <b>가중치</b>로 합산</span><em>→</em><span>점수가 높은 순서대로 <b>순위</b></span>
+  </div>
+
+  <div class="main">
+    <div class="left">
+      <h3>각 유형의 지표<small>가중치는 전문가가 입력</small></h3>
+      <div class="rows">
+        <div class="wrow"><div class="lab">예산형</div>
+          <div class="bar"><div class="seg pay"><span>회수 기간</span></div><div class="seg save"><span>연간 절감액</span></div><div class="seg co2"><span>탄소 감축</span></div><div class="seg stab"><span>결론 안정성</span></div></div></div>
+        <div class="wrow"><div class="lab">PPA형</div>
+          <div class="bar"><div class="seg dscr"><span>DSCR</span></div><div class="seg rev"><span>연간 수입</span></div><div class="seg co2"><span>탄소 감축</span></div><div class="seg stab"><span>결론 안정성</span></div></div></div>
+        <div class="wrow"><div class="lab">판매형</div>
+          <div class="bar"><div class="seg dscr"><span>DSCR</span></div><div class="seg rev"><span>연간 수입</span></div><div class="seg co2"><span>탄소 감축</span></div><div class="seg stab"><span>결론 안정성</span></div></div></div>
+        <div class="wrow"><div class="lab sub">건물별<br>입력</div>
+          <div class="adj"><div class="t">그늘·방위 계수<i>1.0 = AI 계산 그대로 · 0.8 = 발전량 20% 적게</i></div>
+            <div class="d">발전량에 곱해 위 지표들의 값을 건물마다 다르게 보정 · 가중치와는 별개</div></div></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>예시<small>PPA형 안의 두 건물 · 기본 가중치로 계산</small></h3>
+      <table>
+        <tr><th>지표 · 가중치</th><th class="c">교육청 163 kW</th><th class="c">대덕구청 131 kW</th></tr>
+        <tr><td class="k">DSCR<small>40%</small></td><td class="c"><span class="v">1.69</span><span class="sc">1.0</span></td><td class="c"><span class="v">1.69</span><span class="sc">1.0</span></td></tr>
+        <tr><td class="k">연간 수입<small>20%</small></td><td class="c"><span class="v">2,876만</span><span class="sc">1.0</span></td><td class="c"><span class="v">2,311만</span><span class="sc z">0</span></td></tr>
+        <tr><td class="k">탄소 감축<small>25%</small></td><td class="c"><span class="v">90 t</span><span class="sc">1.0</span></td><td class="c"><span class="v">72 t</span><span class="sc z">0</span></td></tr>
+        <tr><td class="k">결론 안정성<small>15%</small></td><td class="c"><span class="v">유지</span><span class="sc">1.0</span></td><td class="c"><span class="v">유지</span><span class="sc">1.0</span></td></tr>
+        <tr class="tot"><td>점수</td><td class="c win">100점 · 1위</td><td class="c">55점 · 2위</td></tr>
+      </table>
+      <div class="cap"><b>상대 평가</b>: 이 유형에서 높은 쪽 1.0, 낮은 쪽 0 (0점은 값이 0이 아니라 가장 낮다는 뜻). <b>차이 1% 미만은 동률</b>, 점수가 같으면 공동 순위</div>
+    </div>
+  </div>
+</div>
+</body></html>
