@@ -4,9 +4,15 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=IBM+Plex+Mono:wght@500;600&display=swap">
 <link rel="stylesheet" href="slide.css">
 <style>
+/* 밝은 색 (2~6장과 같은 값, 이 장 안에서만) */
+.slide{--bg:#F6F7F9;--ink:#14202B;--ink2:#566473;--amber:#C9770F;--blue:#3A78AD;--warn:#B4541C;--line:#D8DFE6;--card:#FFFFFF;background:var(--bg);color:var(--ink)}
+.slide .empty{border-color:#C3CDD7;background:#fff}
+.slide .tag.ok{color:#1F7A5A;border-color:#B9DCCB}
+.slide .img{background:#E7ECF1}
+
 .b7{display:grid;grid-template-columns:1.25fr 1fr;gap:40px;flex:1;min-height:0}
 .vid{display:flex;flex-direction:column;gap:12px;min-height:0}
-.vid .scr{flex:1;border:1px solid var(--line);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:28px;color:var(--ink2);background:repeating-linear-gradient(135deg,#101A25 0 22px,#0E1620 22px 44px)}
+.vid .scr{flex:1;border:1px solid var(--line);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:28px;color:var(--ink2);background:repeating-linear-gradient(135deg,#EEF2F5 0 22px,#E6EBF0 22px 44px)}
 .cuts{display:grid;grid-template-columns:repeat(5,1fr);gap:6px}
 .cuts div{background:var(--card);border-top:3px solid var(--amber);padding:9px 11px;font-size:16px;line-height:1.4;color:var(--ink2)}
 .cuts b{display:block;font-family:"IBM Plex Mono",monospace;color:var(--amber);font-size:15px}

@@ -4,10 +4,16 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=IBM+Plex+Mono:wght@500;600&display=swap">
 <link rel="stylesheet" href="slide.css">
 <style>
+/* 밝은 색 (2~6장과 같은 값, 이 장 안에서만) */
+.slide{--bg:#F6F7F9;--ink:#14202B;--ink2:#566473;--amber:#C9770F;--blue:#3A78AD;--warn:#B4541C;--line:#D8DFE6;--card:#FFFFFF;background:var(--bg);color:var(--ink)}
+.slide .empty{border-color:#C3CDD7;background:#fff}
+.slide .tag.ok{color:#1F7A5A;border-color:#B9DCCB}
+.slide .img{background:#E7ECF1}
+
 .slide{gap:24px}
 .stages{display:grid;grid-template-columns:1fr 1.12fr 1.24fr;gap:22px;align-items:end;height:400px}
-.s1{height:78%;background:#151F2A}
-.s2{height:90%;background:#1A2836}
+.s1{height:78%;background:#F1F4F7}
+.s2{height:90%;background:#FFFFFF}
 .s3{height:100%;background:rgba(233,166,74,.10);border-color:rgba(233,166,74,.5)}
 .s3 .k{color:var(--amber)}
 .stage .v{font-size:28px}

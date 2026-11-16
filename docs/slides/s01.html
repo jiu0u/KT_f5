@@ -4,6 +4,12 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=IBM+Plex+Mono:wght@500;600&display=swap">
 <link rel="stylesheet" href="slide.css">
 <style>
+/* 밝은 색 (2~6장과 같은 값, 이 장 안에서만) */
+.slide{--bg:#F6F7F9;--ink:#14202B;--ink2:#566473;--amber:#C9770F;--blue:#3A78AD;--warn:#B4541C;--line:#D8DFE6;--card:#FFFFFF;background:var(--bg);color:var(--ink)}
+.slide .empty{border-color:#C3CDD7;background:#fff}
+.slide .tag.ok{color:#1F7A5A;border-color:#B9DCCB}
+.slide .img{background:#E7ECF1}
+
 .cover{justify-content:center;gap:0;padding:120px 160px}
 .cover .kicker{font-size:26px;color:var(--amber);font-weight:700;letter-spacing:.04em}
 .cover h1{font-size:92px;font-weight:900;line-height:1.18;margin-top:28px;max-width:none}
