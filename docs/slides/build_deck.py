@@ -7,7 +7,7 @@ import html as H
 import os
 
 D = os.path.dirname(os.path.abspath(__file__))
-S = [f"s{i:02d}" for i in range(1, 9)]
+S = [f"s{i:02d}" for i in range(1, 11)]
 CSS = open(os.path.join(D, "slide.css"), encoding="utf8").read()
 
 pages = []
