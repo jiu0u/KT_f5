@@ -1,78 +1,167 @@
 <!doctype html>
 <html lang="ko"><head><meta charset="utf-8">
-<title>S2 문제</title>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=IBM+Plex+Mono:wght@500;600&display=swap">
-<link rel="stylesheet" href="slide.css">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>S02 문제: 전력자립도 3.06% (병합)</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
 <style>
-/* 2장도 4~6장과 같은 밝은 색 (이 장 안에서만) */
-.slide{--bg:#F6F7F9;--ink:#14202B;--ink2:#566473;--amber:#C9770F;--blue:#3A78AD;--warn:#B4541C;--line:#D8DFE6;--card:#FFFFFF;background:var(--bg);color:var(--ink)}
-.b2{display:grid;grid-template-columns:520px 1fr;gap:56px;flex:1}
-.kl{display:flex;flex-direction:column;justify-content:center;gap:28px}
-.kl .big{font-size:180px}
-.kl .big small{font-size:84px}
-.kl .calc{font-size:24px;color:var(--ink2)}
-.mini{display:grid;gap:12px}
-.mini .r{display:grid;grid-template-columns:110px 1fr 110px;gap:14px;align-items:center;font-size:22px}
-.mini .tr{height:26px;background:#E7ECF1;border-radius:4px}
-.mini .tr i{display:block;height:100%;background:#A3B0BD;border-radius:4px}
-.mini .me .tr i{background:var(--amber)}
-.mini .me span{color:var(--ink);font-weight:700}
-.mini span{color:var(--ink2)}
-.right2{display:grid;grid-template-rows:1fr 1fr;gap:24px}
-.right2 .card{display:flex;flex-direction:column;justify-content:center}
-.right2 li{font-size:24px}
-.right2 .tag{align-self:flex-start}
-.eq{font-size:36px;font-weight:600;margin:4px 0 10px}
-.eq small{font-size:21px;font-weight:500;color:var(--ink2);font-family:"Noto Sans KR",sans-serif}
-.mini .hd{font-size:18px;color:var(--ink2)}
-.right2 .card{padding:34px 40px}
-.right2 .card h3{font-size:34px;margin:6px 0 16px}
-.right2 li{font-size:27px}
-.right2 .card ul{gap:10px}
-.right2 .card p{font-size:23px;word-break:keep-all}
-.right2 .tag{font-size:20px}
-.eq{font-size:40px;white-space:nowrap}
-.eq small{font-size:24px}
-.mini .r.dots{font-size:24px;line-height:.6;color:var(--ink2)}
-.mini .r.dots span:first-child{padding-left:28px}
-</style>
-</head><body>
-<div class="slide">
-  <div class="part">① 문제</div>
-  <h1>대전 전력자립도 <span class="hl">3.06%</span>, 17개 시·도 중 최하위입니다</h1>
+:root{--bg:#FFFFFF;--panel:#F4F6FA;--line:#E2E7EF;--ink:#0F1B2D;--sub:#4B5669;--mute:#8B95A7;
+--sun:#F0A020;--sun-ink:#B86E00;--sun-soft:#FFF4DF;--red:#D9473A;--red-soft:#FCEAE7;--blue:#2F6FDE;--blue-soft:#E8F0FD;--green:#1E9E6A;
+--sans:"Pretendard","Noto Sans KR",sans-serif}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--sans);color:var(--ink);-webkit-font-smoothing:antialiased;font-variant-numeric:tabular-nums}
+.slide{width:1280px;height:720px;background:var(--bg);padding:48px 64px 30px;display:flex;flex-direction:column;overflow:hidden;position:relative}
+.hd{display:flex;justify-content:space-between;align-items:flex-start;gap:40px}
+h1{font-size:38px;font-weight:800;letter-spacing:-.025em;line-height:1.25;word-break:keep-all}
+h1 .k{color:var(--sun-ink)}
+.rk{margin-top:12px;display:grid;gap:5px}
+.rk .h{font-size:13px;color:var(--mute)}
+.rk .r{display:grid;grid-template-columns:76px 1fr 66px;gap:10px;align-items:center;font-size:15px;color:var(--sub)}
+.rk .t{height:12px;background:var(--panel);border-radius:4px;overflow:hidden}
+.rk .t i{display:block;height:100%;border-radius:4px;background:#AEB7C6}
+.rk .r b{text-align:right;font-weight:600;color:var(--ink)}
+.rk .dot{line-height:.4;padding-left:20px;color:var(--mute)}
+.rk .me{font-size:18px;font-weight:800;color:var(--ink);background:rgba(239,160,40,.12);border-radius:8px;padding:6px 8px;margin:0 -8px}
+.rk .me .t{height:22px;background:#fff}
+.rk .me .t i{background:var(--sun);min-width:8px}
+.rk .me b{color:var(--sun-ink);font-size:20px}
+.say{margin:10px 0 8px;font-size:19px;white-space:nowrap;font-weight:800;line-height:1.3;letter-spacing:-.02em;color:var(--ink)}
+.say .k{color:var(--sun-ink)}
+.trend{margin-top:4px}
+.trend .h{font-size:13px;color:var(--mute);font-weight:600}
+.trend .row{display:grid;grid-template-columns:repeat(4,1fr);margin-top:6px;border-top:1px solid var(--line)}
+.trend .row span{font-size:12px;color:var(--mute);padding-top:5px;display:flex;flex-direction:column;gap:2px}
+.trend .row b{font-size:17px;color:var(--ink);font-weight:700}
+.trend .row .now b{color:var(--sun-ink)}
+.stock{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:14px 0 12px;border-top:1px solid var(--line);padding-top:12px}
+.stock b{display:block;font-size:26px;font-weight:800;letter-spacing:-.02em;line-height:1}
+.stock b small{font-size:15px;margin-left:2px;color:var(--sub)}
+.stock span{display:block;font-size:13px;color:var(--mute);margin-top:6px;line-height:1.4}
+.real{margin:12px 0 10px;display:grid;gap:4px}
+.real p{font-size:13px;color:var(--sub);line-height:1.45;margin:0}
+.real b{color:var(--ink)}
+.zoom{display:block;width:400px;height:28px;margin-top:2px}
+.zoom line{stroke:var(--sun);stroke-width:1.5;stroke-dasharray:4 3}
+.hero .split{margin-top:0}
+.sec{flex:none;font-size:13px;font-weight:700;color:var(--sub);background:var(--panel);border-radius:999px;padding:7px 14px}
+.src{margin-top:14px;font-size:11px;line-height:1.45;color:var(--mute);word-break:keep-all}
 
-  <div class="b2">
-    <div class="kl">
-      <div><div class="big">3.06<small>%</small></div><div class="calc mono">발전 304GWh ÷ 소비 9,922GWh (2023)</div></div>
-      <div class="mini">
-        <div class="hd">17개 시·도 순위 (2023)</div>
-        <div class="r"><span>1위 경북</span><div class="tr"><i style="width:100%"></i></div><b class="mono">215.6%</b></div>
-        <div class="r"><span>2위 충남</span><div class="tr"><i style="width:99.1%"></i></div><b class="mono">213.6%</b></div>
-        <div class="r dots"><span>⋮</span><span></span><span></span></div>
-        <div class="r"><span>16위 광주</span><div class="tr"><i style="width:4.3%"></i></div><b class="mono">9.3%</b></div>
-        <div class="r me"><span>17위 대전</span><div class="tr"><i style="width:1.4%"></i></div><b class="mono hl">3.06%</b></div>
-      </div>
-      <p class="muted" style="font-size:21px">2026년 7월 보도: “전력자급도 꼴찌가 기업 유치 걸림돌”</p>
-    </div>
-    <div class="right2">
-      <div class="card">
-        <span class="tag warn">대형 발전소</span>
-        <h3>큰 발전소는 주민 반대로 무산됐습니다</h3>
-        <ul>
-          <li>2019 평촌산단 LNG 발전소 건설계획 중단</li>
-          <li>도안지구·연축동 수소연료전지 발전소 무산</li>
-          <li>대전열병합 증설 반대 서명 4천여 명</li>
-        </ul>
-      </div>
-      <div class="card">
-        <span class="tag warn">예산</span>
-        <h3>예산만으로는 공공 옥상·주차장을 채우는 데 26년이 걸립니다</h3>
-        <div class="eq"><small>태양광 예산(국비+시비)</small> <span class="mono">45.2억</span> ÷ <small>kW당 설치비</small> <span class="mono">120만 원</span> = <span class="hl mono">연 3.8MW</span></div>
-        <p>공공주차장 약 80MW + 공공건물 102곳 20.6MW = 약 100MW ÷ 연 3.8MW ≈ 26년</p>
-      </div>
-    </div>
+
+.s1{display:grid;grid-template-columns:400px 1fr;gap:44px;margin-top:28px;flex:1;min-height:0}
+.hero{display:flex;flex-direction:column}
+.num{font-size:168px;font-weight:900;line-height:.88;letter-spacing:-.06em;color:var(--sun)}
+.num small{font-size:60px;letter-spacing:-.02em;margin-left:4px}
+.rank{margin-top:14px;font-size:20px;font-weight:800}.rank span{color:var(--mute);font-weight:600;font-size:15px;margin-left:8px}
+.split{margin-top:30px}
+.bar{height:52px;border-radius:12px;overflow:hidden;display:flex;background:var(--panel)}
+.own{width:3.06%;background:var(--sun)}
+.imp{flex:1;display:flex;align-items:center;justify-content:flex-end;padding-right:16px;font-size:15px;font-weight:700;color:var(--sub);background:repeating-linear-gradient(135deg,#EDF1F7 0 8px,#E3E8F0 8px 16px)}
+.cap{display:flex;justify-content:space-between;margin-top:9px;font-size:14px;font-weight:600;color:var(--sub)}.cap b{color:var(--sun-ink)}
+.peers{margin-top:30px;display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.peers div{padding:11px 0 11px 12px;border-left:1px solid var(--line);display:flex;flex-direction:column;gap:3px}
+.peers div:first-child{border-left:none;padding-left:0}
+.peers span{font-size:13px;font-weight:600;color:var(--mute)}.peers b{font-size:20px;font-weight:800;letter-spacing:-.02em}
+.peers .me span,.peers .me b{color:var(--sun-ink)}
+.why{margin-top:auto;background:var(--panel);border-radius:14px;padding:14px 18px}
+.why .t{font-size:13px;font-weight:700;color:var(--mute)}.why p{margin-top:4px;font-size:16px;font-weight:700}
+.paths{display:flex;flex-direction:column;min-height:0}
+.lead{font-size:17px;font-weight:700;color:var(--sub)}.lead b{color:var(--ink)}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:14px;flex:1;min-height:0}
+.path{border:1px solid var(--line);border-radius:16px;padding:20px 22px 18px;display:flex;flex-direction:column}
+.tag{align-self:flex-start;display:flex;align-items:center;gap:7px;font-size:13px;font-weight:800;color:var(--red);background:var(--red-soft);border-radius:999px;padding:5px 12px 5px 8px}
+.tag i{font-style:normal;width:18px;height:18px;border-radius:50%;background:var(--red);color:#fff;display:inline-flex;align-items:center;justify-content:center;font-size:11px}
+.path h3{font-size:23px;font-weight:800;letter-spacing:-.02em;line-height:1.3;margin-top:12px;word-break:keep-all}
+.cases{list-style:none;margin-top:16px;display:flex;flex-direction:column;gap:11px}
+.cases li{display:grid;grid-template-columns:26px 1fr;gap:12px;font-size:16.5px;font-weight:600;line-height:1.4}
+.x{width:24px;height:24px;border-radius:7px;background:var(--red-soft);color:var(--red);font-size:13px;font-weight:800;display:flex;align-items:center;justify-content:center}
+.cases small{display:block;font-size:14px;font-weight:500;color:var(--mute);margin-top:1px}
+.more{margin-top:auto;font-size:14px;line-height:1.5;color:var(--sub);background:var(--panel);border-radius:10px;padding:11px 13px}.more b{color:var(--ink)}
+.years{margin-top:10px;display:flex;align-items:baseline;gap:6px}
+.y{font-size:84px;font-weight:900;letter-spacing:-.05em;line-height:.9;color:var(--red)}.u{font-size:24px;font-weight:800;color:var(--red)}
+.eqn{margin-top:10px;font-size:15.5px;font-weight:700;color:var(--sub);line-height:1.6}.eqn b{color:var(--ink);font-size:19px}
+.fill{margin-top:auto}
+.fill .lbl{display:flex;justify-content:space-between;font-size:13px;font-weight:700;color:var(--sub);margin-bottom:6px}
+.fill .t{height:14px;border-radius:7px;background:var(--panel);overflow:hidden}
+.fill .t span{display:block;height:100%;width:3.8%;background:var(--red);border-radius:7px}
+.fill .sm{margin-top:8px;font-size:13px;color:var(--mute);font-weight:500;line-height:1.45}
+
+/* 굵기 완화 */
+.split{margin-top:40px}.peers{margin-top:40px}
+h1{font-weight:700}
+.sec{font-weight:600}
+.num{font-size:100px;font-weight:700;letter-spacing:-.05em}
+.num small{font-size:48px;font-weight:700}
+.rank{font-weight:600}.rank span{font-weight:500}
+.imp{font-weight:500}
+.cap{font-weight:500}.cap b{font-weight:600}
+.peers span{font-weight:500}.peers b{font-weight:600}.peers .me b{font-weight:700}
+.why .t{font-weight:500}.why p{font-weight:500}
+.lead{font-weight:500}.lead b{font-weight:600}
+.tag{font-weight:600}
+.path h3{font-weight:700}
+.cases li{font-weight:500}.cases small{font-weight:400}
+.x{font-weight:600}
+.more{font-weight:400}.more b{font-weight:600}
+.y{font-weight:700;font-size:76px}.u{font-weight:600}
+.eqn{font-weight:400}.eqn b{font-weight:700}
+.fill .lbl{font-weight:500}.fill .sm{font-weight:400}
+.src{font-weight:400}
+
+/* ── 보기용 틀: 1920×1080 한 장을 창 크기에 맞춤 ── */
+html,body{margin:0;width:auto;height:100%;overflow:hidden;background:#DDE3EC}
+.stage{position:fixed;inset:0;display:flex;align-items:center;justify-content:center}
+.frame{width:1920px;height:1080px;flex:none;transform-origin:center;position:relative;overflow:hidden;box-shadow:0 18px 50px rgba(15,27,45,.16)}
+.frame>.slide{position:absolute;top:0;left:0;transform:scale(1.5);transform-origin:0 0}
+@page{size:1920px 1080px;margin:0}
+@media print{html,body{overflow:visible;background:#fff}.stage{position:static;display:block}.frame{transform:none!important;box-shadow:none}*{-webkit-print-color-adjust:exact;print-color-adjust:exact}}
+</style></head><body>
+<div class="stage"><div class="frame" id="frame">
+<section class="slide">
+<div class="hd"><h1>대전 전력자립도 <span class="k">3.06%</span>, 17개 시·도 중 최하위입니다</h1><span class="sec">① 문제</span></div>
+<div class="s1">
+ <div class="hero">
+  <div class="num">3.06<small>%</small></div>
+  <div class="rk"><div class="h">17개 시·도 순위 (2023)</div>
+   <div class="r"><span>1위 경북</span><div class="t"><i style="width:100%"></i></div><b>215.6%</b></div>
+   <div class="r"><span>2위 충남</span><div class="t"><i style="width:99.1%"></i></div><b>213.6%</b></div>
+   <div class="r dot"><span>⋮</span></div>
+   <div class="r"><span>16위 광주</span><div class="t"><i style="width:4.3%"></i></div><b>9.3%</b></div>
+   <div class="r me"><span>17위 대전</span><div class="t"><i style="width:1.4%"></i></div><b>3.06%</b></div></div>
+  <svg class="zoom" viewBox="0 0 400 40" preserveAspectRatio="none" aria-hidden="true"><polygon points="86,0 94,0 400,40 0,40" fill="rgba(239,160,40,.13)"/><line x1="86" y1="0" x2="0" y2="40"/><line x1="94" y1="0" x2="400" y2="40"/></svg>
+  <div class="split"><div class="bar"><span class="own"></span><span class="imp">다른 지역에서 97%</span></div>
+   <div class="cap"><span><b>직접 만든 전기 304GWh</b></span><span>쓰는 전기 9,922GWh</span></div></div>
+  <p class="say">대전이 쓰는 전기의 <span class="k">97%</span>는 다른 지역에서 온 전기</p>
+  <div class="trend"><span class="h">연도별 전력자립도</span><div class="row"><span>2020<b>1.79%</b></span><span>2021<b>1.87%</b></span><span>2022<b>2.94%</b></span><span class="now">2023<b>3.06%</b></span></div></div>
+  <div class="why"><div class="t">2026년 7월 보도</div><p>“전력자급도 꼴찌가 기업 유치 걸림돌”</p></div>
+ </div>
+ <div class="paths">
+  <p class="lead">대전에서 <b>전기를 늘리기 어려운 이유</b></p>
+  <div class="two">
+   <div class="path"><span class="tag"><i>1</i>대형 발전소</span>
+    <h3>큰 발전소는<br>주민 반대로 무산</h3>
+    <ul class="cases">
+     <li><span class="x">✕</span><span>평촌산단 LNG 발전소<small>2019, 시가 건설계획 중단</small></span></li>
+     <li><span class="x">✕</span><span>도안지구·연축동 수소연료전지<small>주민 반발로 무산</small></span></li>
+     <li><span class="x">✕</span><span>대전열병합 LNG 증설<small>반대 서명 4천여 명</small></span></li></ul>
+    <div class="stock"><div><b>800<small>개소</small></b><span>대전 태양광 누적 (공공·민간, ~2024)</span></div><div><b>6.7<small>MW</small></b><span>시 예산으로 설치한 태양광 85곳 합계</span></div></div>
+    <p class="more">시 계획도 다시 <b>LNG·수소 혼소 500MW급 4기</b></p></div>
+   <div class="path"><span class="tag"><i>2</i>예산</span>
+    <h3>예산만으로는<br>너무 오래 걸림</h3>
+    <div class="years"><span class="y">26</span><span class="u">년</span></div>
+    <p class="eqn">태양광 예산(국비+시비) <b>45.2억</b><br>÷ kW당 설치비 <b>120만 원</b><br>= 1년에 <b>3.8MW</b></p>
+    <div class="real"><p><b>올해 계획</b>은 824곳 3.4MW, 대부분 주택·소형</p><p><b>소형햇빛발전소 지원 3.15억</b>은 2026년 종료</p></div>
+    <div class="fill"><div class="lbl"><span>1년치 3.8MW</span><span>채울 곳 약 100MW</span></div>
+     <div class="t"><span></span></div>
+     <p class="sm">공공주차장 약 80MW + 공공건물 102곳 20.6MW<br>자립도는 1년에 약 0.05%p 상승</p></div></div>
   </div>
-
-  <div class="src">자료: 에너지경제연구원 「2024 지역에너지통계연보」, 대전환경운동연합 주차장 태양광 조사(2026), 대전시 「태양광 분야 예산 편성 내역」(2026), 해줌 「2026 태양광 설치 가이드」, 언론 보도</div>
+ </div>
 </div>
+<div class="src">자료: 에너지경제연구원 「2024 지역에너지통계연보」, 대전환경운동연합 주차장 조사(2026), 대전시 태양광 예산 편성 내역·융복합지원사업 현황(2026), 재생에너지 클라우드플랫폼, 대전시 정보공개(2026.11), 해줌 설치 가이드(2026), 언론 보도</div>
+</section>
+</div></div>
+<script>
+(function(){var f=document.getElementById('frame');
+function fit(){f.style.transform='scale('+Math.min(innerWidth/1920,innerHeight/1080)+')';}
+addEventListener('resize',fit);fit();
+addEventListener('keydown',function(e){if(e.key==='f'||e.key==='F'){document.fullscreenElement?document.exitFullscreen():document.documentElement.requestFullscreen();}});})();
+</script>
 </body></html>
